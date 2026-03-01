@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import type { BootState } from '@/types/BootState';
-import { useUser } from '@/state/userContext';
+import { useUser } from '@/state/userProvider';
 import Header from '@/pages/Header';
 import bootUp from '@/app/bootUp';
 
