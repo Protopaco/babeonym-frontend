@@ -5,13 +5,16 @@ import { UserProvider } from '@/state/userProvider.tsx';
 import theme from '@/theme';
 import './index.css';
 import App from './App.tsx';
+import { GivenNameProvider } from './state/nameProvider.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <UserProvider>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <GivenNameProvider>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </GivenNameProvider>
     </UserProvider>
   </StrictMode>
 );
