@@ -1,15 +1,10 @@
-import { Configuration, UserApi, AuthApi } from '@/api/generated';
+//import { Configuration, UserApi, AuthApi } from '@/api/generated';
 import type { BootState } from '@/types/BootState';
+import { userApi, authApi } from '@/api/client';
 
 export default async (): Promise<BootState> => {
-  const config = new Configuration({
-    basePath: 'http://localhost:3000', // your backend
-    credentials: 'include', // CRITICAL for cookies
-  });
-
-  const userApi = new UserApi(config);
-  const authApi = new AuthApi(config);
   let cancelled = false;
+  console.log('🚀 ~ cancelled:', cancelled);
 
   try {
     const { user } = await userApi.v1UserGet();
