@@ -1,29 +1,30 @@
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import type { BootState } from '@/types/BootState';
+import { useUser } from '@/state/userContext';
 import Header from '@/pages/Header';
 import bootUp from '@/app/bootUp';
 
 const AppLayout = () => {
+  const { setUser } = useUser();
+
   const [boot, setBoot] = useState<BootState>({ status: 'loading' });
   const booted = useRef(false);
 
   useEffect(() => {
-    if (booted.current) return;
-    booted.current = true;
     const run = async () => {
       const bootState = await bootUp();
       setBoot(bootState);
+      if (bootState.status === 'ready') setUser(bootState.user);
     };
 
-    console.log('🚀 ~ AppLayout ~ booted.current:', booted.current);
-    console.log('🚀 ~ AppLayout ~ boot:', boot);
+    if (booted.current) return;
+    booted.current = true;
     run();
   }, []);
 
-  console.log('🚀 ~ AppLayout ~ booted:', booted);
   if (boot.status === 'loading') return <div>Loading…</div>;
-  if (boot.status === 'error') return <div>{boot.message}</div>;
+  if (boot.status === 'error') return <div>Error</div>;
 
   return (
     <>

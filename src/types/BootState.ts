@@ -1,3 +1,3 @@
-import type { User } from '@/api/generated/models/User';
+import type { User } from '@/api/generated';
 
-export type BootState = { status: 'loading' } | { status: 'ready'; user: User } | { status: 'error'; message: string };
+export type BootState = { status: 'loading' } | { status: 'ready'; user: User } | { status: 'error' };

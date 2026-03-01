@@ -4,7 +4,6 @@ import { userApi, authApi } from '@/api/client';
 
 export default async (): Promise<BootState> => {
   let cancelled = false;
-  console.log('🚀 ~ cancelled:', cancelled);
 
   try {
     const { user } = await userApi.v1UserGet();
@@ -14,9 +13,10 @@ export default async (): Promise<BootState> => {
       try {
         await authApi.v1AuthAnonymous();
         const { user } = await userApi.v1UserGet();
+
         if (!cancelled) return { status: 'ready', user };
       } catch (e: any) {
-        if (!cancelled) return { status: 'error', message: 'Failed to create session' };
+        if (!cancelled) return { status: 'error' };
       }
     }
   }
