@@ -6,7 +6,7 @@ import { ApiV1GivenNameActionPostRequestNewStateEnum } from '@/api/generated/mod
 import type { V1GivenNameActionOperationRequest } from '@/api/generated/apis/GivenNameApi';
 
 type State = {
-  givenNameCandidates: GivenName[] | null;
+  givenNameCandidates: GivenName[];
   givenNameProviderLoaded: boolean;
 };
 
@@ -38,10 +38,11 @@ const reducer = (state: State, action: Action): State => {
     }
     case 'REMOVE_CANDIDATE': {
       let filteredCandidates: GivenName[] = [];
-      if (state.givenNameCandidates) {
-        filteredCandidates = state.givenNameCandidates?.filter(({ givenCustomNameBridgeId }) => {
-          givenCustomNameBridgeId === action.payload;
-        });
+      if (state.givenNameCandidates.length > 0) {
+        console.log('{{{{{{{{{{{{{{{{{{{{{{{{{');
+        console.log(filteredCandidates);
+        console.log(state.givenNameCandidates);
+        filteredCandidates = state.givenNameCandidates.filter(({ givenCustomNameBridgeId }) => givenCustomNameBridgeId !== action.payload);
       }
 
       return { ...state, givenNameCandidates: filteredCandidates };
@@ -55,7 +56,16 @@ const reducer = (state: State, action: Action): State => {
 };
 
 const GivenNamesContext = createContext<
-  { state: State; dispatch: React.Dispatch<Action>; actions: { approveCandidate: (givenCustomNameBridgeId: number) => Promise<void> } } | undefined
+  | {
+      state: State;
+      dispatch: React.Dispatch<Action>;
+      actions: {
+        approveCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
+        rejectCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
+        snoozeCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
+      };
+    }
+  | undefined
 >(undefined);
 
 export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
@@ -75,6 +85,38 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       v1GivenNameActionRequest: {
         givenCustomNameBridgeId,
         newState: ApiV1GivenNameActionPostRequestNewStateEnum.Approved,
+      },
+    };
+
+    try {
+      await givenNameApi.v1GivenNameAction(actionRequest);
+      removeCandidate(givenCustomNameBridgeId);
+    } catch (e) {
+      throw e;
+    }
+  };
+
+  const rejectCandidate = async (givenCustomNameBridgeId: number) => {
+    const actionRequest: V1GivenNameActionOperationRequest = {
+      v1GivenNameActionRequest: {
+        givenCustomNameBridgeId,
+        newState: ApiV1GivenNameActionPostRequestNewStateEnum.Rejected,
+      },
+    };
+
+    try {
+      await givenNameApi.v1GivenNameAction(actionRequest);
+      removeCandidate(givenCustomNameBridgeId);
+    } catch (e) {
+      throw e;
+    }
+  };
+
+  const snoozeCandidate = async (givenCustomNameBridgeId: number) => {
+    const actionRequest: V1GivenNameActionOperationRequest = {
+      v1GivenNameActionRequest: {
+        givenCustomNameBridgeId,
+        newState: ApiV1GivenNameActionPostRequestNewStateEnum.Snoozed,
       },
     };
 
@@ -107,14 +149,14 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     () => ({
       state,
       dispatch,
-      actions: { approveCandidate },
+      actions: { approveCandidate, rejectCandidate, snoozeCandidate },
     }),
     [state]
   );
 
   return (
     <GivenNamesContext.Provider value={value}>
-      {state.givenNameProviderLoaded && state.givenNameCandidates && state.givenNameCandidates.length > 0 ? children : null}
+      {state.givenNameProviderLoaded && state.givenNameCandidates.length > 0 ? children : null}
     </GivenNamesContext.Provider>
   );
 };
