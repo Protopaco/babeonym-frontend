@@ -1,7 +1,8 @@
-import { useGivenNames } from '@/state/givenNameProvider';
+import { useGivenNames, useGivenNamesActions } from '@/state/givenNameProvider';
 
 const NameGenerator = () => {
   const { state } = useGivenNames();
+  const { approveCandidate } = useGivenNamesActions();
   const { givenNameCandidates } = state;
 
   return (
