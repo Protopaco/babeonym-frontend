@@ -14,7 +14,7 @@
 // };
 
 import { Configuration } from '@/api/generated/runtime';
-import { UserApi, AuthApi, ReferenceApi } from '@/api/generated/apis';
+import { UserApi, AuthApi, ReferenceApi, GivenNameApi } from '@/api/generated/apis';
 
 const config = new Configuration({
   basePath: import.meta.env.API_BASE_URL, // e.g. http://localhost:3000/
@@ -24,3 +24,4 @@ const config = new Configuration({
 export const userApi = new UserApi(config);
 export const authApi = new AuthApi(config);
 export const referenceApi = new ReferenceApi(config);
+export const givenNameApi = new GivenNameApi(config);

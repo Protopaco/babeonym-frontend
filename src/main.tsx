@@ -5,7 +5,7 @@ import { UserProvider } from '@/state/userProvider.tsx';
 import theme from '@/theme';
 import './index.css';
 import App from './App.tsx';
-import { GivenNameProvider } from './state/nameProvider.tsx';
+import { GivenNameProvider } from './state/givenNameProvider.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
