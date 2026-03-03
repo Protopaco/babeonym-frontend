@@ -17,6 +17,7 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
         givenNameCandidates: Array.from(candidateMap.values()),
       };
     }
+
     case 'REMOVE_CANDIDATE': {
       let filteredCandidates: GivenName[] = [];
       if (state.givenNameCandidates.length > 0) {
@@ -24,6 +25,10 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       }
 
       return { ...state, givenNameCandidates: filteredCandidates };
+    }
+
+    case 'ADD_APPROVED': {
+      return { ...state, approvedGivenNames: action.payload };
     }
 
     case 'GIVEN_NAME_PROVIDER_LOADED': {

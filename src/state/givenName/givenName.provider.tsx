@@ -9,6 +9,7 @@ import { givenNameReducer } from '@/state/givenName/givenName.reducer';
 
 const initialState: GivenNameState = {
   givenNameCandidates: [],
+  approvedGivenNames: [],
   givenNameProviderLoaded: false,
 };
 
@@ -78,6 +79,11 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: 'REMOVE_CANDIDATE', payload: givenCustomNameBridgeId });
   };
 
+  const addApprovedGivenNames = async () => {
+    const approvedGivenNames = await givenNameApi.v1GivenNameApproved();
+    dispatch({ type: 'ADD_APPROVED', payload: approvedGivenNames });
+  };
+
   const givenNameProviderLoaded = () => {
     dispatch({ type: 'GIVEN_NAME_PROVIDER_LOADED' });
   };
@@ -85,6 +91,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const onLoad = async () => {
       await addCandidates();
+      await addApprovedGivenNames();
       givenNameProviderLoaded();
     };
 
