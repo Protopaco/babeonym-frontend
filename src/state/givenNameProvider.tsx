@@ -1,9 +1,10 @@
 import { createContext, useContext, useReducer, useEffect, useMemo } from 'react';
-import { givenNameApi } from '@/api/client';
+import { givenNameApi, referenceApi } from '@/api/client';
 import type { ReactNode } from 'react';
 import type { GivenName } from '@/api/generated/models/GivenName';
 import { ApiV1GivenNameActionPostRequestNewStateEnum } from '@/api/generated/models/ApiV1GivenNameActionPostRequest';
 import type { V1GivenNameActionOperationRequest } from '@/api/generated/apis/GivenNameApi';
+import type { Decade } from '@/api/generated';
 
 type State = {
   givenNameCandidates: GivenName[];
@@ -12,8 +13,8 @@ type State = {
 
 type Action =
   | { type: 'ADD_CANDIDATES'; payload: GivenName[] }
-  | { type: 'GIVEN_NAME_PROVIDER_LOADED' }
-  | { type: 'REMOVE_CANDIDATE'; payload: number };
+  | { type: 'REMOVE_CANDIDATE'; payload: number }
+  | { type: 'GIVEN_NAME_PROVIDER_LOADED' };
 
 const initialState: State = {
   givenNameCandidates: [],
@@ -47,6 +48,7 @@ const reducer = (state: State, action: Action): State => {
 
       return { ...state, givenNameCandidates: filteredCandidates };
     }
+
     case 'GIVEN_NAME_PROVIDER_LOADED': {
       return { ...state, givenNameProviderLoaded: true };
     }
@@ -72,11 +74,13 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const addCandidates = async () => {
-    try {
-      const nameList = await givenNameApi.v1GivenNameCandidates();
-      dispatch({ type: 'ADD_CANDIDATES', payload: nameList });
-    } catch (e) {
-      throw e;
+    if (state.givenNameCandidates.length < 10) {
+      try {
+        const nameList = await givenNameApi.v1GivenNameCandidates();
+        dispatch({ type: 'ADD_CANDIDATES', payload: nameList });
+      } catch (e) {
+        throw e;
+      }
     }
   };
 
@@ -138,7 +142,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const onLoad = async () => {
-      addCandidates();
+      await addCandidates();
       givenNameProviderLoaded();
     };
 

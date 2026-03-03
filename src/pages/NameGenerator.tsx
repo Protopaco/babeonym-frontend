@@ -1,9 +1,13 @@
 import { useGivenNames, useGivenNamesActions } from '@/state/givenNameProvider';
+import { useFilters } from '@/state/filter/filter.context';
 
 const NameGenerator = () => {
-  const { state } = useGivenNames();
+  const givenNameContext = useGivenNames();
   const { approveCandidate, rejectCandidate, snoozeCandidate } = useGivenNamesActions();
-  const { givenNameCandidates } = state;
+  const { givenNameCandidates } = givenNameContext.state;
+  const filterContext = useFilters();
+  const { decades } = filterContext.state;
+  console.log('🚀 ~ NameGenerator ~ decades:', decades);
 
   const approveClick = async () => {
     if (givenNameCandidates && givenNameCandidates.length > 0) {
