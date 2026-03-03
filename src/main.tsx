@@ -5,7 +5,7 @@ import { UserProvider } from '@/state/userProvider.tsx';
 import theme from '@/theme';
 import './index.css';
 import App from './App.tsx';
-import { GivenNameProvider } from '@/state/givenNameProvider.tsx';
+import { GivenNameProvider } from '@/state/givenName/givenName.provider.tsx';
 import { FilterProvider } from '@/state/filter/filter.provider';
 
 createRoot(document.getElementById('root')!).render(

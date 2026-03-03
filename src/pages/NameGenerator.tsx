@@ -1,4 +1,4 @@
-import { useGivenNames, useGivenNamesActions } from '@/state/givenNameProvider';
+import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import { useFilters } from '@/state/filter/filter.context';
 
 const NameGenerator = () => {

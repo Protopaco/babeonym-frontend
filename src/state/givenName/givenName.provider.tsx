@@ -1,77 +1,19 @@
-import { createContext, useContext, useReducer, useEffect, useMemo } from 'react';
-import { givenNameApi, referenceApi } from '@/api/client';
+import { useContext, useReducer, useEffect, useMemo } from 'react';
+import { givenNameApi } from '@/api/client';
 import type { ReactNode } from 'react';
-import type { GivenName } from '@/api/generated/models/GivenName';
 import { ApiV1GivenNameActionPostRequestNewStateEnum } from '@/api/generated/models/ApiV1GivenNameActionPostRequest';
 import type { V1GivenNameActionOperationRequest } from '@/api/generated/apis/GivenNameApi';
-import type { Decade } from '@/api/generated';
+import { GivenNameContext } from '@/state/givenName/givenName.context';
+import type { GivenNameState } from '@/state/givenName/givenName.types';
+import { givenNameReducer } from '@/state/givenName/givenName.reducer';
 
-type State = {
-  givenNameCandidates: GivenName[];
-  givenNameProviderLoaded: boolean;
-};
-
-type Action =
-  | { type: 'ADD_CANDIDATES'; payload: GivenName[] }
-  | { type: 'REMOVE_CANDIDATE'; payload: number }
-  | { type: 'GIVEN_NAME_PROVIDER_LOADED' };
-
-const initialState: State = {
+const initialState: GivenNameState = {
   givenNameCandidates: [],
   givenNameProviderLoaded: false,
 };
 
-const reducer = (state: State, action: Action): State => {
-  switch (action.type) {
-    case 'ADD_CANDIDATES': {
-      const existingCandidates = state.givenNameCandidates ?? [];
-
-      const candidateMap = new Map<number, GivenName>();
-
-      [...existingCandidates, ...action.payload].forEach((candidate) => {
-        candidateMap.set(candidate.givenCustomNameBridgeId, candidate);
-      });
-
-      return {
-        ...state,
-        givenNameCandidates: Array.from(candidateMap.values()),
-      };
-    }
-    case 'REMOVE_CANDIDATE': {
-      let filteredCandidates: GivenName[] = [];
-      if (state.givenNameCandidates.length > 0) {
-        console.log('{{{{{{{{{{{{{{{{{{{{{{{{{');
-        console.log(filteredCandidates);
-        console.log(state.givenNameCandidates);
-        filteredCandidates = state.givenNameCandidates.filter(({ givenCustomNameBridgeId }) => givenCustomNameBridgeId !== action.payload);
-      }
-
-      return { ...state, givenNameCandidates: filteredCandidates };
-    }
-
-    case 'GIVEN_NAME_PROVIDER_LOADED': {
-      return { ...state, givenNameProviderLoaded: true };
-    }
-    default:
-      return state;
-  }
-};
-
-const GivenNamesContext = createContext<
-  | {
-      state: State;
-      dispatch: React.Dispatch<Action>;
-      actions: {
-        approveCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
-        rejectCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
-        snoozeCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
-      };
-    }
-  | undefined
->(undefined);
-
 export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(givenNameReducer, initialState);
 
   const addCandidates = async () => {
     if (state.givenNameCandidates.length < 10) {
@@ -158,15 +100,11 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     [state]
   );
 
-  return (
-    <GivenNamesContext.Provider value={value}>
-      {state.givenNameProviderLoaded && state.givenNameCandidates.length > 0 ? children : null}
-    </GivenNamesContext.Provider>
-  );
+  return <GivenNameContext.Provider value={value}>{state.givenNameProviderLoaded ? children : null}</GivenNameContext.Provider>;
 };
 
 export const useGivenNames = () => {
-  const context = useContext(GivenNamesContext);
+  const context = useContext(GivenNameContext);
   if (!context) {
     throw new Error('useGivenNames must be used inside GivenNamesProvider');
   }
