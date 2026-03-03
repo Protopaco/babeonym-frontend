@@ -6,23 +6,40 @@ import { referenceApi } from '@/api/client';
 import { FilterContext } from '@/state/filter/filter.context';
 
 const initialState: FilterState = {
+  cultures: [],
   decades: [],
+  languages: [],
 };
 
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(filterReducer, initialState);
 
   const addDecades = async () => {
-    console.log('🚀 ~ addDecades ~ state.decades.length:', state.decades.length);
     if (state.decades.length < 1) {
       const { decades } = await referenceApi.v1ReferenceDecades();
       dispatch({ type: 'ADD_DECADES', payload: decades });
     }
   };
 
+  const addCultures = async () => {
+    if (state.cultures.length < 1) {
+      const { cultures } = await referenceApi.v1ReferenceCultures();
+      dispatch({ type: 'ADD_CULTURES', payload: cultures });
+    }
+  };
+
+  const addLanguages = async () => {
+    if (state.languages.length < 1) {
+      const { languages } = await referenceApi.v1ReferenceLanguages();
+      dispatch({ type: 'ADD_LANGUAGES', payload: languages });
+    }
+  };
+
   useEffect(() => {
     const onLoad = async () => {
       await addDecades();
+      await addCultures();
+      await addLanguages();
     };
 
     onLoad();
