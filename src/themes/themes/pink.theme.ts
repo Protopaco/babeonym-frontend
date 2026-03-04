@@ -1,6 +1,8 @@
 import { createTheme } from '@mui/material/styles';
 import type { SemanticPalette } from '@/themes/types.theme.ts';
-import applyPalette from '@/themes/applyPalette';
+import palette from '@/themes/palette.theme';
+import breakpoints from '@/themes/breakpoints.theme';
+import typography from '@/themes/typography.theme';
 
 const semanticPalette: SemanticPalette = {
   primary: '#D04883',
@@ -13,4 +15,11 @@ const semanticPalette: SemanticPalette = {
   background: '#FFEDFA',
 };
 
-export default createTheme(applyPalette(semanticPalette));
+let theme = createTheme({
+  ...breakpoints,
+  ...palette(semanticPalette),
+});
+
+theme = createTheme(theme, typography(theme));
+
+export default theme;
