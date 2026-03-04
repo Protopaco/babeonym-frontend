@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 import { UserProvider } from '@/state/userProvider.tsx';
 import theme from '@/theme';
 import './index.css';
@@ -14,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
       <GivenNameProvider>
         <FilterProvider>
           <ThemeProvider theme={theme}>
+            <CssBaseline />
             <App />
           </ThemeProvider>
         </FilterProvider>

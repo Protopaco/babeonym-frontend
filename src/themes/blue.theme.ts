@@ -1,0 +1,16 @@
+import { createTheme } from '@mui/material/styles';
+import type { SemanticPalette } from '@/themes/types.theme.ts';
+import applyPalette from '@/themes/applyPalette';
+
+const semanticPalette: SemanticPalette = {
+  primary: '#065AC7',
+  primaryContrast: '#FFFFFF',
+  secondary: '#88B7FF',
+  secondaryContrast: '#0042BC',
+  selected: '#9DC3FF',
+  textPrimary: '#000000',
+  textSecondary: '#065AC7',
+  background: '#C6E0FF',
+};
+
+export default createTheme(applyPalette(semanticPalette));
