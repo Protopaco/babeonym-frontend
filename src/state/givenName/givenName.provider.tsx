@@ -1,4 +1,4 @@
-import { useContext, useReducer, useEffect, useMemo } from 'react';
+import { useContext, useReducer, useEffect, useMemo, useRef } from 'react';
 import { givenNameApi } from '@/api/client';
 import type { ReactNode } from 'react';
 import { ApiV1GivenNameActionPostRequestNewStateEnum } from '@/api/generated/models/ApiV1GivenNameActionPostRequest';
@@ -15,6 +15,7 @@ const initialState: GivenNameState = {
 
 export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(givenNameReducer, initialState);
+  const booted = useRef(false);
 
   const addCandidates = async () => {
     if (state.givenNameCandidates.length < 10) {
@@ -95,6 +96,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       givenNameProviderLoaded();
     };
 
+    if (booted.current) return;
+    booted.current = true;
     onLoad();
   }, []);
 

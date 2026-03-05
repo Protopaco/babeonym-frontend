@@ -1,8 +1,9 @@
 import type { UserState, UserAction } from '@/state/user/user.types';
 import { UserContext } from '@/state/user/user.context';
 import type { ReactNode } from 'react';
-import { useReducer, useMemo } from 'react';
+import { useReducer, useMemo, useEffect, useRef } from 'react';
 import { userReducer } from '@/state/user/user.reducer';
+import { userApi, authApi } from '@/api/client';
 
 const initialState: UserState = {
   user: null,
@@ -10,6 +11,24 @@ const initialState: UserState = {
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
+  const booted = useRef(false);
+
+  const getUser = async () => {
+    try {
+      const { user } = await userApi.v1UserGet();
+      dispatch({ type: 'ADD_USER', payload: user });
+    } catch (err: any) {
+      if (err?.status === 401 || err?.response?.status === 401) {
+        try {
+          await authApi.v1AuthAnonymous();
+          const { user } = await userApi.v1UserGet();
+          dispatch({ type: 'ADD_USER', payload: user });
+        } catch (e: any) {
+          throw e;
+        }
+      }
+    }
+  };
 
   const value = useMemo(
     () => ({
@@ -18,6 +37,16 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }),
     [state]
   );
+
+  useEffect(() => {
+    const boot = async () => {
+      await getUser();
+    };
+
+    if (booted.current) return;
+    booted.current = true;
+    boot();
+  });
 
   return <UserContext.Provider value={value}>{state.user === null ? 'loading' : children}</UserContext.Provider>;
 };

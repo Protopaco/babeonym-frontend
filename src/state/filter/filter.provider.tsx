@@ -1,6 +1,6 @@
-import { createContext, useContext, useReducer, useEffect, useMemo } from 'react';
+import { useRef, useReducer, useEffect, useMemo } from 'react';
 import type { ReactNode } from 'react';
-import type { FilterState, FilterAction } from '@/state/filter/filter.types';
+import type { FilterState } from '@/state/filter/filter.types';
 import { filterReducer } from '@/state/filter/filter.reducer';
 import { referenceApi } from '@/api/client';
 import { FilterContext } from '@/state/filter/filter.context';
@@ -13,6 +13,7 @@ const initialState: FilterState = {
 
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(filterReducer, initialState);
+  const booted = useRef(false);
 
   const addDecades = async () => {
     if (state.decades.length < 1) {
@@ -42,6 +43,8 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
       await addLanguages();
     };
 
+    if (booted.current) return;
+    booted.current = true;
     onLoad();
   }, []);
 

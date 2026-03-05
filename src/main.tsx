@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { UserProvider } from '@/state/userProvider.tsx';
+import { UserProvider } from '@/state/user/user.provider';
 import theme from '@/theme';
 import './index.css';
 import App from './App.tsx';
