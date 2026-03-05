@@ -1,4 +1,4 @@
-import type { UserState, UserAction } from '@/state/user/user.types';
+import type { UserState } from '@/state/user/user.types';
 import { UserContext } from '@/state/user/user.context';
 import type { ReactNode } from 'react';
 import { useReducer, useMemo, useEffect, useRef } from 'react';
