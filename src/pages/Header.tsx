@@ -1,9 +1,10 @@
-
+import TopBar from '@/components/TopBar/TopBar';
 const Header = () => {
-
-    return (
-        <>Header</>
-    )
-}
+  return (
+    <>
+      <TopBar />
+    </>
+  );
+};
 
 export default Header;

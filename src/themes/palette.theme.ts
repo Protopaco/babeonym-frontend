@@ -23,5 +23,26 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
         secondary: textSecondary,
       },
     },
+
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          ':root': {
+            '--color-primary': primary,
+            '--color-primary-contrast': primaryContrast,
+
+            '--color-secondary': secondary,
+            '--color-secondary-contrast': secondaryContrast,
+
+            '--color-selected': selected,
+
+            '--color-text-primary': textPrimary,
+            '--color-text-secondary': textSecondary,
+
+            '--color-background': background,
+          },
+        },
+      },
+    },
   };
 };
