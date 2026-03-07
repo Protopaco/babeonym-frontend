@@ -40,6 +40,11 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
             '--color-text-secondary': textSecondary,
 
             '--color-background': background,
+
+            '--width-filter-drawer-open': '450px',
+            '--width-filter-drawer-closed': '150px',
+
+            '--height-header': '124px',
           },
         },
       },

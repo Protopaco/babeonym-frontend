@@ -1,0 +1,23 @@
+#filter-drawer {
+  /* width: 100%; */
+  padding-top: var(--height-header);
+  overflow-x: hidden;
+  transition: width 0.2s ease;
+}
+
+#filter-header {
+  width: 100%;
+  padding-top: var(--height-header);
+}
+
+.filter-drawer-open {
+  width: var(--width-filter-drawer-open);
+  overflow-x: hidden;
+  transition: width 0.2s ease;
+}
+
+.filter-drawer-closed {
+  width: var(--width-filter-drawer-closed);
+  overflow-x: hidden;
+  transition: width 0.2s ease;
+}

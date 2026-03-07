@@ -1,5 +1,7 @@
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import { useFilters } from '@/state/filter/filter.context';
+import FilterDrawer from '@/components/FilterDrawer/FilterDrawer';
+import { useState } from 'react';
 
 const NameGenerator = () => {
   const givenNameContext = useGivenNames();
@@ -7,7 +9,8 @@ const NameGenerator = () => {
   const { givenNameCandidates } = givenNameContext.state;
   const filterContext = useFilters();
   const { decades } = filterContext.state;
-  console.log('🚀 ~ NameGenerator ~ decades:', decades);
+  const [drawerOpen, setDrawerOpen] = useState(true);
+  console.log('🚀 ~ NameGenerator ~ drawerOpen:', drawerOpen);
 
   const approveClick = async () => {
     if (givenNameCandidates && givenNameCandidates.length > 0) {
@@ -29,6 +32,7 @@ const NameGenerator = () => {
 
   return (
     <>
+      <FilterDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
       NameGenerator
       <p>{givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0].givenName : 'no names'}</p>
       <p>

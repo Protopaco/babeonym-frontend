@@ -1,0 +1,6 @@
+#header {
+  position: fixed;
+  z-index: 1200;
+  width: 100%;
+  height: var(--height-header);
+}

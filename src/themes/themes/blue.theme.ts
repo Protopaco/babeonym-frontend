@@ -3,6 +3,7 @@ import type { SemanticPalette } from '@/themes/types.theme.ts';
 import palette from '@/themes/palette.theme';
 import breakpoints from '@/themes/breakpoints.theme';
 import typography from '@/themes/typography.theme';
+import zIndex from '@/themes/zIndex.theme';
 
 const semanticPalette: SemanticPalette = {
   primary: '#065AC7',
@@ -18,6 +19,7 @@ const semanticPalette: SemanticPalette = {
 let theme = createTheme({
   ...breakpoints,
   ...palette(semanticPalette),
+  ...zIndex,
 });
 
 theme = createTheme(theme, typography(theme));
