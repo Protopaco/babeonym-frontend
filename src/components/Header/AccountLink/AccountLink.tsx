@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography';
-import '@/components/AccountLink/AccountLink.css';
+import '@/components/Header/AccountLink/AccountLink.css';
 
 export default () => {
   return (

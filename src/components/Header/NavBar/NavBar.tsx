@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import '@/components/NavBar/NavBar.css';
+import '@/components/Header/NavBar/NavBar.css';
 import AppBar from '@mui/material/AppBar';
 
 export default () => {

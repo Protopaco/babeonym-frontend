@@ -1,7 +1,7 @@
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import '@/components/NameEvaluator/NameEvaluator.css';
+import '@/components/NameGenerator/NameEvaluator/NameEvaluator.css';
 
 export default (props: any) => {
   const { drawerOpen } = props;

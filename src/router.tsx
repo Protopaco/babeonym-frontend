@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import AppLayout from '@/AppLayout';
 
-import NameGenerator from '@/pages/NameGenerator';
+import NameGenerator from '@/components/NameGenerator/NameGenerator';
 import NameList from '@/pages/NameList';
 import CompareNames from '@/pages/CompareNames';
 import AccountSettings from '@/pages/AccountSettings';
