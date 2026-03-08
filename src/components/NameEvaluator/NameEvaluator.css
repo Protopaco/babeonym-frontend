@@ -1,0 +1,10 @@
+#name-evaluator {
+}
+
+.drawer-open {
+  padding-left: var(--width-filter-drawer-open);
+}
+
+.drawer-closed {
+  padding-left: var(--width-filter-drawer-closed);
+}
