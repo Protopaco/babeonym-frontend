@@ -3,8 +3,11 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import '@/components/NameGenerator/NameEvaluator/NameEvaluator.css';
 
-export default (props: any) => {
-  const { drawerOpen } = props;
+type Props = {
+  drawerOpen: boolean;
+};
+
+export default ({ drawerOpen }: Props) => {
   const givenNameContext = useGivenNames();
   const { givenNameCandidates } = givenNameContext.state;
   const { approveCandidate, rejectCandidate, snoozeCandidate } = useGivenNamesActions();

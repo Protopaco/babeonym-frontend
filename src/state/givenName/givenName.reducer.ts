@@ -34,6 +34,27 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
     case 'GIVEN_NAME_PROVIDER_LOADED': {
       return { ...state, givenNameProviderLoaded: true };
     }
+
+    case 'ADD_SELECTED_GENDER': {
+      state.selectedGenders.push(action.payload);
+      return state;
+    }
+
+    case 'REMOVE_SELECTED_GENDER': {
+      const newSelectedGenders = state.selectedGenders.filter((selectedGender) => selectedGender === action.payload);
+      return { ...state, selectedGenders: newSelectedGenders };
+    }
+
+    case 'ADD_SELECTED_DECADE_ID': {
+      state.selectedDecadeIds.push(action.payload);
+      return state;
+    }
+
+    case 'REMOVE_SELECTED_DECADE_ID': {
+      const newSelectedDecadeIds = state.selectedDecadeIds.filter((selectedDecadeId) => selectedDecadeId === action.payload);
+      return { ...state, selectedDecadeIds: newSelectedDecadeIds };
+    }
+
     default:
       return state;
   }

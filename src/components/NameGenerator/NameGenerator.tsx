@@ -1,5 +1,3 @@
-import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
-import { useFilters } from '@/state/filter/filter.context';
 import FilterDrawer from '@/components/NameGenerator/FilterDrawer/FilterDrawer';
 import { useState } from 'react';
 import NameEvaluator from '@/components/NameGenerator/NameEvaluator/NameEvaluator';
