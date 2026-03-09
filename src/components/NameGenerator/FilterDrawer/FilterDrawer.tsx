@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import '@/components/NameGenerator/FilterDrawer/FilterDrawer.css';
 import FilterDrawerHeader from '../FilterDrawerHeader/FilterDrawerHeader';
 import DecadesFilter from '@/components/NameGenerator/DecadesFilter/DecadesFilter';
+import GenderFilter from '../GenderFilter/GenderFilter';
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 
 type Props = {
@@ -25,6 +25,7 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
         slotProps={{ paper: { className: drawerOpen ? 'filter-drawer-open' : 'filter-drawer-closed' } }}
       >
         <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
+        <GenderFilter />
         <DecadesFilter />
         <button onClick={() => getNewCandidates()}>Apply Filters</button>
       </Drawer>

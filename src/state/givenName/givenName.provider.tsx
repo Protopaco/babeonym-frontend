@@ -22,13 +22,12 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
   const buildCandidateRequest = (state: GivenNameState): V1GivenNameCandidatesRequest => ({
     decadeIds: state.selectedDecadeIds.length ? state.selectedDecadeIds.join(',') : undefined,
-    include: 'etymology',
+    genders: state.selectedGenders.length ? state.selectedGenders.join(',') : undefined,
   });
 
   const getNewCandidates = async () => {
     try {
       const request = buildCandidateRequest(state);
-      console.log('🚀 ~ getNewCandidates ~ request:', request);
       const nameList = await givenNameApi.v1GivenNameCandidates(request);
       dispatch({ type: 'GET_NEW_CANDIDATES', payload: nameList });
     } catch (e) {
@@ -97,12 +96,12 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: 'GIVEN_NAME_PROVIDER_LOADED' });
   };
 
-  const addSelectedGender = async (selectedGender: Gender) => {
-    dispatch({ type: 'ADD_SELECTED_GENDER', payload: selectedGender });
+  const addSelectedGenders = async (selectedGenders: Gender[]) => {
+    dispatch({ type: 'ADD_SELECTED_GENDERS', payload: selectedGenders });
   };
 
-  const removeSelectedGender = async (unselectedGender: Gender) => {
-    dispatch({ type: 'REMOVE_SELECTED_GENDER', payload: unselectedGender });
+  const removeSelectedGenders = async (unselectedGenders: Gender[]) => {
+    dispatch({ type: 'REMOVE_SELECTED_GENDERS', payload: unselectedGenders });
   };
 
   const addSelectedDecadeIds = async (selectedDecadeIds: number[]) => {
@@ -134,8 +133,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         approveCandidate,
         rejectCandidate,
         snoozeCandidate,
-        addSelectedGender,
-        removeSelectedGender,
+        addSelectedGenders,
+        removeSelectedGenders,
         addSelectedDecadeIds,
         removeSelectedDecadeIds,
       },

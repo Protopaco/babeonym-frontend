@@ -32,7 +32,7 @@ export default () => {
         await handleChange(updatedDecadeIds);
       }}
       getOptionLabel={(option: Decade) => option.label}
-      renderInput={(params) => <TextField {...params} label="Checkboxes" placeholder="Favorites" />}
+      renderInput={(params) => <TextField {...params} label="Decades" />}
       renderOption={(props, option, { selected }) => {
         const { key, ...optionProps } = props;
         const SelectionIcon = selected ? CheckBoxIcon : CheckBoxOutlineBlankIcon;

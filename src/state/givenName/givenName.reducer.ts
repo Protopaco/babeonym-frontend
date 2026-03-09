@@ -39,13 +39,13 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, givenNameProviderLoaded: true };
     }
 
-    case 'ADD_SELECTED_GENDER': {
-      state.selectedGenders.push(action.payload);
-      return state;
+    case 'ADD_SELECTED_GENDERS': {
+      return { ...state, selectedGenders: action.payload };
     }
 
-    case 'REMOVE_SELECTED_GENDER': {
-      const newSelectedGenders = state.selectedGenders.filter((selectedGender) => selectedGender === action.payload);
+    case 'REMOVE_SELECTED_GENDERS': {
+      const newSelectedGenders = state.selectedGenders.filter((selectedGender) => !action.payload.includes(selectedGender));
+
       return { ...state, selectedGenders: newSelectedGenders };
     }
 
