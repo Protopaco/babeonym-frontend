@@ -2,7 +2,7 @@ import { useContext, useReducer, useEffect, useMemo, useRef } from 'react';
 import { givenNameApi } from '@/api/client';
 import type { ReactNode } from 'react';
 import { ApiV1GivenNameActionPostRequestNewStateEnum } from '@/api/generated/models/ApiV1GivenNameActionPostRequest';
-import type { V1GivenNameActionOperationRequest } from '@/api/generated/apis/GivenNameApi';
+import type { V1GivenNameActionOperationRequest, V1GivenNameCandidatesRequest } from '@/api/generated/apis/GivenNameApi';
 import { GivenNameContext } from '@/state/givenName/givenName.context';
 import type { GivenNameState } from '@/state/givenName/givenName.types';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
@@ -20,14 +20,19 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(givenNameReducer, initialState);
   const booted = useRef(false);
 
-  const addCandidates = async () => {
-    if (state.givenNameCandidates.length < 10) {
-      try {
-        const nameList = await givenNameApi.v1GivenNameCandidates();
-        dispatch({ type: 'ADD_CANDIDATES', payload: nameList });
-      } catch (e) {
-        throw e;
-      }
+  const buildCandidateRequest = (state: GivenNameState): V1GivenNameCandidatesRequest => ({
+    decadeIds: state.selectedDecadeIds.length ? state.selectedDecadeIds.join(',') : undefined,
+    include: 'etymology',
+  });
+
+  const getNewCandidates = async () => {
+    try {
+      const request = buildCandidateRequest(state);
+      console.log('🚀 ~ getNewCandidates ~ request:', request);
+      const nameList = await givenNameApi.v1GivenNameCandidates(request);
+      dispatch({ type: 'GET_NEW_CANDIDATES', payload: nameList });
+    } catch (e) {
+      throw e;
     }
   };
 
@@ -94,27 +99,23 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
   const addSelectedGender = async (selectedGender: Gender) => {
     dispatch({ type: 'ADD_SELECTED_GENDER', payload: selectedGender });
-    await addCandidates();
   };
 
   const removeSelectedGender = async (unselectedGender: Gender) => {
     dispatch({ type: 'REMOVE_SELECTED_GENDER', payload: unselectedGender });
-    await addCandidates();
   };
 
-  const addSelectedDecadeId = async (selectedDecadeId: number) => {
-    dispatch({ type: 'ADD_SELECTED_DECADE_ID', payload: selectedDecadeId });
-    await addCandidates();
+  const addSelectedDecadeIds = async (selectedDecadeIds: number[]) => {
+    dispatch({ type: 'ADD_SELECTED_DECADE_ID', payload: selectedDecadeIds });
   };
 
-  const removeSelectedDecadeId = async (unselectedDecadeId: number) => {
-    dispatch({ type: 'REMOVE_SELECTED_DECADE_ID', payload: unselectedDecadeId });
-    await addCandidates();
+  const removeSelectedDecadeIds = async (unselectedDecadeIds: number[]) => {
+    dispatch({ type: 'REMOVE_SELECTED_DECADE_ID', payload: unselectedDecadeIds });
   };
 
   useEffect(() => {
     const onLoad = async () => {
-      await addCandidates();
+      await getNewCandidates();
       await addApprovedGivenNames();
       givenNameProviderLoaded();
     };
@@ -129,13 +130,14 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       state,
       dispatch,
       actions: {
+        getNewCandidates,
         approveCandidate,
         rejectCandidate,
         snoozeCandidate,
         addSelectedGender,
         removeSelectedGender,
-        addSelectedDecadeId,
-        removeSelectedDecadeId,
+        addSelectedDecadeIds,
+        removeSelectedDecadeIds,
       },
     }),
     [state]

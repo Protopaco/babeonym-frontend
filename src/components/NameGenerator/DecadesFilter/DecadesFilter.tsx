@@ -12,21 +12,25 @@ export default () => {
   const { decades } = filterContext.state;
   const givenNameContext = useGivenNames();
   const { selectedDecadeIds } = givenNameContext.state;
-  const { addSelectedDecadeId, removeSelectedDecadeId } = useGivenNamesActions();
+  const { addSelectedDecadeIds, removeSelectedDecadeIds } = useGivenNamesActions();
 
-  const addDecadeId = async (selectedDecadeId: number) => {
-    await addSelectedDecadeId(selectedDecadeId);
+  const handleChange = async (updatedDecadeIds: number[]) => {
+    const addedIds = updatedDecadeIds.filter((id) => !selectedDecadeIds.includes(id));
+    await addSelectedDecadeIds(addedIds);
+    const removedIds = selectedDecadeIds.filter((id) => !updatedDecadeIds.includes(id));
+    await removeSelectedDecadeIds(removedIds);
   };
 
-  const removeDecadeId = async (unselectedDecadeId: number) => {
-    await removeSelectedDecadeId(unselectedDecadeId);
-  };
   return (
     <Autocomplete
       multiple
       id="decades-filter"
       options={decades}
       disableCloseOnSelect
+      onChange={async (event, value) => {
+        const updatedDecadeIds = value.map(({ id }) => id);
+        await handleChange(updatedDecadeIds);
+      }}
       getOptionLabel={(option: Decade) => option.label}
       renderInput={(params) => <TextField {...params} label="Checkboxes" placeholder="Favorites" />}
       renderOption={(props, option, { selected }) => {

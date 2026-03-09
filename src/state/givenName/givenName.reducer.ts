@@ -3,20 +3,24 @@ import type { GivenName } from '@/api/generated/models/GivenName';
 
 export const givenNameReducer = (state: GivenNameState, action: GivenNameAction): GivenNameState => {
   switch (action.type) {
-    case 'ADD_CANDIDATES': {
-      const existingCandidates = state.givenNameCandidates ?? [];
-
-      const candidateMap = new Map<number, GivenName>();
-
-      [...existingCandidates, ...action.payload].forEach((candidate) => {
-        candidateMap.set(candidate.givenCustomNameBridgeId, candidate);
-      });
-
-      return {
-        ...state,
-        givenNameCandidates: Array.from(candidateMap.values()),
-      };
+    case 'GET_NEW_CANDIDATES': {
+      return { ...state, givenNameCandidates: action.payload };
     }
+
+    // case 'ADD_CANDIDATES': {
+    //   const existingCandidates = state.givenNameCandidates ?? [];
+
+    //   const candidateMap = new Map<number, GivenName>();
+
+    //   [...existingCandidates, ...action.payload].forEach((candidate) => {
+    //     candidateMap.set(candidate.givenCustomNameBridgeId, candidate);
+    //   });
+
+    //   return {
+    //     ...state,
+    //     givenNameCandidates: Array.from(candidateMap.values()),
+    //   };
+    // }
 
     case 'REMOVE_CANDIDATE': {
       let filteredCandidates: GivenName[] = [];
@@ -46,12 +50,11 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
     }
 
     case 'ADD_SELECTED_DECADE_ID': {
-      state.selectedDecadeIds.push(action.payload);
-      return state;
+      return { ...state, selectedDecadeIds: [...state.selectedDecadeIds, ...action.payload] };
     }
 
     case 'REMOVE_SELECTED_DECADE_ID': {
-      const newSelectedDecadeIds = state.selectedDecadeIds.filter((selectedDecadeId) => selectedDecadeId === action.payload);
+      const newSelectedDecadeIds = state.selectedDecadeIds.filter((selectedDecadeId) => !action.payload.includes(selectedDecadeId));
       return { ...state, selectedDecadeIds: newSelectedDecadeIds };
     }
 

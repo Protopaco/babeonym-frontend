@@ -10,11 +10,11 @@ export type GivenNameState = {
 };
 
 export type GivenNameAction =
-  | { type: 'ADD_CANDIDATES'; payload: GivenName[] }
+  | { type: 'GET_NEW_CANDIDATES'; payload: GivenName[] }
   | { type: 'REMOVE_CANDIDATE'; payload: number }
   | { type: 'ADD_APPROVED'; payload: GivenName[] }
   | { type: 'GIVEN_NAME_PROVIDER_LOADED' }
   | { type: 'ADD_SELECTED_GENDER'; payload: Gender }
   | { type: 'REMOVE_SELECTED_GENDER'; payload: Gender }
-  | { type: 'ADD_SELECTED_DECADE_ID'; payload: number }
-  | { type: 'REMOVE_SELECTED_DECADE_ID'; payload: number };
+  | { type: 'ADD_SELECTED_DECADE_ID'; payload: number[] }
+  | { type: 'REMOVE_SELECTED_DECADE_ID'; payload: number[] };

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import '@/components/NameGenerator/FilterDrawer/FilterDrawer.css';
 import FilterDrawerHeader from '../FilterDrawerHeader/FilterDrawerHeader';
 import DecadesFilter from '@/components/NameGenerator/DecadesFilter/DecadesFilter';
+import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 
 type Props = {
   drawerOpen: boolean;
@@ -11,6 +12,8 @@ type Props = {
 };
 
 export default ({ drawerOpen, setDrawerOpen }: Props) => {
+  const { getNewCandidates } = useGivenNamesActions();
+
   return (
     <Box>
       <Drawer
@@ -23,6 +26,7 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
       >
         <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
         <DecadesFilter />
+        <button onClick={() => getNewCandidates()}>Apply Filters</button>
       </Drawer>
     </Box>
   );
