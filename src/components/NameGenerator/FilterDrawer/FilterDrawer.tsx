@@ -5,6 +5,8 @@ import FilterDrawerHeader from '../FilterDrawerHeader/FilterDrawerHeader';
 import DecadesFilter from '@/components/NameGenerator/DecadesFilter/DecadesFilter';
 import GenderFilter from '../GenderFilter/GenderFilter';
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
+import { Accordion } from '@mui/material';
+import GenderAccordion from '../GenderAccordion/GenderAccordion';
 
 type Props = {
   drawerOpen: boolean;
@@ -25,8 +27,9 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
         slotProps={{ paper: { className: drawerOpen ? 'filter-drawer-open' : 'filter-drawer-closed' } }}
       >
         <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
-        <GenderFilter />
-        <DecadesFilter />
+        <GenderAccordion />
+        {/* <GenderFilter />
+        <DecadesFilter /> */}
         <button onClick={() => getNewCandidates()}>Apply Filters</button>
       </Drawer>
     </Box>

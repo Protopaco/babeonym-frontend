@@ -96,19 +96,19 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: 'GIVEN_NAME_PROVIDER_LOADED' });
   };
 
-  const addSelectedGenders = async (selectedGenders: Gender[]) => {
+  const addSelectedGenders = (selectedGenders: Gender[]) => {
     dispatch({ type: 'ADD_SELECTED_GENDERS', payload: selectedGenders });
   };
 
-  const removeSelectedGenders = async (unselectedGenders: Gender[]) => {
+  const removeSelectedGenders = (unselectedGenders: Gender[]) => {
     dispatch({ type: 'REMOVE_SELECTED_GENDERS', payload: unselectedGenders });
   };
 
-  const addSelectedDecadeIds = async (selectedDecadeIds: number[]) => {
+  const addSelectedDecadeIds = (selectedDecadeIds: number[]) => {
     dispatch({ type: 'ADD_SELECTED_DECADE_ID', payload: selectedDecadeIds });
   };
 
-  const removeSelectedDecadeIds = async (unselectedDecadeIds: number[]) => {
+  const removeSelectedDecadeIds = (unselectedDecadeIds: number[]) => {
     dispatch({ type: 'REMOVE_SELECTED_DECADE_ID', payload: unselectedDecadeIds });
   };
 

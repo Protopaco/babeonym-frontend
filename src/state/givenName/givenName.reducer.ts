@@ -40,7 +40,8 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
     }
 
     case 'ADD_SELECTED_GENDERS': {
-      return { ...state, selectedGenders: action.payload };
+      console.log('🚀 ~ givenNameReducer ~ state:', state);
+      return { ...state, selectedGenders: [...state.selectedGenders, ...action.payload] };
     }
 
     case 'REMOVE_SELECTED_GENDERS': {
