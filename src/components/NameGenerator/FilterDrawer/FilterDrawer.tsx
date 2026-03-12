@@ -7,6 +7,7 @@ import GenderFilter from '../GenderFilter/GenderFilter';
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import { Accordion } from '@mui/material';
 import GenderAccordion from '../GenderAccordion/GenderAccordion';
+import DecadesAccordion from '../DecadesAccordion/DecadesAccordion';
 
 type Props = {
   drawerOpen: boolean;
@@ -28,8 +29,7 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
       >
         <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
         <GenderAccordion />
-        {/* <GenderFilter />
-        <DecadesFilter /> */}
+        <DecadesAccordion />
         <button onClick={() => getNewCandidates()}>Apply Filters</button>
       </Drawer>
     </Box>
