@@ -7,10 +7,9 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Input from '@mui/material/Input';
 import List from '@mui/material/List';
+import TextField from '@mui/material/TextField';
 import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
-import { TextField } from '@mui/material';
 
 export default () => {
   const filterContext = useFilters();

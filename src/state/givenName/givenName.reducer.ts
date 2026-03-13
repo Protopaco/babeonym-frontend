@@ -59,6 +59,23 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, selectedDecadeIds: newSelectedDecadeIds };
     }
 
+    case 'ADD_SELECTED_LANGUAGE_ID': {
+      return { ...state, selectedLanguageIds: [...state.selectedLanguageIds, ...action.payload] };
+    }
+
+    case 'REMOVE_SELECTED_LANGUAGE_ID': {
+      const newSelectedLanguageIds = state.selectedLanguageIds.filter((selectedLanguageId) => !action.payload.includes(selectedLanguageId));
+      return { ...state, selectedLanguageIds: newSelectedLanguageIds };
+    }
+
+    case 'ADD_SELECTED_CULTURE_ID': {
+      return { ...state, selectedCultureIds: [...state.selectedCultureIds, ...action.payload] };
+    }
+
+    case 'REMOVE_SELECTED_CULTURE_ID': {
+      const newSelectedCultureIds = state.selectedCultureIds.filter((selectedCultureId) => !action.payload.includes(selectedCultureId));
+      return { ...state, selectedCultureIds: newSelectedCultureIds };
+    }
     default:
       return state;
   }

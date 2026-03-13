@@ -14,6 +14,8 @@ const initialState: GivenNameState = {
   givenNameProviderLoaded: false,
   selectedGenders: [],
   selectedDecadeIds: [],
+  selectedLanguageIds: [],
+  selectedCultureIds: [],
 };
 
 export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
@@ -21,8 +23,10 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   const booted = useRef(false);
 
   const buildCandidateRequest = (state: GivenNameState): V1GivenNameCandidatesRequest => ({
-    decadeIds: state.selectedDecadeIds.length ? state.selectedDecadeIds.join(',') : undefined,
     genders: state.selectedGenders.length ? state.selectedGenders.join(',') : undefined,
+    decadeIds: state.selectedDecadeIds.length ? state.selectedDecadeIds.join(',') : undefined,
+    languageIds: state.selectedLanguageIds.length ? state.selectedLanguageIds.join(',') : undefined,
+    cultureIds: state.selectedCultureIds.length ? state.selectedCultureIds.join(',') : undefined,
   });
 
   const getNewCandidates = async () => {
@@ -112,6 +116,22 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: 'REMOVE_SELECTED_DECADE_ID', payload: unselectedDecadeIds });
   };
 
+  const addSelectedLanguageIds = (selectedLanguageIds: number[]) => {
+    dispatch({ type: 'ADD_SELECTED_LANGUAGE_ID', payload: selectedLanguageIds });
+  };
+
+  const removeSelectedLanguageIds = (unselectedLanguageIds: number[]) => {
+    dispatch({ type: 'REMOVE_SELECTED_LANGUAGE_ID', payload: unselectedLanguageIds });
+  };
+
+  const addSelectedCultureIds = (selectedCultureIds: number[]) => {
+    dispatch({ type: 'ADD_SELECTED_CULTURE_ID', payload: selectedCultureIds });
+  };
+
+  const removeSelectedCultureIds = (unselectedCultureIds: number[]) => {
+    dispatch({ type: 'REMOVE_SELECTED_CULTURE_ID', payload: unselectedCultureIds });
+  };
+
   useEffect(() => {
     const onLoad = async () => {
       await getNewCandidates();
@@ -137,6 +157,10 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         removeSelectedGenders,
         addSelectedDecadeIds,
         removeSelectedDecadeIds,
+        addSelectedLanguageIds,
+        removeSelectedLanguageIds,
+        addSelectedCultureIds,
+        removeSelectedCultureIds,
       },
     }),
     [state]

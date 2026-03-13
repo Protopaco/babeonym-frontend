@@ -51,6 +51,8 @@ export interface V1GivenNameCandidatesRequest {
     popularity?: number;
     genders?: string;
     decadeIds?: string;
+    languageIds?: string;
+    cultureIds?: string;
     limit?: number;
     include?: string;
 }
@@ -181,6 +183,14 @@ export class GivenNameApi extends runtime.BaseAPI {
 
         if (requestParameters['decadeIds'] != null) {
             queryParameters['decadeIds'] = requestParameters['decadeIds'];
+        }
+
+        if (requestParameters['languageIds'] != null) {
+            queryParameters['languageIds'] = requestParameters['languageIds'];
+        }
+
+        if (requestParameters['cultureIds'] != null) {
+            queryParameters['cultureIds'] = requestParameters['cultureIds'];
         }
 
         if (requestParameters['limit'] != null) {

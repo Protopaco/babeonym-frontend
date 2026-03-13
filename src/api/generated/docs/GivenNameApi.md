@@ -145,7 +145,7 @@ No authorization required
 
 ## v1GivenNameCandidates
 
-> Array&lt;GivenName&gt; v1GivenNameCandidates(popularity, genders, decadeIds, limit, include)
+> Array&lt;GivenName&gt; v1GivenNameCandidates(popularity, genders, decadeIds, languageIds, cultureIds, limit, include)
 
 Get given name candidates
 
@@ -165,16 +165,20 @@ async function example() {
   const api = new GivenNameApi();
 
   const body = {
-    // number | Popularity filter (optional)
+    // number | Popularity percentile target from 0.0 to 1.0. (optional)
     popularity: 8.14,
-    // string | Comma-separated list of genders (optional)
-    genders: genders_example,
-    // string | Comma-separated decade IDs (optional)
-    decadeIds: decadeIds_example,
-    // number | Maximum number of results (optional)
+    // string | Comma-separated list of genders. (optional)
+    genders: male,female,
+    // string | Comma-separated list of decade IDs. (optional)
+    decadeIds: 1,2,3,
+    // string | Comma-separated list of language IDs. (optional)
+    languageIds: 4,7,
+    // string | Comma-separated list of culture IDs. (optional)
+    cultureIds: 2,9,
+    // number | Maximum number of results. (optional)
     limit: 56,
-    // string | Comma-separated include options (e.g. meta) (optional)
-    include: include_example,
+    // string | Comma-separated include options. (optional)
+    include: meta,
   } satisfies V1GivenNameCandidatesRequest;
 
   try {
@@ -194,11 +198,13 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **popularity** | `number` | Popularity filter | [Optional] [Defaults to `undefined`] |
-| **genders** | `string` | Comma-separated list of genders | [Optional] [Defaults to `undefined`] |
-| **decadeIds** | `string` | Comma-separated decade IDs | [Optional] [Defaults to `undefined`] |
-| **limit** | `number` | Maximum number of results | [Optional] [Defaults to `undefined`] |
-| **include** | `string` | Comma-separated include options (e.g. meta) | [Optional] [Defaults to `undefined`] |
+| **popularity** | `number` | Popularity percentile target from 0.0 to 1.0. | [Optional] [Defaults to `undefined`] |
+| **genders** | `string` | Comma-separated list of genders. | [Optional] [Defaults to `undefined`] |
+| **decadeIds** | `string` | Comma-separated list of decade IDs. | [Optional] [Defaults to `undefined`] |
+| **languageIds** | `string` | Comma-separated list of language IDs. | [Optional] [Defaults to `undefined`] |
+| **cultureIds** | `string` | Comma-separated list of culture IDs. | [Optional] [Defaults to `undefined`] |
+| **limit** | `number` | Maximum number of results. | [Optional] [Defaults to `undefined`] |
+| **include** | `string` | Comma-separated include options. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

@@ -7,6 +7,8 @@ export type GivenNameState = {
   approvedGivenNames: GivenName[];
   selectedGenders: Gender[];
   selectedDecadeIds: number[];
+  selectedLanguageIds: number[];
+  selectedCultureIds: number[];
 };
 
 export type GivenNameAction =
@@ -17,4 +19,8 @@ export type GivenNameAction =
   | { type: 'ADD_SELECTED_GENDERS'; payload: Gender[] }
   | { type: 'REMOVE_SELECTED_GENDERS'; payload: Gender[] }
   | { type: 'ADD_SELECTED_DECADE_ID'; payload: number[] }
-  | { type: 'REMOVE_SELECTED_DECADE_ID'; payload: number[] };
+  | { type: 'REMOVE_SELECTED_DECADE_ID'; payload: number[] }
+  | { type: 'ADD_SELECTED_LANGUAGE_ID'; payload: number[] }
+  | { type: 'REMOVE_SELECTED_LANGUAGE_ID'; payload: number[] }
+  | { type: 'ADD_SELECTED_CULTURE_ID'; payload: number[] }
+  | { type: 'REMOVE_SELECTED_CULTURE_ID'; payload: number[] };

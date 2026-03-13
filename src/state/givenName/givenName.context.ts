@@ -15,6 +15,10 @@ export const GivenNameContext = createContext<
         removeSelectedGenders: (unselectedGender: Gender[]) => void;
         addSelectedDecadeIds: (selectedDecadeIds: number[]) => void;
         removeSelectedDecadeIds: (unselectedDecadeIds: number[]) => void;
+        addSelectedLanguageIds: (selectedLanguageIds: number[]) => void;
+        removeSelectedLanguageIds: (unselectedLanguageIds: number[]) => void;
+        addSelectedCultureIds: (selectedCultureIds: number[]) => void;
+        removeSelectedCultureIds: (unselectedCultureIds: number[]) => void;
       };
     }
   | undefined
