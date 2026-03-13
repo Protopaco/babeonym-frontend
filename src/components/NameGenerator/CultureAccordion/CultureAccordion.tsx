@@ -8,15 +8,14 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import List from '@mui/material/List';
 import TextField from '@mui/material/TextField';
-import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
-import ContinentAccordion from './ContinentAccordion/ContinentAccordion';
-import type { LanguageWithRegions } from '@/api/generated';
+import ContinentAccordion from '@/components/NameGenerator/CultureAccordion/ContinentAccordion/ContinentAccordion';
+import type { CultureRegion, CultureWithRegions } from '@/api/generated';
 
 export default () => {
   const filterContext = useFilters();
-  const { languages } = filterContext.state;
+  const { cultures } = filterContext.state;
   const [searchValue, setSearchValue] = useState('');
-  const [displayLanguages, setDisplayLanguages] = useState(languages);
+  const [displayCultures, setDisplayCultures] = useState(cultures);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value.replace(/[^\p{L}]/gu, ''));
@@ -24,33 +23,33 @@ export default () => {
 
   useEffect(() => {
     if (searchValue != '') {
-      const filteredLanguages = languages
+      const filteredCultures = cultures
         .map((continent) => ({
           ...continent,
           regions: continent.regions
-            .map((region) => ({
+            .map((region: CultureRegion) => ({
               ...region,
-              languages: region.languages.filter((lang) => lang.label.toLowerCase().includes(searchValue.toLowerCase())),
+              cultures: region.cultures.filter((culture) => culture.label.toLowerCase().includes(searchValue.toLowerCase())),
             }))
-            .filter((region) => region.languages.length > 0),
+            .filter((region: CultureRegion) => region.cultures.length > 0),
         }))
         .filter((continent) => continent.regions.length > 0);
-      setDisplayLanguages(filteredLanguages);
+      setDisplayCultures(filteredCultures);
     } else {
-      setDisplayLanguages(languages);
+      setDisplayCultures(cultures);
     }
-  }, [searchValue, languages]);
+  }, [searchValue, cultures]);
 
   return (
     <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="language-filter-content" id="language-filter-summary">
-        <Typography component="span">Languages</Typography>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="culture-filter-content" id="culture-filter-summary">
+        <Typography component="span">Cultures</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <TextField id="language-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} />
+        <TextField id="culture-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} />
         <List>
-          {displayLanguages.map((continent, index) => {
-            return <ContinentAccordion key={index} continent={continent as LanguageWithRegions} />;
+          {displayCultures.map((continent, index) => {
+            return <ContinentAccordion key={index} continent={continent as CultureWithRegions} />;
           })}
         </List>
       </AccordionDetails>

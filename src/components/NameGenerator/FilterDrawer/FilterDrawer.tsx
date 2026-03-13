@@ -7,6 +7,7 @@ import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import GenderAccordion from '../GenderAccordion/GenderAccordion';
 import DecadesAccordion from '../DecadesAccordion/DecadesAccordion';
 import LanguageAccordion from '../LanguageAccordion/LanguageAccordion';
+import CultureAccordion from '../CultureAccordion/CultureAccordion';
 
 type Props = {
   drawerOpen: boolean;
@@ -30,6 +31,7 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
         <GenderAccordion />
         <DecadesAccordion />
         <LanguageAccordion />
+        <CultureAccordion />
         <button onClick={() => getNewCandidates()}>Apply Filters</button>
       </Drawer>
     </Box>
