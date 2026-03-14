@@ -50,6 +50,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     try {
       await givenNameApi.v1GivenNameAction(actionRequest);
       removeCandidate(givenCustomNameBridgeId);
+      await addApprovedGivenNames();
     } catch (e) {
       throw e;
     }
@@ -66,6 +67,9 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     try {
       await givenNameApi.v1GivenNameAction(actionRequest);
       removeCandidate(givenCustomNameBridgeId);
+      if (state.approvedGivenNames.some((approvedGivenName) => approvedGivenName.givenCustomNameBridgeId === givenCustomNameBridgeId)) {
+        await addApprovedGivenNames();
+      }
     } catch (e) {
       throw e;
     }

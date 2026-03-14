@@ -4,10 +4,12 @@ import '@/components/NameGenerator/FilterDrawer/FilterDrawer.css';
 import FilterDrawerHeader from '../FilterDrawerHeader/FilterDrawerHeader';
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 
-import GenderAccordion from '../GenderAccordion/GenderAccordion';
-import DecadesAccordion from '../DecadesAccordion/DecadesAccordion';
-import LanguageAccordion from '../LanguageAccordion/LanguageAccordion';
-import CultureAccordion from '../CultureAccordion/CultureAccordion';
+import GenderAccordion from '@/components/NameGenerator/GenderAccordion/GenderAccordion';
+import DecadesAccordion from '@/components/NameGenerator/DecadesAccordion/DecadesAccordion';
+import LanguageAccordion from '@/components/NameGenerator/LanguageAccordion/LanguageAccordion';
+import CultureAccordion from '@/components/NameGenerator/CultureAccordion/CultureAccordion';
+import DrawerApproved from '@/components/NameGenerator/DrawerApproved/DrawerApproved';
+import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 
 type Props = {
   drawerOpen: boolean;
@@ -32,7 +34,8 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
         <DecadesAccordion />
         <LanguageAccordion />
         <CultureAccordion />
-        <button onClick={() => getNewCandidates()}>Apply Filters</button>
+        <SecondaryButton text="Apply Filters" onClick={getNewCandidates} />
+        <DrawerApproved />
       </Drawer>
     </Box>
   );

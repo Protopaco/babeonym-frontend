@@ -47,6 +47,7 @@ export default () => {
 
             return (
               <FilterListItem
+                key={index}
                 index={index}
                 label={label}
                 action={
