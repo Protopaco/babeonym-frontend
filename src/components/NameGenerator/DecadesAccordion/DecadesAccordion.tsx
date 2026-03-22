@@ -31,7 +31,7 @@ export default () => {
     } else {
       setDisplayDecades(decades);
     }
-  }, [searchValue]);
+  }, [searchValue, decades]);
 
   return (
     <Accordion>

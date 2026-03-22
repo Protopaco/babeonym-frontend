@@ -40,8 +40,7 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
     }
 
     case 'ADD_SELECTED_GENDERS': {
-      console.log('🚀 ~ givenNameReducer ~ state:', state);
-      return { ...state, selectedGenders: [...state.selectedGenders, ...action.payload] };
+      return { ...state, selectedGenders: [...new Set([...state.selectedGenders, ...action.payload])] };
     }
 
     case 'REMOVE_SELECTED_GENDERS': {
@@ -51,7 +50,7 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
     }
 
     case 'ADD_SELECTED_DECADE_ID': {
-      return { ...state, selectedDecadeIds: [...state.selectedDecadeIds, ...action.payload] };
+      return { ...state, selectedDecadeIds: [...new Set([...state.selectedDecadeIds, ...action.payload])] };
     }
 
     case 'REMOVE_SELECTED_DECADE_ID': {
@@ -60,7 +59,7 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
     }
 
     case 'ADD_SELECTED_LANGUAGE_ID': {
-      return { ...state, selectedLanguageIds: [...state.selectedLanguageIds, ...action.payload] };
+      return { ...state, selectedLanguageIds: [...new Set([...state.selectedLanguageIds, ...action.payload])] };
     }
 
     case 'REMOVE_SELECTED_LANGUAGE_ID': {
@@ -69,7 +68,7 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
     }
 
     case 'ADD_SELECTED_CULTURE_ID': {
-      return { ...state, selectedCultureIds: [...state.selectedCultureIds, ...action.payload] };
+      return { ...state, selectedCultureIds: [...new Set([...state.selectedCultureIds, ...action.payload])] };
     }
 
     case 'REMOVE_SELECTED_CULTURE_ID': {
