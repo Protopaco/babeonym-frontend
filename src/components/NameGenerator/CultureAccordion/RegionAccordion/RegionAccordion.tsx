@@ -41,7 +41,7 @@ export default (props: Props) => {
         <List>
           {cultures.map((culture, index) => {
             const { id, label } = culture;
-            let selected = selectedCultureIds.includes(id);
+            const selected = selectedCultureIds.includes(id);
 
             return (
               <FilterListItem

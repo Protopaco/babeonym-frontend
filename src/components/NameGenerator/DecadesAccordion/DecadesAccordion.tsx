@@ -43,7 +43,7 @@ export default () => {
         <List>
           {displayDecades.map((decade, index) => {
             const { id, label } = decade;
-            let selected = selectedDecadeIds.includes(id);
+            const selected = selectedDecadeIds.includes(id);
 
             return (
               <FilterListItem

@@ -41,7 +41,7 @@ export default (props: Props) => {
         <List>
           {languages.map((language, index) => {
             const { id, label, flag } = language;
-            let selected = selectedLanguageIds.includes(id);
+            const selected = selectedLanguageIds.includes(id);
 
             return (
               <FilterListItem
