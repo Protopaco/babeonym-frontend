@@ -9,8 +9,8 @@ import { useSearchParams } from 'react-router-dom';
 
 export default () => {
   const givenNameContext = useGivenNames();
-  const { addSelectedGenders, addSelectedDecadeIds, addSelectedLanguageIds, addSelectedCultureIds } = useGivenNamesActions();
-  const { selectedCultureIds, selectedDecadeIds, selectedGenders, selectedLanguageIds } = givenNameContext.state;
+  const { addSelectedGenders, addSelectedDecadeIds, addSelectedLanguageIds, addSelectedCultureIds, getNewCandidates } = useGivenNamesActions();
+  const { selectedCultureIds, selectedDecadeIds, selectedGenders, selectedLanguageIds, givenNameCandidates } = givenNameContext.state;
   const [drawerOpen, setDrawerOpen] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -59,14 +59,21 @@ export default () => {
 
   useEffect(() => {
     filtersToUrlParams();
-  }, [selectedCultureIds, selectedDecadeIds, selectedGenders, selectedLanguageIds]);
+  }, [givenNameCandidates]);
 
   useEffect(() => {
+    const updateCandidates = async (genders?: string[], decades?: number[], languages?: number[], cultures?: number[]) => {
+      await getNewCandidates(genders, decades, languages, cultures);
+    };
     const { genders, decades, languages, cultures } = urlParamsToFilters();
+
     if (genders) addSelectedGenders(genders);
     if (decades) addSelectedDecadeIds(decades);
     if (languages) addSelectedLanguageIds(languages);
     if (cultures) addSelectedCultureIds(cultures);
+    if (genders || decades || languages || cultures) {
+      updateCandidates(genders, decades, languages, cultures);
+    }
   }, []);
 
   return (

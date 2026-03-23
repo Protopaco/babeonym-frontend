@@ -7,7 +7,7 @@ export const GivenNameContext = createContext<
       state: GivenNameState;
       dispatch: React.Dispatch<GivenNameAction>;
       actions: {
-        getNewCandidates: () => Promise<void>;
+        getNewCandidates: (genders?: string[], decades?: number[], languages?: number[], cultures?: number[]) => Promise<void>;
         approveCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
         rejectCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
         snoozeCandidate: (givenCustomNameBridgeId: number) => Promise<void>;

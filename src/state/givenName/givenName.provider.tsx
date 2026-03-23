@@ -22,16 +22,36 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(givenNameReducer, initialState);
   const booted = useRef(false);
 
-  const buildCandidateRequest = (state: GivenNameState): V1GivenNameCandidatesRequest => ({
-    genders: state.selectedGenders.length ? state.selectedGenders.join(',') : undefined,
-    decadeIds: state.selectedDecadeIds.length ? state.selectedDecadeIds.join(',') : undefined,
-    languageIds: state.selectedLanguageIds.length ? state.selectedLanguageIds.join(',') : undefined,
-    cultureIds: state.selectedCultureIds.length ? state.selectedCultureIds.join(',') : undefined,
-  });
+  const buildCandidateRequest = (
+    state: GivenNameState,
+    pGenders?: string[],
+    pDecades?: number[],
+    pLanguages?: number[],
+    pCultures?: number[]
+  ): V1GivenNameCandidatesRequest => {
+    const genders = pGenders?.length ? pGenders.join(',') : state.selectedGenders.length ? state.selectedGenders.join(',') : undefined;
 
-  const getNewCandidates = async () => {
+    const decadeIds = pDecades?.length ? pDecades.join(',') : state.selectedDecadeIds.length ? state.selectedDecadeIds.join(',') : undefined;
+
+    const languageIds = pLanguages?.length
+      ? pLanguages.join(',')
+      : state.selectedLanguageIds.length
+        ? state.selectedLanguageIds.join(',')
+        : undefined;
+
+    const cultureIds = pCultures?.length ? pCultures.join(',') : state.selectedCultureIds.length ? state.selectedCultureIds.join(',') : undefined;
+
+    return {
+      genders,
+      decadeIds,
+      languageIds,
+      cultureIds,
+    };
+  };
+
+  const getNewCandidates = async (genders?: string[], decades?: number[], languages?: number[], cultures?: number[]) => {
     try {
-      const request = buildCandidateRequest(state);
+      const request = buildCandidateRequest(state, genders, decades, languages, cultures);
       const nameList = await givenNameApi.v1GivenNameCandidates(request);
       dispatch({ type: 'GET_NEW_CANDIDATES', payload: nameList });
     } catch (e) {

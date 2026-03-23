@@ -13,7 +13,6 @@ export default ({ drawerOpen }: Props) => {
   const givenNameContext = useGivenNames();
   const { state: userState } = useUser();
   const { user } = userState;
-  console.log('🚀 ~ user:', user);
   const { givenNameCandidates } = givenNameContext.state;
   const { approveCandidate, rejectCandidate, snoozeCandidate } = useGivenNamesActions();
 
