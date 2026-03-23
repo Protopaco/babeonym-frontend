@@ -4,6 +4,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
+import './ApprovedGivenNameChip.css';
 
 type Props = {
   approvedGivenName: GivenName;
@@ -19,6 +20,7 @@ export default ({ approvedGivenName }: Props) => {
 
   return (
     <ListItem
+      id="approved-given-name-chip"
       secondaryAction={
         <IconButton edge="end" onClick={rejectClick}>
           <DeleteIcon />
