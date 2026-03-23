@@ -1,4 +1,3 @@
-import type { User } from '@/api/generated/models/User';
 import { createContext, useContext } from 'react';
 
 import type { UserState, UserAction } from '@/state/user/user.types';

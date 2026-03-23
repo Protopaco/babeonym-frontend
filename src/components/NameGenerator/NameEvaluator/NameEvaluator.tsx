@@ -1,6 +1,9 @@
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import Box from '@mui/material/Box';
 import '@/components/NameGenerator/NameEvaluator/NameEvaluator.css';
+import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
+import { Typography } from '@mui/material';
+import { useUser } from '@/state/user/user.context';
 
 type Props = {
   drawerOpen: boolean;
@@ -8,6 +11,9 @@ type Props = {
 
 export default ({ drawerOpen }: Props) => {
   const givenNameContext = useGivenNames();
+  const { state: userState } = useUser();
+  const { user } = userState;
+  console.log('🚀 ~ user:', user);
   const { givenNameCandidates } = givenNameContext.state;
   const { approveCandidate, rejectCandidate, snoozeCandidate } = useGivenNamesActions();
 
@@ -31,12 +37,22 @@ export default ({ drawerOpen }: Props) => {
 
   return (
     <Box id="name-evaluator" className={drawerOpen ? 'drawer-open' : 'drawer-closed'}>
-      <p>{givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0].givenName : 'no names'}</p>
-      <p>
-        <button onClick={approveClick}>Approve</button>
-        <button onClick={rejectClick}>Reject</button>
-        <button onClick={snoozeClick}>Snooze</button>
-      </p>
+      <Typography variant="h1" color="primary" id="name-generator-title">
+        Name Generator
+      </Typography>
+      <Typography variant="h2" id="evaluated-name">
+        {givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0].givenName : 'no names'}
+      </Typography>
+      {user?.surName ? (
+        <Typography variant="h3" id="user-surname">
+          user.surName
+        </Typography>
+      ) : null}
+      <Box id="name-evaluator-button-container">
+        <PrimaryButton onClick={approveClick} text="Approve" />
+        <PrimaryButton onClick={rejectClick} text="Reject" />
+        <PrimaryButton onClick={snoozeClick} text="Snooze" />
+      </Box>
     </Box>
   );
 };
