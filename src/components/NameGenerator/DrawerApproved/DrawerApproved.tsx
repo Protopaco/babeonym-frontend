@@ -9,10 +9,10 @@ export default () => {
     navigate('/list');
   };
   return (
-    <>
+    <section className="drawer-approved-section">
       <Typography variant="h3"> Approved </Typography>
       <DrawerApprovedList />
-      <SecondaryButton text="See Full List" onClick={navToFullList} />
-    </>
+      <SecondaryButton text="View Full Name List" onClick={navToFullList} />
+    </section>
   );
 };

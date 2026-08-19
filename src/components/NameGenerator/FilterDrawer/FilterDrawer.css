@@ -1,23 +1,41 @@
 #filter-drawer {
-  /* width: 100%; */
-  padding-top: var(--height-header);
   overflow-x: hidden;
   transition: width 0.2s ease;
-}
-
-#filter-header {
-  width: 100%;
-  padding-top: var(--height-header);
 }
 
 .filter-drawer-open {
   width: var(--width-filter-drawer-open);
   overflow-x: hidden;
   transition: width 0.2s ease;
+  background: var(--color-secondary);
 }
 
 .filter-drawer-closed {
   width: var(--width-filter-drawer-closed);
   overflow-x: hidden;
   transition: width 0.2s ease;
+  background: var(--color-secondary);
+}
+
+.filter-drawer-content {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: calc(var(--height-header) + 16px) 32px 32px;
+}
+
+.filter-drawer-title {
+  margin: 8px 0 24px;
+  color: var(--color-text-secondary);
+}
+
+.filter-drawer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-drawer-actions {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 32px;
 }

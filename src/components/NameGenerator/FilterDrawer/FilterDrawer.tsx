@@ -10,6 +10,7 @@ import LanguageAccordion from '@/components/NameGenerator/LanguageAccordion/Lang
 import CultureAccordion from '@/components/NameGenerator/CultureAccordion/CultureAccordion';
 import DrawerApproved from '@/components/NameGenerator/DrawerApproved/DrawerApproved';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
+import Typography from '@mui/material/Typography';
 
 type Props = {
   drawerOpen: boolean;
@@ -29,13 +30,26 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
         className={drawerOpen ? 'filter-drawer-open' : 'filter-drawer-closed'}
         slotProps={{ paper: { className: drawerOpen ? 'filter-drawer-open' : 'filter-drawer-closed' } }}
       >
-        <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
-        <GenderAccordion />
-        <DecadesAccordion />
-        <LanguageAccordion />
-        <CultureAccordion />
-        <SecondaryButton text="Apply Filters" onClick={getNewCandidates} />
-        <DrawerApproved />
+        <Box className="filter-drawer-content">
+          <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
+          {drawerOpen ? (
+            <>
+              <Typography variant="h3" className="filter-drawer-title">
+                Name Filters
+              </Typography>
+              <Box className="filter-drawer-controls">
+                <GenderAccordion />
+                <DecadesAccordion />
+                <LanguageAccordion />
+                <CultureAccordion />
+              </Box>
+              <Box className="filter-drawer-actions">
+                <SecondaryButton text="Set Filters" onClick={getNewCandidates} />
+              </Box>
+              <DrawerApproved />
+            </>
+          ) : null}
+        </Box>
       </Drawer>
     </Box>
   );
