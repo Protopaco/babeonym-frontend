@@ -1,5 +1,9 @@
 # React + TypeScript + Vite
 
+## BabeOnym Docs
+
+- [Figma design reference](./docs/figma-design-reference.md)
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
