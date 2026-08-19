@@ -44,13 +44,13 @@ export default ({ drawerOpen }: Props) => {
       </Typography>
       {user?.surName ? (
         <Typography variant="h3" id="user-surname">
-          user.surName
+          {user.surName}
         </Typography>
       ) : null}
       <Box id="name-evaluator-button-container">
         <PrimaryButton onClick={approveClick} text="Approve" />
-        <PrimaryButton onClick={rejectClick} text="Reject" />
         <PrimaryButton onClick={snoozeClick} text="Snooze" />
+        <PrimaryButton onClick={rejectClick} text="Reject" />
       </Box>
     </Box>
   );

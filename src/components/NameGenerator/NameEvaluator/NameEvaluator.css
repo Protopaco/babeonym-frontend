@@ -1,9 +1,14 @@
 #name-evaluator {
-  height: 50vh;
+  min-height: calc(100vh - var(--height-header));
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 48px;
+  box-sizing: border-box;
+  padding-top: 64px;
+  padding-right: 48px;
+  padding-bottom: 96px;
 }
 
 .drawer-open {
@@ -20,8 +25,14 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 32px;
 }
 
 #evaluated-name {
-  margin: 15pxl;
+  margin: 0;
+}
+
+#name-generator-title,
+#user-surname {
+  margin: 0;
 }
