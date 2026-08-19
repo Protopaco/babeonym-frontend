@@ -5,4 +5,16 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  gap: 48px;
+  padding-right: 36px;
+}
+
+.nav-bar-link {
+  color: var(--color-primary-contrast);
+  text-decoration: none;
+  text-underline-offset: 8px;
+}
+
+.nav-bar-link.active {
+  text-decoration: underline;
 }
