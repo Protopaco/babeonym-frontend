@@ -40,7 +40,7 @@ export default () => {
       </AccordionSummary>
       <AccordionDetails>
         <TextField id="decade-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} type="number" />
-        <List>
+        <List className="decades-filter-list">
           {displayDecades.map((decade, index) => {
             const { id, label } = decade;
             const selected = selectedDecadeIds.includes(id);

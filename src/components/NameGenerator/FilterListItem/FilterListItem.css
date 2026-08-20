@@ -1,0 +1,9 @@
+.filter-list-item.MuiListItemButton-root {
+  width: 100%;
+  min-height: 48px;
+  padding: 6px 30px;
+}
+
+.filter-list-item.MuiListItemButton-root:hover {
+  background: var(--color-primary-highlight);
+}

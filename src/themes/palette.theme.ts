@@ -30,6 +30,8 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
           ':root': {
             '--color-primary': primary,
             '--color-primary-contrast': primaryContrast,
+            '--color-primary-highlight': `${primary}1A`,
+            '--color-primary-edge': `${primary}33`,
 
             '--color-secondary': secondary,
             '--color-secondary-contrast': secondaryContrast,
@@ -40,6 +42,7 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
             '--color-text-secondary': textSecondary,
 
             '--color-background': background,
+            '--color-border': `${textPrimary}1F`,
 
             '--width-filter-drawer-open': '450px',
             '--width-filter-drawer-closed': '104px',
