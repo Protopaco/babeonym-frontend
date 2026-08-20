@@ -84,24 +84,9 @@
 .filter-drawer-controls .decades-filter-list {
   max-height: 264px;
   overflow-y: auto;
-  scrollbar-color: var(--color-primary-edge) transparent;
-  scrollbar-width: thin;
   box-shadow:
     inset 0 8px 8px -10px var(--color-scroll-edge),
     inset 0 -8px 8px -10px var(--color-scroll-edge);
-}
-
-.filter-drawer-controls .decades-filter-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.filter-drawer-controls .decades-filter-list::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.filter-drawer-controls .decades-filter-list::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background: var(--color-primary-edge);
 }
 
 .filter-drawer-actions {

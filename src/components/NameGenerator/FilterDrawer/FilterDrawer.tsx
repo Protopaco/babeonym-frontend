@@ -54,7 +54,7 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
         anchor="left"
         open={drawerOpen}
         className={drawerOpen ? 'filter-drawer-open' : 'filter-drawer-closed'}
-        slotProps={{ paper: { className: drawerOpen ? 'filter-drawer-open' : 'filter-drawer-closed' } }}
+        slotProps={{ paper: { className: `${drawerOpen ? 'filter-drawer-open' : 'filter-drawer-closed'} themed-scrollbar` } }}
       >
         <Box className="filter-drawer-content">
           <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />

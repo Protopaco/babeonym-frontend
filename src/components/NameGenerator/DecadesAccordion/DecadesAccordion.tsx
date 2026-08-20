@@ -41,7 +41,7 @@ export default ({ expanded, onChange }: Props) => {
       <FilterAccordionSummary label="Decades" ariaControls="decade-filter-content" id="decade-filter-summary" />
       <AccordionDetails>
         <TextField id="decade-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} type="number" />
-        <List className="decades-filter-list">
+        <List className="decades-filter-list themed-scrollbar">
           {displayDecades.map((decade, index) => {
             const { id, label } = decade;
             const selected = selectedDecadeIds.includes(id);

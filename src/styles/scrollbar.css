@@ -1,0 +1,17 @@
+.themed-scrollbar {
+  scrollbar-color: var(--color-primary-edge) transparent;
+  scrollbar-width: thin;
+}
+
+.themed-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.themed-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.themed-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--color-primary-edge);
+}
