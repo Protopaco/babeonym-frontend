@@ -1,17 +1,17 @@
 @font-face {
   font-family: 'League Spartan';
-  src: url('/src/assets/fonts/LeagueSpartan-Regular.woff2') format('woff2');
+  src: url('../assets/fonts/LeagueSpartan-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'League Spartan';
-  src: url('/src/assets/fonts/LeagueSpartan-SemiBold.woff2') format('woff2');
+  src: url('../assets/fonts/LeagueSpartan-SemiBold.ttf') format('truetype');
   font-weight: 600;
 }
 
 @font-face {
   font-family: 'League Spartan';
-  src: url('/src/assets/fonts/LeagueSpartan-Bold.woff2') format('woff2');
+  src: url('../assets/fonts/LeagueSpartan-Bold.ttf') format('truetype');
   font-weight: 700;
 }
