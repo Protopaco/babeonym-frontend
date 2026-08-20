@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import { stringToGender } from '@/types/Gender';
 import type { Gender } from '@/types/Gender';
 import { useSearchParams } from 'react-router-dom';
+import MobileNameFilters from '@/components/NameGenerator/MobileNameFilters/MobileNameFilters';
 
 export default () => {
   const givenNameContext = useGivenNames();
@@ -80,6 +81,7 @@ export default () => {
     <Box>
       <FilterDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
       <NameEvaluator drawerOpen={drawerOpen} />
+      <MobileNameFilters />
     </Box>
   );
 };

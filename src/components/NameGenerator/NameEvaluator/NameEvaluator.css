@@ -78,3 +78,41 @@
 #user-surname {
   margin: 0;
 }
+
+@media (max-width: 599px) {
+  #name-evaluator {
+    min-height: auto;
+    padding: 48px 32px 64px;
+  }
+
+  .drawer-open,
+  .drawer-closed {
+    padding-left: 32px;
+  }
+
+  #name-evaluator-column {
+    min-height: auto;
+  }
+
+  #name-evaluator-header {
+    display: flex;
+    justify-content: center;
+    max-width: none;
+  }
+
+  #name-evaluator-content {
+    gap: 40px;
+    padding: 40px 0 0;
+  }
+
+  #name-evaluator-button-container {
+    gap: 20px;
+  }
+
+  #name-evaluator-button-container .primary-button {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    font-size: 0;
+  }
+}

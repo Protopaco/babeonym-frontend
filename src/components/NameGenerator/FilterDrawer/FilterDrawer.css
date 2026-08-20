@@ -126,3 +126,9 @@
 .drawer-approved-section h3 {
   margin: 0;
 }
+
+@media (max-width: 599px) {
+  #filter-drawer {
+    display: none;
+  }
+}
