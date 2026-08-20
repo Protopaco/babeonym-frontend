@@ -17,6 +17,11 @@
   background: var(--color-secondary);
 }
 
+#filter-drawer .MuiDrawer-paper.filter-drawer-open,
+#filter-drawer .MuiDrawer-paper.filter-drawer-closed {
+  background-color: var(--color-secondary);
+}
+
 .filter-drawer-content {
   box-sizing: border-box;
   min-height: 100%;
