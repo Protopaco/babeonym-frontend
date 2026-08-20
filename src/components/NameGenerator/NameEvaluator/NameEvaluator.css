@@ -83,6 +83,22 @@
   margin: 0;
 }
 
+#evaluated-name-slot {
+  position: relative;
+  width: 100%;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.evaluated-name-motion {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
 #user-surname {
   margin: 0;
 }
@@ -124,6 +140,10 @@
   #evaluated-name {
     font-size: 64px;
     line-height: 1;
+  }
+
+  #evaluated-name-slot {
+    min-height: 72px;
   }
 
   #name-evaluator-button-container {

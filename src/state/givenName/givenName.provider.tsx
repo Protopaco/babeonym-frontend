@@ -68,8 +68,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     };
 
     try {
-      await givenNameApi.v1GivenNameAction(actionRequest);
       removeCandidate(givenCustomNameBridgeId);
+      await givenNameApi.v1GivenNameAction(actionRequest);
       await addApprovedGivenNames();
     } catch (e) {
       throw e;
@@ -85,8 +85,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     };
 
     try {
-      await givenNameApi.v1GivenNameAction(actionRequest);
       removeCandidate(givenCustomNameBridgeId);
+      await givenNameApi.v1GivenNameAction(actionRequest);
       if (state.approvedGivenNames.some((approvedGivenName) => approvedGivenName.givenCustomNameBridgeId === givenCustomNameBridgeId)) {
         await addApprovedGivenNames();
       }
@@ -104,8 +104,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     };
 
     try {
-      await givenNameApi.v1GivenNameAction(actionRequest);
       removeCandidate(givenCustomNameBridgeId);
+      await givenNameApi.v1GivenNameAction(actionRequest);
     } catch (e) {
       throw e;
     }

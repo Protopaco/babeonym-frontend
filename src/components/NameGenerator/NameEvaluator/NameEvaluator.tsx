@@ -10,6 +10,7 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import BedtimeOutlinedIcon from '@mui/icons-material/BedtimeOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
+import { AnimatePresence, motion } from 'motion/react';
 
 type Props = {
   drawerOpen: boolean;
@@ -21,6 +22,7 @@ export default ({ drawerOpen }: Props) => {
   const { user } = userState;
   const { givenNameCandidates } = givenNameContext.state;
   const { approveCandidate, rejectCandidate, snoozeCandidate } = useGivenNamesActions();
+  const currentCandidate = givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0] : null;
 
   const approveClick = async () => {
     if (givenNameCandidates && givenNameCandidates.length > 0) {
@@ -48,9 +50,22 @@ export default ({ drawerOpen }: Props) => {
           <MobileSectionHeader title="Name Generator" />
         </Box>
         <Box id="name-evaluator-content">
-          <Typography variant="h2" id="evaluated-name">
-            {givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0].givenName : 'no names'}
-          </Typography>
+          <Box id="evaluated-name-slot">
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={currentCandidate?.givenCustomNameBridgeId ?? 'no-names'}
+                className="evaluated-name-motion"
+                initial={{ opacity: 0, y: 42 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -42 }}
+                transition={{ duration: 0.26, ease: 'easeOut' }}
+              >
+                <Typography variant="h2" id="evaluated-name">
+                  {currentCandidate ? currentCandidate.givenName : 'no names'}
+                </Typography>
+              </motion.div>
+            </AnimatePresence>
+          </Box>
           {user?.surName ? (
             <Typography variant="h3" id="user-surname">
               {user.surName}
