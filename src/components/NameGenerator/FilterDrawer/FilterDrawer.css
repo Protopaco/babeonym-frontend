@@ -28,6 +28,15 @@
   padding: calc(var(--height-header) + 12px) 32px 32px;
 }
 
+.filter-drawer-content-closed {
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.filter-drawer-open-content {
+  width: 100%;
+}
+
 .filter-drawer-controls {
   display: flex;
   flex-direction: column;

@@ -46,7 +46,7 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
             '--color-border': `${textPrimary}1F`,
 
             '--width-filter-drawer-open': '450px',
-            '--width-filter-drawer-closed': '104px',
+            '--width-filter-drawer-closed': '72px',
 
             '--height-header': '124px',
           },

@@ -14,7 +14,7 @@
 }
 
 .drawer-closed {
-  padding-left: var(--width-filter-drawer-closed);
+  padding-left: calc(var(--width-filter-drawer-closed) + 15px);
 }
 
 #name-evaluator-column {

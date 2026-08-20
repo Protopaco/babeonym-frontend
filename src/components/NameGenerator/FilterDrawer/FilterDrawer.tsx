@@ -13,6 +13,7 @@ import CultureAccordion from '@/components/NameGenerator/CultureAccordion/Cultur
 import DrawerApproved from '@/components/NameGenerator/DrawerApproved/DrawerApproved';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
+import { AnimatePresence, motion } from 'motion/react';
 
 type Props = {
   drawerOpen: boolean;
@@ -56,30 +57,43 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
         className={drawerOpen ? 'filter-drawer-open' : 'filter-drawer-closed'}
         slotProps={{ paper: { className: `${drawerOpen ? 'filter-drawer-open' : 'filter-drawer-closed'} themed-scrollbar` } }}
       >
-        <Box className="filter-drawer-content">
+        <Box className={`filter-drawer-content ${drawerOpen ? 'filter-drawer-content-open' : 'filter-drawer-content-closed'}`}>
           <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
-          {drawerOpen ? (
-            <>
-              <SectionHeader
-                title="Name Filters"
-                action={
-                  <Button className="filter-drawer-collapse-all-button" variant="text" onClick={collapseAllFilters}>
-                    Collapse All
-                  </Button>
-                }
-              />
-              <Box className="filter-drawer-controls">
-                <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
-                <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
-                <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
-                <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
-              </Box>
-              <Box className="filter-drawer-actions">
-                <SecondaryButton text="Set Filters" onClick={getNewCandidates} />
-              </Box>
-              <DrawerApproved />
-            </>
-          ) : null}
+          <AnimatePresence initial={false}>
+            {drawerOpen ? (
+              <motion.div
+                key="filter-drawer-open-content"
+                className="filter-drawer-open-content"
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{
+                  opacity: 0,
+                  x: -6,
+                  transition: { opacity: { duration: 0.14 }, x: { duration: 0.4 } },
+                }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+              >
+                <SectionHeader
+                  title="Name Filters"
+                  action={
+                    <Button className="filter-drawer-collapse-all-button" variant="text" onClick={collapseAllFilters}>
+                      Collapse All
+                    </Button>
+                  }
+                />
+                <Box className="filter-drawer-controls">
+                  <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
+                  <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
+                  <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
+                  <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
+                </Box>
+                <Box className="filter-drawer-actions">
+                  <SecondaryButton text="Set Filters" onClick={getNewCandidates} />
+                </Box>
+                <DrawerApproved />
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
         </Box>
       </Drawer>
     </Box>
