@@ -2,6 +2,7 @@ import List from '@mui/material/List';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
 import ApprovedGivenNameChip from '@/components/Shared/ApprovedGivenNameChip/ApprovedGivenNameChip';
 import '@/components/NameGenerator/DrawerApproved/DrawerApprovedList/DrawerApprovedList.css';
+import { AnimatePresence } from 'motion/react';
 
 export default () => {
   const givenNameContext = useGivenNames();
@@ -14,5 +15,9 @@ export default () => {
     ));
   };
 
-  return <List className="drawer-approved-list">{createApprovedChips()}</List>;
+  return (
+    <List className="drawer-approved-list">
+      <AnimatePresence initial={false}>{createApprovedChips()}</AnimatePresence>
+    </List>
+  );
 };

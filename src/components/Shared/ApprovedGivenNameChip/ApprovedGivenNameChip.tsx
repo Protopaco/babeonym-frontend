@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import './ApprovedGivenNameChip.css';
-import { useState } from 'react';
+import { motion } from 'motion/react';
 
 type Props = {
   approvedGivenName: GivenName;
@@ -14,21 +14,20 @@ type Props = {
 export default ({ approvedGivenName }: Props) => {
   const { givenName, givenCustomNameBridgeId } = approvedGivenName;
   const { rejectCandidate } = useGivenNamesActions();
-  const [isDeleting, setIsDeleting] = useState(false);
 
   const rejectClick = async () => {
-    if (isDeleting) {
-      return;
-    }
-
-    setIsDeleting(true);
-    window.setTimeout(async () => {
-      await rejectCandidate(givenCustomNameBridgeId);
-    }, 180);
+    await rejectCandidate(givenCustomNameBridgeId);
   };
 
   return (
-    <Box className={`approved-given-name-chip ${isDeleting ? 'approved-given-name-chip--deleting' : ''}`}>
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      exit={{ opacity: 0, x: -8 }}
+      transition={{ duration: 0.18, ease: 'easeOut' }}
+      className="approved-given-name-chip"
+    >
       <Box className="approved-given-name-chip-label">
         <Typography className="approved-given-name-chip-text">{givenName}</Typography>
       </Box>
@@ -37,6 +36,6 @@ export default ({ approvedGivenName }: Props) => {
           <DeleteIcon />
         </IconButton>
       </Box>
-    </Box>
+    </motion.div>
   );
 };

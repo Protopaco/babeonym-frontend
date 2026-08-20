@@ -4,14 +4,6 @@
   align-items: center;
   width: 188px;
   height: 44px;
-  transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
-}
-
-.approved-given-name-chip--deleting {
-  opacity: 0;
-  transform: translateX(-8px);
 }
 
 .approved-given-name-chip-label {
