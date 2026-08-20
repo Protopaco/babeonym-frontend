@@ -40,6 +40,7 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
 
             '--color-text-primary': textPrimary,
             '--color-text-secondary': textSecondary,
+            '--color-scroll-edge': `${textPrimary}14`,
 
             '--color-background': background,
             '--color-border': `${textPrimary}1F`,

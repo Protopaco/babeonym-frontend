@@ -10,7 +10,7 @@ import LanguageAccordion from '@/components/NameGenerator/LanguageAccordion/Lang
 import CultureAccordion from '@/components/NameGenerator/CultureAccordion/CultureAccordion';
 import DrawerApproved from '@/components/NameGenerator/DrawerApproved/DrawerApproved';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
-import Typography from '@mui/material/Typography';
+import FilterDrawerSectionHeader from '@/components/NameGenerator/FilterDrawerSectionHeader/FilterDrawerSectionHeader';
 
 type Props = {
   drawerOpen: boolean;
@@ -34,9 +34,7 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
           <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
           {drawerOpen ? (
             <>
-              <Typography variant="h3" className="filter-drawer-title">
-                Name Filters
-              </Typography>
+              <FilterDrawerSectionHeader title="Name Filters" />
               <Box className="filter-drawer-controls">
                 <GenderAccordion />
                 <DecadesAccordion />
