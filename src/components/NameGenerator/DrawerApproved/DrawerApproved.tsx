@@ -10,7 +10,7 @@ export default () => {
   };
   return (
     <section className="drawer-approved-section">
-      <Typography variant="h3"> Approved </Typography>
+      <Typography variant="h3">Approved</Typography>
       <DrawerApprovedList />
       <SecondaryButton text="View Full Name List" onClick={navToFullList} />
     </section>
