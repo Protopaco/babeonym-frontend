@@ -4,3 +4,9 @@
   padding-top: var(--height-header);
   height: 100vh;
 }
+
+@media (max-width: 599px) {
+  #main {
+    padding-top: 96px;
+  }
+}

@@ -4,3 +4,9 @@
   width: auto;
   color: var(--color-primary);
 }
+
+@media (max-width: 599px) {
+  #logo-full {
+    color: var(--color-primary-contrast);
+  }
+}

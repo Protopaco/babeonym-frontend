@@ -18,3 +18,9 @@
 .nav-bar-link.active {
   text-decoration: underline;
 }
+
+@media (max-width: 599px) {
+  #nav-bar {
+    display: none;
+  }
+}
