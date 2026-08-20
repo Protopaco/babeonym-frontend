@@ -3,6 +3,7 @@ import { useGivenNames } from '@/state/givenName/givenName.provider';
 import ApprovedGivenNameChip from '@/components/Shared/ApprovedGivenNameChip/ApprovedGivenNameChip';
 import type { GivenName } from '@/api/generated';
 import { useEffect, useState } from 'react';
+import '@/components/NameGenerator/DrawerApproved/DrawerApprovedList/DrawerApprovedList.css';
 
 export default () => {
   const givenNameContext = useGivenNames();
@@ -17,5 +18,5 @@ export default () => {
     return firstThree.map((approvedGivenName, index) => <ApprovedGivenNameChip key={index} approvedGivenName={approvedGivenName} />);
   };
 
-  return <List>{createApprovedChips()}</List>;
+  return <List className="drawer-approved-list">{createApprovedChips()}</List>;
 };
