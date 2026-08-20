@@ -9,13 +9,18 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { List } from '@mui/material';
 import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
 
-export default () => {
+type Props = {
+  expanded: boolean;
+  onChange: (event: React.SyntheticEvent, expanded: boolean) => void;
+};
+
+export default ({ expanded, onChange }: Props) => {
   const givenNameContext = useGivenNames();
   const { selectedGenders } = givenNameContext.state;
   const { addSelectedGenders, removeSelectedGenders } = useGivenNamesActions();
 
   return (
-    <Accordion>
+    <Accordion expanded={expanded} onChange={onChange}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="gender-filter-content" id="gender-filter-summary">
         <Typography component="span">Gender</Typography>
       </AccordionSummary>

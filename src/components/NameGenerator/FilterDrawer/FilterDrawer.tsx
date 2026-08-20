@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import '@/components/NameGenerator/FilterDrawer/FilterDrawer.css';
 import FilterDrawerHeader from '../FilterDrawerHeader/FilterDrawerHeader';
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
@@ -17,8 +19,32 @@ type Props = {
   setDrawerOpen: (open: boolean) => void;
 };
 
+type FilterAccordionId = 'gender' | 'decades' | 'languages' | 'cultures';
+
 export default ({ drawerOpen, setDrawerOpen }: Props) => {
   const { getNewCandidates } = useGivenNamesActions();
+  const [expandedFilters, setExpandedFilters] = useState<Record<FilterAccordionId, boolean>>({
+    gender: false,
+    decades: false,
+    languages: false,
+    cultures: false,
+  });
+
+  const handleFilterAccordionChange = (filterId: FilterAccordionId) => (_event: React.SyntheticEvent, expanded: boolean) => {
+    setExpandedFilters((currentExpandedFilters) => ({
+      ...currentExpandedFilters,
+      [filterId]: expanded,
+    }));
+  };
+
+  const collapseAllFilters = () => {
+    setExpandedFilters({
+      gender: false,
+      decades: false,
+      languages: false,
+      cultures: false,
+    });
+  };
 
   return (
     <Box>
@@ -34,12 +60,19 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
           <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
           {drawerOpen ? (
             <>
-              <FilterDrawerSectionHeader title="Name Filters" />
+              <FilterDrawerSectionHeader
+                title="Name Filters"
+                action={
+                  <Button className="filter-drawer-collapse-all-button" variant="text" onClick={collapseAllFilters}>
+                    Collapse All
+                  </Button>
+                }
+              />
               <Box className="filter-drawer-controls">
-                <GenderAccordion />
-                <DecadesAccordion />
-                <LanguageAccordion />
-                <CultureAccordion />
+                <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
+                <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
+                <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
+                <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
               </Box>
               <Box className="filter-drawer-actions">
                 <SecondaryButton text="Set Filters" onClick={getNewCandidates} />

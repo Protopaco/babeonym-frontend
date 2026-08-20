@@ -12,7 +12,12 @@ import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterList
 import ContinentAccordion from './ContinentAccordion/ContinentAccordion';
 import type { LanguageWithRegions } from '@/api/generated';
 
-export default () => {
+type Props = {
+  expanded: boolean;
+  onChange: (event: React.SyntheticEvent, expanded: boolean) => void;
+};
+
+export default ({ expanded, onChange }: Props) => {
   const filterContext = useFilters();
   const { languages } = filterContext.state;
   const [searchValue, setSearchValue] = useState('');
@@ -42,7 +47,7 @@ export default () => {
   }, [searchValue, languages]);
 
   return (
-    <Accordion>
+    <Accordion expanded={expanded} onChange={onChange}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="language-filter-content" id="language-filter-summary">
         <Typography component="span">Languages</Typography>
       </AccordionSummary>

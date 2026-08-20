@@ -1,6 +1,6 @@
 .filter-drawer-section-header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 16px;
   margin: 0 0 14px;
@@ -15,7 +15,16 @@
 
 .filter-drawer-section-action {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: flex-end;
   min-width: 96px;
+}
+
+.filter-drawer-collapse-all-button.MuiButton-root {
+  min-width: 0;
+  padding: 0 8px;
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  line-height: 1;
+  text-transform: none;
 }

@@ -11,7 +11,12 @@ import List from '@mui/material/List';
 import TextField from '@mui/material/TextField';
 import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
 
-export default () => {
+type Props = {
+  expanded: boolean;
+  onChange: (event: React.SyntheticEvent, expanded: boolean) => void;
+};
+
+export default ({ expanded, onChange }: Props) => {
   const filterContext = useFilters();
   const { decades } = filterContext.state;
   const givenNameContext = useGivenNames();
@@ -34,7 +39,7 @@ export default () => {
   }, [searchValue, decades]);
 
   return (
-    <Accordion>
+    <Accordion expanded={expanded} onChange={onChange}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="decade-filter-content" id="decade-filter-summary">
         <Typography component="span">Decades</Typography>
       </AccordionSummary>

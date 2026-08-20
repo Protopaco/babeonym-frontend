@@ -11,7 +11,12 @@ import TextField from '@mui/material/TextField';
 import ContinentAccordion from '@/components/NameGenerator/CultureAccordion/ContinentAccordion/ContinentAccordion';
 import type { CultureRegion, CultureWithRegions } from '@/api/generated';
 
-export default () => {
+type Props = {
+  expanded: boolean;
+  onChange: (event: React.SyntheticEvent, expanded: boolean) => void;
+};
+
+export default ({ expanded, onChange }: Props) => {
   const filterContext = useFilters();
   const { cultures } = filterContext.state;
   const [searchValue, setSearchValue] = useState('');
@@ -41,7 +46,7 @@ export default () => {
   }, [searchValue, cultures]);
 
   return (
-    <Accordion>
+    <Accordion expanded={expanded} onChange={onChange}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="culture-filter-content" id="culture-filter-summary">
         <Typography component="span">Cultures</Typography>
       </AccordionSummary>
