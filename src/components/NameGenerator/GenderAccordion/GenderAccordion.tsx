@@ -3,11 +3,9 @@ import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName
 
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { List } from '@mui/material';
 import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
+import FilterAccordionSummary from '@/components/NameGenerator/FilterAccordionSummary/FilterAccordionSummary';
 
 type Props = {
   expanded: boolean;
@@ -21,9 +19,7 @@ export default ({ expanded, onChange }: Props) => {
 
   return (
     <Accordion expanded={expanded} onChange={onChange}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="gender-filter-content" id="gender-filter-summary">
-        <Typography component="span">Gender</Typography>
-      </AccordionSummary>
+      <FilterAccordionSummary label="Gender" ariaControls="gender-filter-content" id="gender-filter-summary" />
       <AccordionDetails>
         <List>
           {GenderValues.map((gender, index) => {

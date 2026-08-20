@@ -3,13 +3,11 @@ import { useFilters } from '@/state/filter/filter.context';
 
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import List from '@mui/material/List';
 import TextField from '@mui/material/TextField';
 import ContinentAccordion from '@/components/NameGenerator/CultureAccordion/ContinentAccordion/ContinentAccordion';
 import type { CultureRegion, CultureWithRegions } from '@/api/generated';
+import FilterAccordionSummary from '@/components/NameGenerator/FilterAccordionSummary/FilterAccordionSummary';
 
 type Props = {
   expanded: boolean;
@@ -47,9 +45,7 @@ export default ({ expanded, onChange }: Props) => {
 
   return (
     <Accordion expanded={expanded} onChange={onChange}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="culture-filter-content" id="culture-filter-summary">
-        <Typography component="span">Cultures</Typography>
-      </AccordionSummary>
+      <FilterAccordionSummary label="Cultures" ariaControls="culture-filter-content" id="culture-filter-summary" />
       <AccordionDetails>
         <TextField id="culture-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} />
         <List>
