@@ -30,6 +30,10 @@
   margin: 0;
 }
 
+#name-evaluator-header .mobile-section-header {
+  display: none;
+}
+
 #name-evaluator-content {
   flex: 1;
   min-height: 0;
@@ -86,7 +90,7 @@
 @media (max-width: 599px) {
   #name-evaluator {
     min-height: auto;
-    padding: 48px 32px 64px;
+    padding: 15px 32px 64px;
   }
 
   .drawer-open,
@@ -100,8 +104,16 @@
 
   #name-evaluator-header {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     max-width: none;
+  }
+
+  #name-evaluator-header .section-header {
+    display: none;
+  }
+
+  #name-evaluator-header .mobile-section-header {
+    display: block;
   }
 
   #name-evaluator-content {

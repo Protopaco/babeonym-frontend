@@ -9,11 +9,11 @@
     box-sizing: border-box;
     width: 100%;
     background: var(--color-secondary);
-    padding: 48px 32px 64px;
+    padding: 15px 32px 64px;
   }
 
-  .mobile-name-filters .section-header {
-    align-self: center;
+  .mobile-name-filters .mobile-section-header {
+    align-self: flex-start;
   }
 
   .mobile-name-filters-controls {

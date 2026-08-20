@@ -1,0 +1,10 @@
+.mobile-section-header {
+  width: 155px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--color-primary-edge);
+}
+
+.mobile-section-header-title {
+  margin: 0;
+  color: var(--color-text-secondary);
+}

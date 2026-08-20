@@ -5,9 +5,9 @@ import DecadesAccordion from '@/components/NameGenerator/DecadesAccordion/Decade
 import LanguageAccordion from '@/components/NameGenerator/LanguageAccordion/LanguageAccordion';
 import CultureAccordion from '@/components/NameGenerator/CultureAccordion/CultureAccordion';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
-import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import './MobileNameFilters.css';
+import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
 
 type FilterAccordionId = 'gender' | 'decades' | 'languages' | 'cultures';
 
@@ -29,7 +29,7 @@ export default () => {
 
   return (
     <Box className="mobile-name-filters">
-      <SectionHeader title="Name Filters" width="medium" />
+      <MobileSectionHeader title="Name Filters" />
       <Box className="mobile-name-filters-controls">
         <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
         <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />

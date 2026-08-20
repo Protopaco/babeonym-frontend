@@ -23,3 +23,9 @@
   justify-content: flex-end;
   min-width: 96px;
 }
+
+@media (max-width: 599px) {
+  .section-header {
+    padding-bottom: 6px;
+  }
+}

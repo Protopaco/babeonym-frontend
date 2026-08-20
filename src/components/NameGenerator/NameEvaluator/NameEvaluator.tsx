@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import BedtimeOutlinedIcon from '@mui/icons-material/BedtimeOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
+import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
 
 type Props = {
   drawerOpen: boolean;
@@ -44,6 +45,7 @@ export default ({ drawerOpen }: Props) => {
       <Box id="name-evaluator-column">
         <Box id="name-evaluator-header">
           <SectionHeader title="Name Generator" width="medium" />
+          <MobileSectionHeader title="Name Generator" />
         </Box>
         <Box id="name-evaluator-content">
           <Typography variant="h2" id="evaluated-name">
