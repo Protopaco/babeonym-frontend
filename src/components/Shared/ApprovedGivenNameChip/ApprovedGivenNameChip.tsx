@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import './ApprovedGivenNameChip.css';
+import { useState } from 'react';
 
 type Props = {
   approvedGivenName: GivenName;
@@ -13,13 +14,21 @@ type Props = {
 export default ({ approvedGivenName }: Props) => {
   const { givenName, givenCustomNameBridgeId } = approvedGivenName;
   const { rejectCandidate } = useGivenNamesActions();
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const rejectClick = async () => {
-    await rejectCandidate(givenCustomNameBridgeId);
+    if (isDeleting) {
+      return;
+    }
+
+    setIsDeleting(true);
+    window.setTimeout(async () => {
+      await rejectCandidate(givenCustomNameBridgeId);
+    }, 180);
   };
 
   return (
-    <Box className="approved-given-name-chip">
+    <Box className={`approved-given-name-chip ${isDeleting ? 'approved-given-name-chip--deleting' : ''}`}>
       <Box className="approved-given-name-chip-label">
         <Typography className="approved-given-name-chip-text">{givenName}</Typography>
       </Box>
