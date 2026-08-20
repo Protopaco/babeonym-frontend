@@ -11,9 +11,9 @@ import DecadesAccordion from '@/components/NameGenerator/DecadesAccordion/Decade
 import LanguageAccordion from '@/components/NameGenerator/LanguageAccordion/LanguageAccordion';
 import CultureAccordion from '@/components/NameGenerator/CultureAccordion/CultureAccordion';
 import DrawerApproved from '@/components/NameGenerator/DrawerApproved/DrawerApproved';
-import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
-import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import { AnimatePresence, motion } from 'motion/react';
+import DrawerActionButton from '@/components/NameGenerator/DrawerActionButton/DrawerActionButton';
+import DrawerSection from '@/components/NameGenerator/DrawerSection/DrawerSection';
 
 type Props = {
   drawerOpen: boolean;
@@ -73,23 +73,22 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
                 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
               >
-                <SectionHeader
+                <DrawerSection
                   title="Name Filters"
                   action={
                     <Button className="filter-drawer-collapse-all-button" variant="text" onClick={collapseAllFilters}>
                       Collapse All
                     </Button>
                   }
-                />
-                <Box className="filter-drawer-controls">
-                  <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
-                  <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
-                  <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
-                  <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
-                </Box>
-                <Box className="filter-drawer-actions">
-                  <SecondaryButton text="Set Filters" onClick={getNewCandidates} />
-                </Box>
+                  footer={<DrawerActionButton text="Set Filters" onClick={getNewCandidates} />}
+                >
+                  <Box className="filter-drawer-controls">
+                    <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
+                    <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
+                    <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
+                    <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
+                  </Box>
+                </DrawerSection>
                 <DrawerApproved />
               </motion.div>
             ) : null}

@@ -103,12 +103,6 @@
     inset 0 -8px 8px -10px var(--color-scroll-edge);
 }
 
-.filter-drawer-actions {
-  display: flex;
-  justify-content: center;
-  margin: 22px 0 34px;
-}
-
 .filter-drawer-collapse-all-button.MuiButton-root {
   min-width: 0;
   padding: 0 8px;
@@ -116,15 +110,6 @@
   color: var(--color-text-secondary);
   line-height: 1;
   text-transform: none;
-}
-
-.drawer-approved-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.drawer-approved-section h3 {
-  margin: 0;
 }
 
 @media (max-width: 599px) {

@@ -1,7 +1,7 @@
 import DrawerApprovedList from './DrawerApprovedList/DrawerApprovedList';
-import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 import { useNavigate } from 'react-router-dom';
-import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
+import DrawerActionButton from '@/components/NameGenerator/DrawerActionButton/DrawerActionButton';
+import DrawerSection from '@/components/NameGenerator/DrawerSection/DrawerSection';
 
 export default () => {
   const navigate = useNavigate();
@@ -9,10 +9,8 @@ export default () => {
     navigate('/list');
   };
   return (
-    <section className="drawer-approved-section">
-      <SectionHeader title="Approved" />
+    <DrawerSection title="Approved" footer={<DrawerActionButton text="View Full Name List" onClick={navToFullList} />}>
       <DrawerApprovedList />
-      <SecondaryButton text="View Full Name List" onClick={navToFullList} />
-    </section>
+    </DrawerSection>
   );
 };
