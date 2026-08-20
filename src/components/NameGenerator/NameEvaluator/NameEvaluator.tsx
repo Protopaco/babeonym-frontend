@@ -5,6 +5,10 @@ import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
 import { Typography } from '@mui/material';
 import { useUser } from '@/state/user/user.context';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
+import IconButton from '@mui/material/IconButton';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import BedtimeOutlinedIcon from '@mui/icons-material/BedtimeOutlined';
+import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 
 type Props = {
   drawerOpen: boolean;
@@ -54,6 +58,17 @@ export default ({ drawerOpen }: Props) => {
             <PrimaryButton onClick={approveClick} text="Approve" />
             <PrimaryButton onClick={snoozeClick} text="Snooze" />
             <PrimaryButton onClick={rejectClick} text="Reject" />
+          </Box>
+          <Box id="name-evaluator-mobile-button-container">
+            <IconButton className="name-evaluator-mobile-action-button" onClick={approveClick} aria-label="Approve name">
+              <ThumbUpOutlinedIcon />
+            </IconButton>
+            <IconButton className="name-evaluator-mobile-action-button" onClick={snoozeClick} aria-label="Snooze name">
+              <BedtimeOutlinedIcon />
+            </IconButton>
+            <IconButton className="name-evaluator-mobile-action-button" onClick={rejectClick} aria-label="Reject name">
+              <ThumbDownOutlinedIcon />
+            </IconButton>
           </Box>
         </Box>
       </Box>
