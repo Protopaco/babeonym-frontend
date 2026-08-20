@@ -1,7 +1,14 @@
 #filter-drawer-header {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+}
+
+.filter-drawer-header-open {
+  justify-content: flex-end;
+}
+
+.filter-drawer-header-closed {
+  justify-content: center;
 }
 
 #toggle-drawer-button {

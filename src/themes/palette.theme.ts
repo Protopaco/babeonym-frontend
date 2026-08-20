@@ -42,7 +42,7 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
             '--color-background': background,
 
             '--width-filter-drawer-open': '450px',
-            '--width-filter-drawer-closed': '150px',
+            '--width-filter-drawer-closed': '104px',
 
             '--height-header': '124px',
           },

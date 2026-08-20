@@ -15,7 +15,7 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
   };
 
   return (
-    <Box id="filter-drawer-header">
+    <Box id="filter-drawer-header" className={drawerOpen ? 'filter-drawer-header-open' : 'filter-drawer-header-closed'}>
       <IconButton id="toggle-drawer-button" onClick={() => toggleDrawerOpen()}>
         {drawerOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}
       </IconButton>
