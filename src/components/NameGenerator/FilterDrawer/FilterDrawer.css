@@ -95,6 +95,15 @@
   margin: 22px 0 34px;
 }
 
+.filter-drawer-collapse-all-button.MuiButton-root {
+  min-width: 0;
+  padding: 0 8px;
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  line-height: 1;
+  text-transform: none;
+}
+
 .drawer-approved-section {
   display: flex;
   flex-direction: column;

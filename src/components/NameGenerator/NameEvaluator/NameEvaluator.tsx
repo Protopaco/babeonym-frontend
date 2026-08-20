@@ -4,6 +4,7 @@ import '@/components/NameGenerator/NameEvaluator/NameEvaluator.css';
 import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
 import { Typography } from '@mui/material';
 import { useUser } from '@/state/user/user.context';
+import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 
 type Props = {
   drawerOpen: boolean;
@@ -36,21 +37,25 @@ export default ({ drawerOpen }: Props) => {
 
   return (
     <Box id="name-evaluator" className={drawerOpen ? 'drawer-open' : 'drawer-closed'}>
-      <Typography variant="h1" color="primary" id="name-generator-title">
-        Name Generator
-      </Typography>
-      <Typography variant="h2" id="evaluated-name">
-        {givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0].givenName : 'no names'}
-      </Typography>
-      {user?.surName ? (
-        <Typography variant="h3" id="user-surname">
-          {user.surName}
-        </Typography>
-      ) : null}
-      <Box id="name-evaluator-button-container">
-        <PrimaryButton onClick={approveClick} text="Approve" />
-        <PrimaryButton onClick={snoozeClick} text="Snooze" />
-        <PrimaryButton onClick={rejectClick} text="Reject" />
+      <Box id="name-evaluator-column">
+        <Box id="name-evaluator-header">
+          <SectionHeader title="Name Generator" width="medium" />
+        </Box>
+        <Box id="name-evaluator-content">
+          <Typography variant="h2" id="evaluated-name">
+            {givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0].givenName : 'no names'}
+          </Typography>
+          {user?.surName ? (
+            <Typography variant="h3" id="user-surname">
+              {user.surName}
+            </Typography>
+          ) : null}
+          <Box id="name-evaluator-button-container">
+            <PrimaryButton onClick={approveClick} text="Approve" />
+            <PrimaryButton onClick={snoozeClick} text="Snooze" />
+            <PrimaryButton onClick={rejectClick} text="Reject" />
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

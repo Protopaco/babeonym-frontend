@@ -1,4 +1,4 @@
-.filter-drawer-section-header {
+.section-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -8,23 +8,18 @@
   border-bottom: 2px solid var(--color-primary-edge);
 }
 
-.filter-drawer-section-title {
+.section-header--medium {
+  max-width: 350px;
+}
+
+.section-header-title {
   margin: 0;
   color: var(--color-text-secondary);
 }
 
-.filter-drawer-section-action {
+.section-header-action {
   display: flex;
   align-items: baseline;
   justify-content: flex-end;
   min-width: 96px;
-}
-
-.filter-drawer-collapse-all-button.MuiButton-root {
-  min-width: 0;
-  padding: 0 8px;
-  border-radius: 4px;
-  color: var(--color-text-secondary);
-  line-height: 1;
-  text-transform: none;
 }

@@ -12,7 +12,7 @@ import LanguageAccordion from '@/components/NameGenerator/LanguageAccordion/Lang
 import CultureAccordion from '@/components/NameGenerator/CultureAccordion/CultureAccordion';
 import DrawerApproved from '@/components/NameGenerator/DrawerApproved/DrawerApproved';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
-import FilterDrawerSectionHeader from '@/components/NameGenerator/FilterDrawerSectionHeader/FilterDrawerSectionHeader';
+import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 
 type Props = {
   drawerOpen: boolean;
@@ -60,7 +60,7 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
           <FilterDrawerHeader drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
           {drawerOpen ? (
             <>
-              <FilterDrawerSectionHeader
+              <SectionHeader
                 title="Name Filters"
                 action={
                   <Button className="filter-drawer-collapse-all-button" variant="text" onClick={collapseAllFilters}>
