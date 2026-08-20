@@ -47,6 +47,11 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
     });
   };
 
+  const setFiltersClick = async () => {
+    await getNewCandidates();
+    collapseAllFilters();
+  };
+
   return (
     <Box>
       <Drawer
@@ -80,7 +85,7 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
                       Collapse All
                     </Button>
                   }
-                  footer={<DrawerActionButton text="Set Filters" onClick={getNewCandidates} />}
+                  footer={<DrawerActionButton text="Set Filters" onClick={setFiltersClick} />}
                 >
                   <Box className="filter-drawer-controls">
                     <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />

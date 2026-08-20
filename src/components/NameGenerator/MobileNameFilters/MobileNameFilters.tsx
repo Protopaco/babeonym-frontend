@@ -27,6 +27,20 @@ export default () => {
     }));
   };
 
+  const collapseAllFilters = () => {
+    setExpandedFilters({
+      gender: false,
+      decades: false,
+      languages: false,
+      cultures: false,
+    });
+  };
+
+  const setFiltersClick = async () => {
+    await getNewCandidates();
+    collapseAllFilters();
+  };
+
   return (
     <Box className="mobile-name-filters">
       <MobileSectionHeader title="Name Filters" />
@@ -37,7 +51,7 @@ export default () => {
         <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
       </Box>
       <Box className="mobile-name-filters-actions">
-        <SecondaryButton text="Set Filters" onClick={getNewCandidates} />
+        <SecondaryButton text="Set Filters" onClick={setFiltersClick} />
       </Box>
     </Box>
   );
