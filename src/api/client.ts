@@ -17,7 +17,7 @@ import { Configuration } from '@/api/generated/runtime';
 import { UserApi, AuthApi, ReferenceApi, GivenNameApi } from '@/api/generated/apis';
 
 const config = new Configuration({
-  basePath: import.meta.env.API_BASE_URL, // e.g. http://localhost:3000/
+  basePath: import.meta.env.VITE_API_BASE_URL, // e.g. http://localhost:3000/
   credentials: 'include',
 });
 
