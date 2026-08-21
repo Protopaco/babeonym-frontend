@@ -21,7 +21,7 @@ export default () => {
     if (selectedGenders.length) params.append('genders', [...new Set(selectedGenders)].join(','));
     if (selectedDecadeIds.length) params.append('decades', [...new Set(selectedDecadeIds)].join(','));
     if (selectedLanguageIds.length) params.append('languages', [...new Set(selectedLanguageIds)].join(','));
-    if (selectedCultureIds.length) params.append('culture', [...new Set(selectedCultureIds)].join(','));
+    if (selectedCultureIds.length) params.append('cultures', [...new Set(selectedCultureIds)].join(','));
     setSearchParams(params, { replace: true });
   };
 
