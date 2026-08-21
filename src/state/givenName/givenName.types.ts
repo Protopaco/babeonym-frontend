@@ -14,6 +14,7 @@ export type GivenNameState = {
 export type GivenNameAction =
   | { type: 'GET_NEW_CANDIDATES'; payload: GivenName[] }
   | { type: 'REMOVE_CANDIDATE'; payload: number }
+  | { type: 'REMOVE_APPROVED'; payload: number }
   | { type: 'ADD_APPROVED'; payload: GivenName[] }
   | { type: 'GIVEN_NAME_PROVIDER_LOADED' }
   | { type: 'ADD_SELECTED_GENDERS'; payload: Gender[] }

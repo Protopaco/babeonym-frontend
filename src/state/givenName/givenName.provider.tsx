@@ -77,6 +77,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const rejectCandidate = async (givenCustomNameBridgeId: number) => {
+    const isApprovedName = state.approvedGivenNames.some((approvedGivenName) => approvedGivenName.givenCustomNameBridgeId === givenCustomNameBridgeId);
     const actionRequest: V1GivenNameActionOperationRequest = {
       v1GivenNameActionRequest: {
         givenCustomNameBridgeId,
@@ -86,8 +87,12 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       removeCandidate(givenCustomNameBridgeId);
+      if (isApprovedName) {
+        removeApprovedGivenName(givenCustomNameBridgeId);
+      }
+
       await givenNameApi.v1GivenNameAction(actionRequest);
-      if (state.approvedGivenNames.some((approvedGivenName) => approvedGivenName.givenCustomNameBridgeId === givenCustomNameBridgeId)) {
+      if (isApprovedName) {
         await addApprovedGivenNames();
       }
     } catch (e) {
@@ -113,6 +118,10 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
   const removeCandidate = (givenCustomNameBridgeId: number) => {
     dispatch({ type: 'REMOVE_CANDIDATE', payload: givenCustomNameBridgeId });
+  };
+
+  const removeApprovedGivenName = (givenCustomNameBridgeId: number) => {
+    dispatch({ type: 'REMOVE_APPROVED', payload: givenCustomNameBridgeId });
   };
 
   const addApprovedGivenNames = async () => {

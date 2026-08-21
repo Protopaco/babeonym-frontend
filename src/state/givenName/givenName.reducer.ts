@@ -35,6 +35,14 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, approvedGivenNames: action.payload };
     }
 
+    case 'REMOVE_APPROVED': {
+      const approvedGivenNames = state.approvedGivenNames.filter(
+        ({ givenCustomNameBridgeId }) => givenCustomNameBridgeId !== action.payload
+      );
+
+      return { ...state, approvedGivenNames };
+    }
+
     case 'GIVEN_NAME_PROVIDER_LOADED': {
       return { ...state, givenNameProviderLoaded: true };
     }

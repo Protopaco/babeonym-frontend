@@ -48,8 +48,8 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
   };
 
   const setFiltersClick = async () => {
-    await getNewCandidates();
     collapseAllFilters();
+    await getNewCandidates();
   };
 
   return (

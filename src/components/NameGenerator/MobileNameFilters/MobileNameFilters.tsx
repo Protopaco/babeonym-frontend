@@ -37,8 +37,8 @@ export default () => {
   };
 
   const setFiltersClick = async () => {
-    await getNewCandidates();
     collapseAllFilters();
+    await getNewCandidates();
   };
 
   return (
