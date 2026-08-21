@@ -41,6 +41,18 @@ export default ({ expanded, onChange }: Props) => {
         <AccordionDetails>
           <TextField id="decade-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} type="number" />
           <List className="decades-filter-list themed-scrollbar">
+            {selectedDecadeIds.length ? (
+              <FilterListItem
+                key="decades-unselect-all"
+                index={-1}
+                label="Unselect all"
+                action={() => {
+                  removeSelectedDecadeIds(selectedDecadeIds);
+                }}
+                selected={true}
+                variant="utility"
+              />
+            ) : null}
             {displayDecades.map((decade, index) => {
               const { id, label } = decade;
               const selected = selectedDecadeIds.includes(id);

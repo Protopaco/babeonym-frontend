@@ -16,6 +16,16 @@
   background: var(--color-primary-highlight);
 }
 
+.filter-list-item--utility.MuiListItemButton-root {
+  background: var(--color-primary-highlight);
+}
+
+.filter-list-item--utility.MuiListItemButton-root:hover,
+.filter-list-item--utility.MuiListItemButton-root.Mui-focusVisible,
+.filter-list-item--utility.MuiListItemButton-root:active {
+  background: var(--color-primary-edge);
+}
+
 .filter-list-item-checkbox {
   color: var(--color-text-primary);
 }

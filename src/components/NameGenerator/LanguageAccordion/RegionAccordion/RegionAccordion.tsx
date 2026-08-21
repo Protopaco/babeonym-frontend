@@ -7,7 +7,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import List from '@mui/material/List';
 import FilterListItem from '../../FilterListItem/FilterListItem';
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
-import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 import { useState } from 'react';
 
 type Props = {
@@ -22,6 +21,7 @@ export default (props: Props) => {
   const { addSelectedLanguageIds, removeSelectedLanguageIds } = useGivenNamesActions();
 
   const anySelected = languages.some(({ id }) => selectedLanguageIds.includes(id));
+  const showToggleAll = languages.length > 3;
 
   const selectAll = () => {
     const currentUnselectedLanguageIds = languages.filter(({ id }) => !selectedLanguageIds.includes(id)).map(({ id }) => id);
@@ -40,8 +40,17 @@ export default (props: Props) => {
       </AccordionSummary>
       {expanded ? (
         <AccordionDetails>
-          {anySelected ? <SecondaryButton text="Unselect All" onClick={unselectAll} /> : <SecondaryButton text="Select All" onClick={selectAll} />}
           <List>
+            {showToggleAll ? (
+              <FilterListItem
+                key={`${label}-toggle-all`}
+                index={-1}
+                label={anySelected ? 'Unselect all' : 'Select all'}
+                action={anySelected ? unselectAll : selectAll}
+                selected={anySelected}
+                variant="utility"
+              />
+            ) : null}
             {languages.map((language, index) => {
               const { id, label, flag } = language;
               const selected = selectedLanguageIds.includes(id);

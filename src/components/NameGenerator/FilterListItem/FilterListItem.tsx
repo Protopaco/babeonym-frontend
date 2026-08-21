@@ -11,11 +11,12 @@ type Props = {
   label: string;
   action: any;
   selected: boolean;
+  variant?: 'default' | 'utility';
 };
 
-export default ({ index, label, action, selected }: Props) => {
+export default ({ index, label, action, selected, variant = 'default' }: Props) => {
   return (
-    <ListItemButton className="filter-list-item" key={index} onClick={action}>
+    <ListItemButton className={`filter-list-item filter-list-item--${variant}`} key={index} onClick={action}>
       <ListItemIcon>
         {selected ? (
           <CheckBoxIcon className="filter-list-item-checkbox filter-list-item-checkbox--checked" />
