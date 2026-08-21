@@ -8,6 +8,14 @@
   background: var(--color-primary-highlight);
 }
 
+.filter-list-item.MuiListItemButton-root.Mui-focusVisible {
+  background: var(--color-primary-highlight);
+}
+
+.filter-list-item.MuiListItemButton-root:active {
+  background: var(--color-primary-highlight);
+}
+
 .filter-list-item-checkbox {
   color: var(--color-text-primary);
 }

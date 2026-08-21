@@ -1,2 +1,10 @@
 @import '@/styles/fonts.css';
 @import '@/styles/scrollbar.css';
+
+.MuiTouchRipple-rippleVisible {
+  color: var(--color-primary) !important;
+}
+
+.MuiTouchRipple-rippleVisible .MuiTouchRipple-child {
+  background-color: var(--color-primary) !important;
+}
