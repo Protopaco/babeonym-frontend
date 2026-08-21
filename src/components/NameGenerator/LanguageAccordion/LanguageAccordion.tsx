@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { useFilters } from '@/state/filter/filter.context';
 
 import Accordion from '@mui/material/Accordion';
@@ -19,15 +19,14 @@ export default ({ expanded, onChange }: Props) => {
   const filterContext = useFilters();
   const { languages } = filterContext.state;
   const [searchValue, setSearchValue] = useState('');
-  const [displayLanguages, setDisplayLanguages] = useState(languages);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value.replace(/[^\p{L}]/gu, ''));
   };
 
-  useEffect(() => {
+  const displayLanguages = useMemo(() => {
     if (searchValue != '') {
-      const filteredLanguages = languages
+      return languages
         .map((continent) => ({
           ...continent,
           regions: continent.regions
@@ -38,24 +37,25 @@ export default ({ expanded, onChange }: Props) => {
             .filter((region) => region.languages.length > 0),
         }))
         .filter((continent) => continent.regions.length > 0);
-      setDisplayLanguages(filteredLanguages);
-    } else {
-      setDisplayLanguages(languages);
     }
+
+    return languages;
   }, [searchValue, languages]);
 
   return (
     <Accordion expanded={expanded} onChange={onChange}>
       <FilterAccordionSummary label="Languages" ariaControls="language-filter-content" id="language-filter-summary" />
-      <AccordionDetails>
-        <TextField id="language-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} />
-        <List>
-          {displayLanguages.map((continent, index) => {
-            const languageContinent = continent as LanguageWithRegions;
-            return <ContinentAccordion key={languageContinent.id} continent={languageContinent} />;
-          })}
-        </List>
-      </AccordionDetails>
+      {expanded ? (
+        <AccordionDetails>
+          <TextField id="language-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} />
+          <List>
+            {displayLanguages.map((continent) => {
+              const languageContinent = continent as LanguageWithRegions;
+              return <ContinentAccordion key={languageContinent.id} continent={languageContinent} />;
+            })}
+          </List>
+        </AccordionDetails>
+      ) : null}
     </Accordion>
   );
 };

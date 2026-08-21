@@ -20,31 +20,33 @@ export default ({ expanded, onChange }: Props) => {
   return (
     <Accordion expanded={expanded} onChange={onChange}>
       <FilterAccordionSummary label="Gender" ariaControls="gender-filter-content" id="gender-filter-summary" />
-      <AccordionDetails>
-        <List>
-          {GenderValues.map((gender, index) => {
-            const selected = selectedGenders.includes(gender);
+      {expanded ? (
+        <AccordionDetails>
+          <List>
+            {GenderValues.map((gender, index) => {
+              const selected = selectedGenders.includes(gender);
 
-            return (
-              <FilterListItem
-                key={index}
-                index={index}
-                label={gender}
-                action={
-                  selected
-                    ? () => {
-                        removeSelectedGenders([gender]);
-                      }
-                    : () => {
-                        addSelectedGenders([gender]);
-                      }
-                }
-                selected={selected}
-              />
-            );
-          })}
-        </List>
-      </AccordionDetails>
+              return (
+                <FilterListItem
+                  key={gender}
+                  index={index}
+                  label={gender}
+                  action={
+                    selected
+                      ? () => {
+                          removeSelectedGenders([gender]);
+                        }
+                      : () => {
+                          addSelectedGenders([gender]);
+                        }
+                  }
+                  selected={selected}
+                />
+              );
+            })}
+          </List>
+        </AccordionDetails>
+      ) : null}
     </Accordion>
   );
 };

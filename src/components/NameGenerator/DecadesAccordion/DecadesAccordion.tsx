@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import { useFilters } from '@/state/filter/filter.context';
 
@@ -21,51 +21,51 @@ export default ({ expanded, onChange }: Props) => {
   const { selectedDecadeIds } = givenNameContext.state;
   const { addSelectedDecadeIds, removeSelectedDecadeIds } = useGivenNamesActions();
   const [searchValue, setSearchValue] = useState('');
-  const [displayDecades, setDisplayDecades] = useState(decades);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
-  useEffect(() => {
+  const displayDecades = useMemo(() => {
     if (searchValue != '') {
-      const filteredDecades = decades.filter((decade) => decade.label.includes(searchValue));
-      setDisplayDecades(filteredDecades);
-    } else {
-      setDisplayDecades(decades);
+      return decades.filter((decade) => decade.label.includes(searchValue));
     }
+
+    return decades;
   }, [searchValue, decades]);
 
   return (
     <Accordion expanded={expanded} onChange={onChange}>
       <FilterAccordionSummary label="Decades" ariaControls="decade-filter-content" id="decade-filter-summary" />
-      <AccordionDetails>
-        <TextField id="decade-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} type="number" />
-        <List className="decades-filter-list themed-scrollbar">
-          {displayDecades.map((decade, index) => {
-            const { id, label } = decade;
-            const selected = selectedDecadeIds.includes(id);
+      {expanded ? (
+        <AccordionDetails>
+          <TextField id="decade-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} type="number" />
+          <List className="decades-filter-list themed-scrollbar">
+            {displayDecades.map((decade, index) => {
+              const { id, label } = decade;
+              const selected = selectedDecadeIds.includes(id);
 
-            return (
-              <FilterListItem
-                key={index}
-                index={index}
-                label={label}
-                action={
-                  selected
-                    ? () => {
-                        removeSelectedDecadeIds([id]);
-                      }
-                    : () => {
-                        addSelectedDecadeIds([id]);
-                      }
-                }
-                selected={selected}
-              />
-            );
-          })}
-        </List>
-      </AccordionDetails>
+              return (
+                <FilterListItem
+                  key={id}
+                  index={index}
+                  label={label}
+                  action={
+                    selected
+                      ? () => {
+                          removeSelectedDecadeIds([id]);
+                        }
+                      : () => {
+                          addSelectedDecadeIds([id]);
+                        }
+                  }
+                  selected={selected}
+                />
+              );
+            })}
+          </List>
+        </AccordionDetails>
+      ) : null}
     </Accordion>
   );
 };
