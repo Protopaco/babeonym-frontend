@@ -8,6 +8,7 @@ import List from '@mui/material/List';
 import FilterListItem from '../../FilterListItem/FilterListItem';
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
+import { useState } from 'react';
 
 type Props = {
   region: LanguageRegion;
@@ -15,6 +16,7 @@ type Props = {
 
 export default (props: Props) => {
   const { label, languages } = props.region;
+  const [expanded, setExpanded] = useState(false);
   const givenNameContext = useGivenNames();
   const { selectedLanguageIds } = givenNameContext.state;
   const { addSelectedLanguageIds, removeSelectedLanguageIds } = useGivenNamesActions();
@@ -32,37 +34,39 @@ export default (props: Props) => {
   };
 
   return (
-    <Accordion>
+    <Accordion expanded={expanded} onChange={(_event, isExpanded) => setExpanded(isExpanded)}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="language-continent-content" id="language-contient-summary">
         <Typography component="span">{label}</Typography>
       </AccordionSummary>
-      <AccordionDetails>
-        {anySelected ? <SecondaryButton text="Unselect All" onClick={unselectAll} /> : <SecondaryButton text="Select All" onClick={selectAll} />}
-        <List>
-          {languages.map((language, index) => {
-            const { id, label, flag } = language;
-            const selected = selectedLanguageIds.includes(id);
+      {expanded ? (
+        <AccordionDetails>
+          {anySelected ? <SecondaryButton text="Unselect All" onClick={unselectAll} /> : <SecondaryButton text="Select All" onClick={selectAll} />}
+          <List>
+            {languages.map((language, index) => {
+              const { id, label, flag } = language;
+              const selected = selectedLanguageIds.includes(id);
 
-            return (
-              <FilterListItem
-                key={index}
-                index={index}
-                label={`${label} ${flag}`}
-                action={
-                  selected
-                    ? () => {
-                        removeSelectedLanguageIds([id]);
-                      }
-                    : () => {
-                        addSelectedLanguageIds([id]);
-                      }
-                }
-                selected={selected}
-              />
-            );
-          })}
-        </List>
-      </AccordionDetails>
+              return (
+                <FilterListItem
+                  key={id}
+                  index={index}
+                  label={`${label} ${flag}`}
+                  action={
+                    selected
+                      ? () => {
+                          removeSelectedLanguageIds([id]);
+                        }
+                      : () => {
+                          addSelectedLanguageIds([id]);
+                        }
+                  }
+                  selected={selected}
+                />
+              );
+            })}
+          </List>
+        </AccordionDetails>
+      ) : null}
     </Accordion>
   );
 };

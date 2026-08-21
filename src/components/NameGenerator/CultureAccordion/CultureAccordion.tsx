@@ -50,7 +50,8 @@ export default ({ expanded, onChange }: Props) => {
         <TextField id="culture-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} />
         <List>
           {displayCultures.map((continent, index) => {
-            return <ContinentAccordion key={index} continent={continent as CultureWithRegions} />;
+            const cultureContinent = continent as CultureWithRegions;
+            return <ContinentAccordion key={cultureContinent.id} continent={cultureContinent} />;
           })}
         </List>
       </AccordionDetails>

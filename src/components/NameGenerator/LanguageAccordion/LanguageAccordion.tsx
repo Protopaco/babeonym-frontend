@@ -51,7 +51,8 @@ export default ({ expanded, onChange }: Props) => {
         <TextField id="language-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} />
         <List>
           {displayLanguages.map((continent, index) => {
-            return <ContinentAccordion key={index} continent={continent as LanguageWithRegions} />;
+            const languageContinent = continent as LanguageWithRegions;
+            return <ContinentAccordion key={languageContinent.id} continent={languageContinent} />;
           })}
         </List>
       </AccordionDetails>

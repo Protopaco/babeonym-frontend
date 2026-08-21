@@ -8,6 +8,7 @@ import List from '@mui/material/List';
 import FilterListItem from '../../FilterListItem/FilterListItem';
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
+import { useState } from 'react';
 
 type Props = {
   region: CultureRegion;
@@ -15,6 +16,7 @@ type Props = {
 
 export default (props: Props) => {
   const { label, cultures } = props.region;
+  const [expanded, setExpanded] = useState(false);
   const givenNameContext = useGivenNames();
   const { selectedCultureIds } = givenNameContext.state;
   const { addSelectedCultureIds, removeSelectedCultureIds } = useGivenNamesActions();
@@ -32,37 +34,39 @@ export default (props: Props) => {
   };
 
   return (
-    <Accordion>
+    <Accordion expanded={expanded} onChange={(_event, isExpanded) => setExpanded(isExpanded)}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="culture-continent-content" id="culture-contient-summary">
         <Typography component="span">{label}</Typography>
       </AccordionSummary>
-      <AccordionDetails>
-        {anySelected ? <SecondaryButton text="Unselect All" onClick={unselectAll} /> : <SecondaryButton text="Select All" onClick={selectAll} />}
-        <List>
-          {cultures.map((culture, index) => {
-            const { id, label } = culture;
-            const selected = selectedCultureIds.includes(id);
+      {expanded ? (
+        <AccordionDetails>
+          {anySelected ? <SecondaryButton text="Unselect All" onClick={unselectAll} /> : <SecondaryButton text="Select All" onClick={selectAll} />}
+          <List>
+            {cultures.map((culture, index) => {
+              const { id, label } = culture;
+              const selected = selectedCultureIds.includes(id);
 
-            return (
-              <FilterListItem
-                key={index}
-                index={index}
-                label={label}
-                action={
-                  selected
-                    ? () => {
-                        removeSelectedCultureIds([id]);
-                      }
-                    : () => {
-                        addSelectedCultureIds([id]);
-                      }
-                }
-                selected={selected}
-              />
-            );
-          })}
-        </List>
-      </AccordionDetails>
+              return (
+                <FilterListItem
+                  key={id}
+                  index={index}
+                  label={label}
+                  action={
+                    selected
+                      ? () => {
+                          removeSelectedCultureIds([id]);
+                        }
+                      : () => {
+                          addSelectedCultureIds([id]);
+                        }
+                  }
+                  selected={selected}
+                />
+              );
+            })}
+          </List>
+        </AccordionDetails>
+      ) : null}
     </Accordion>
   );
 };
