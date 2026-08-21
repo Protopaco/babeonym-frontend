@@ -199,7 +199,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     [state]
   );
 
-  return <GivenNameContext.Provider value={value}>{state.givenNameProviderLoaded ? children : null}</GivenNameContext.Provider>;
+  return <GivenNameContext.Provider value={value}>{children}</GivenNameContext.Provider>;
 };
 
 export const useGivenNames = () => {

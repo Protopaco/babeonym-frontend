@@ -48,5 +48,5 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     boot();
   });
 
-  return <UserContext.Provider value={value}>{state.user === null ? 'loading' : children}</UserContext.Provider>;
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

@@ -14,15 +14,17 @@ import DrawerApproved from '@/components/NameGenerator/DrawerApproved/DrawerAppr
 import { AnimatePresence, motion } from 'motion/react';
 import DrawerActionButton from '@/components/NameGenerator/DrawerActionButton/DrawerActionButton';
 import DrawerSection from '@/components/NameGenerator/DrawerSection/DrawerSection';
+import FilterAccordionSkeleton from '@/components/NameGenerator/FilterAccordionSkeleton/FilterAccordionSkeleton';
 
 type Props = {
   drawerOpen: boolean;
   setDrawerOpen: (open: boolean) => void;
+  isLoading: boolean;
 };
 
 type FilterAccordionId = 'gender' | 'decades' | 'languages' | 'cultures';
 
-export default ({ drawerOpen, setDrawerOpen }: Props) => {
+export default ({ drawerOpen, setDrawerOpen, isLoading }: Props) => {
   const { getNewCandidates } = useGivenNamesActions();
   const [expandedFilters, setExpandedFilters] = useState<Record<FilterAccordionId, boolean>>({
     gender: false,
@@ -85,14 +87,18 @@ export default ({ drawerOpen, setDrawerOpen }: Props) => {
                       Collapse All
                     </Button>
                   }
-                  footer={<DrawerActionButton text="Set Filters" onClick={setFiltersClick} />}
+                  footer={isLoading ? null : <DrawerActionButton text="Set Filters" onClick={setFiltersClick} />}
                 >
-                  <Box className="filter-drawer-controls">
-                    <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
-                    <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
-                    <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
-                    <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
-                  </Box>
+                  {isLoading ? (
+                    <FilterAccordionSkeleton />
+                  ) : (
+                    <Box className="filter-drawer-controls">
+                      <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
+                      <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
+                      <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
+                      <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
+                    </Box>
+                  )}
                 </DrawerSection>
                 <DrawerApproved />
               </motion.div>

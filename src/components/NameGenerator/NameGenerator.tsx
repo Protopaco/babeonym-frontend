@@ -11,7 +11,8 @@ import MobileNameFilters from '@/components/NameGenerator/MobileNameFilters/Mobi
 export default () => {
   const givenNameContext = useGivenNames();
   const { addSelectedGenders, addSelectedDecadeIds, addSelectedLanguageIds, addSelectedCultureIds, getNewCandidates } = useGivenNamesActions();
-  const { selectedCultureIds, selectedDecadeIds, selectedGenders, selectedLanguageIds, givenNameCandidates } = givenNameContext.state;
+  const { selectedCultureIds, selectedDecadeIds, selectedGenders, selectedLanguageIds, givenNameCandidates, givenNameProviderLoaded } =
+    givenNameContext.state;
   const [drawerOpen, setDrawerOpen] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -79,9 +80,9 @@ export default () => {
 
   return (
     <Box>
-      <FilterDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
+      <FilterDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} isLoading={!givenNameProviderLoaded} />
       <NameEvaluator drawerOpen={drawerOpen} />
-      <MobileNameFilters />
+      <MobileNameFilters isLoading={!givenNameProviderLoaded} />
     </Box>
   );
 };

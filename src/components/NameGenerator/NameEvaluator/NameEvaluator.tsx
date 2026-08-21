@@ -11,6 +11,7 @@ import BedtimeOutlinedIcon from '@mui/icons-material/BedtimeOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
 import { AnimatePresence, motion } from 'motion/react';
+import GeneratedNameSkeleton from '@/components/NameGenerator/GeneratedNameSkeleton/GeneratedNameSkeleton';
 
 type Props = {
   drawerOpen: boolean;
@@ -20,7 +21,7 @@ export default ({ drawerOpen }: Props) => {
   const givenNameContext = useGivenNames();
   const { state: userState } = useUser();
   const { user } = userState;
-  const { givenNameCandidates } = givenNameContext.state;
+  const { givenNameCandidates, givenNameProviderLoaded } = givenNameContext.state;
   const { approveCandidate, rejectCandidate, snoozeCandidate } = useGivenNamesActions();
   const currentCandidate = givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0] : null;
 
@@ -51,20 +52,24 @@ export default ({ drawerOpen }: Props) => {
         </Box>
         <Box id="name-evaluator-content">
           <Box id="evaluated-name-slot">
-            <AnimatePresence initial={false}>
-              <motion.div
-                key={currentCandidate?.givenCustomNameBridgeId ?? 'no-names'}
-                className="evaluated-name-motion"
-                initial={{ opacity: 0, y: 42 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -42 }}
-                transition={{ duration: 0.26, ease: 'easeOut' }}
-              >
-                <Typography variant="h2" id="evaluated-name">
-                  {currentCandidate ? currentCandidate.givenName : 'no names'}
-                </Typography>
-              </motion.div>
-            </AnimatePresence>
+            {givenNameProviderLoaded ? (
+              <AnimatePresence initial={false}>
+                <motion.div
+                  key={currentCandidate?.givenCustomNameBridgeId ?? 'no-names'}
+                  className="evaluated-name-motion"
+                  initial={{ opacity: 0, y: 42 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -42 }}
+                  transition={{ duration: 0.26, ease: 'easeOut' }}
+                >
+                  <Typography variant="h2" id="evaluated-name">
+                    {currentCandidate ? currentCandidate.givenName : 'no names'}
+                  </Typography>
+                </motion.div>
+              </AnimatePresence>
+            ) : (
+              <GeneratedNameSkeleton />
+            )}
           </Box>
           {user?.surName ? (
             <Typography variant="h3" id="user-surname">
@@ -72,18 +77,33 @@ export default ({ drawerOpen }: Props) => {
             </Typography>
           ) : null}
           <Box id="name-evaluator-button-container">
-            <PrimaryButton onClick={approveClick} text="Approve" />
-            <PrimaryButton onClick={snoozeClick} text="Snooze" />
-            <PrimaryButton onClick={rejectClick} text="Reject" />
+            <PrimaryButton onClick={approveClick} text="Approve" disabled={!givenNameProviderLoaded || !currentCandidate} />
+            <PrimaryButton onClick={snoozeClick} text="Snooze" disabled={!givenNameProviderLoaded || !currentCandidate} />
+            <PrimaryButton onClick={rejectClick} text="Reject" disabled={!givenNameProviderLoaded || !currentCandidate} />
           </Box>
           <Box id="name-evaluator-mobile-button-container">
-            <IconButton className="name-evaluator-mobile-action-button" onClick={approveClick} aria-label="Approve name">
+            <IconButton
+              className="name-evaluator-mobile-action-button"
+              onClick={approveClick}
+              disabled={!givenNameProviderLoaded || !currentCandidate}
+              aria-label="Approve name"
+            >
               <ThumbUpOutlinedIcon />
             </IconButton>
-            <IconButton className="name-evaluator-mobile-action-button" onClick={snoozeClick} aria-label="Snooze name">
+            <IconButton
+              className="name-evaluator-mobile-action-button"
+              onClick={snoozeClick}
+              disabled={!givenNameProviderLoaded || !currentCandidate}
+              aria-label="Snooze name"
+            >
               <BedtimeOutlinedIcon />
             </IconButton>
-            <IconButton className="name-evaluator-mobile-action-button" onClick={rejectClick} aria-label="Reject name">
+            <IconButton
+              className="name-evaluator-mobile-action-button"
+              onClick={rejectClick}
+              disabled={!givenNameProviderLoaded || !currentCandidate}
+              aria-label="Reject name"
+            >
               <ThumbDownOutlinedIcon />
             </IconButton>
           </Box>

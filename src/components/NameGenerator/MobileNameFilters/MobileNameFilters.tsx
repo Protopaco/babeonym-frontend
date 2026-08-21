@@ -8,10 +8,15 @@ import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import './MobileNameFilters.css';
 import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
+import FilterAccordionSkeleton from '@/components/NameGenerator/FilterAccordionSkeleton/FilterAccordionSkeleton';
 
 type FilterAccordionId = 'gender' | 'decades' | 'languages' | 'cultures';
 
-export default () => {
+type Props = {
+  isLoading: boolean;
+};
+
+export default ({ isLoading }: Props) => {
   const { getNewCandidates } = useGivenNamesActions();
   const [expandedFilters, setExpandedFilters] = useState<Record<FilterAccordionId, boolean>>({
     gender: false,
@@ -44,15 +49,21 @@ export default () => {
   return (
     <Box className="mobile-name-filters">
       <MobileSectionHeader title="Name Filters" />
-      <Box className="mobile-name-filters-controls">
-        <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
-        <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
-        <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
-        <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
-      </Box>
-      <Box className="mobile-name-filters-actions">
-        <SecondaryButton text="Set Filters" onClick={setFiltersClick} />
-      </Box>
+      {isLoading ? (
+        <FilterAccordionSkeleton />
+      ) : (
+        <>
+          <Box className="mobile-name-filters-controls">
+            <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
+            <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
+            <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
+            <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
+          </Box>
+          <Box className="mobile-name-filters-actions">
+            <SecondaryButton text="Set Filters" onClick={setFiltersClick} />
+          </Box>
+        </>
+      )}
     </Box>
   );
 };
