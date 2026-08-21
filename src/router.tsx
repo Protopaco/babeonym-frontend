@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import AppLayout from '@/AppLayout';
 
 import NameGenerator from '@/components/NameGenerator/NameGenerator';
@@ -17,6 +17,7 @@ const router = createBrowserRouter([
       { path: 'compare', element: <CompareNames /> },
       { path: 'settings', element: <AccountSettings /> },
       { path: 'theme', element: <ThemeTest /> },
+      { path: '*', element: <Navigate to="/" replace /> },
     ],
   },
 ]);
