@@ -4,11 +4,11 @@ import { useFilters } from '@/state/filter/filter.context';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import List from '@mui/material/List';
-import TextField from '@mui/material/TextField';
 import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
 import ContinentAccordion from './ContinentAccordion/ContinentAccordion';
 import type { LanguageWithRegions } from '@/api/generated';
 import FilterAccordionSummary from '@/components/NameGenerator/FilterAccordionSummary/FilterAccordionSummary';
+import FilterSearchField from '@/components/NameGenerator/FilterSearchField/FilterSearchField';
 
 type Props = {
   expanded: boolean;
@@ -47,7 +47,7 @@ export default ({ expanded, onChange }: Props) => {
       <FilterAccordionSummary label="Languages" ariaControls="language-filter-content" id="language-filter-summary" />
       {expanded ? (
         <AccordionDetails>
-          <TextField id="language-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} />
+          <FilterSearchField id="language-filter-search" onChange={handleSearchChange} />
           <List>
             {displayLanguages.map((continent) => {
               const languageContinent = continent as LanguageWithRegions;

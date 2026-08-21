@@ -91,10 +91,6 @@
   padding: 6px 0;
 }
 
-.filter-drawer-controls .MuiTextField-root {
-  margin: 0 16px;
-}
-
 .filter-drawer-controls .decades-filter-list {
   max-height: 264px;
   overflow-y: auto;

@@ -5,9 +5,9 @@ import { useFilters } from '@/state/filter/filter.context';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import List from '@mui/material/List';
-import TextField from '@mui/material/TextField';
 import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
 import FilterAccordionSummary from '@/components/NameGenerator/FilterAccordionSummary/FilterAccordionSummary';
+import FilterSearchField from '@/components/NameGenerator/FilterSearchField/FilterSearchField';
 
 type Props = {
   expanded: boolean;
@@ -39,7 +39,7 @@ export default ({ expanded, onChange }: Props) => {
       <FilterAccordionSummary label="Decades" ariaControls="decade-filter-content" id="decade-filter-summary" />
       {expanded ? (
         <AccordionDetails>
-          <TextField id="decade-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} type="number" />
+          <FilterSearchField id="decade-filter-search" onChange={handleSearchChange} type="number" />
           <List className="decades-filter-list themed-scrollbar">
             {selectedDecadeIds.length ? (
               <FilterListItem

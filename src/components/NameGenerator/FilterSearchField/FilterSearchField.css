@@ -1,0 +1,40 @@
+.filter-search-field.MuiTextField-root {
+  box-sizing: border-box;
+  width: calc(100% - 16px);
+  margin: 6px 8px 2px;
+}
+
+.filter-search-field .MuiOutlinedInput-root {
+  height: 38px;
+  border-radius: 2px;
+  background: var(--color-background);
+}
+
+.filter-search-field .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-border);
+}
+
+.filter-search-field .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+.filter-search-field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-primary-edge);
+}
+
+.filter-search-field .MuiInputLabel-root {
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  line-height: 1;
+  transform: translate(14px, 10px) scale(1);
+}
+
+.filter-search-field .MuiInputLabel-root.Mui-focused {
+  color: var(--color-text-secondary);
+}
+
+.filter-search-field .MuiInputLabel-root.MuiInputLabel-shrink {
+  transform: translate(14px, -7px) scale(0.75);
+}
+
+.filter-search-field .MuiInputBase-input {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}

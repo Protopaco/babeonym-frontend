@@ -4,10 +4,10 @@ import { useFilters } from '@/state/filter/filter.context';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import List from '@mui/material/List';
-import TextField from '@mui/material/TextField';
 import ContinentAccordion from '@/components/NameGenerator/CultureAccordion/ContinentAccordion/ContinentAccordion';
 import type { CultureRegion, CultureWithRegions } from '@/api/generated';
 import FilterAccordionSummary from '@/components/NameGenerator/FilterAccordionSummary/FilterAccordionSummary';
+import FilterSearchField from '@/components/NameGenerator/FilterSearchField/FilterSearchField';
 
 type Props = {
   expanded: boolean;
@@ -46,7 +46,7 @@ export default ({ expanded, onChange }: Props) => {
       <FilterAccordionSummary label="Cultures" ariaControls="culture-filter-content" id="culture-filter-summary" />
       {expanded ? (
         <AccordionDetails>
-          <TextField id="culture-filter-search" label="Search" variant="outlined" onChange={handleSearchChange} />
+          <FilterSearchField id="culture-filter-search" onChange={handleSearchChange} />
           <List>
             {displayCultures.map((continent) => {
               const cultureContinent = continent as CultureWithRegions;
