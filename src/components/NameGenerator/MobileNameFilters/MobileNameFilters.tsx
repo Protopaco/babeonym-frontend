@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import GenderAccordion from '@/components/NameGenerator/GenderAccordion/GenderAccordion';
 import DecadesAccordion from '@/components/NameGenerator/DecadesAccordion/DecadesAccordion';
 import LanguageAccordion from '@/components/NameGenerator/LanguageAccordion/LanguageAccordion';
@@ -18,6 +21,7 @@ type Props = {
 
 export default ({ isLoading }: Props) => {
   const { getNewCandidates } = useGivenNamesActions();
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [expandedFilters, setExpandedFilters] = useState<Record<FilterAccordionId, boolean>>({
     gender: false,
     decades: false,
@@ -43,27 +47,46 @@ export default ({ isLoading }: Props) => {
 
   const setFiltersClick = async () => {
     collapseAllFilters();
+    setDrawerOpen(false);
     await getNewCandidates();
   };
 
   return (
     <Box className="mobile-name-filters">
-      <MobileSectionHeader title="Name Filters" />
-      {isLoading ? (
-        <FilterAccordionSkeleton />
-      ) : (
-        <>
-          <Box className="mobile-name-filters-controls">
-            <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
-            <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
-            <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
-            <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
+      <Box className="mobile-name-filters-trigger">
+        <SecondaryButton text="Name Filters" onClick={() => setDrawerOpen(true)} />
+      </Box>
+      <Drawer
+        anchor="bottom"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        className="mobile-name-filters-drawer"
+        PaperProps={{ className: 'mobile-name-filters-drawer-paper' }}
+      >
+        <Box className="mobile-name-filters-sheet">
+          <Box className="mobile-name-filters-sheet-header">
+            <MobileSectionHeader title="Name Filters" />
+            <IconButton className="mobile-name-filters-close" aria-label="Close name filters" onClick={() => setDrawerOpen(false)}>
+              <KeyboardArrowDownIcon />
+            </IconButton>
           </Box>
-          <Box className="mobile-name-filters-actions">
-            <SecondaryButton text="Set Filters" onClick={setFiltersClick} />
-          </Box>
-        </>
-      )}
+          {isLoading ? (
+            <FilterAccordionSkeleton />
+          ) : (
+            <>
+              <Box className="mobile-name-filters-controls">
+                <GenderAccordion expanded={expandedFilters.gender} onChange={handleFilterAccordionChange('gender')} />
+                <DecadesAccordion expanded={expandedFilters.decades} onChange={handleFilterAccordionChange('decades')} />
+                <LanguageAccordion expanded={expandedFilters.languages} onChange={handleFilterAccordionChange('languages')} />
+                <CultureAccordion expanded={expandedFilters.cultures} onChange={handleFilterAccordionChange('cultures')} />
+              </Box>
+              <Box className="mobile-name-filters-actions">
+                <SecondaryButton text="Set Filters" onClick={setFiltersClick} />
+              </Box>
+            </>
+          )}
+        </Box>
+      </Drawer>
     </Box>
   );
 };
