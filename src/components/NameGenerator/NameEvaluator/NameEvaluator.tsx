@@ -63,9 +63,11 @@ export default ({ drawerOpen }: Props) => {
                   exit={{ opacity: 0, y: -42 }}
                   transition={{ duration: 0.26, ease: 'easeOut' }}
                 >
-                  <Typography variant="h2" id="evaluated-name">
-                    {currentCandidate ? currentCandidate.givenName : 'no names'}
-                  </Typography>
+                  <TutorialTooltip title="Do you like this name?" placement="top">
+                    <Typography variant="h2" id="evaluated-name">
+                      {currentCandidate ? currentCandidate.givenName : 'no names'}
+                    </Typography>
+                  </TutorialTooltip>
                 </motion.div>
               </AnimatePresence>
             ) : (
