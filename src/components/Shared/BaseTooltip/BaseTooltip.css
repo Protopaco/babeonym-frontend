@@ -1,4 +1,4 @@
-.tutorial-tooltip.MuiTooltip-tooltip {
+.base-tooltip.MuiTooltip-tooltip {
   background: var(--color-primary);
   color: var(--color-primary-contrast);
   border: 2px solid var(--color-primary-contrast);
@@ -10,6 +10,6 @@
   padding: 8px 14px 6px;
 }
 
-.tutorial-tooltip-arrow.MuiTooltip-arrow {
+.base-tooltip-arrow.MuiTooltip-arrow {
   color: var(--color-primary);
 }
