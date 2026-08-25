@@ -1,0 +1,35 @@
+.floating-helper-icon.MuiIconButton-root {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 1150;
+  width: 88px;
+  height: 88px;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  box-shadow: var(--box-shadow-primary);
+}
+
+.floating-helper-icon.MuiIconButton-root:hover,
+.floating-helper-icon.MuiIconButton-root:focus-visible {
+  background: var(--color-text-secondary);
+}
+
+.floating-helper-icon svg {
+  width: 58px;
+  height: 52px;
+}
+
+@media (max-width: 599px) {
+  .floating-helper-icon.MuiIconButton-root {
+    right: 20px;
+    bottom: 20px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .floating-helper-icon svg {
+    width: 42px;
+    height: 38px;
+  }
+}
