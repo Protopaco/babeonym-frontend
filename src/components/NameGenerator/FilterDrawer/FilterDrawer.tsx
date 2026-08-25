@@ -15,6 +15,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import DrawerActionButton from '@/components/NameGenerator/DrawerActionButton/DrawerActionButton';
 import DrawerSection from '@/components/NameGenerator/DrawerSection/DrawerSection';
 import FilterAccordionSkeleton from '@/components/NameGenerator/FilterAccordionSkeleton/FilterAccordionSkeleton';
+import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 
 type Props = {
   drawerOpen: boolean;
@@ -81,7 +82,11 @@ export default ({ drawerOpen, setDrawerOpen, isLoading }: Props) => {
                 transition={{ duration: 0.4, ease: 'easeOut' }}
               >
                 <DrawerSection
-                  title="Name Filters"
+                  title={
+                    <TutorialTooltip title="Specific name criteria?" placement="top">
+                      <span>Name Filters</span>
+                    </TutorialTooltip>
+                  }
                   action={
                     <Button className="filter-drawer-collapse-all-button" variant="text" onClick={collapseAllFilters}>
                       Collapse All

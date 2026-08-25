@@ -1,7 +1,7 @@
 .tutorial-tooltip.MuiTooltip-tooltip {
   background: var(--color-primary);
   color: var(--color-primary-contrast);
-  border: 1px solid var(--color-primary-edge);
+  border: 2px solid var(--color-primary-contrast);
   border-radius: 16px;
   box-shadow: var(--box-shadow-primary);
   font-size: 14px;
