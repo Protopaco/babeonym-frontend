@@ -5,13 +5,24 @@
   z-index: 1150;
   width: 88px;
   height: 88px;
-  background: var(--color-primary);
-  color: var(--color-primary-contrast);
+  border: 2px solid var(--color-primary);
+  background: var(--color-background);
+  color: var(--color-primary);
   box-shadow: var(--box-shadow-primary);
 }
 
 .floating-helper-icon.MuiIconButton-root:hover,
 .floating-helper-icon.MuiIconButton-root:focus-visible {
+  background: var(--color-primary-highlight);
+}
+
+.floating-helper-icon.MuiIconButton-root[data-tutorial-enabled='true'] {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.floating-helper-icon.MuiIconButton-root[data-tutorial-enabled='true']:hover,
+.floating-helper-icon.MuiIconButton-root[data-tutorial-enabled='true']:focus-visible {
   background: var(--color-text-secondary);
 }
 
