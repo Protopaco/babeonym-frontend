@@ -1,0 +1,12 @@
+.tutorial-tooltip.MuiTooltip-tooltip {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  border: 1px solid var(--color-primary-edge);
+  box-shadow: var(--box-shadow-primary);
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.tutorial-tooltip-arrow.MuiTooltip-arrow {
+  color: var(--color-primary);
+}
