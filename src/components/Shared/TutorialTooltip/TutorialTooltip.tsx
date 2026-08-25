@@ -9,7 +9,11 @@ type TutorialTooltipProps = {
 };
 
 export default ({ title, children, placement = 'top' }: TutorialTooltipProps) => {
+  console.log('🚀 ~ children:', children);
+  console.log('🚀 ~ placement:', placement);
+  console.log('🚀 ~ title:', title);
   const { tutorialEnabled } = useTutorial();
+  console.log('🚀 ~ tutorialEnabled:', tutorialEnabled);
 
   if (!tutorialEnabled) {
     return children;
@@ -17,7 +21,7 @@ export default ({ title, children, placement = 'top' }: TutorialTooltipProps) =>
 
   return (
     <Tooltip title={title} placement={placement} arrow classes={{ tooltip: 'tutorial-tooltip', arrow: 'tutorial-tooltip-arrow' }}>
-      {children}
+      <span>{children}</span>
     </Tooltip>
   );
 };

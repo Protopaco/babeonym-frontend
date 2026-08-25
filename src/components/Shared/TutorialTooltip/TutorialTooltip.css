@@ -2,9 +2,12 @@
   background: var(--color-primary);
   color: var(--color-primary-contrast);
   border: 1px solid var(--color-primary-edge);
+  border-radius: 16px;
   box-shadow: var(--box-shadow-primary);
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 600;
   line-height: 1.25;
+  padding: 8px 14px 6px;
 }
 
 .tutorial-tooltip-arrow.MuiTooltip-arrow {

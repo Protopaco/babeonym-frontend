@@ -12,6 +12,7 @@ import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
 import { AnimatePresence, motion } from 'motion/react';
 import GeneratedNameSkeleton from '@/components/NameGenerator/GeneratedNameSkeleton/GeneratedNameSkeleton';
+import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 
 type Props = {
   drawerOpen: boolean;
@@ -78,7 +79,9 @@ export default ({ drawerOpen }: Props) => {
           ) : null}
           <Box id="name-evaluator-button-container">
             <PrimaryButton onClick={approveClick} text="Approve" disabled={!givenNameProviderLoaded || !currentCandidate} />
-            <PrimaryButton onClick={snoozeClick} text="Snooze" disabled={!givenNameProviderLoaded || !currentCandidate} />
+            <TutorialTooltip title="Skip this name for now" placement="top">
+              <PrimaryButton onClick={snoozeClick} text="Snooze" disabled={!givenNameProviderLoaded || !currentCandidate} />
+            </TutorialTooltip>
             <PrimaryButton onClick={rejectClick} text="Reject" disabled={!givenNameProviderLoaded || !currentCandidate} />
           </Box>
           <Box id="name-evaluator-mobile-button-container">
