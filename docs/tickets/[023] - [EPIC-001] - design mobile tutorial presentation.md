@@ -16,7 +16,7 @@ Define and implement a mobile-specific tutorial presentation pattern.
 - Tutorial tooltip system.
 - Mobile name generator layout.
 - Mobile filter drawer/sheet.
-- Floating helper icon behavior.
+- Floating tutorial icon behavior.
 
 ## Constraints
 

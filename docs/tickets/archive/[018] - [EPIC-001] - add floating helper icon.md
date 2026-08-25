@@ -1,4 +1,4 @@
-# Add Floating Helper Icon
+# Add Floating Tutorial Icon
 
 ## Goal
 

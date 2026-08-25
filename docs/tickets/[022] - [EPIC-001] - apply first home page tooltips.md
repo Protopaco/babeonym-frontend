@@ -6,7 +6,7 @@ Apply the first real tooltips to the home page/name generator flow.
 
 ## Notes
 
-- This ticket should happen after the helper icon, tutorial state, tooltip base, and deployment pattern exist.
+- This ticket should happen after the floating tutorial icon, tutorial state, tooltip base, and deployment pattern exist.
 - First targets should likely include the generated name area, approve/snooze/reject actions, filters, and approved-name preview.
 - Tooltip copy should be short and useful.
 - Tooltips should not interfere with the core name generation flow.
