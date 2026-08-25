@@ -47,7 +47,12 @@
 @media (max-width: 599px) {
   .floating-tutorial-icon-container {
     right: 20px;
-    bottom: 20px;
+    bottom: calc(var(--height-filter-drawer-closed) + 30px);
+  }
+
+  .floating-tutorial-icon-button {
+    width: 64px;
+    height: 64px;
   }
 
   .floating-tutorial-icon.MuiIconButton-root {

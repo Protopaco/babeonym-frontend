@@ -13,6 +13,7 @@
     left: 0;
     z-index: 1100;
     width: 100%;
+    min-height: var(--height-filter-drawer-closed);
     background: var(--color-secondary);
     padding: 16px 32px;
   }
@@ -28,7 +29,7 @@
   }
 
   .mobile-name-filters-drawer-paper {
-    max-height: calc(100dvh - 48px);
+    max-height: var(--height-filter-drawer-open);
     border-radius: 16px 16px 0 0;
     background: var(--color-secondary);
   }

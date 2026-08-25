@@ -47,6 +47,8 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
 
             '--width-filter-drawer-open': '450px',
             '--width-filter-drawer-closed': '72px',
+            '--height-filter-drawer-open': 'calc(100dvh - 48px)',
+            '--height-filter-drawer-closed': '88px',
 
             '--height-header': '124px',
           },
