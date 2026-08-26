@@ -13,6 +13,7 @@ import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileS
 import { AnimatePresence, motion } from 'motion/react';
 import GeneratedNameSkeleton from '@/components/NameGenerator/GeneratedNameSkeleton/GeneratedNameSkeleton';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
+import MobileTutorialHint from '@/components/Shared/MobileTutorialHint/MobileTutorialHint';
 
 type Props = {
   drawerOpen: boolean;
@@ -79,6 +80,7 @@ export default ({ drawerOpen }: Props) => {
               {user.surName}
             </Typography>
           ) : null}
+          <MobileTutorialHint text="Do you like this name?" />
           <Box id="name-evaluator-button-container">
             <PrimaryButton onClick={approveClick} text="Approve" disabled={!givenNameProviderLoaded || !currentCandidate} />
             <TutorialTooltip title="Skip this name for now" placement="top">
