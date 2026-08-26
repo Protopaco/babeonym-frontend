@@ -53,34 +53,36 @@ export default ({ drawerOpen }: Props) => {
           <MobileSectionHeader title="Name Generator" />
         </Box>
         <Box id="name-evaluator-content">
-          <Box id="evaluated-name-slot">
-            {givenNameProviderLoaded ? (
-              <AnimatePresence initial={false}>
-                <motion.div
-                  key={currentCandidate?.givenCustomNameBridgeId ?? 'no-names'}
-                  className="evaluated-name-motion"
-                  initial={{ opacity: 0, y: 42 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -42 }}
-                  transition={{ duration: 0.26, ease: 'easeOut' }}
-                >
-                  <TutorialTooltip title="Do you like this name?" placement="top">
-                    <Typography variant="h2" id="evaluated-name">
-                      {currentCandidate ? currentCandidate.givenName : 'no names'}
-                    </Typography>
-                  </TutorialTooltip>
-                </motion.div>
-              </AnimatePresence>
-            ) : (
-              <GeneratedNameSkeleton />
-            )}
+          <Box id="evaluated-name-container">
+            <MobileTutorialHint text="Do you like this name?" />
+            <Box id="evaluated-name-slot">
+              {givenNameProviderLoaded ? (
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={currentCandidate?.givenCustomNameBridgeId ?? 'no-names'}
+                    className="evaluated-name-motion"
+                    initial={{ opacity: 0, y: 42 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -42 }}
+                    transition={{ duration: 0.26, ease: 'easeOut' }}
+                  >
+                    <TutorialTooltip title="Do you like this name?" placement="top">
+                      <Typography variant="h2" id="evaluated-name">
+                        {currentCandidate ? currentCandidate.givenName : 'no names'}
+                      </Typography>
+                    </TutorialTooltip>
+                  </motion.div>
+                </AnimatePresence>
+              ) : (
+                <GeneratedNameSkeleton />
+              )}
+            </Box>
           </Box>
           {user?.surName ? (
             <Typography variant="h3" id="user-surname">
               {user.surName}
             </Typography>
           ) : null}
-          <MobileTutorialHint text="Do you like this name?" />
           <Box id="name-evaluator-button-container">
             <PrimaryButton onClick={approveClick} text="Approve" disabled={!givenNameProviderLoaded || !currentCandidate} />
             <TutorialTooltip title="Skip this name for now" placement="top">

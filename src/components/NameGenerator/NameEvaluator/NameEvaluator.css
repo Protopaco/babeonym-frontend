@@ -83,6 +83,11 @@
   margin: 0;
 }
 
+#evaluated-name-container {
+  position: relative;
+  width: 100%;
+}
+
 #evaluated-name-slot {
   position: relative;
   width: 100%;
@@ -133,7 +138,7 @@
   }
 
   #name-evaluator-content {
-    gap: 48px;
+    gap: 40px;
     padding: 72px 0 36px;
   }
 
@@ -143,7 +148,13 @@
   }
 
   #evaluated-name-slot {
-    min-height: 72px;
+    min-height: 120px;
+  }
+
+  #evaluated-name-container {
+    min-height: 150px;
+    display: flex;
+    align-items: flex-end;
   }
 
   #name-evaluator-button-container {

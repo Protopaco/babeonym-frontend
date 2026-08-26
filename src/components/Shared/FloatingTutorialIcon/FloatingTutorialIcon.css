@@ -6,6 +6,7 @@
 }
 
 .floating-tutorial-icon-button {
+  position: relative;
   width: 88px;
   height: 88px;
   border: 2px solid var(--color-primary);
@@ -44,6 +45,10 @@
   height: 52px;
 }
 
+.floating-tutorial-icon-mobile-label {
+  display: none;
+}
+
 @media (max-width: 599px) {
   .floating-tutorial-icon-container {
     right: 20px;
@@ -63,5 +68,37 @@
   .floating-tutorial-icon svg {
     width: 42px;
     height: 38px;
+  }
+
+  .floating-tutorial-icon-mobile-label {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    display: block;
+    padding: 8px 14px 6px;
+    border: 2px solid var(--color-primary-contrast);
+    border-radius: 16px;
+    background: var(--color-primary);
+    color: var(--color-primary-contrast);
+    box-shadow: var(--box-shadow-primary);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .floating-tutorial-icon-mobile-label::after {
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid var(--color-primary);
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    content: '';
+    transform: translateX(-50%);
   }
 }

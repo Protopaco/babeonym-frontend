@@ -4,14 +4,22 @@
 
 @media (max-width: 599px) {
   .mobile-tutorial-hint {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 1;
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: max-content;
+    max-width: 80%;
+    transform: translateX(-50%);
+    pointer-events: none;
   }
 
   .mobile-tutorial-hint-text {
+    position: relative;
     width: fit-content;
-    max-width: min(280px, 80%);
+    max-width: 100%;
     padding: 6px 14px 7px;
     border: 2px solid var(--color-background);
     border-radius: 999px;
@@ -20,5 +28,18 @@
     font-weight: 700;
     text-align: center;
     box-shadow: var(--shadow-button);
+  }
+
+  .mobile-tutorial-hint-text::after {
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid var(--color-primary);
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    content: '';
+    transform: translateX(-50%);
   }
 }

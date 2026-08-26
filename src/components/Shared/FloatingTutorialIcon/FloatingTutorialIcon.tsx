@@ -11,6 +11,7 @@ export default () => {
     <div className="floating-tutorial-icon-container">
       <BaseTooltip title="Questions?" placement="top">
         <div className="floating-tutorial-icon-button" data-tutorial-enabled={tutorialEnabled}>
+          {!tutorialEnabled ? <div className="floating-tutorial-icon-mobile-label">Questions?</div> : null}
           <IconButton
             className="floating-tutorial-icon"
             data-tutorial-enabled={tutorialEnabled}
