@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import './SectionHeader.css';
 
 type Props = {
-  title: string;
+  title: ReactNode;
   action?: ReactNode;
   width?: 'full' | 'medium';
 };

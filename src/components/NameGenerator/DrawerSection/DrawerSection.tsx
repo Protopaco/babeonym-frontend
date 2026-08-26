@@ -3,7 +3,7 @@ import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import './DrawerSection.css';
 
 type Props = {
-  title: string;
+  title: ReactNode;
   action?: ReactNode;
   children: ReactNode;
   footer?: ReactNode;
