@@ -3,16 +3,19 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import type { GivenName } from '@/api/generated';
 import CompareNameButton from '@/components/CompareNames/CompareNameButton';
+import CompareNameRankings from '@/components/CompareNames/CompareNameRankings';
 import type { ComparePair } from '@/components/CompareNames/compareNames.types';
 
 type Props = {
-  approvedGivenNameCount: number;
+  approvedGivenNames: GivenName[];
   currentPair: ComparePair | null;
   givenNameProviderLoaded: boolean;
   onVote: (winner: GivenName) => void;
 };
 
-export default ({ approvedGivenNameCount, currentPair, givenNameProviderLoaded, onVote }: Props) => {
+export default ({ approvedGivenNames, currentPair, givenNameProviderLoaded, onVote }: Props) => {
+  const approvedGivenNameCount = approvedGivenNames.length;
+
   if (!givenNameProviderLoaded) {
     return <Typography id="compare-names-empty-state">Loading saved names...</Typography>;
   }
@@ -46,10 +49,13 @@ export default ({ approvedGivenNameCount, currentPair, givenNameProviderLoaded, 
   }
 
   return (
-    <Box id="compare-names-pair">
-      <CompareNameButton name={currentPair.left} onVote={onVote} />
-      <Typography id="compare-names-or">OR</Typography>
-      <CompareNameButton name={currentPair.right} onVote={onVote} />
+    <Box id="compare-names-workspace">
+      <Box id="compare-names-pair">
+        <CompareNameButton name={currentPair.left} onVote={onVote} />
+        <Typography id="compare-names-or">OR</Typography>
+        <CompareNameButton name={currentPair.right} onVote={onVote} />
+      </Box>
+      <CompareNameRankings approvedGivenNames={approvedGivenNames} />
     </Box>
   );
 };

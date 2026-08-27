@@ -51,7 +51,7 @@ const CompareNames = () => {
       </Box>
       <Box id="compare-names-content">
         <CompareNamesContent
-          approvedGivenNameCount={approvedGivenNames.length}
+          approvedGivenNames={approvedGivenNames}
           currentPair={currentPair}
           givenNameProviderLoaded={givenNameProviderLoaded}
           onVote={voteForName}
