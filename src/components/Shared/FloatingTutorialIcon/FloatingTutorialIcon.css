@@ -55,6 +55,10 @@
     bottom: var(--bottom-floating-tutorial-icon-mobile);
   }
 
+  .floating-tutorial-icon-container[data-mobile-filter-drawer-open='true'] {
+    display: none;
+  }
+
   .floating-tutorial-icon-button {
     width: 64px;
     height: 64px;

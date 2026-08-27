@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -12,6 +12,7 @@ import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import './MobileNameFilters.css';
 import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
 import FilterAccordionSkeleton from '@/components/NameGenerator/FilterAccordionSkeleton/FilterAccordionSkeleton';
+import { useAppLayoutState } from '@/state/appLayoutState/appLayoutState.context';
 
 type FilterAccordionId = 'gender' | 'decades' | 'languages' | 'cultures';
 
@@ -21,7 +22,7 @@ type Props = {
 
 export default ({ isLoading }: Props) => {
   const { getNewCandidates } = useGivenNamesActions();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const { mobileFilterDrawerOpen, setMobileFilterDrawerOpen } = useAppLayoutState();
   const [expandedFilters, setExpandedFilters] = useState<Record<FilterAccordionId, boolean>>({
     gender: false,
     decades: false,
@@ -47,26 +48,34 @@ export default ({ isLoading }: Props) => {
 
   const setFiltersClick = async () => {
     collapseAllFilters();
-    setDrawerOpen(false);
+    setMobileFilterDrawerOpen(false);
     await getNewCandidates();
   };
+
+  useEffect(() => {
+    return () => setMobileFilterDrawerOpen(false);
+  }, [setMobileFilterDrawerOpen]);
 
   return (
     <Box className="mobile-name-filters">
       <Box className="mobile-name-filters-trigger">
-        <SecondaryButton text="Name Filters" onClick={() => setDrawerOpen(true)} />
+        <SecondaryButton text="Name Filters" onClick={() => setMobileFilterDrawerOpen(true)} />
       </Box>
       <Drawer
         anchor="bottom"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
+        open={mobileFilterDrawerOpen}
+        onClose={() => setMobileFilterDrawerOpen(false)}
         className="mobile-name-filters-drawer"
         PaperProps={{ className: 'mobile-name-filters-drawer-paper' }}
       >
         <Box className="mobile-name-filters-sheet">
           <Box className="mobile-name-filters-sheet-header">
             <MobileSectionHeader title="Name Filters" />
-            <IconButton className="mobile-name-filters-close" aria-label="Close name filters" onClick={() => setDrawerOpen(false)}>
+            <IconButton
+              className="mobile-name-filters-close"
+              aria-label="Close name filters"
+              onClick={() => setMobileFilterDrawerOpen(false)}
+            >
               <KeyboardArrowDownIcon />
             </IconButton>
           </Box>

@@ -10,6 +10,7 @@ import { useUser } from '@/state/user/user.context';
 import { GivenNameProvider } from '@/state/givenName/givenName.provider';
 import { FilterProvider } from '@/state/filter/filter.provider';
 import { TutorialProvider } from '@/state/tutorial/tutorial.provider';
+import { AppLayoutStateProvider } from '@/state/appLayoutState/appLayoutState.provider';
 
 import { themeRegistry } from './themes/themeRegistry';
 import type { ThemeId } from './themes/types.theme';
@@ -34,7 +35,9 @@ createRoot(document.getElementById('root')!).render(
       <GivenNameProvider>
         <FilterProvider>
           <TutorialProvider>
-            <AppShell />
+            <AppLayoutStateProvider>
+              <AppShell />
+            </AppLayoutStateProvider>
           </TutorialProvider>
         </FilterProvider>
       </GivenNameProvider>
