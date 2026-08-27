@@ -61,22 +61,6 @@
 
 #name-evaluator-button-container .primary-button {
   width: 220px;
-  height: 76px;
-  background: var(--color-background);
-  border: 2px solid var(--color-text-secondary);
-  border-radius: 20px;
-  box-shadow: 0 4px 4px rgba(94, 34, 122, 0.5);
-  color: var(--color-text-secondary);
-  font-family: 'League Spartan', system-ui, sans-serif;
-  font-size: 28px;
-  font-weight: 400;
-  text-transform: none;
-}
-
-#name-evaluator-button-container .primary-button:hover {
-  background: var(--color-secondary);
-  border-color: var(--color-text-secondary);
-  color: var(--color-text-secondary);
 }
 
 #evaluated-name {

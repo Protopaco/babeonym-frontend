@@ -1,5 +1,9 @@
 # Show Compare History And Results
 
+## Status
+
+Deferred. Current product direction favors lightweight, forward-only comparisons over reviewable vote history. Revisit if user testing shows people need more transparency or confidence in ranking outcomes.
+
 ## Goal
 
 Present compare history and result states for the compare names flow.

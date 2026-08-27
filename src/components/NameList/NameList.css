@@ -27,6 +27,18 @@
   padding: 0;
 }
 
+#name-list-actions {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  margin-top: 96px;
+}
+
+#name-list-actions .primary-button {
+  width: 260px;
+}
+
 #name-list-empty-state {
   display: flex;
   flex: 1;
@@ -115,6 +127,15 @@
   #name-list-skeleton {
     justify-content: center;
     gap: 22px 18px;
+  }
+
+  #name-list-actions {
+    margin-top: 56px;
+  }
+
+  #name-list-actions .primary-button {
+    width: 100%;
+    max-width: 280px;
   }
 
   #name-list-empty-state {

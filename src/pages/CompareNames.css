@@ -16,12 +16,6 @@
   display: none;
 }
 
-#compare-names-return-link {
-  color: var(--color-primary);
-  font-size: 1.125rem;
-  font-weight: 600;
-}
-
 #compare-names-content {
   display: flex;
   flex: 1;
@@ -39,6 +33,17 @@
 .compare-names-inline-link {
   color: var(--color-primary);
   font-weight: 600;
+}
+
+#compare-names-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 72px;
+}
+
+#compare-names-actions .primary-button {
+  width: 260px;
 }
 
 #compare-names-workspace {
@@ -216,5 +221,14 @@
 
   .compare-name-ranking {
     text-align: left;
+  }
+
+  #compare-names-actions {
+    margin-top: 48px;
+  }
+
+  #compare-names-actions .primary-button {
+    width: 100%;
+    max-width: 280px;
   }
 }

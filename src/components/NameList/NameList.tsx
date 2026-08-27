@@ -3,17 +3,23 @@ import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import { AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ApprovedGivenNameChip from '@/components/Shared/ApprovedGivenNameChip/ApprovedGivenNameChip';
 import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
+import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
 import './NameList.css';
 
 const NameList = () => {
   const { state } = useGivenNames();
+  const navigate = useNavigate();
   const { approvedGivenNames, givenNameProviderLoaded } = state;
+  const canCompareNames = approvedGivenNames.length >= 2;
   const skeletonItems = Array.from({ length: 12 }, (_, index) => `saved-name-skeleton-${index}`);
+  const compareNamesClick = () => {
+    navigate('/compare');
+  };
 
   return (
     <Container maxWidth="lg" id="name-list-container">
@@ -23,13 +29,20 @@ const NameList = () => {
       </Box>
       {givenNameProviderLoaded ? (
         approvedGivenNames.length ? (
-          <List id="name-list-approved-names" aria-label="Saved names">
-            <AnimatePresence initial={false}>
-              {approvedGivenNames.map((approvedGivenName) => (
-                <ApprovedGivenNameChip key={approvedGivenName.givenCustomNameBridgeId} approvedGivenName={approvedGivenName} size="large" />
-              ))}
-            </AnimatePresence>
-          </List>
+          <>
+            <List id="name-list-approved-names" aria-label="Saved names">
+              <AnimatePresence initial={false}>
+                {approvedGivenNames.map((approvedGivenName) => (
+                  <ApprovedGivenNameChip key={approvedGivenName.givenCustomNameBridgeId} approvedGivenName={approvedGivenName} size="large" />
+                ))}
+              </AnimatePresence>
+            </List>
+            {canCompareNames ? (
+              <Box id="name-list-actions">
+                <PrimaryButton text="Compare Names" onClick={compareNamesClick} />
+              </Box>
+            ) : null}
+          </>
         ) : (
           <Box id="name-list-empty-state">
             <Typography variant="h5" id="name-list-empty-state-title">

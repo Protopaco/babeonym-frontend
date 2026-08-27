@@ -44,6 +44,7 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
 
             '--color-background': background,
             '--color-border': `${textPrimary}1F`,
+            '--box-shadow-primary': `0 4px 4px ${secondaryContrast}80`,
 
             '--width-filter-drawer-open': '450px',
             '--width-filter-drawer-closed': '72px',
