@@ -9,9 +9,10 @@ import { motion } from 'motion/react';
 
 type Props = {
   approvedGivenName: GivenName;
+  size?: 'default' | 'large';
 };
 
-export default ({ approvedGivenName }: Props) => {
+export default ({ approvedGivenName, size = 'default' }: Props) => {
   const { givenName, givenCustomNameBridgeId } = approvedGivenName;
   const { rejectCandidate } = useGivenNamesActions();
 
@@ -27,6 +28,7 @@ export default ({ approvedGivenName }: Props) => {
       exit={{ opacity: 0, x: -8 }}
       transition={{ duration: 0.18, ease: 'easeOut' }}
       className="approved-given-name-chip"
+      data-size={size}
     >
       <Box className="approved-given-name-chip-label">
         <Typography className="approved-given-name-chip-text">{givenName}</Typography>

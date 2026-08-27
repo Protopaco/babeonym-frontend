@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import ApprovedGivenNameChip from '@/components/Shared/ApprovedGivenNameChip/ApprovedGivenNameChip';
+import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
 import './NameList.css';
@@ -18,13 +19,14 @@ const NameList = () => {
     <Container maxWidth="lg" id="name-list-container">
       <Box id="name-list-header">
         <SectionHeader title="Your Names" />
+        <MobileSectionHeader title="Your Names" />
       </Box>
       {givenNameProviderLoaded ? (
         approvedGivenNames.length ? (
           <List id="name-list-approved-names" aria-label="Saved names">
             <AnimatePresence initial={false}>
               {approvedGivenNames.map((approvedGivenName) => (
-                <ApprovedGivenNameChip key={approvedGivenName.givenCustomNameBridgeId} approvedGivenName={approvedGivenName} />
+                <ApprovedGivenNameChip key={approvedGivenName.givenCustomNameBridgeId} approvedGivenName={approvedGivenName} size="large" />
               ))}
             </AnimatePresence>
           </List>

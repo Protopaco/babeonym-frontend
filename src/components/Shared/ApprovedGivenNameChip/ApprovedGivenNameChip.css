@@ -14,7 +14,7 @@
   box-sizing: border-box;
   width: 150px;
   height: 44px;
-  border: 1px solid var(--color-primary);
+  border: 2px solid var(--color-primary);
   border-radius: 22px;
   background: var(--color-background);
   overflow: hidden;
@@ -70,4 +70,34 @@
 
 .approved-given-name-chip-delete:hover {
   background: transparent;
+}
+
+.approved-given-name-chip[data-size='large'] {
+  width: 244px;
+  height: 60px;
+}
+
+.approved-given-name-chip[data-size='large'] .approved-given-name-chip-label {
+  width: 198px;
+  height: 60px;
+  border-width: 3px;
+  border-radius: 30px;
+  padding: 0 22px;
+}
+
+.approved-given-name-chip[data-size='large'] .approved-given-name-chip-text {
+  font-size: 1.25rem;
+}
+
+.approved-given-name-chip[data-size='large'] .approved-given-name-chip-delete-drawer {
+  top: 5px;
+  left: 184px;
+  width: 50px;
+  height: 50px;
+  border-radius: 0 25px 25px 0;
+}
+
+.approved-given-name-chip[data-size='large'] .approved-given-name-chip-delete {
+  width: 50px;
+  height: 60px;
 }
