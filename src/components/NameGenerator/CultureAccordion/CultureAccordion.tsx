@@ -1,11 +1,11 @@
-import { useMemo, useState } from 'react';
 import { useFilters } from '@/state/filter/filter.context';
 
 import List from '@mui/material/List';
 import ContinentAccordion from '@/components/NameGenerator/CultureAccordion/ContinentAccordion/ContinentAccordion';
-import type { CultureRegion, CultureWithRegions } from '@/api/generated';
+import type { CultureWithRegions } from '@/api/generated';
 import FilterAccordionFrame from '@/components/NameGenerator/FilterAccordionFrame/FilterAccordionFrame';
 import FilterSearchField from '@/components/NameGenerator/FilterSearchField/FilterSearchField';
+import { useNestedFilterSearch } from '@/components/NameGenerator/useNestedFilterSearch';
 import './CultureAccordion.css';
 
 type Props = {
@@ -13,32 +13,27 @@ type Props = {
   onChange: (event: React.SyntheticEvent, expanded: boolean) => void;
 };
 
+const filterCultures = (cultures: CultureWithRegions[], searchValue: string) => {
+  return cultures
+    .map((continent) => ({
+      ...continent,
+      regions: continent.regions
+        .map((region) => ({
+          ...region,
+          cultures: region.cultures.filter((culture) => culture.label.toLowerCase().includes(searchValue)),
+        }))
+        .filter((region) => region.cultures.length > 0),
+    }))
+    .filter((continent) => continent.regions.length > 0);
+};
+
 export default ({ expanded, onChange }: Props) => {
   const filterContext = useFilters();
   const { cultures } = filterContext.state;
-  const [searchValue, setSearchValue] = useState('');
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value.replace(/[^\p{L}]/gu, ''));
-  };
-
-  const displayCultures = useMemo(() => {
-    if (searchValue != '') {
-      return cultures
-        .map((continent) => ({
-          ...continent,
-          regions: continent.regions
-            .map((region: CultureRegion) => ({
-              ...region,
-              cultures: region.cultures.filter((culture) => culture.label.toLowerCase().includes(searchValue.toLowerCase())),
-            }))
-            .filter((region: CultureRegion) => region.cultures.length > 0),
-        }))
-        .filter((continent) => continent.regions.length > 0);
-    }
-
-    return cultures;
-  }, [searchValue, cultures]);
+  const { displayItems: displayCultures, handleSearchChange } = useNestedFilterSearch({
+    filterItems: filterCultures,
+    items: cultures,
+  });
 
   return (
     <FilterAccordionFrame
@@ -51,8 +46,7 @@ export default ({ expanded, onChange }: Props) => {
       <FilterSearchField id="culture-filter-search" onChange={handleSearchChange} />
       <List>
         {displayCultures.map((continent) => {
-          const cultureContinent = continent as CultureWithRegions;
-          return <ContinentAccordion key={cultureContinent.id} continent={cultureContinent} />;
+          return <ContinentAccordion key={continent.id} continent={continent} />;
         })}
       </List>
     </FilterAccordionFrame>
