@@ -1,5 +1,10 @@
 # Document Current Name Generator And Filter Drawer Behavior
 
+## Requirements Reference
+
+- `docs/application-requirements.md`
+- `docs/current-name-generator-and-filter-drawer.md`
+
 ## Goal
 
 Document the current name generator and filter drawer behavior before redesigning the unified workspace and filter experience.
@@ -30,6 +35,11 @@ The filter drawer is likely to change dramatically when the approved-name list m
 - The document calls out how approved names currently appear in the drawer.
 - The document identifies redesign pressure created by moving approved names into the main workspace.
 - No implementation changes are made as part of this ticket.
+
+## Documentation Notes
+
+- Current-state documentation has been added at `docs/current-name-generator-and-filter-drawer.md`.
+- This ticket should remain implementation-free.
 
 ## Notes
 

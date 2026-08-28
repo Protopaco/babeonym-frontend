@@ -1,5 +1,9 @@
 # Restyle And Simplify Filter Drawer
 
+## Requirements Reference
+
+- `docs/application-requirements.md`
+
 ## Goal
 
 Reimagine the filter drawer after approved names move into the unified workspace.

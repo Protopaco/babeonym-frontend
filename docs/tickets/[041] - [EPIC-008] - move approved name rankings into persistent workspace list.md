@@ -1,5 +1,9 @@
 # Move Approved Name Rankings Into Persistent Workspace List
 
+## Requirements Reference
+
+- `docs/application-requirements.md`
+
 ## Goal
 
 Make approved-name rankings the persistent list section in the unified workspace.

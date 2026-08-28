@@ -1,5 +1,9 @@
 # Simplify Routes Around The Main Workspace
 
+## Requirements Reference
+
+- `docs/application-requirements.md`
+
 ## Goal
 
 Simplify name workflow routes so the main app experience lives under the root workspace instead of separate generator, list, and compare destinations.

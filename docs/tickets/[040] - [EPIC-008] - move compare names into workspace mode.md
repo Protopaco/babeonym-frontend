@@ -1,5 +1,9 @@
 # Move Compare Names Into Workspace Mode
 
+## Requirements Reference
+
+- `docs/application-requirements.md`
+
 ## Goal
 
 Move compare voting into the unified name workspace as an internal mode instead of a standalone page.

@@ -1,5 +1,9 @@
 # EPIC-008 - Unified Name Workspace
 
+## Requirements Reference
+
+- `docs/application-requirements.md`
+
 ## Goal
 
 Create one low-friction main workspace where users generate, approve, compare, rank, and manually add names without bouncing between separate pages.

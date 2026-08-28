@@ -1,5 +1,9 @@
 # Add Custom Name Draft Chip Interaction
 
+## Requirements Reference
+
+- `docs/application-requirements.md`
+
 ## Goal
 
 Allow users to manually add a custom name directly from the approved-name list area.
