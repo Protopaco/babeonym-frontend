@@ -1,4 +1,4 @@
-.primary-button {
+.primary-button.MuiButton-root {
   width: 220px;
   height: 76px;
   margin: 0;
@@ -12,8 +12,12 @@
   text-transform: none;
 }
 
-.primary-button:hover,
-.primary-button:focus-visible {
+.primary-button.MuiButton-root[data-size='wide'] {
+  width: 320px;
+}
+
+.primary-button.MuiButton-root:hover,
+.primary-button.MuiButton-root:focus-visible {
   border-color: var(--color-text-secondary);
   background: var(--color-secondary);
   color: var(--color-text-secondary);

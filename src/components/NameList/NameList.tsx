@@ -39,7 +39,7 @@ const NameList = () => {
             </List>
             {canCompareNames ? (
               <Box id="name-list-actions">
-                <PrimaryButton text="Compare Names" onClick={compareNamesClick} />
+                <PrimaryButton text="Compare Names" onClick={compareNamesClick} size="wide" />
               </Box>
             ) : null}
           </>

@@ -5,14 +5,16 @@ type Props = {
   text: string;
   onClick: Function;
   disabled?: boolean;
+  size?: 'default' | 'wide';
 };
 
-export default ({ text, onClick, disabled = false }: Props) => {
+export default ({ text, onClick, disabled = false, size = 'default' }: Props) => {
   return (
     <Button
-      variant="contained"
+      variant="outlined"
       size="large"
       disabled={disabled}
+      data-size={size}
       onClick={() => {
         onClick();
       }}

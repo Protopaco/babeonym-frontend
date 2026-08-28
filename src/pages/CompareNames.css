@@ -42,10 +42,6 @@
   margin-top: 72px;
 }
 
-#compare-names-actions .primary-button {
-  width: 260px;
-}
-
 #compare-names-workspace {
   display: flex;
   flex-direction: column;
@@ -227,8 +223,4 @@
     margin-top: 48px;
   }
 
-  #compare-names-actions .primary-button {
-    width: 100%;
-    max-width: 280px;
-  }
 }

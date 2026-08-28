@@ -54,7 +54,7 @@ const CompareNames = () => {
       </Box>
       {givenNameProviderLoaded && approvedGivenNames.length ? (
         <Box id="compare-names-actions">
-          <PrimaryButton text="Return to List" onClick={() => navigate('/list')} />
+          <PrimaryButton text="Return to List" onClick={() => navigate('/list')} size="wide" />
         </Box>
       ) : null}
     </Container>

@@ -35,10 +35,6 @@
   margin-top: 96px;
 }
 
-#name-list-actions .primary-button {
-  width: 260px;
-}
-
 #name-list-empty-state {
   display: flex;
   flex: 1;
@@ -131,11 +127,6 @@
 
   #name-list-actions {
     margin-top: 56px;
-  }
-
-  #name-list-actions .primary-button {
-    width: 100%;
-    max-width: 280px;
   }
 
   #name-list-empty-state {
