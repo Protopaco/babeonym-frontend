@@ -58,43 +58,6 @@
   width: min(820px, 100%);
 }
 
-.compare-names-option {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 168px;
-  box-sizing: border-box;
-  border: 3px solid var(--color-primary);
-  border-radius: 6px;
-  background: var(--color-background);
-  box-shadow: var(--box-shadow-primary);
-  color: var(--color-text-primary);
-  cursor: pointer;
-  font: inherit;
-  padding: 28px;
-}
-
-.compare-names-option:hover,
-.compare-names-option:focus-visible {
-  background: var(--color-primary-highlight);
-}
-
-.compare-names-option:focus-visible {
-  outline: 3px solid var(--color-primary-edge);
-  outline-offset: 4px;
-}
-
-.compare-names-option-text {
-  margin: 0;
-  overflow-wrap: anywhere;
-  color: var(--color-text-primary);
-  font-family: 'League Spartan', system-ui, sans-serif;
-  font-size: 3rem;
-  font-weight: 600;
-  line-height: 1;
-  text-align: center;
-}
-
 #compare-names-or {
   margin: 0;
   color: var(--color-text-secondary);
@@ -190,16 +153,6 @@
 
   #compare-names-workspace {
     gap: 40px;
-  }
-
-  .compare-names-option {
-    width: 100%;
-    min-height: 132px;
-    padding: 24px;
-  }
-
-  .compare-names-option-text {
-    font-size: 2.5rem;
   }
 
   #compare-names-or {
