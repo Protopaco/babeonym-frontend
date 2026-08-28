@@ -24,92 +24,11 @@
   min-height: 360px;
 }
 
-#compare-names-empty-state {
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: 1.125rem;
-}
-
-.compare-names-inline-link {
-  color: var(--color-primary);
-  font-weight: 600;
-}
-
 #compare-names-actions {
   display: flex;
   justify-content: center;
   width: 100%;
   margin-top: 72px;
-}
-
-#compare-names-workspace {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 56px;
-  width: 100%;
-}
-
-#compare-names-pair {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
-  align-items: center;
-  gap: 40px;
-  width: min(820px, 100%);
-}
-
-#compare-names-or {
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-#compare-name-rankings {
-  width: 100%;
-}
-
-#compare-name-rankings-title {
-  margin: 0 0 16px;
-  color: var(--color-text-primary);
-  font-family: 'League Spartan', system-ui, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-#compare-name-rankings-list {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-template-rows: repeat(var(--compare-name-ranking-row-count), auto);
-  gap: 10px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.compare-name-ranking {
-  display: grid;
-  grid-template-columns: 24px minmax(0, 1fr);
-  align-items: center;
-  gap: 12px;
-  box-sizing: border-box;
-  min-width: 0;
-}
-
-.compare-name-ranking-position {
-  margin: 0;
-}
-
-.compare-name-ranking-position {
-  color: var(--color-text-secondary);
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-
-.compare-name-ranking .approved-given-name-chip {
-  width: 100%;
 }
 
 @media (max-width: 599px) {
@@ -136,40 +55,6 @@
     align-items: flex-start;
     min-height: 320px;
     text-align: center;
-  }
-
-  #compare-names-empty-state {
-    max-width: 260px;
-    font-size: 1rem;
-    line-height: 1.35;
-  }
-
-  #compare-names-pair {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-  }
-
-  #compare-names-workspace {
-    gap: 40px;
-  }
-
-  #compare-names-or {
-    font-size: 1.25rem;
-  }
-
-  #compare-name-rankings-title {
-    text-align: left;
-  }
-
-  #compare-name-rankings-list {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .compare-name-ranking {
-    text-align: left;
   }
 
   #compare-names-actions {

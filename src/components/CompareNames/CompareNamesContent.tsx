@@ -5,6 +5,7 @@ import type { GivenName } from '@/api/generated';
 import CompareNameButton from '@/components/CompareNames/CompareNameButton';
 import CompareNameRankings from '@/components/CompareNames/CompareNameRankings';
 import type { ComparePair } from '@/components/CompareNames/compareNames.types';
+import './CompareNamesContent.css';
 
 type Props = {
   approvedGivenNames: GivenName[];
@@ -17,14 +18,14 @@ export default ({ approvedGivenNames, currentPair, givenNameProviderLoaded, onVo
   const approvedGivenNameCount = approvedGivenNames.length;
 
   if (!givenNameProviderLoaded) {
-    return <Typography id="compare-names-empty-state">Loading saved names...</Typography>;
+    return <Typography className="compare-names-content-empty-state">Loading saved names...</Typography>;
   }
 
   if (!approvedGivenNameCount) {
     return (
-      <Typography id="compare-names-empty-state">
+      <Typography className="compare-names-content-empty-state">
         Head to the{' '}
-        <Link className="compare-names-inline-link" to="/">
+        <Link className="compare-names-content-inline-link" to="/">
           Name Generator
         </Link>{' '}
         to start saving names.
@@ -34,9 +35,9 @@ export default ({ approvedGivenNames, currentPair, givenNameProviderLoaded, onVo
 
   if (approvedGivenNameCount < 2) {
     return (
-      <Typography id="compare-names-empty-state">
+      <Typography className="compare-names-content-empty-state">
         Save at least two names on{' '}
-        <Link className="compare-names-inline-link" to="/list">
+        <Link className="compare-names-content-inline-link" to="/list">
           Your Names
         </Link>{' '}
         to start comparing.
@@ -45,14 +46,14 @@ export default ({ approvedGivenNames, currentPair, givenNameProviderLoaded, onVo
   }
 
   if (!currentPair) {
-    return <Typography id="compare-names-empty-state">Preparing names to compare...</Typography>;
+    return <Typography className="compare-names-content-empty-state">Preparing names to compare...</Typography>;
   }
 
   return (
-    <Box id="compare-names-workspace">
-      <Box id="compare-names-pair">
+    <Box className="compare-names-content-workspace">
+      <Box className="compare-names-content-pair">
         <CompareNameButton name={currentPair.left} onVote={onVote} />
-        <Typography id="compare-names-or">OR</Typography>
+        <Typography className="compare-names-content-or">OR</Typography>
         <CompareNameButton name={currentPair.right} onVote={onVote} />
       </Box>
       <CompareNameRankings approvedGivenNames={approvedGivenNames} />

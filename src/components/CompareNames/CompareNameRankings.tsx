@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react';
 import { useMemo } from 'react';
 import type { GivenName } from '@/api/generated';
 import ApprovedGivenNameChip from '@/components/Shared/ApprovedGivenNameChip/ApprovedGivenNameChip';
+import './CompareNameRankings.css';
 
 type Props = {
   approvedGivenNames: GivenName[];
@@ -16,11 +17,11 @@ export default ({ approvedGivenNames }: Props) => {
   const rankingRowCount = Math.ceil(rankedNames.length / 3);
 
   return (
-    <section id="compare-name-rankings" aria-label="Name rankings">
-      <Typography id="compare-name-rankings-title">Rankings</Typography>
+    <section className="compare-name-rankings" aria-label="Name rankings">
+      <Typography className="compare-name-rankings-title">Rankings</Typography>
       <LayoutGroup>
         <ol
-          id="compare-name-rankings-list"
+          className="compare-name-rankings-list"
           style={{ '--compare-name-ranking-row-count': rankingRowCount } as CSSProperties}
         >
           {rankedNames.map((name, index) => (
@@ -31,7 +32,7 @@ export default ({ approvedGivenNames }: Props) => {
               transition={{ type: 'spring', stiffness: 420, damping: 34 }}
             >
               <Typography className="compare-name-ranking-position">{index + 1}</Typography>
-              <ApprovedGivenNameChip approvedGivenName={name} />
+              <ApprovedGivenNameChip approvedGivenName={name} size="large" />
             </motion.li>
           ))}
         </ol>
