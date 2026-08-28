@@ -12,11 +12,15 @@ Reimagine the filter drawer after approved names move into the unified workspace
 
 The current filter drawer is trying to carry too much product weight. Once approved names live in the main workspace, the drawer can focus on helping users generate better names.
 
-The former subsection header/divider should become the filter drawer surface during Name Generator mode. Outside Name Generator mode, that surface should collapse back to a thin anonymous color divider.
+The former nav bar visual area under the app bar should become the filter drawer surface during Name Generator mode. Outside Name Generator mode, that surface should collapse back to a thin anonymous color divider.
+
+The filter drawer is an app/workspace-level band under the app bar, not a section inside the main body. The app no longer needs primary name-workflow nav links once Add Name and Compare Names are controlled inside the single workspace.
 
 ## Scope
 
 - Use the current-state documentation from ticket 038 as the redesign baseline.
+- Replace the old nav bar visual area with the workspace filter drawer.
+- Keep all filter UI inside the under-app-bar drawer band.
 - Remove approved-name list responsibilities from the drawer.
 - Reconsider filter hierarchy and information density.
 - Reconsider desktop drawer layout.
@@ -33,6 +37,8 @@ The former subsection header/divider should become the filter drawer surface dur
 
 ## Filter Requirements
 
+- All filter UI should live in the workspace filter drawer under the app bar.
+- Filter UI should not be rendered as a normal main-body section.
 - Applied filters should be visible during Name Generator mode.
 - Applied filters should be removable during Name Generator mode.
 - Available filters should be available to apply during Name Generator mode.
@@ -56,14 +62,17 @@ The former subsection header/divider should become the filter drawer surface dur
 
 - Inactive state:
   - Used outside Name Generator mode.
-  - Renders as a thin color divider.
+  - Replaces the old nav bar visual area with a thin color divider.
   - Does not show filter labels, filter chips, or filter controls.
 - Collapsed Name Generator state:
+  - Lives in the old nav bar visual position under the app bar.
   - Shows a `Filters` label.
   - Shows a chevron or equivalent affordance to expand.
   - Shows active filters grouped under their category labels.
   - Allows applied filters to be removed without opening the full drawer.
 - Expanded Name Generator state:
+  - Expands downward from the same under-app-bar drawer band.
+  - Keeps the collapsed applied-filter summary visible.
   - Shows available filter categories.
   - Supports search for decade, culture, and language options.
   - Supports manual browsing for all filter categories.
@@ -86,6 +95,8 @@ Custom names should bypass generator filters because the user is intentionally a
 ## Acceptance Criteria
 
 - The filter drawer no longer depends on approved-name list UI.
+- The filter drawer replaces the old nav bar visual area under the app bar.
+- The filter drawer is not rendered as a normal main-body section.
 - The drawer is visually simpler and easier to understand.
 - Desktop and mobile behavior are intentionally designed.
 - Existing filter behavior is preserved unless otherwise documented.

@@ -19,17 +19,21 @@ The app should feel like a simple loop:
 
 The root experience should be the primary workspace. Account-related screens can remain separate routes later, but name workflows should live together unless there is a strong product reason to split them.
 
-The former subsection header/divider should become a contextual utility area:
+The former nav bar visual area under the app bar should become a contextual filter drawer:
 
+- It is an app/workspace-level band, not a section inside the main body.
 - In Name Generator mode, it becomes the filter summary and filter drawer entry point.
+- In Name Generator mode, the closed drawer shows applied filters grouped by category.
+- In Name Generator mode, the open drawer expands downward to show available filters and a `Set Filters` action.
 - In Compare Names mode and other non-generator contexts, it collapses to a thin color divider.
-- It should help delineate sections without introducing redundant page headers.
+- It replaces the old name-workflow nav links now that the core name workflow is moving to a single path.
 
 ## Notes
 
 - `Add Name` should be the default mode.
 - `Compare Names` should be a sibling mode in the same workspace.
 - Workspace mode should be represented as URL state rather than separate name-workflow paths.
+- The old nav bar visual position should be reused for the workspace filter drawer, not duplicated inside the body.
 - The approved-name rankings/list should remain visible below the active mode.
 - Custom names should be added from the list area with a `+` affordance and inline draft chip.
 - The filter drawer needs to be documented before redesign because removing the approved-name list from it will significantly change its purpose.
