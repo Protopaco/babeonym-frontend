@@ -1,4 +1,5 @@
 import Typography from '@mui/material/Typography';
+import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
 import './CultureFilterColumn.css';
 
 type Props = {
@@ -13,7 +14,7 @@ const CultureFilterColumn = ({ isOpen }: Props) => (
       </div>
     )}
     <div className="culture-filter-column-applied" aria-label="Culture applied filters">
-      <Typography className="culture-filter-column-placeholder">Applied</Typography>
+      <WorkspaceAppliedFilterChip label="Irish" />
     </div>
   </div>
 );

@@ -19,6 +19,9 @@
 
 .language-filter-column-applied {
   min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .language-filter-column-label,

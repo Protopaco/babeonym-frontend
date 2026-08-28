@@ -19,6 +19,9 @@
 
 .gender-filter-column-applied {
   min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .gender-filter-column-label,

@@ -19,6 +19,9 @@
 
 .culture-filter-column-applied {
   min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .culture-filter-column-label,

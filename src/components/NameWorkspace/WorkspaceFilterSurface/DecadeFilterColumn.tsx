@@ -1,4 +1,5 @@
 import Typography from '@mui/material/Typography';
+import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
 import './DecadeFilterColumn.css';
 
 type Props = {
@@ -13,7 +14,7 @@ const DecadeFilterColumn = ({ isOpen }: Props) => (
       </div>
     )}
     <div className="decade-filter-column-applied" aria-label="Decade applied filters">
-      <Typography className="decade-filter-column-placeholder">Applied</Typography>
+      <WorkspaceAppliedFilterChip label="1990s" />
     </div>
   </div>
 );

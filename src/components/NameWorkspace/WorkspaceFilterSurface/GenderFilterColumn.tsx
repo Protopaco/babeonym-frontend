@@ -1,4 +1,5 @@
 import Typography from '@mui/material/Typography';
+import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
 import './GenderFilterColumn.css';
 
 type Props = {
@@ -13,7 +14,7 @@ const GenderFilterColumn = ({ isOpen }: Props) => (
       </div>
     )}
     <div className="gender-filter-column-applied" aria-label="Gender applied filters">
-      <Typography className="gender-filter-column-placeholder">Applied</Typography>
+      <WorkspaceAppliedFilterChip label="Neutral" />
     </div>
   </div>
 );
