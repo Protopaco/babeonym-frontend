@@ -1,1 +1,14 @@
+.name-workspace {
+  min-height: calc(100vh - var(--height-header));
+  width: 100%;
+}
 
+.name-workspace-active-mode {
+  width: 100%;
+}
+
+@media (max-width: 599px) {
+  .name-workspace {
+    min-height: calc(100vh - 96px);
+  }
+}

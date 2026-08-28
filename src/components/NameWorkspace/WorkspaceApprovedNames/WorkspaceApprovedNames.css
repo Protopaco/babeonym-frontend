@@ -1,0 +1,46 @@
+.workspace-approved-names {
+  box-sizing: border-box;
+  padding-top: 48px;
+  padding-bottom: 96px;
+}
+
+.workspace-approved-names-title {
+  margin: 0 0 28px;
+  color: var(--color-text-primary);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.workspace-approved-names-empty-state {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 1.125rem;
+}
+
+.workspace-approved-names-list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(var(--workspace-approved-names-row-count), auto);
+  gap: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 599px) {
+  .workspace-approved-names {
+    padding: 36px 32px 120px;
+  }
+
+  .workspace-approved-names-title {
+    font-size: 1.5rem;
+    text-align: left;
+  }
+
+  .workspace-approved-names-list {
+    display: flex;
+    flex-direction: column;
+  }
+}

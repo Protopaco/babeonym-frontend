@@ -1,0 +1,21 @@
+.workspace-approved-name {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.workspace-approved-name-position {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+@media (max-width: 599px) {
+  .workspace-approved-name {
+    text-align: left;
+  }
+}

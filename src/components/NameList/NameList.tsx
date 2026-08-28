@@ -16,6 +16,8 @@ const NameList = () => {
   const { approvedGivenNames, givenNameProviderLoaded } = state;
   const canCompareNames = approvedGivenNames.length >= 2;
   const compareNamesClick = () => {
+    if (!canCompareNames) return;
+
     navigate('/?mode=compare');
   };
 
@@ -29,7 +31,7 @@ const NameList = () => {
         approvedGivenNames.length ? (
           <>
             <ApprovedNameList approvedGivenNames={approvedGivenNames} />
-            {canCompareNames ? <NameListActions onCompareNamesClick={compareNamesClick} /> : null}
+            <NameListActions canCompareNames={canCompareNames} onCompareNamesClick={compareNamesClick} />
           </>
         ) : (
           <NameListEmptyState />
