@@ -33,25 +33,6 @@
   padding-left: 16px;
 }
 
-.filter-drawer-open-content {
-  width: 100%;
-}
-
-.filter-drawer-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.filter-drawer-collapse-all-button.MuiButton-root {
-  min-width: 0;
-  padding: 0 8px;
-  border-radius: 4px;
-  color: var(--color-text-secondary);
-  line-height: 1;
-  text-transform: none;
-}
-
 @media (max-width: 599px) {
   #filter-drawer {
     display: none;
