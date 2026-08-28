@@ -46,19 +46,6 @@
   padding-bottom: 96px;
 }
 
-#name-evaluator-button-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
-}
-
-#name-evaluator-mobile-button-container {
-  display: none;
-}
-
 #evaluated-name {
   margin: 0;
 }
@@ -137,45 +124,4 @@
     align-items: flex-end;
   }
 
-  #name-evaluator-button-container {
-    display: none;
-  }
-
-  #name-evaluator-mobile-button-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-    width: 100%;
-  }
-
-  .name-evaluator-mobile-action-button.MuiIconButton-root {
-    width: 96px;
-    height: 96px;
-    border: 6px solid var(--color-text-secondary);
-    border-radius: 50%;
-    color: var(--color-text-secondary);
-    background: var(--color-background);
-  }
-
-  .name-evaluator-mobile-action-button.MuiIconButton-root:focus,
-  .name-evaluator-mobile-action-button.MuiIconButton-root:focus-visible {
-    background: var(--color-background);
-  }
-
-  .name-evaluator-mobile-action-button.MuiIconButton-root:active {
-    background: var(--color-secondary);
-  }
-
-  .name-evaluator-mobile-action-button svg {
-    width: 52px;
-    height: 52px;
-  }
-}
-
-@media (max-width: 599px) and (hover: hover) {
-  .name-evaluator-mobile-action-button.MuiIconButton-root:hover {
-    background: var(--color-secondary);
-  }
 }
