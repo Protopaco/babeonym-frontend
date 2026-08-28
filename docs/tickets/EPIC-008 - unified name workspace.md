@@ -33,6 +33,7 @@ The former subsection header/divider should become a contextual utility area:
 - The approved-name rankings/list should remain visible below the active mode.
 - Custom names should be added from the list area with a `+` affordance and inline draft chip.
 - The filter drawer needs to be documented before redesign because removing the approved-name list from it will significantly change its purpose.
+- Future optimization: workspace modes are conditionally rendered today. As the unified workspace grows, evaluate lazy-loading mode components with `React.lazy`/`Suspense`, especially Compare Names, filter controls, account surfaces, and animation-heavy interactions. Keep this separate from layout refactors so behavior and bundle optimization stay decoupled.
 
 ## Candidate Child Tickets
 

@@ -209,6 +209,7 @@ The application should reduce navigation friction and keep users oriented around
 
 ## UI And Engineering Requirements
 
+- Frontend architecture rules are documented in [frontend-architecture.md](./frontend-architecture.md).
 - Components should do one clear thing.
 - Page/workspace components may compose sections, but should not hide large render branches.
 - Components own their visual styling.
