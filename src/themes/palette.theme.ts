@@ -1,6 +1,19 @@
+import { createTheme } from '@mui/material/styles';
 import type { SemanticPalette } from '@/themes/types.theme.ts';
 
-export default ({ primary, primaryContrast, secondary, secondaryContrast, selected, textPrimary, textSecondary, background }: SemanticPalette) => {
+const defaultTheme = createTheme();
+const defaultError = defaultTheme.palette.error;
+
+export default ({
+  primary,
+  primaryContrast,
+  secondary,
+  secondaryContrast,
+  selected,
+  textPrimary,
+  textSecondary,
+  background,
+}: SemanticPalette) => {
   return {
     palette: {
       primary: {
@@ -44,6 +57,8 @@ export default ({ primary, primaryContrast, secondary, secondaryContrast, select
 
             '--color-background': background,
             '--color-border': `${textPrimary}1F`,
+            '--color-error': defaultError.main,
+            '--color-error-contrast': defaultError.contrastText,
             '--box-shadow-primary': `0 4px 4px ${secondaryContrast}80`,
 
             '--width-filter-drawer-open': '450px',

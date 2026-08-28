@@ -116,6 +116,22 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const addCustomGivenName = async (customGivenName: string) => {
+    const trimmedCustomName = customGivenName.trim();
+    if (!trimmedCustomName) return;
+
+    try {
+      await givenNameApi.v1GivenNameCustom({
+        v1GivenNameCustomRequest: {
+          customGivenName: trimmedCustomName,
+        },
+      });
+      await addApprovedGivenNames();
+    } catch (e) {
+      throw e;
+    }
+  };
+
   const removeCandidate = (givenCustomNameBridgeId: number) => {
     dispatch({ type: 'REMOVE_CANDIDATE', payload: givenCustomNameBridgeId });
   };
@@ -186,6 +202,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         approveCandidate,
         rejectCandidate,
         snoozeCandidate,
+        addCustomGivenName,
         addSelectedGenders,
         removeSelectedGenders,
         addSelectedDecadeIds,

@@ -1,0 +1,19 @@
+.workspace-custom-name-draft-item {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.workspace-custom-name-draft-marker {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+@media (max-width: 599px) {
+  .workspace-custom-name-draft-item {
+    text-align: left;
+  }
+}

@@ -11,6 +11,7 @@ export const GivenNameContext = createContext<
         approveCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
         rejectCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
         snoozeCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
+        addCustomGivenName: (customGivenName: string) => Promise<void>;
         addSelectedGenders: (selectedGender: Gender[]) => void;
         removeSelectedGenders: (unselectedGender: Gender[]) => void;
         addSelectedDecadeIds: (selectedDecadeIds: number[]) => void;

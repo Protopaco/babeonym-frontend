@@ -1,0 +1,71 @@
+.workspace-custom-name-draft-action-drawer {
+  position: absolute;
+  top: 5px;
+  left: 184px;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  transition: width 0.18s ease;
+}
+
+.workspace-custom-name-draft-action-drawer[data-can-save='true'] {
+  width: 100px;
+}
+
+.workspace-custom-name-draft-cancel.MuiIconButton-root,
+.workspace-custom-name-draft-save.MuiIconButton-root {
+  flex: 0 0 50px;
+  width: 50px;
+  height: 50px;
+}
+
+.workspace-custom-name-draft-cancel.MuiIconButton-root {
+  border-radius: 0 25px 25px 0;
+  background: var(--color-secondary);
+  color: var(--color-text-secondary);
+  transition:
+    border-radius 0.18s ease,
+    transform 0.18s ease;
+}
+
+.workspace-custom-name-draft-action-drawer[data-can-save='true'] .workspace-custom-name-draft-cancel.MuiIconButton-root {
+  border-radius: 0;
+}
+
+.workspace-custom-name-draft-save.MuiIconButton-root {
+  border-radius: 0 25px 25px 0;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  opacity: 0;
+  transform: translateX(-50px);
+  transition:
+    opacity 0.14s ease,
+    transform 0.18s ease;
+}
+
+.workspace-custom-name-draft-action-drawer[data-can-save='true'] .workspace-custom-name-draft-save.MuiIconButton-root {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.workspace-custom-name-draft-save.Mui-disabled {
+  pointer-events: none;
+}
+
+.workspace-custom-name-draft-save.MuiIconButton-root svg {
+  color: var(--color-primary-contrast);
+}
+
+.workspace-custom-name-draft-cancel.MuiIconButton-root:hover,
+.workspace-custom-name-draft-cancel.MuiIconButton-root:focus-visible {
+  background: var(--color-secondary);
+}
+
+.workspace-custom-name-draft-save.MuiIconButton-root:hover,
+.workspace-custom-name-draft-save.MuiIconButton-root:focus-visible {
+  background: var(--color-primary);
+}

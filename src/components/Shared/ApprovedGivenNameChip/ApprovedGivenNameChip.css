@@ -43,7 +43,7 @@
   width: 38px;
   height: 38px;
   border-radius: 0 19px 19px 0;
-  background: var(--color-primary);
+  background: var(--color-error);
   opacity: 0;
   transform: translateX(0);
   transition:
@@ -54,12 +54,12 @@
 .approved-given-name-chip-delete {
   width: 38px;
   height: 38px;
-  background: transparent;
-  color: var(--color-primary-contrast);
+  background: none;
+  color: var(--color-error-contrast);
 }
 
 .approved-given-name-chip-delete svg {
-  color: var(--color-primary-contrast);
+  color: var(--color-error-contrast);
 }
 
 .approved-given-name-chip:hover .approved-given-name-chip-delete-drawer,
@@ -69,7 +69,7 @@
 }
 
 .approved-given-name-chip-delete:hover {
-  background: transparent;
+  background: none;
 }
 
 .approved-given-name-chip[data-size='large'] {

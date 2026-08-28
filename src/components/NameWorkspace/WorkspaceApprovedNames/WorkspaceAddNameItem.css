@@ -1,0 +1,18 @@
+.workspace-add-name-item {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.workspace-add-name-button.MuiIconButton-root {
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--color-primary);
+  background: var(--color-background);
+  color: var(--color-primary);
+}
+
+.workspace-add-name-button.MuiIconButton-root:hover,
+.workspace-add-name-button.MuiIconButton-root:focus-visible {
+  background: var(--color-secondary);
+}

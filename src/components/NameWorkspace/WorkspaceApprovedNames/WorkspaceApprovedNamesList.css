@@ -1,0 +1,18 @@
+.workspace-approved-names-list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(var(--workspace-approved-names-row-count), auto);
+  gap: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 599px) {
+  .workspace-approved-names-list {
+    display: flex;
+    flex-direction: column;
+  }
+}
