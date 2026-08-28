@@ -1,9 +1,8 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import AppLayout from '@/AppLayout';
 
-import NameGenerator from '@/components/NameGenerator/NameGenerator';
+import NameWorkspace from '@/pages/NameWorkspace';
 import NameList from '@/components/NameList/NameList';
-import CompareNames from '@/pages/CompareNames';
 import AccountSettings from '@/pages/AccountSettings';
 import ThemeTest from '@/pages/ThemeTest';
 
@@ -12,9 +11,8 @@ const router = createBrowserRouter([
     path: '/',
     element: <AppLayout />,
     children: [
-      { index: true, element: <NameGenerator /> },
+      { index: true, element: <NameWorkspace /> },
       { path: 'list', element: <NameList /> },
-      { path: 'compare', element: <CompareNames /> },
       { path: 'settings', element: <AccountSettings /> },
       { path: 'theme', element: <ThemeTest /> },
       { path: '*', element: <Navigate to="/" replace /> },

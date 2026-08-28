@@ -1,0 +1,29 @@
+.compare-names-mode {
+  min-height: calc(100vh - var(--height-header));
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top: 48px;
+  padding-bottom: 96px;
+}
+
+.compare-names-mode-content {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+}
+
+@media (max-width: 599px) {
+  .compare-names-mode {
+    min-height: calc(100vh - 96px);
+    padding: 15px 32px 120px;
+  }
+
+  .compare-names-mode-content {
+    align-items: flex-start;
+    min-height: 320px;
+    text-align: center;
+  }
+}

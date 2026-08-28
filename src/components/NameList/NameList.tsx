@@ -16,7 +16,7 @@ const NameList = () => {
   const { approvedGivenNames, givenNameProviderLoaded } = state;
   const canCompareNames = approvedGivenNames.length >= 2;
   const compareNamesClick = () => {
-    navigate('/compare');
+    navigate('/?mode=compare');
   };
 
   return (
