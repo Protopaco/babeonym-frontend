@@ -35,8 +35,9 @@ These components have styling owned by a parent or page stylesheet instead of th
 
 These components should be reviewed for responsibility splits:
 
-- `src/components/NameList/NameList.tsx`
+- Resolved: `src/components/NameList/NameList.tsx`
   - Page layout, loaded/empty/skeleton states, list rendering, and compare action all live together.
+  - This has since been split into `ApprovedNameList`, `NameListActions`, `NameListEmptyState`, and `NameListSkeleton`.
 - `src/components/NameGenerator/NameGenerator.tsx`
   - Component composition plus URL param serialization/hydration plus filter dispatching.
 - `src/components/NameGenerator/NameEvaluator/NameEvaluator.tsx`
@@ -70,11 +71,10 @@ Any function/component over 50 lines should trigger refactor review under the sk
 - `src/components/NameGenerator/MobileNameFilters/MobileNameFilters.tsx`: 101
 - `src/components/NameGenerator/NameEvaluator/NameEvaluator.tsx`: 123
 - `src/components/NameGenerator/NameGenerator.tsx`: 88
-- `src/components/NameList/NameList.tsx`: 73
+- Resolved: `src/components/NameList/NameList.tsx`: previously 73
 - Resolved: `src/pages/CompareNames.tsx`: previously 64
 - `src/pages/ThemeTest.tsx`: 175
 
 ## Suggested Cleanup Order
 
-1. Split `NameList` into page, list, empty state, and skeleton/action components.
-2. Extract shared filter accordion structure and move accordion visual styling into component-owned styles.
+1. Extract shared filter accordion structure and move accordion visual styling into component-owned styles.

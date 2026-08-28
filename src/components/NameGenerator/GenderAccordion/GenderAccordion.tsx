@@ -1,11 +1,10 @@
 import { GenderValues } from '@/types/Gender';
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import { List } from '@mui/material';
 import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
-import FilterAccordionSummary from '@/components/NameGenerator/FilterAccordionSummary/FilterAccordionSummary';
+import FilterAccordionFrame from '@/components/NameGenerator/FilterAccordionFrame/FilterAccordionFrame';
+import './GenderAccordion.css';
 
 type Props = {
   expanded: boolean;
@@ -18,35 +17,30 @@ export default ({ expanded, onChange }: Props) => {
   const { addSelectedGenders, removeSelectedGenders } = useGivenNamesActions();
 
   return (
-    <Accordion expanded={expanded} onChange={onChange}>
-      <FilterAccordionSummary label="Gender" ariaControls="gender-filter-content" id="gender-filter-summary" />
-      {expanded ? (
-        <AccordionDetails>
-          <List>
-            {GenderValues.map((gender, index) => {
-              const selected = selectedGenders.includes(gender);
+    <FilterAccordionFrame expanded={expanded} onChange={onChange} label="Gender" ariaControls="gender-filter-content" id="gender-filter-summary">
+      <List>
+        {GenderValues.map((gender, index) => {
+          const selected = selectedGenders.includes(gender);
 
-              return (
-                <FilterListItem
-                  key={gender}
-                  index={index}
-                  label={gender}
-                  action={
-                    selected
-                      ? () => {
-                          removeSelectedGenders([gender]);
-                        }
-                      : () => {
-                          addSelectedGenders([gender]);
-                        }
-                  }
-                  selected={selected}
-                />
-              );
-            })}
-          </List>
-        </AccordionDetails>
-      ) : null}
-    </Accordion>
+          return (
+            <FilterListItem
+              key={gender}
+              index={index}
+              label={gender}
+              action={
+                selected
+                  ? () => {
+                      removeSelectedGenders([gender]);
+                    }
+                  : () => {
+                      addSelectedGenders([gender]);
+                    }
+              }
+              selected={selected}
+            />
+          );
+        })}
+      </List>
+    </FilterAccordionFrame>
   );
 };

@@ -69,63 +69,8 @@
     margin-top: 20px;
   }
 
-  .mobile-name-filters-controls .MuiAccordion-root {
-    width: 100%;
-    margin: 0;
-    border: 1px solid var(--color-border);
-    border-radius: 2px;
-    box-shadow: var(--box-shadow-primary);
-    background: var(--color-background);
-  }
-
-  .mobile-name-filters-controls .MuiAccordion-root::before {
-    display: none;
-  }
-
-  .mobile-name-filters-controls .MuiAccordion-root.Mui-expanded {
-    margin: 0;
-  }
-
-  .mobile-name-filters-controls .MuiAccordionSummary-root {
-    min-height: 56px;
-    padding: 0 16px;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .mobile-name-filters-controls .MuiAccordionSummary-root.Mui-expanded {
-    min-height: 56px;
-  }
-
-  .mobile-name-filters-controls .MuiAccordionSummary-content {
-    margin: 0;
-  }
-
-  .mobile-name-filters-controls .MuiAccordionSummary-content.Mui-expanded {
-    margin: 0;
-  }
-
-  .mobile-name-filters-controls .MuiAccordionSummary-expandIconWrapper {
-    color: var(--color-text-secondary);
-  }
-
-  .mobile-name-filters-controls .MuiAccordionDetails-root {
-    padding: 0 0 14px;
-  }
-
-  .mobile-name-filters-controls .MuiList-root {
-    padding: 6px 0;
-  }
-
   .mobile-name-filters-controls .MuiTextField-root {
     margin: 0 16px;
-  }
-
-  .mobile-name-filters-controls .decades-filter-list {
-    max-height: 264px;
-    overflow-y: auto;
-    box-shadow:
-      inset 0 8px 8px -10px var(--color-scroll-edge),
-      inset 0 -8px 8px -10px var(--color-scroll-edge);
   }
 
   .mobile-name-filters-actions {
