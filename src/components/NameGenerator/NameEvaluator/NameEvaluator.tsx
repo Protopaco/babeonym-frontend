@@ -10,11 +10,7 @@ import MobileNameEvaluationActions from '@/components/NameGenerator/NameEvaluato
 import NameEvaluationActions from '@/components/NameGenerator/NameEvaluator/NameEvaluationActions';
 import { useNameEvaluationActions } from '@/components/NameGenerator/NameEvaluator/useNameEvaluationActions';
 
-type Props = {
-  drawerOpen: boolean;
-};
-
-export default ({ drawerOpen }: Props) => {
+export default () => {
   const givenNameContext = useGivenNames();
   const { state: userState } = useUser();
   const { user } = userState;
@@ -24,7 +20,7 @@ export default ({ drawerOpen }: Props) => {
   const { approveClick, rejectClick, snoozeClick } = useNameEvaluationActions(currentCandidate);
 
   return (
-    <Box id="name-evaluator" className={drawerOpen ? 'drawer-open' : 'drawer-closed'}>
+    <Box id="name-evaluator">
       <Box id="name-evaluator-column">
         <Box id="name-evaluator-header">
           <SectionHeader title="Name Generator" width="medium" />

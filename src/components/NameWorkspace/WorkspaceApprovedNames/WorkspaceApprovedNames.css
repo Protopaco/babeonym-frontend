@@ -1,14 +1,16 @@
 .workspace-approved-names {
   box-sizing: border-box;
-  padding-top: 48px;
+  padding-top: 16px;
   padding-bottom: 96px;
 }
 
-.workspace-approved-names-title {
-  margin: 0 0 28px;
-  color: var(--color-text-primary);
-  font-size: 2rem;
-  font-weight: 600;
+.workspace-approved-names-desktop-header {
+  margin-bottom: 32px;
+}
+
+.workspace-approved-names-mobile-header {
+  display: none;
+  margin-bottom: 28px;
 }
 
 .workspace-approved-names-empty-state {
@@ -19,11 +21,14 @@
 
 @media (max-width: 599px) {
   .workspace-approved-names {
-    padding: 36px 32px 120px;
+    padding: 24px 32px 120px;
   }
 
-  .workspace-approved-names-title {
-    font-size: 1.5rem;
-    text-align: left;
+  .workspace-approved-names-desktop-header {
+    display: none;
+  }
+
+  .workspace-approved-names-mobile-header {
+    display: block;
   }
 }

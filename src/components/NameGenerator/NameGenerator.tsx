@@ -1,6 +1,5 @@
-import FilterDrawer from '@/components/NameGenerator/FilterDrawer/FilterDrawer';
+// import FilterDrawer from '@/components/NameGenerator/FilterDrawer/FilterDrawer';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
-import { useState } from 'react';
 import NameEvaluator from '@/components/NameGenerator/NameEvaluator/NameEvaluator';
 import Box from '@mui/material/Box';
 import MobileNameFilters from '@/components/NameGenerator/MobileNameFilters/MobileNameFilters';
@@ -11,7 +10,6 @@ export default () => {
   const givenNameContext = useGivenNames();
   const { selectedCultureIds, selectedDecadeIds, selectedGenders, selectedLanguageIds, givenNameCandidates, givenNameProviderLoaded } =
     givenNameContext.state;
-  const [drawerOpen, setDrawerOpen] = useState(true);
   useNameGeneratorUrlFilters({
     givenNameCandidates,
     selectedCultureIds,
@@ -21,9 +19,9 @@ export default () => {
   });
 
   return (
-    <Box>
-      <FilterDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} isLoading={!givenNameProviderLoaded} />
-      <NameEvaluator drawerOpen={drawerOpen} />
+    <Box className="name-generator">
+      {/* <FilterDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} isLoading={!givenNameProviderLoaded} /> */}
+      <NameEvaluator />
       <MobileNameFilters isLoading={!givenNameProviderLoaded} />
     </Box>
   );

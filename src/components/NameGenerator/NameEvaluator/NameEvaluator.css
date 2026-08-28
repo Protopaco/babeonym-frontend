@@ -1,25 +1,13 @@
 #name-evaluator {
-  min-height: calc(100vh - var(--height-header));
   display: flex;
   align-items: stretch;
   justify-content: center;
   box-sizing: border-box;
-  padding-top: 48px;
-  padding-right: 48px;
-  padding-bottom: 96px;
-}
-
-.drawer-open {
-  padding-left: calc(var(--width-filter-drawer-open) + 15px);
-}
-
-.drawer-closed {
-  padding-left: calc(var(--width-filter-drawer-closed) + 15px);
+  padding: 48px 48px 24px;
 }
 
 #name-evaluator-column {
   width: 100%;
-  min-height: calc(100vh - var(--height-header) - 144px);
   display: flex;
   flex-direction: column;
 }
@@ -35,15 +23,14 @@
 }
 
 #name-evaluator-content {
-  flex: 1;
   min-height: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 48px;
-  padding-bottom: 96px;
+  gap: 40px;
+  padding: 48px 0 32px;
 }
 
 #user-surname {
@@ -52,13 +39,7 @@
 
 @media (max-width: 599px) {
   #name-evaluator {
-    min-height: auto;
-    padding: 15px 32px;
-  }
-
-  .drawer-open,
-  .drawer-closed {
-    padding-left: 32px;
+    padding: 15px 32px 0;
   }
 
   #name-evaluator-column {
@@ -81,7 +62,7 @@
 
   #name-evaluator-content {
     gap: 40px;
-    padding: 72px 0 36px;
+    padding: 72px 0 24px;
   }
 
 }
