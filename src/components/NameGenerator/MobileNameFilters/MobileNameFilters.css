@@ -34,48 +34,4 @@
     background: var(--color-secondary);
   }
 
-  .mobile-name-filters-sheet {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 16px 32px 40px;
-    background: var(--color-secondary);
-  }
-
-  .mobile-name-filters-sheet-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-    gap: 16px;
-  }
-
-  .mobile-name-filters-close.MuiIconButton-root {
-    width: 44px;
-    height: 44px;
-    color: var(--color-primary);
-  }
-
-  .mobile-name-filters .mobile-section-header {
-    align-self: flex-start;
-  }
-
-  .mobile-name-filters-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    margin-top: 20px;
-  }
-
-  .mobile-name-filters-controls .MuiTextField-root {
-    margin: 0 16px;
-  }
-
-  .mobile-name-filters-actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 28px;
-  }
 }
