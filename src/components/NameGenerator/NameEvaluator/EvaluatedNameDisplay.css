@@ -1,0 +1,41 @@
+.evaluated-name-display {
+  position: relative;
+  width: 100%;
+}
+
+.evaluated-name-display-slot {
+  position: relative;
+  width: 100%;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.evaluated-name-display-motion {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.evaluated-name-display-name {
+  margin: 0;
+}
+
+@media (max-width: 599px) {
+  .evaluated-name-display {
+    min-height: 150px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .evaluated-name-display-slot {
+    min-height: 120px;
+  }
+
+  .evaluated-name-display-name {
+    font-size: 64px;
+    line-height: 1;
+  }
+}
