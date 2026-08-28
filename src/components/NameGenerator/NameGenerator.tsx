@@ -8,15 +8,8 @@ import './NameGenerator.css';
 
 export default () => {
   const givenNameContext = useGivenNames();
-  const { selectedCultureIds, selectedDecadeIds, selectedGenders, selectedLanguageIds, givenNameCandidates, givenNameProviderLoaded } =
-    givenNameContext.state;
-  useNameGeneratorUrlFilters({
-    givenNameCandidates,
-    selectedCultureIds,
-    selectedDecadeIds,
-    selectedGenders,
-    selectedLanguageIds,
-  });
+  const { givenNameProviderLoaded } = givenNameContext.state;
+  useNameGeneratorUrlFilters();
 
   return (
     <Box className="name-generator">
