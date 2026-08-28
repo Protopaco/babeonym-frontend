@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -16,6 +15,7 @@ import DrawerActionButton from '@/components/NameGenerator/DrawerActionButton/Dr
 import DrawerSection from '@/components/NameGenerator/DrawerSection/DrawerSection';
 import FilterAccordionSkeleton from '@/components/NameGenerator/FilterAccordionSkeleton/FilterAccordionSkeleton';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
+import { useFilterAccordionState } from '@/components/NameGenerator/useFilterAccordionState';
 
 type Props = {
   drawerOpen: boolean;
@@ -23,32 +23,9 @@ type Props = {
   isLoading: boolean;
 };
 
-type FilterAccordionId = 'gender' | 'decades' | 'languages' | 'cultures';
-
 export default ({ drawerOpen, setDrawerOpen, isLoading }: Props) => {
   const { getNewCandidates } = useGivenNamesActions();
-  const [expandedFilters, setExpandedFilters] = useState<Record<FilterAccordionId, boolean>>({
-    gender: false,
-    decades: false,
-    languages: false,
-    cultures: false,
-  });
-
-  const handleFilterAccordionChange = (filterId: FilterAccordionId) => (_event: React.SyntheticEvent, expanded: boolean) => {
-    setExpandedFilters((currentExpandedFilters) => ({
-      ...currentExpandedFilters,
-      [filterId]: expanded,
-    }));
-  };
-
-  const collapseAllFilters = () => {
-    setExpandedFilters({
-      gender: false,
-      decades: false,
-      languages: false,
-      cultures: false,
-    });
-  };
+  const { collapseAllFilters, expandedFilters, handleFilterAccordionChange } = useFilterAccordionState();
 
   const setFiltersClick = async () => {
     collapseAllFilters();
