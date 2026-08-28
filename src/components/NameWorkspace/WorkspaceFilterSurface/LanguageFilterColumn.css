@@ -1,0 +1,31 @@
+.language-filter-column {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 8px;
+}
+
+.language-filter-column-available,
+.language-filter-column-applied {
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1px solid var(--color-primary-contrast);
+  padding: 8px;
+}
+
+.language-filter-column-available {
+  min-height: 72px;
+}
+
+.language-filter-column-applied {
+  min-height: 40px;
+}
+
+.language-filter-column-label,
+.language-filter-column-placeholder {
+  color: var(--color-primary-contrast);
+}
+
+.language-filter-column-placeholder {
+  font-size: 0.875rem;
+}

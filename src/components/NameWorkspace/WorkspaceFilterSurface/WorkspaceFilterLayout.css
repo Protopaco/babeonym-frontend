@@ -1,0 +1,33 @@
+.workspace-filter-layout {
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(128px, 14vw) minmax(0, 1fr) minmax(112px, 12vw);
+  gap: 16px;
+  align-items: stretch;
+  padding: 12px 36px;
+}
+
+.workspace-filter-layout-columns {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 899px) {
+  .workspace-filter-layout {
+    grid-template-columns: 1fr;
+    padding: 12px 20px;
+  }
+
+  .workspace-filter-layout-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .workspace-filter-layout {
+    display: none;
+  }
+}

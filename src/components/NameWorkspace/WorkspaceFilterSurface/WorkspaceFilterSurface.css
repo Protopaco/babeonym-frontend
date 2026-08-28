@@ -6,37 +6,13 @@
 }
 
 .workspace-filter-surface--inactive {
-  height: 64px;
+  min-height: 42px;
   background: var(--color-background);
 }
 
-.workspace-filter-surface--collapsed {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  padding: 12px 36px;
-}
-
-.workspace-filter-surface-heading {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 0 0 auto;
-}
-
-.workspace-filter-surface-title {
-  color: var(--color-primary-contrast);
-  font-weight: 600;
-}
-
-.workspace-filter-surface-toggle.MuiIconButton-root {
-  color: var(--color-primary-contrast);
-}
-
-.workspace-filter-surface-applied {
-  flex: 1 1 auto;
-  min-width: 0;
+.workspace-filter-surface--closed,
+.workspace-filter-surface--open {
+  min-height: 42px;
 }
 
 @media (max-width: 599px) {
@@ -45,7 +21,8 @@
     border-bottom: 0;
   }
 
-  .workspace-filter-surface--collapsed {
+  .workspace-filter-surface--closed,
+  .workspace-filter-surface--open {
     min-height: 0;
     display: none;
   }
