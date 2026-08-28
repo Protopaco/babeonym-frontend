@@ -1,4 +1,5 @@
 import Button from '@mui/material/Button';
+import './SecondaryButton.css';
 
 type Props = {
   text: string;

@@ -1,4 +1,6 @@
 
+import './AccountSettings.css';
+
 const AccountSettings = () => {
     return (
         <>

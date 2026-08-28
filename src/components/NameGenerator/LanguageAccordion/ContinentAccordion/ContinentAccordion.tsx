@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import type { LanguageWithRegions } from '@/api/generated';
 import RegionAccordion from '@/components/NameGenerator/LanguageAccordion/RegionAccordion/RegionAccordion';
 import { useState } from 'react';
+import './ContinentAccordion.css';
 
 type Props = {
   continent: LanguageWithRegions;
