@@ -25,11 +25,13 @@ These components have styling owned by a parent or page stylesheet instead of th
 - Resolved: `src/pages/CompareNames.css`
   - Previously used `.compare-name-ranking .approved-given-name-chip { width: 100%; }` to reach into `ApprovedGivenNameChip`.
   - This was removed in favor of the chip's component-owned size API.
-- `src/components/NameGenerator/FilterDrawer/FilterDrawer.css`
+- Resolved: `src/components/NameGenerator/FilterDrawer/FilterDrawer.css`
   - Drawer owns a lot of accordion internals.
   - This suggests the accordion styling contract is missing or should be component-owned.
-- `src/components/NameGenerator/MobileNameFilters/MobileNameFilters.css`
+- Resolved: `src/components/NameGenerator/MobileNameFilters/MobileNameFilters.css`
   - Styles `SecondaryButton`, `MobileSectionHeader`, accordion internals, `FilterSearchField`, and `.decades-filter-list` from the parent.
+  - Accordion frame styling has since been moved into `FilterAccordionFrame`.
+  - Region accordion styling has since been moved into `FilterRegionAccordion`.
 
 ## Components Doing Too Much
 
@@ -38,23 +40,35 @@ These components should be reviewed for responsibility splits:
 - Resolved: `src/components/NameList/NameList.tsx`
   - Page layout, loaded/empty/skeleton states, list rendering, and compare action all live together.
   - This has since been split into `ApprovedNameList`, `NameListActions`, `NameListEmptyState`, and `NameListSkeleton`.
-- `src/components/NameGenerator/NameGenerator.tsx`
+- Resolved: `src/components/NameGenerator/NameGenerator.tsx`
   - Component composition plus URL param serialization/hydration plus filter dispatching.
-- `src/components/NameGenerator/NameEvaluator/NameEvaluator.tsx`
+  - URL/filter synchronization has since been moved to `useNameGeneratorUrlFilters`.
+- Resolved: `src/components/NameGenerator/NameEvaluator/NameEvaluator.tsx`
   - Data selection, approve/reject/snooze actions, animation, tutorial display, desktop controls, and mobile controls.
-- `src/components/NameGenerator/FilterDrawer/FilterDrawer.tsx`
+  - Action behavior has since been moved to `useNameEvaluationActions`.
+  - Desktop and mobile action UI have since been moved to `NameEvaluationActions` and `MobileNameEvaluationActions`.
+  - Animated name display has since been moved to `EvaluatedNameDisplay`.
+- Resolved: `src/components/NameGenerator/FilterDrawer/FilterDrawer.tsx`
   - Drawer shell, animation, filter accordion state, collapse all, set filters, loading state, and approved drawer section.
-- `src/components/NameGenerator/MobileNameFilters/MobileNameFilters.tsx`
+  - Open drawer contents have since been moved to `FilterDrawerOpenContent`.
+  - Shared accordion open/close state has since been moved to `useFilterAccordionState`.
+- Resolved: `src/components/NameGenerator/MobileNameFilters/MobileNameFilters.tsx`
   - Mobile drawer shell, global layout state, filter accordion state, loading state, and set filters.
+  - Mobile sheet contents have since been moved to `MobileNameFiltersSheet`.
+  - Shared accordion open/close state has since been moved to `useFilterAccordionState`.
 - Resolved: `src/pages/CompareNames.tsx`
   - Previously mixed page layout with compare vote submission behavior.
   - Vote behavior has since been moved to `src/components/CompareNames/useCompareNameVoting.ts`.
-- Language and culture accordion pairs
+- Partially resolved: Language and culture accordion pairs
   - `src/components/NameGenerator/LanguageAccordion/LanguageAccordion.tsx`
   - `src/components/NameGenerator/LanguageAccordion/RegionAccordion/RegionAccordion.tsx`
   - `src/components/NameGenerator/CultureAccordion/CultureAccordion.tsx`
   - `src/components/NameGenerator/CultureAccordion/RegionAccordion/RegionAccordion.tsx`
   - These repeat the same search, nested display, selection, and toggle-all shape.
+  - Top-level accordion frame styling has since been moved to `FilterAccordionFrame`.
+  - Nested region accordion styling has since been moved to `FilterRegionAccordion`.
+  - Nested region selection behavior has since been moved to `useFilterRegionSelection`.
+  - Top-level nested search behavior has since been moved to `useNestedFilterSearch`.
 
 ## Over 50 Lines
 
@@ -77,4 +91,6 @@ Any function/component over 50 lines should trigger refactor review under the sk
 
 ## Suggested Cleanup Order
 
-1. Extract shared filter accordion structure and move accordion visual styling into component-owned styles.
+1. Review `DecadesAccordion` for whether search/list rendering should split further.
+2. Audit that every `.tsx` component has a sibling `.css` file.
+3. Optionally review `ThemeTest` if it remains useful.
