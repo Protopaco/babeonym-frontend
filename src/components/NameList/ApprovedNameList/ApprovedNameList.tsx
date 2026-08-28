@@ -1,21 +1,21 @@
 import List from '@mui/material/List';
-import { useGivenNames } from '@/state/givenName/givenName.provider';
-import ApprovedGivenNameChip from '@/components/Shared/ApprovedGivenNameChip/ApprovedGivenNameChip';
+import { AnimatePresence } from 'motion/react';
 import type { GivenName } from '@/api/generated';
-import { useEffect, useState } from 'react';
+import ApprovedGivenNameChip from '@/components/Shared/ApprovedGivenNameChip/ApprovedGivenNameChip';
+import './ApprovedNameList.css';
 
-export default () => {
-  const givenNameContext = useGivenNames();
-  const { approvedGivenNames } = givenNameContext.state;
-  const [firstThree, setFirstThree] = useState([] as GivenName[]);
+type Props = {
+  approvedGivenNames: GivenName[];
+};
 
-  useEffect(() => {
-    setFirstThree(approvedGivenNames.slice(0, 3));
-  }, [approvedGivenNames]);
-
-  const createApprovedChips = () => {
-    return firstThree.map((approvedGivenName, index) => <ApprovedGivenNameChip key={index} approvedGivenName={approvedGivenName} />);
-  };
-
-  return <List>{createApprovedChips()}</List>;
+export default ({ approvedGivenNames }: Props) => {
+  return (
+    <List className="approved-name-list" aria-label="Saved names">
+      <AnimatePresence initial={false}>
+        {approvedGivenNames.map((approvedGivenName) => (
+          <ApprovedGivenNameChip key={approvedGivenName.givenCustomNameBridgeId} approvedGivenName={approvedGivenName} size="large" />
+        ))}
+      </AnimatePresence>
+    </List>
+  );
 };

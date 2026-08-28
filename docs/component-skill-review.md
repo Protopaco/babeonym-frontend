@@ -13,17 +13,18 @@ This is a review note only. It documents components that should be revisited und
 
 These components have styling owned by a parent or page stylesheet instead of their own component stylesheet:
 
-- `src/components/CompareNames/CompareNameButton.tsx`
+- Resolved: `src/components/CompareNames/CompareNameButton.tsx`
   - Previously styled by `src/pages/CompareNames.css` through `.compare-names-option`.
   - This has since been moved to `src/components/CompareNames/CompareNameButton.css`.
-- `src/components/CompareNames/CompareNamesContent.tsx`
+- Resolved: `src/components/CompareNames/CompareNamesContent.tsx`
   - Previously emitted empty/link/workspace classes styled by `src/pages/CompareNames.css`.
   - This has since been moved to `src/components/CompareNames/CompareNamesContent.css`.
-- `src/components/CompareNames/CompareNameRankings.tsx`
-  - Styled entirely by `src/pages/CompareNames.css`.
-- `src/pages/CompareNames.css`
-  - `.compare-name-ranking .approved-given-name-chip { width: 100%; }` reaches into `ApprovedGivenNameChip`.
-  - This is the clearest direct component ownership violation in the compare page.
+- Resolved: `src/components/CompareNames/CompareNameRankings.tsx`
+  - Previously styled entirely by `src/pages/CompareNames.css`.
+  - This has since been moved to `src/components/CompareNames/CompareNameRankings.css`.
+- Resolved: `src/pages/CompareNames.css`
+  - Previously used `.compare-name-ranking .approved-given-name-chip { width: 100%; }` to reach into `ApprovedGivenNameChip`.
+  - This was removed in favor of the chip's component-owned size API.
 - `src/components/NameGenerator/FilterDrawer/FilterDrawer.css`
   - Drawer owns a lot of accordion internals.
   - This suggests the accordion styling contract is missing or should be component-owned.
@@ -44,6 +45,9 @@ These components should be reviewed for responsibility splits:
   - Drawer shell, animation, filter accordion state, collapse all, set filters, loading state, and approved drawer section.
 - `src/components/NameGenerator/MobileNameFilters/MobileNameFilters.tsx`
   - Mobile drawer shell, global layout state, filter accordion state, loading state, and set filters.
+- Resolved: `src/pages/CompareNames.tsx`
+  - Previously mixed page layout with compare vote submission behavior.
+  - Vote behavior has since been moved to `src/components/CompareNames/useCompareNameVoting.ts`.
 - Language and culture accordion pairs
   - `src/components/NameGenerator/LanguageAccordion/LanguageAccordion.tsx`
   - `src/components/NameGenerator/LanguageAccordion/RegionAccordion/RegionAccordion.tsx`
@@ -67,11 +71,10 @@ Any function/component over 50 lines should trigger refactor review under the sk
 - `src/components/NameGenerator/NameEvaluator/NameEvaluator.tsx`: 123
 - `src/components/NameGenerator/NameGenerator.tsx`: 88
 - `src/components/NameList/NameList.tsx`: 73
-- `src/pages/CompareNames.tsx`: 64
+- Resolved: `src/pages/CompareNames.tsx`: previously 64
 - `src/pages/ThemeTest.tsx`: 175
 
 ## Suggested Cleanup Order
 
-1. Finish compare page component ownership.
-2. Split `NameList` into page, list, empty state, and skeleton/action components.
-3. Extract shared filter accordion structure and move accordion visual styling into component-owned styles.
+1. Split `NameList` into page, list, empty state, and skeleton/action components.
+2. Extract shared filter accordion structure and move accordion visual styling into component-owned styles.
