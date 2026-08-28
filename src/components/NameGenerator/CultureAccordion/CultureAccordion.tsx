@@ -1,13 +1,12 @@
 import { useMemo, useState } from 'react';
 import { useFilters } from '@/state/filter/filter.context';
 
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import List from '@mui/material/List';
 import ContinentAccordion from '@/components/NameGenerator/CultureAccordion/ContinentAccordion/ContinentAccordion';
 import type { CultureRegion, CultureWithRegions } from '@/api/generated';
-import FilterAccordionSummary from '@/components/NameGenerator/FilterAccordionSummary/FilterAccordionSummary';
+import FilterAccordionFrame from '@/components/NameGenerator/FilterAccordionFrame/FilterAccordionFrame';
 import FilterSearchField from '@/components/NameGenerator/FilterSearchField/FilterSearchField';
+import './CultureAccordion.css';
 
 type Props = {
   expanded: boolean;
@@ -42,19 +41,20 @@ export default ({ expanded, onChange }: Props) => {
   }, [searchValue, cultures]);
 
   return (
-    <Accordion expanded={expanded} onChange={onChange}>
-      <FilterAccordionSummary label="Cultures" ariaControls="culture-filter-content" id="culture-filter-summary" />
-      {expanded ? (
-        <AccordionDetails>
-          <FilterSearchField id="culture-filter-search" onChange={handleSearchChange} />
-          <List>
-            {displayCultures.map((continent) => {
-              const cultureContinent = continent as CultureWithRegions;
-              return <ContinentAccordion key={cultureContinent.id} continent={cultureContinent} />;
-            })}
-          </List>
-        </AccordionDetails>
-      ) : null}
-    </Accordion>
+    <FilterAccordionFrame
+      expanded={expanded}
+      onChange={onChange}
+      label="Cultures"
+      ariaControls="culture-filter-content"
+      id="culture-filter-summary"
+    >
+      <FilterSearchField id="culture-filter-search" onChange={handleSearchChange} />
+      <List>
+        {displayCultures.map((continent) => {
+          const cultureContinent = continent as CultureWithRegions;
+          return <ContinentAccordion key={cultureContinent.id} continent={cultureContinent} />;
+        })}
+      </List>
+    </FilterAccordionFrame>
   );
 };

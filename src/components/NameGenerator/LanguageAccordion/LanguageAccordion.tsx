@@ -1,14 +1,12 @@
 import { useMemo, useState } from 'react';
 import { useFilters } from '@/state/filter/filter.context';
 
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import List from '@mui/material/List';
-import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
 import ContinentAccordion from './ContinentAccordion/ContinentAccordion';
 import type { LanguageWithRegions } from '@/api/generated';
-import FilterAccordionSummary from '@/components/NameGenerator/FilterAccordionSummary/FilterAccordionSummary';
+import FilterAccordionFrame from '@/components/NameGenerator/FilterAccordionFrame/FilterAccordionFrame';
 import FilterSearchField from '@/components/NameGenerator/FilterSearchField/FilterSearchField';
+import './LanguageAccordion.css';
 
 type Props = {
   expanded: boolean;
@@ -43,19 +41,20 @@ export default ({ expanded, onChange }: Props) => {
   }, [searchValue, languages]);
 
   return (
-    <Accordion expanded={expanded} onChange={onChange}>
-      <FilterAccordionSummary label="Languages" ariaControls="language-filter-content" id="language-filter-summary" />
-      {expanded ? (
-        <AccordionDetails>
-          <FilterSearchField id="language-filter-search" onChange={handleSearchChange} />
-          <List>
-            {displayLanguages.map((continent) => {
-              const languageContinent = continent as LanguageWithRegions;
-              return <ContinentAccordion key={languageContinent.id} continent={languageContinent} />;
-            })}
-          </List>
-        </AccordionDetails>
-      ) : null}
-    </Accordion>
+    <FilterAccordionFrame
+      expanded={expanded}
+      onChange={onChange}
+      label="Languages"
+      ariaControls="language-filter-content"
+      id="language-filter-summary"
+    >
+      <FilterSearchField id="language-filter-search" onChange={handleSearchChange} />
+      <List>
+        {displayLanguages.map((continent) => {
+          const languageContinent = continent as LanguageWithRegions;
+          return <ContinentAccordion key={languageContinent.id} continent={languageContinent} />;
+        })}
+      </List>
+    </FilterAccordionFrame>
   );
 };
