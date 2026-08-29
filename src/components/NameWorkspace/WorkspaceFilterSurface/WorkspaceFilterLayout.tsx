@@ -5,6 +5,7 @@ import GenderFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurfac
 import LanguageFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurface/LanguageFilterColumn';
 import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
 import WorkspaceFilterToggle from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceFilterToggle';
+import { useWorkspaceFilterDraftState } from '@/components/NameWorkspace/WorkspaceFilterSurface/useWorkspaceFilterDraftState';
 import './WorkspaceFilterLayout.css';
 
 type Props = {
@@ -12,29 +13,54 @@ type Props = {
   onToggle: () => void;
 };
 
-const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => (
-  <div className="workspace-filter-layout">
-    <div className="workspace-filter-layout-summary-row">
-      <WorkspaceFilterToggle isOpen={isOpen} onToggle={onToggle} />
-      <div className="workspace-filter-layout-applied-chips" aria-label="Applied filters">
-        <WorkspaceAppliedFilterChip label="Gender: Neutral" />
-        <WorkspaceAppliedFilterChip label="Decade: 1990s" />
-        <WorkspaceAppliedFilterChip label="Culture: Irish" />
-        <WorkspaceAppliedFilterChip label="Language: French" />
-      </div>
-    </div>
-    {isOpen && (
-      <div className="workspace-filter-layout-selector-row">
-        <div className="workspace-filter-layout-columns" aria-label="Available filter categories">
-          <GenderFilterColumn />
-          <DecadeFilterColumn />
-          <CultureFilterColumn />
-          <LanguageFilterColumn />
+const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
+  const { appliedFilterChips, availableFilterOptions, commitDraftFilters, draftFilters, hasDraftFilters, setDraftFilters } =
+    useWorkspaceFilterDraftState();
+
+  const handleSetFilters = () => {
+    commitDraftFilters();
+    onToggle();
+  };
+
+  return (
+    <div className="workspace-filter-layout">
+      <div className="workspace-filter-layout-summary-row">
+        <WorkspaceFilterToggle isOpen={isOpen} onToggle={onToggle} />
+        <div className="workspace-filter-layout-applied-chips" aria-label="Applied filters">
+          {appliedFilterChips.map((chip) => (
+            <WorkspaceAppliedFilterChip key={chip.id} label={chip.label} onDelete={chip.onDelete} />
+          ))}
         </div>
-        <WorkspaceFilterActions isOpen={isOpen} />
       </div>
-    )}
-  </div>
-);
+      {isOpen && (
+        <div className="workspace-filter-layout-selector-row">
+          <div className="workspace-filter-layout-columns" aria-label="Available filter categories">
+            <GenderFilterColumn
+              options={availableFilterOptions.genders}
+              selectedOptionIds={draftFilters.genders}
+              onChange={(genders) => setDraftFilters((currentFilters) => ({ ...currentFilters, genders }))}
+            />
+            <DecadeFilterColumn
+              options={availableFilterOptions.decades}
+              selectedOptionIds={draftFilters.decades}
+              onChange={(decades) => setDraftFilters((currentFilters) => ({ ...currentFilters, decades }))}
+            />
+            <CultureFilterColumn
+              options={availableFilterOptions.cultures}
+              selectedOptionIds={draftFilters.cultures}
+              onChange={(cultures) => setDraftFilters((currentFilters) => ({ ...currentFilters, cultures }))}
+            />
+            <LanguageFilterColumn
+              options={availableFilterOptions.languages}
+              selectedOptionIds={draftFilters.languages}
+              onChange={(languages) => setDraftFilters((currentFilters) => ({ ...currentFilters, languages }))}
+            />
+          </div>
+          <WorkspaceFilterActions isOpen={isOpen} onSetFilters={handleSetFilters} disabled={!hasDraftFilters} />
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default WorkspaceFilterLayout;

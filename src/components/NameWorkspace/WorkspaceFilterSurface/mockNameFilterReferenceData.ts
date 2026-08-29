@@ -1,15 +1,4 @@
-export type FilterPickerOption = {
-  id: number;
-  label: string;
-  searchText: string;
-};
-
-export type NameFilterReferenceData = {
-  genderOptions: FilterPickerOption[];
-  decadeOptions: FilterPickerOption[];
-  cultureOptions: FilterPickerOption[];
-  languageOptions: FilterPickerOption[];
-};
+import type { NameFilterReferenceData } from '@/models/NameFilterReferenceData';
 
 export const mockNameFilterReferenceData: NameFilterReferenceData = {
   "genderOptions": [

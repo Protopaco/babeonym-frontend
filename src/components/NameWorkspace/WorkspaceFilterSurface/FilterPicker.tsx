@@ -10,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useMemo, useState } from 'react';
-import type { FilterPickerOption } from '@/components/NameWorkspace/WorkspaceFilterSurface/mockNameFilterReferenceData';
+import type { FilterPickerOption } from '@/models/FilterPickerOption';
 import './FilterPicker.css';
 
 type Props = {

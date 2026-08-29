@@ -1,22 +1,25 @@
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
 import FilterPicker from '@/components/NameWorkspace/WorkspaceFilterSurface/FilterPicker';
-import { mockNameFilterReferenceData } from '@/components/NameWorkspace/WorkspaceFilterSurface/mockNameFilterReferenceData';
+import type { FilterPickerOption } from '@/models/FilterPickerOption';
 import './CultureFilterColumn.css';
 
-const CultureFilterColumn = () => {
-  const [selectedCultureIds, setSelectedCultureIds] = useState<number[]>([]);
+type Props = {
+  options: FilterPickerOption[];
+  selectedOptionIds: number[];
+  onChange: (selectedOptionIds: number[]) => void;
+};
 
+const CultureFilterColumn = ({ options, selectedOptionIds, onChange }: Props) => {
   return (
     <div className="culture-filter-column">
       <Typography className="culture-filter-column-title">Culture</Typography>
       <div className="culture-filter-column-selector" aria-label="Culture available filters">
         <FilterPicker
           ariaLabel="Culture filter options"
-          options={mockNameFilterReferenceData.cultureOptions}
+          options={options}
           searchLabel="Search cultures"
-          selectedOptionIds={selectedCultureIds}
-          onChange={setSelectedCultureIds}
+          selectedOptionIds={selectedOptionIds}
+          onChange={onChange}
         />
       </div>
     </div>

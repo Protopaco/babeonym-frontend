@@ -1,22 +1,25 @@
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
 import FilterPicker from '@/components/NameWorkspace/WorkspaceFilterSurface/FilterPicker';
-import { mockNameFilterReferenceData } from '@/components/NameWorkspace/WorkspaceFilterSurface/mockNameFilterReferenceData';
+import type { FilterPickerOption } from '@/models/FilterPickerOption';
 import './DecadeFilterColumn.css';
 
-const DecadeFilterColumn = () => {
-  const [selectedDecadeIds, setSelectedDecadeIds] = useState<number[]>([]);
+type Props = {
+  options: FilterPickerOption[];
+  selectedOptionIds: number[];
+  onChange: (selectedOptionIds: number[]) => void;
+};
 
+const DecadeFilterColumn = ({ options, selectedOptionIds, onChange }: Props) => {
   return (
     <div className="decade-filter-column">
       <Typography className="decade-filter-column-title">Decade</Typography>
       <div className="decade-filter-column-selector" aria-label="Decade available filters">
         <FilterPicker
           ariaLabel="Decade filter options"
-          options={mockNameFilterReferenceData.decadeOptions}
+          options={options}
           searchLabel="Search decades"
-          selectedOptionIds={selectedDecadeIds}
-          onChange={setSelectedDecadeIds}
+          selectedOptionIds={selectedOptionIds}
+          onChange={onChange}
         />
       </div>
     </div>

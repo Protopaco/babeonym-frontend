@@ -1,22 +1,25 @@
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
 import FilterPicker from '@/components/NameWorkspace/WorkspaceFilterSurface/FilterPicker';
-import { mockNameFilterReferenceData } from '@/components/NameWorkspace/WorkspaceFilterSurface/mockNameFilterReferenceData';
+import type { FilterPickerOption } from '@/models/FilterPickerOption';
 import './LanguageFilterColumn.css';
 
-const LanguageFilterColumn = () => {
-  const [selectedLanguageIds, setSelectedLanguageIds] = useState<number[]>([]);
+type Props = {
+  options: FilterPickerOption[];
+  selectedOptionIds: number[];
+  onChange: (selectedOptionIds: number[]) => void;
+};
 
+const LanguageFilterColumn = ({ options, selectedOptionIds, onChange }: Props) => {
   return (
     <div className="language-filter-column">
       <Typography className="language-filter-column-title">Language</Typography>
       <div className="language-filter-column-selector" aria-label="Language available filters">
         <FilterPicker
           ariaLabel="Language filter options"
-          options={mockNameFilterReferenceData.languageOptions}
+          options={options}
           searchLabel="Search languages"
-          selectedOptionIds={selectedLanguageIds}
-          onChange={setSelectedLanguageIds}
+          selectedOptionIds={selectedOptionIds}
+          onChange={onChange}
         />
       </div>
     </div>

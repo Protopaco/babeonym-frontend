@@ -4,10 +4,11 @@ import './WorkspaceAppliedFilterChip.css';
 
 type Props = {
   label: string;
+  onDelete: () => void;
 };
 
-const WorkspaceAppliedFilterChip = ({ label }: Props) => (
-  <Chip className="workspace-applied-filter-chip" label={label} deleteIcon={<CancelIcon />} onDelete={() => undefined} />
+const WorkspaceAppliedFilterChip = ({ label, onDelete }: Props) => (
+  <Chip className="workspace-applied-filter-chip" label={label} deleteIcon={<CancelIcon />} onDelete={onDelete} />
 );
 
 export default WorkspaceAppliedFilterChip;
