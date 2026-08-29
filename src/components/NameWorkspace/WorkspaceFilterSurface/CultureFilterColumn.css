@@ -7,7 +7,7 @@
 
 .culture-filter-column-title,
 .culture-filter-column-title.MuiTypography-root {
-  color: var(--color-primary-contrast);
+  color: var(--color-primary);
   font-size: 18px;
   font-weight: 400;
 }
