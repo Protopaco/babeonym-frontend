@@ -3,6 +3,7 @@ import CultureFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurfa
 import DecadeFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurface/DecadeFilterColumn';
 import GenderFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurface/GenderFilterColumn';
 import LanguageFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurface/LanguageFilterColumn';
+import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
 import WorkspaceFilterToggle from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceFilterToggle';
 import './WorkspaceFilterLayout.css';
 
@@ -13,38 +14,26 @@ type Props = {
 
 const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => (
   <div className="workspace-filter-layout">
-    <div className="workspace-filter-layout-label-row">
-      <WorkspaceFilterToggle isOpen={isOpen} onToggle={onToggle} />
-      <div className="workspace-filter-layout-columns" aria-label="Filter category labels">
-        <GenderFilterColumn mode="label" />
-        <DecadeFilterColumn mode="label" />
-        <CultureFilterColumn mode="label" />
-        <LanguageFilterColumn mode="label" />
+    <div className="workspace-filter-layout-summary-row">
+      <div className="workspace-filter-layout-applied-chips" aria-label="Applied filters">
+        <WorkspaceAppliedFilterChip label="Gender: Neutral" />
+        <WorkspaceAppliedFilterChip label="Decade: 1990s" />
+        <WorkspaceAppliedFilterChip label="Culture: Irish" />
+        <WorkspaceAppliedFilterChip label="Language: French" />
       </div>
-      <div className="workspace-filter-layout-spacer" />
+      <WorkspaceFilterToggle isOpen={isOpen} onToggle={onToggle} />
     </div>
     {isOpen && (
       <div className="workspace-filter-layout-selector-row">
-        <div className="workspace-filter-layout-spacer" />
         <div className="workspace-filter-layout-columns" aria-label="Available filter categories">
-          <GenderFilterColumn mode="selector" />
-          <DecadeFilterColumn mode="selector" />
-          <CultureFilterColumn mode="selector" />
-          <LanguageFilterColumn mode="selector" />
+          <GenderFilterColumn />
+          <DecadeFilterColumn />
+          <CultureFilterColumn />
+          <LanguageFilterColumn />
         </div>
         <WorkspaceFilterActions isOpen={isOpen} />
       </div>
     )}
-    <div className="workspace-filter-layout-applied-row">
-      <div className="workspace-filter-layout-spacer" />
-      <div className="workspace-filter-layout-columns" aria-label="Applied filter categories">
-        <GenderFilterColumn mode="applied" />
-        <DecadeFilterColumn mode="applied" />
-        <CultureFilterColumn mode="applied" />
-        <LanguageFilterColumn mode="applied" />
-      </div>
-      <div className="workspace-filter-layout-spacer" />
-    </div>
   </div>
 );
 
