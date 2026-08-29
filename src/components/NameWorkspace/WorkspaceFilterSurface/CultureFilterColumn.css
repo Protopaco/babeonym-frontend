@@ -5,10 +5,11 @@
   gap: 6px;
 }
 
-.culture-filter-column-title {
+.culture-filter-column-title,
+.culture-filter-column-title.MuiTypography-root {
   color: var(--color-primary-contrast);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .culture-filter-column-selector,
