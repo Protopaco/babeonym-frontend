@@ -51,6 +51,7 @@ export const useWorkspaceFilterDraftState = () => {
       genders: genderFilters.availableOptions,
       languages: languageFilters.availableOptions,
     },
+    clearDraftFilters: () => filterCategories.forEach((filterCategory) => filterCategory.clearDraft()),
     commitDraftFilters,
     draftFilters: {
       cultures: cultureFilters.draftOptionIds,

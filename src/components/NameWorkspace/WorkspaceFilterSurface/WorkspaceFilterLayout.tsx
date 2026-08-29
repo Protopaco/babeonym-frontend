@@ -14,7 +14,7 @@ type Props = {
 };
 
 const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
-  const { appliedFilterChips, availableFilterOptions, commitDraftFilters, draftFilters, hasDraftFilters, setDraftFilters } =
+  const { appliedFilterChips, availableFilterOptions, clearDraftFilters, commitDraftFilters, draftFilters, hasDraftFilters, setDraftFilters } =
     useWorkspaceFilterDraftState();
 
   const handleSetFilters = () => {
@@ -22,10 +22,23 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
     onToggle();
   };
 
+  const handleCloseFilters = () => {
+    clearDraftFilters();
+    onToggle();
+  };
+
+  const handleToggleFilters = () => {
+    if (isOpen) {
+      clearDraftFilters();
+    }
+
+    onToggle();
+  };
+
   return (
     <div className="workspace-filter-layout">
       <div className="workspace-filter-layout-summary-row">
-        <WorkspaceFilterToggle isOpen={isOpen} onToggle={onToggle} />
+        <WorkspaceFilterToggle isOpen={isOpen} onToggle={handleToggleFilters} />
         <div className="workspace-filter-layout-applied-chips" aria-label="Applied filters">
           {appliedFilterChips.map((chip) => (
             <WorkspaceAppliedFilterChip key={chip.id} label={chip.label} onDelete={chip.onDelete} />
@@ -56,7 +69,7 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
               onChange={setDraftFilters.languages}
             />
           </div>
-          <WorkspaceFilterActions isOpen={isOpen} onSetFilters={handleSetFilters} disabled={!hasDraftFilters} />
+          <WorkspaceFilterActions isOpen={isOpen} onClose={handleCloseFilters} onSetFilters={handleSetFilters} disabled={!hasDraftFilters} />
         </div>
       )}
     </div>
