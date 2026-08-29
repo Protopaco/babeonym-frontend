@@ -42,7 +42,7 @@ const FilterPicker = ({ ariaLabel, options, searchLabel, searchable = true, sele
   };
 
   return (
-    <div className="filter-picker">
+    <div className="filter-picker" data-searchable={searchable}>
       {searchable && (
         <TextField
           className="filter-picker-search"
