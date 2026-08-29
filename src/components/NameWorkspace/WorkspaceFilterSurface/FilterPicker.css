@@ -1,4 +1,4 @@
-.language-filter-picker {
+.filter-picker {
   box-sizing: border-box;
   height: 300px;
   display: grid;
@@ -6,71 +6,70 @@
   gap: 4px;
 }
 
-.language-filter-picker-search .MuiInputLabel-root,
-.language-filter-picker-search .MuiInputBase-input {
+.filter-picker-search .MuiInputLabel-root,
+.filter-picker-search .MuiInputBase-input {
   color: var(--color-primary);
   font-size: 1rem;
 }
 
-.language-filter-picker-search .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+.filter-picker-search .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   border-color: var(--color-primary-edge);
 }
 
-.language-filter-picker-options {
+.filter-picker-options {
   min-height: 0;
   overflow: auto;
   border: 1px solid var(--color-primary-edge);
   padding: 0;
 }
 
-.language-filter-picker-option.MuiListItemButton-root {
+.filter-picker-option.MuiListItemButton-root {
   color: var(--color-primary);
   padding: 0 8px;
 }
 
-.language-filter-picker-option .MuiListItemText-primary {
+.filter-picker-option .MuiListItemText-primary {
   font-size: 1rem;
 }
 
-.language-filter-picker-checkbox.MuiCheckbox-root {
+.filter-picker-checkbox.MuiCheckbox-root {
   color: var(--color-primary);
   padding: 2px 8px 2px 0;
 }
 
-.language-filter-picker-selected {
+.filter-picker-selected {
   display: grid;
   gap: 4px;
 }
 
-.language-filter-picker-selected-heading {
+.filter-picker-selected-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
 }
 
-.language-filter-picker-selected-label,
-.language-filter-picker-selected-label.MuiTypography-root {
+.filter-picker-selected-label,
+.filter-picker-selected-label.MuiTypography-root {
   color: var(--color-primary);
   font-size: 1rem;
-  /* font-weight: 400; */
 }
 
-.language-filter-picker-clear.MuiButton-root {
+.filter-picker-clear.MuiButton-root {
   color: var(--color-primary);
   font-size: 0.6rem;
   min-width: 0;
   padding: 0 4px;
 }
 
-.language-filter-picker-selected-list {
+.filter-picker-selected-list {
   min-height: 16px;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
 }
 
-.language-filter-picker-selected-chip.MuiChip-root {
+.filter-picker-selected-chip.MuiChip-root {
   color: var(--color-primary);
   background: var(--color-background);
   border: 1px solid var(--color-primary-edge);
@@ -78,6 +77,6 @@
   font-size: 1rem;
 }
 
-.language-filter-picker-selected-chip .MuiChip-deleteIcon {
+.filter-picker-selected-chip .MuiChip-deleteIcon {
   color: var(--color-primary);
 }
