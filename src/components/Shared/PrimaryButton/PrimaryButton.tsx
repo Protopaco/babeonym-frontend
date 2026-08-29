@@ -5,7 +5,7 @@ type Props = {
   text: string;
   onClick: Function;
   disabled?: boolean;
-  size?: 'default' | 'wide';
+  size?: 'default' | 'wide' | 'compact';
 };
 
 export default ({ text, onClick, disabled = false, size = 'default' }: Props) => {

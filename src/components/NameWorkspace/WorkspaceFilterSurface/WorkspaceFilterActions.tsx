@@ -1,4 +1,4 @@
-import Typography from '@mui/material/Typography';
+import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
 import './WorkspaceFilterActions.css';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 
 const WorkspaceFilterActions = ({ isOpen }: Props) => (
   <div className="workspace-filter-actions" aria-label="Filter actions">
-    {isOpen && <Typography className="workspace-filter-actions-placeholder">Actions</Typography>}
+    {isOpen && <PrimaryButton text="Set Filters" onClick={() => {}} size="compact" />}
   </div>
 );
 

@@ -16,6 +16,13 @@
   width: 320px;
 }
 
+.primary-button.MuiButton-root[data-size='compact'] {
+  width: 128px;
+  height: 36px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+}
+
 .primary-button.MuiButton-root:hover,
 .primary-button.MuiButton-root:focus-visible {
   border-color: var(--color-text-secondary);
