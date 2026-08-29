@@ -38,22 +38,22 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
             <GenderFilterColumn
               options={availableFilterOptions.genders}
               selectedOptionIds={draftFilters.genders}
-              onChange={(genders) => setDraftFilters((currentFilters) => ({ ...currentFilters, genders }))}
+              onChange={setDraftFilters.genders}
             />
             <DecadeFilterColumn
               options={availableFilterOptions.decades}
               selectedOptionIds={draftFilters.decades}
-              onChange={(decades) => setDraftFilters((currentFilters) => ({ ...currentFilters, decades }))}
+              onChange={setDraftFilters.decades}
             />
             <CultureFilterColumn
               options={availableFilterOptions.cultures}
               selectedOptionIds={draftFilters.cultures}
-              onChange={(cultures) => setDraftFilters((currentFilters) => ({ ...currentFilters, cultures }))}
+              onChange={setDraftFilters.cultures}
             />
             <LanguageFilterColumn
               options={availableFilterOptions.languages}
               selectedOptionIds={draftFilters.languages}
-              onChange={(languages) => setDraftFilters((currentFilters) => ({ ...currentFilters, languages }))}
+              onChange={setDraftFilters.languages}
             />
           </div>
           <WorkspaceFilterActions isOpen={isOpen} onSetFilters={handleSetFilters} disabled={!hasDraftFilters} />
