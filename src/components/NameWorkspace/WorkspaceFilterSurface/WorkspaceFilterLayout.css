@@ -8,12 +8,12 @@
   box-sizing: border-box;
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(128px, 14vw);
   gap: 16px;
   align-items: stretch;
 }
 
 .workspace-filter-layout-summary-row {
+  grid-template-columns: auto minmax(0, 1fr);
   min-height: 42px;
   padding: 6px 36px;
 }

@@ -1,25 +1,28 @@
 .workspace-filter-toggle {
   box-sizing: border-box;
-  min-height: 18px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  border: 1px solid var(--color-primary-contrast);
-  padding: 4px 12px;
+  justify-content: flex-start;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.workspace-filter-toggle-filter-icon {
+  color: var(--color-primary-contrast);
 }
 
 .workspace-filter-toggle-label,
 .workspace-filter-toggle-label.MuiTypography-root {
   color: var(--color-primary-contrast);
   font-weight: 400;
-  font-size: 18px;
+  font-size: 0.875rem;
 }
 
 .workspace-filter-toggle-button.MuiIconButton-root {
   color: var(--color-primary-contrast);
+  padding: 0;
 }
 
-.workspace-filter-toggle-button .workspace-filter-toggle-icon--open {
+.workspace-filter-toggle-button .workspace-filter-toggle-chevron--open {
   transform: rotate(180deg);
 }

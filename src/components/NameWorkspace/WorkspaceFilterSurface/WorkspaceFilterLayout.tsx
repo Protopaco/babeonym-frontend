@@ -15,13 +15,13 @@ type Props = {
 const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => (
   <div className="workspace-filter-layout">
     <div className="workspace-filter-layout-summary-row">
+      <WorkspaceFilterToggle isOpen={isOpen} onToggle={onToggle} />
       <div className="workspace-filter-layout-applied-chips" aria-label="Applied filters">
         <WorkspaceAppliedFilterChip label="Gender: Neutral" />
         <WorkspaceAppliedFilterChip label="Decade: 1990s" />
         <WorkspaceAppliedFilterChip label="Culture: Irish" />
         <WorkspaceAppliedFilterChip label="Language: French" />
       </div>
-      <WorkspaceFilterToggle isOpen={isOpen} onToggle={onToggle} />
     </div>
     {isOpen && (
       <div className="workspace-filter-layout-selector-row">

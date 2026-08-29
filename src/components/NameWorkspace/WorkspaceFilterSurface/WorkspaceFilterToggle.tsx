@@ -1,5 +1,5 @@
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import IconButton from '@mui/material/IconButton';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './WorkspaceFilterToggle.css';
 
@@ -10,16 +10,13 @@ type Props = {
 
 const WorkspaceFilterToggle = ({ isOpen, onToggle }: Props) => (
   <div className="workspace-filter-toggle">
-    <Typography className="workspace-filter-toggle-label">Filters</Typography>
-    <IconButton
-      className="workspace-filter-toggle-button"
-      aria-label={isOpen ? 'Close filters' : 'Open filters'}
-      aria-expanded={isOpen}
+    <Button
+      // variant="contained"
       onClick={onToggle}
-      size="small"
+      startIcon={<FilterListIcon className="workspace-filter-toggle-filter-icon" fontSize="small" />}
     >
-      <KeyboardArrowDownIcon className={isOpen ? 'workspace-filter-toggle-icon--open' : undefined} />
-    </IconButton>
+      <Typography className="workspace-filter-toggle-label">Filters</Typography>
+    </Button>
   </div>
 );
 
