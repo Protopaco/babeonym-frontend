@@ -1,0 +1,645 @@
+{
+  "languages": [
+    {
+      "id": 1,
+      "label": "Africa",
+      "regions": [
+        {
+          "id": 12,
+          "label": "East Africa",
+          "languages": [
+            {
+              "id": 3,
+              "label": "Amharic",
+              "flag": "🇪🇹"
+            },
+            {
+              "id": 208,
+              "label": "Somali",
+              "flag": "🇸🇴"
+            },
+            {
+              "id": 63,
+              "label": "Swahili",
+              "flag": "🇹🇿"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "label": "North Africa",
+          "languages": []
+        },
+        {
+          "id": 13,
+          "label": "Southern & Central Africa",
+          "languages": [
+            {
+              "id": 1,
+              "label": "Afrikaans",
+              "flag": "🇿🇦"
+            },
+            {
+              "id": 204,
+              "label": "Shona",
+              "flag": "🇿🇼"
+            },
+            {
+              "id": 72,
+              "label": "Zulu",
+              "flag": "🇿🇦"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "label": "West Africa",
+          "languages": [
+            {
+              "id": 203,
+              "label": "Akan",
+              "flag": "🇬🇭"
+            },
+            {
+              "id": 205,
+              "label": "Bemba",
+              "flag": "🇿🇲"
+            },
+            {
+              "id": 207,
+              "label": "Hausa",
+              "flag": "🇳🇬"
+            },
+            {
+              "id": 206,
+              "label": "Igbo",
+              "flag": "🇳🇬"
+            },
+            {
+              "id": 75,
+              "label": "Yoruba",
+              "flag": "🇳🇬"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Americas",
+      "regions": [
+        {
+          "id": 51,
+          "label": "Caribbean",
+          "languages": []
+        },
+        {
+          "id": 50,
+          "label": "North America",
+          "languages": [
+            {
+              "id": 211,
+              "label": "Haitian Creole",
+              "flag": "🇭🇹"
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "label": "South America",
+          "languages": [
+            {
+              "id": 212,
+              "label": "Guarani",
+              "flag": "🇵🇾"
+            },
+            {
+              "id": 213,
+              "label": "Quechua",
+              "flag": "🌍"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "label": "Asia",
+      "regions": [
+        {
+          "id": 31,
+          "label": "Central Asia",
+          "languages": [
+            {
+              "id": 37,
+              "label": "Kazakh",
+              "flag": "🇰🇿"
+            },
+            {
+              "id": 40,
+              "label": "Kyrgyz",
+              "flag": "🇰🇬"
+            },
+            {
+              "id": 202,
+              "label": "Uzbek",
+              "flag": "🇺🇿"
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "label": "East Asia",
+          "languages": [
+            {
+              "id": 13,
+              "label": "Chinese",
+              "flag": "🇨🇳"
+            },
+            {
+              "id": 34,
+              "label": "Japanese",
+              "flag": "🇯🇵"
+            },
+            {
+              "id": 39,
+              "label": "Korean",
+              "flag": "🇰🇷"
+            },
+            {
+              "id": 48,
+              "label": "Mongolian",
+              "flag": "🇲🇳"
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "label": "South Asia",
+          "languages": [
+            {
+              "id": 9,
+              "label": "Bengali",
+              "flag": "🇧🇩"
+            },
+            {
+              "id": 201,
+              "label": "Dzongkha",
+              "flag": "🇧🇹"
+            },
+            {
+              "id": 27,
+              "label": "Gujarati",
+              "flag": "🇮🇳"
+            },
+            {
+              "id": 29,
+              "label": "Hindi",
+              "flag": "🇮🇳"
+            },
+            {
+              "id": 36,
+              "label": "Kannada",
+              "flag": "🇮🇳"
+            },
+            {
+              "id": 46,
+              "label": "Malayalam",
+              "flag": "🇮🇳"
+            },
+            {
+              "id": 47,
+              "label": "Marathi",
+              "flag": "🇮🇳"
+            },
+            {
+              "id": 49,
+              "label": "Nepali",
+              "flag": "🇳🇵"
+            },
+            {
+              "id": 54,
+              "label": "Punjabi",
+              "flag": "🇮🇳"
+            },
+            {
+              "id": 59,
+              "label": "Sinhala",
+              "flag": "🇱🇰"
+            },
+            {
+              "id": 65,
+              "label": "Tamil",
+              "flag": "🇮🇳"
+            },
+            {
+              "id": 66,
+              "label": "Telugu",
+              "flag": "🇮🇳"
+            },
+            {
+              "id": 70,
+              "label": "Urdu",
+              "flag": "🇵🇰"
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "label": "Southeast Asia",
+          "languages": [
+            {
+              "id": 11,
+              "label": "Burmese",
+              "flag": "🇲🇲"
+            },
+            {
+              "id": 20,
+              "label": "Filipino",
+              "flag": "🇵🇭"
+            },
+            {
+              "id": 32,
+              "label": "Indonesian",
+              "flag": "🇮🇩"
+            },
+            {
+              "id": 35,
+              "label": "Javanese",
+              "flag": "🇮🇩"
+            },
+            {
+              "id": 38,
+              "label": "Khmer",
+              "flag": "🇰🇭"
+            },
+            {
+              "id": 41,
+              "label": "Lao",
+              "flag": "🇱🇦"
+            },
+            {
+              "id": 45,
+              "label": "Malay",
+              "flag": "🇲🇾"
+            },
+            {
+              "id": 67,
+              "label": "Thai",
+              "flag": "🇹🇭"
+            },
+            {
+              "id": 71,
+              "label": "Vietnamese",
+              "flag": "🇻🇳"
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "label": "West Asia & Caucasus",
+          "languages": [
+            {
+              "id": 4,
+              "label": "Arabic",
+              "flag": "🇸🇦"
+            },
+            {
+              "id": 5,
+              "label": "Armenian",
+              "flag": "🇦🇲"
+            },
+            {
+              "id": 6,
+              "label": "Azerbaijani",
+              "flag": "🇦🇿"
+            },
+            {
+              "id": 24,
+              "label": "Georgian",
+              "flag": "🇬🇪"
+            },
+            {
+              "id": 28,
+              "label": "Hebrew",
+              "flag": "🇮🇱"
+            },
+            {
+              "id": 210,
+              "label": "Kurdish",
+              "flag": "🌍"
+            },
+            {
+              "id": 51,
+              "label": "Persian",
+              "flag": "🇮🇷"
+            },
+            {
+              "id": 68,
+              "label": "Turkish",
+              "flag": "🇹🇷"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Europe",
+      "regions": [
+        {
+          "id": 26,
+          "label": "Balkans",
+          "languages": [
+            {
+              "id": 2,
+              "label": "Albanian",
+              "flag": "🇦🇱"
+            },
+            {
+              "id": 10,
+              "label": "Bulgarian",
+              "flag": "🇧🇬"
+            },
+            {
+              "id": 14,
+              "label": "Croatian",
+              "flag": "🇭🇷"
+            },
+            {
+              "id": 44,
+              "label": "Macedonian",
+              "flag": "🇲🇰"
+            },
+            {
+              "id": 55,
+              "label": "Romanian",
+              "flag": "🇷🇴"
+            },
+            {
+              "id": 58,
+              "label": "Serbian",
+              "flag": "🇷🇸"
+            },
+            {
+              "id": 61,
+              "label": "Slovenian",
+              "flag": "🇸🇮"
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "label": "British Isles",
+          "languages": [
+            {
+              "id": 18,
+              "label": "English",
+              "flag": "🇦🇺"
+            },
+            {
+              "id": 197,
+              "label": "Irish",
+              "flag": "🇮🇪"
+            },
+            {
+              "id": 199,
+              "label": "Scottish Gaelic",
+              "flag": "🇬🇧"
+            },
+            {
+              "id": 198,
+              "label": "Welsh",
+              "flag": "🇬🇧"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "label": "Central Europe",
+          "languages": [
+            {
+              "id": 15,
+              "label": "Czech",
+              "flag": "🇨🇿"
+            },
+            {
+              "id": 30,
+              "label": "Hungarian",
+              "flag": "🇭🇺"
+            },
+            {
+              "id": 52,
+              "label": "Polish",
+              "flag": "🇵🇱"
+            },
+            {
+              "id": 56,
+              "label": "Romansh",
+              "flag": "🇨🇭"
+            },
+            {
+              "id": 60,
+              "label": "Slovak",
+              "flag": "🇸🇰"
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "label": "Eastern Europe",
+          "languages": [
+            {
+              "id": 8,
+              "label": "Belarusian",
+              "flag": "🇧🇾"
+            },
+            {
+              "id": 42,
+              "label": "Latvian",
+              "flag": "🇱🇻"
+            },
+            {
+              "id": 43,
+              "label": "Lithuanian",
+              "flag": "🇱🇹"
+            },
+            {
+              "id": 57,
+              "label": "Russian",
+              "flag": "🇷🇺"
+            },
+            {
+              "id": 69,
+              "label": "Ukrainian",
+              "flag": "🇺🇦"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "label": "Northern Europe",
+          "languages": [
+            {
+              "id": 16,
+              "label": "Danish",
+              "flag": "🇩🇰"
+            },
+            {
+              "id": 19,
+              "label": "Estonian",
+              "flag": "🇪🇪"
+            },
+            {
+              "id": 21,
+              "label": "Finnish",
+              "flag": "🇫🇮"
+            },
+            {
+              "id": 31,
+              "label": "Icelandic",
+              "flag": "🇮🇸"
+            },
+            {
+              "id": 50,
+              "label": "Norwegian",
+              "flag": "🇳🇴"
+            },
+            {
+              "id": 64,
+              "label": "Swedish",
+              "flag": "🇸🇪"
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "label": "Pan-European",
+          "languages": [
+            {
+              "id": 209,
+              "label": "Latin",
+              "flag": "🌍"
+            },
+            {
+              "id": 196,
+              "label": "Yiddish",
+              "flag": "🌍"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "label": "Southern Europe",
+          "languages": [
+            {
+              "id": 26,
+              "label": "Greek",
+              "flag": "🇬🇷"
+            },
+            {
+              "id": 33,
+              "label": "Italian",
+              "flag": "🇮🇹"
+            },
+            {
+              "id": 53,
+              "label": "Portuguese",
+              "flag": "🇵🇹"
+            },
+            {
+              "id": 62,
+              "label": "Spanish",
+              "flag": "🇪🇸"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "label": "Western Europe",
+          "languages": [
+            {
+              "id": 7,
+              "label": "Basque",
+              "flag": "🇪🇸"
+            },
+            {
+              "id": 200,
+              "label": "Breton",
+              "flag": "🇫🇷"
+            },
+            {
+              "id": 12,
+              "label": "Catalan",
+              "flag": "🇪🇸"
+            },
+            {
+              "id": 17,
+              "label": "Dutch",
+              "flag": "🇳🇱"
+            },
+            {
+              "id": 22,
+              "label": "French",
+              "flag": "🇫🇷"
+            },
+            {
+              "id": 23,
+              "label": "Galician",
+              "flag": "🇪🇸"
+            },
+            {
+              "id": 25,
+              "label": "German",
+              "flag": "🇩🇪"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "label": "Oceania",
+      "regions": [
+        {
+          "id": 40,
+          "label": "Australia & New Zealand",
+          "languages": [
+            {
+              "id": 74,
+              "label": "Māori",
+              "flag": "🇳🇿"
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "label": "Melanesia",
+          "languages": [
+            {
+              "id": 73,
+              "label": "Fijian",
+              "flag": "🇫🇯"
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "label": "Polynesia",
+          "languages": [
+            {
+              "id": 214,
+              "label": "Hawaiian",
+              "flag": "🌍"
+            },
+            {
+              "id": 215,
+              "label": "Samoan",
+              "flag": "🇼🇸"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

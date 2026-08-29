@@ -1,0 +1,79 @@
+{
+  "decades": [
+    {
+      "id": 1,
+      "decade": 2020,
+      "label": "2020s"
+    },
+    {
+      "id": 10,
+      "decade": 2010,
+      "label": "2010s"
+    },
+    {
+      "id": 8,
+      "decade": 2000,
+      "label": "2000s"
+    },
+    {
+      "id": 6,
+      "decade": 1990,
+      "label": "1990s"
+    },
+    {
+      "id": 15,
+      "decade": 1980,
+      "label": "1980s"
+    },
+    {
+      "id": 11,
+      "decade": 1970,
+      "label": "1970s"
+    },
+    {
+      "id": 2,
+      "decade": 1960,
+      "label": "1960s"
+    },
+    {
+      "id": 7,
+      "decade": 1950,
+      "label": "1950s"
+    },
+    {
+      "id": 14,
+      "decade": 1940,
+      "label": "1940s"
+    },
+    {
+      "id": 12,
+      "decade": 1930,
+      "label": "1930s"
+    },
+    {
+      "id": 5,
+      "decade": 1920,
+      "label": "1920s"
+    },
+    {
+      "id": 4,
+      "decade": 1910,
+      "label": "1910s"
+    },
+    {
+      "id": 3,
+      "decade": 1900,
+      "label": "1900s"
+    },
+    {
+      "id": 9,
+      "decade": 1890,
+      "label": "1890s"
+    },
+    {
+      "id": 13,
+      "decade": 1880,
+      "label": "1880s"
+    }
+  ]
+}
