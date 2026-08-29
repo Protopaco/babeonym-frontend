@@ -3,19 +3,22 @@ import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilt
 import './CultureFilterColumn.css';
 
 type Props = {
-  isOpen: boolean;
+  mode: 'label' | 'selector' | 'applied';
 };
 
-const CultureFilterColumn = ({ isOpen }: Props) => (
+const CultureFilterColumn = ({ mode }: Props) => (
   <div className="culture-filter-column">
-    {isOpen && (
-      <div className="culture-filter-column-available" aria-label="Culture available filters">
-        <Typography className="culture-filter-column-label">Culture</Typography>
+    {mode === 'label' && <Typography className="culture-filter-column-title">Culture</Typography>}
+    {mode === 'selector' && (
+      <div className="culture-filter-column-selector" aria-label="Culture available filters">
+        <Typography className="culture-filter-column-placeholder">Culture selector placeholder</Typography>
       </div>
     )}
-    <div className="culture-filter-column-applied" aria-label="Culture applied filters">
-      <WorkspaceAppliedFilterChip label="Irish" />
-    </div>
+    {mode === 'applied' && (
+      <div className="culture-filter-column-applied" aria-label="Culture applied filters">
+        <WorkspaceAppliedFilterChip label="Irish" />
+      </div>
+    )}
   </div>
 );
 

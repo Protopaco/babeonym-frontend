@@ -3,19 +3,22 @@ import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilt
 import './GenderFilterColumn.css';
 
 type Props = {
-  isOpen: boolean;
+  mode: 'label' | 'selector' | 'applied';
 };
 
-const GenderFilterColumn = ({ isOpen }: Props) => (
+const GenderFilterColumn = ({ mode }: Props) => (
   <div className="gender-filter-column">
-    {isOpen && (
-      <div className="gender-filter-column-available" aria-label="Gender available filters">
-        <Typography className="gender-filter-column-label">Gender</Typography>
+    {mode === 'label' && <Typography className="gender-filter-column-title">Gender</Typography>}
+    {mode === 'selector' && (
+      <div className="gender-filter-column-selector" aria-label="Gender available filters">
+        <Typography className="gender-filter-column-placeholder">Gender selector placeholder</Typography>
       </div>
     )}
-    <div className="gender-filter-column-applied" aria-label="Gender applied filters">
-      <WorkspaceAppliedFilterChip label="Neutral" />
-    </div>
+    {mode === 'applied' && (
+      <div className="gender-filter-column-applied" aria-label="Gender applied filters">
+        <WorkspaceAppliedFilterChip label="Neutral" />
+      </div>
+    )}
   </div>
 );
 

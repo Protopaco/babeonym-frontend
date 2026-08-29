@@ -2,18 +2,26 @@
   min-width: 0;
   display: grid;
   grid-template-rows: auto auto;
-  gap: 8px;
+  gap: 6px;
 }
 
-.gender-filter-column-available,
+.gender-filter-column-title {
+  color: var(--color-primary-contrast);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.gender-filter-column-selector,
 .gender-filter-column-applied {
   box-sizing: border-box;
   min-width: 0;
   border: 1px solid var(--color-primary-contrast);
-  padding: 8px;
+  padding: 6px;
 }
 
-.gender-filter-column-available {
+.gender-filter-column-selector {
+  background: var(--color-secondary);
+  border-color: var(--color-primary-edge);
   min-height: 72px;
 }
 
@@ -24,11 +32,10 @@
   gap: 6px;
 }
 
-.gender-filter-column-label,
 .gender-filter-column-placeholder {
-  color: var(--color-primary-contrast);
+  color: var(--color-primary);
 }
 
 .gender-filter-column-placeholder {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 }
