@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 import '@/components/NameGenerator/NameEvaluator/NameEvaluator.css';
 import { Typography } from '@mui/material';
 import { useUser } from '@/state/user/user.context';
-import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
-import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
 import EvaluatedNameDisplay from '@/components/NameGenerator/NameEvaluator/EvaluatedNameDisplay';
 import MobileNameEvaluationActions from '@/components/NameGenerator/NameEvaluator/MobileNameEvaluationActions';
 import NameEvaluationActions from '@/components/NameGenerator/NameEvaluator/NameEvaluationActions';
@@ -22,29 +20,29 @@ export default () => {
   return (
     <Box id="name-evaluator">
       <Box id="name-evaluator-column">
-        <Box id="name-evaluator-header">
-          <SectionHeader title="Name Generator" width="medium" />
-          <MobileSectionHeader title="Name Generator" />
-        </Box>
         <Box id="name-evaluator-content">
-          <EvaluatedNameDisplay currentCandidate={currentCandidate} givenNameProviderLoaded={givenNameProviderLoaded} />
-          {user?.surName ? (
-            <Typography variant="h3" id="user-surname">
-              {user.surName}
-            </Typography>
-          ) : null}
-          <NameEvaluationActions
-            approveClick={approveClick}
-            disabled={actionDisabled}
-            rejectClick={rejectClick}
-            snoozeClick={snoozeClick}
-          />
-          <MobileNameEvaluationActions
-            approveClick={approveClick}
-            disabled={actionDisabled}
-            rejectClick={rejectClick}
-            snoozeClick={snoozeClick}
-          />
+          <Box className="name-evaluator-display-row">
+            <EvaluatedNameDisplay currentCandidate={currentCandidate} givenNameProviderLoaded={givenNameProviderLoaded} />
+            {user?.surName ? (
+              <Typography variant="h3" id="user-surname">
+                {user.surName}
+              </Typography>
+            ) : null}
+          </Box>
+          <Box className="name-evaluator-actions-row">
+            <NameEvaluationActions
+              approveClick={approveClick}
+              disabled={actionDisabled}
+              rejectClick={rejectClick}
+              snoozeClick={snoozeClick}
+            />
+            <MobileNameEvaluationActions
+              approveClick={approveClick}
+              disabled={actionDisabled}
+              rejectClick={rejectClick}
+              snoozeClick={snoozeClick}
+            />
+          </Box>
         </Box>
       </Box>
     </Box>

@@ -1,0 +1,17 @@
+.workspace-mode-content {
+  box-sizing: border-box;
+  width: 100%;
+  height: 20vh;
+  min-height: 360px;
+  padding: 48px 48px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 599px) {
+  .workspace-mode-content {
+    min-height: 320px;
+    padding: 15px 32px 24px;
+  }
+}

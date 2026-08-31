@@ -1,17 +1,27 @@
 .workspace-mode-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-sm);
-  width: min(100% - var(--spacing-xl), 1120px);
-  margin: var(--spacing-xl) auto var(--spacing-lg);
+  width: 100%;
+  margin: var(--spacing-xl) 0 var(--spacing-lg);
+  height: 15vh;
+  max-height: 80px;
+  min-height: 55px;
+  display: flex;
+  align-items: end;
+}
+
+.workspace-mode-header-inner {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  max-width: 70vw;
+  margin: 0 auto;
   border-bottom: 3px solid var(--color-secondary);
 }
 
-.workspace-mode-header[data-active-mode='add'] {
+.workspace-mode-header-inner[data-active-mode='add'] {
   border-image: linear-gradient(to right, var(--color-primary) 0 50%, var(--color-secondary) 50% 100%) 1;
 }
 
-.workspace-mode-header[data-active-mode='compare'] {
+.workspace-mode-header-inner[data-active-mode='compare'] {
   border-image: linear-gradient(to right, var(--color-secondary) 0 50%, var(--color-primary) 50% 100%) 1;
 }
 
@@ -27,20 +37,13 @@
   cursor: pointer;
 }
 
-.workspace-mode-header-button:first-child {
-  text-align: left;
-}
-
-.workspace-mode-header-button:last-child {
-  text-align: right;
-}
-
 .workspace-mode-header-button[data-active='true'] {
   color: var(--color-primary);
 }
 
 .workspace-mode-header-button:disabled {
   color: var(--color-disabled);
+  -webkit-text-fill-color: var(--color-disabled);
   cursor: not-allowed;
 }
 
@@ -48,45 +51,18 @@
   color: var(--color-primary);
 }
 
-.workspace-mode-header-tooltip {
-  position: relative;
+.workspace-mode-header-tooltip-target {
   display: flex;
   justify-content: flex-end;
 }
 
-.workspace-mode-header-tooltip-text {
-  position: absolute;
-  top: calc(100% + var(--spacing-xs));
-  right: 0;
-  z-index: var(--z-index-tooltip);
-  width: max-content;
-  max-width: 260px;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius-sm);
-  background: var(--color-surface-raised);
-  color: var(--color-text-primary);
-  font-family: var(--font-family-primary);
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-regular);
-  line-height: 1.2;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(var(--spacing-xxs));
-  transition:
-    opacity var(--motion-duration-fast) var(--motion-easing-standard),
-    transform var(--motion-duration-fast) var(--motion-easing-standard);
-}
-
-.workspace-mode-header-tooltip:hover .workspace-mode-header-tooltip-text,
-.workspace-mode-header-tooltip:focus-within .workspace-mode-header-tooltip-text {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 @media (max-width: 599px) {
   .workspace-mode-header {
+    margin: var(--spacing-lg) 0 var(--spacing-md);
+  }
+
+  .workspace-mode-header-inner {
     width: min(100% - var(--spacing-md), 100%);
-    margin: var(--spacing-lg) auto var(--spacing-md);
     gap: var(--spacing-xs);
   }
 

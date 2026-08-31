@@ -1,3 +1,4 @@
+import BaseTooltip from '@/components/Shared/BaseTooltip/BaseTooltip';
 import './WorkspaceModeHeader.css';
 
 type WorkspaceMode = 'add' | 'compare';
@@ -10,32 +11,30 @@ type Props = {
 };
 
 const WorkspaceModeHeader = ({ activeMode, canCompareNames, onAddModeClick, onCompareModeClick }: Props) => (
-  <div className="workspace-mode-header" data-active-mode={activeMode}>
-    <button
-      className="workspace-mode-header-button"
-      data-active={activeMode === 'add'}
-      onClick={onAddModeClick}
-      type="button"
-    >
-      Name Generator
-    </button>
-    <span className="workspace-mode-header-tooltip" data-disabled={!canCompareNames}>
+  <div className="workspace-mode-header">
+    <div className="workspace-mode-header-inner" data-active-mode={activeMode}>
       <button
-        aria-describedby={!canCompareNames ? 'workspace-mode-header-compare-tooltip' : undefined}
         className="workspace-mode-header-button"
-        data-active={activeMode === 'compare'}
-        disabled={!canCompareNames}
-        onClick={onCompareModeClick}
+        data-active={activeMode === 'add'}
+        onClick={onAddModeClick}
         type="button"
       >
-        Compare Names
+        Name Generator
       </button>
-      {!canCompareNames ? (
-        <span className="workspace-mode-header-tooltip-text" id="workspace-mode-header-compare-tooltip" role="tooltip">
-          Add at least 2 names to compare.
+      <BaseTooltip title={!canCompareNames ? 'Add at least 2 names to compare.' : ''} placement="top">
+        <span className="workspace-mode-header-tooltip-target">
+          <button
+            className="workspace-mode-header-button"
+            data-active={activeMode === 'compare'}
+            disabled={!canCompareNames}
+            onClick={onCompareModeClick}
+            type="button"
+          >
+            Compare Names
+          </button>
         </span>
-      ) : null}
-    </span>
+      </BaseTooltip>
+    </div>
   </div>
 );
 

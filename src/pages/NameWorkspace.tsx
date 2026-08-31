@@ -1,5 +1,6 @@
 import NameGenerator from '@/components/NameGenerator/NameGenerator';
 import CompareNamesMode from '@/components/CompareNames/CompareNamesMode';
+import WorkspaceModeContent from '@/components/NameWorkspace/WorkspaceModeContent/WorkspaceModeContent';
 import WorkspaceModeHeader from '@/components/NameWorkspace/WorkspaceModeHeader/WorkspaceModeHeader';
 import WorkspaceApprovedNames from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceApprovedNames';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
@@ -54,9 +55,9 @@ const NameWorkspace = () => {
         onAddModeClick={showAddMode}
         onCompareModeClick={showCompareMode}
       />
-      <div className="name-workspace-active-mode">
+      <WorkspaceModeContent>
         {workspaceMode === 'compare' ? <CompareNamesMode /> : <NameGenerator />}
-      </div>
+      </WorkspaceModeContent>
       <WorkspaceApprovedNames approvedGivenNames={approvedGivenNames} isLoading={!givenNameProviderLoaded} />
     </div>
   );
