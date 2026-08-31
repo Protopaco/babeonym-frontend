@@ -1,4 +1,4 @@
-import type { UserState } from '@/state/user/user.types';
+import type { UserState } from '@/models/UserState';
 import { UserContext } from '@/state/user/user.context';
 import type { ReactNode } from 'react';
 import { useReducer, useMemo, useEffect, useRef } from 'react';
@@ -7,6 +7,7 @@ import { userApi, authApi } from '@/api/client';
 
 const initialState: UserState = {
   user: null,
+  userProviderLoaded: false,
 };
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
@@ -24,9 +25,13 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           const { user } = await userApi.v1UserGet();
           dispatch({ type: 'ADD_USER', payload: user });
         } catch (e: any) {
-          throw e;
+          console.error('Unable to create anonymous user session.', e);
         }
+      } else {
+        console.error('Unable to load user session.', err);
       }
+    } finally {
+      dispatch({ type: 'USER_PROVIDER_LOADED' });
     }
   };
 
@@ -46,7 +51,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     if (booted.current) return;
     booted.current = true;
     boot();
-  });
+  }, []);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

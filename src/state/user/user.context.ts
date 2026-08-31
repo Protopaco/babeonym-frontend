@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react';
 
-import type { UserState, UserAction } from '@/state/user/user.types';
+import type { UserAction } from '@/models/UserAction';
+import type { UserState } from '@/models/UserState';
 
 export const UserContext = createContext<{ state: UserState; dispatch: React.Dispatch<UserAction> } | undefined>(undefined);
 

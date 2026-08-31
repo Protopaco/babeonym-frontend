@@ -7,6 +7,7 @@ import { GivenNameContext } from '@/state/givenName/givenName.context';
 import type { GivenNameState } from '@/state/givenName/givenName.types';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
 import type { Gender } from '@/types/Gender';
+import { useUser } from '@/state/user/user.context';
 
 const initialState: GivenNameState = {
   givenNameCandidates: [],
@@ -20,6 +21,9 @@ const initialState: GivenNameState = {
 
 export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(givenNameReducer, initialState);
+  const {
+    state: { user, userProviderLoaded },
+  } = useUser();
   const booted = useRef(false);
 
   const buildCandidateRequest = (
@@ -183,15 +187,20 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const onLoad = async () => {
-      await getNewCandidates();
-      await addApprovedGivenNames();
-      givenNameProviderLoaded();
+      try {
+        await getNewCandidates();
+        await addApprovedGivenNames();
+      } catch (error) {
+        console.error('Unable to load given name data.', error);
+      } finally {
+        givenNameProviderLoaded();
+      }
     };
 
-    if (booted.current) return;
+    if (booted.current || !userProviderLoaded || !user) return;
     booted.current = true;
     onLoad();
-  }, []);
+  }, [userProviderLoaded, user]);
 
   const value = useMemo(
     () => ({

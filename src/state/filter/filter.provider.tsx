@@ -5,6 +5,7 @@ import { filterReducer } from '@/state/filter/filter.reducer';
 import { referenceApi } from '@/api/client';
 import { FilterContext } from '@/state/filter/filter.context';
 import type { CultureWithRegions, LanguageWithRegions } from '@/api/generated';
+import { useUser } from '@/state/user/user.context';
 
 const initialState: FilterState = {
   cultures: [],
@@ -32,6 +33,9 @@ const filterEmptyLanguageSections = (languages: LanguageWithRegions[]) => {
 
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(filterReducer, initialState);
+  const {
+    state: { user, userProviderLoaded },
+  } = useUser();
   const booted = useRef(false);
 
   const addDecades = async () => {
@@ -57,15 +61,19 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const onLoad = async () => {
-      await addDecades();
-      await addCultures();
-      await addLanguages();
+      try {
+        await addDecades();
+        await addCultures();
+        await addLanguages();
+      } catch (error) {
+        console.error('Unable to load filter reference data.', error);
+      }
     };
 
-    if (booted.current) return;
+    if (booted.current || !userProviderLoaded || !user) return;
     booted.current = true;
     onLoad();
-  }, []);
+  }, [userProviderLoaded, user]);
 
   const value = useMemo(
     () => ({
