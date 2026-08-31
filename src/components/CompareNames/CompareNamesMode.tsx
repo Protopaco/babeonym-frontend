@@ -1,9 +1,11 @@
 import Box from '@mui/material/Box';
-import CompareNamesContent from '@/components/CompareNames/CompareNamesContent';
 import { useCompareNamePair } from '@/components/CompareNames/useCompareNamePair';
-import { useCompareNameVoting } from '@/components/CompareNames/useCompareNameVoting';
+import CompareNameButton from './CompareNameButton';
+import { Typography } from '@mui/material';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
 import './CompareNamesMode.css';
+import PrimaryButtonSkeleton from '../Shared/PrimaryButton/PrimaryButtonSkeleton';
+import { useCompareNameVoting } from '@/components/CompareNames/useCompareNameVoting';
 
 const CompareNamesMode = () => {
   const { state } = useGivenNames();
@@ -13,12 +15,19 @@ const CompareNamesMode = () => {
 
   return (
     <Box className="compare-names-mode-content">
-      <CompareNamesContent
-        approvedGivenNames={approvedGivenNames}
-        currentPair={currentPair}
-        givenNameProviderLoaded={givenNameProviderLoaded}
-        onVote={voteForName}
-      />
+      {currentPair && currentPair.left && currentPair.right ? (
+        <>
+          <CompareNameButton name={currentPair.left} onVote={voteForName} />
+          <Typography className="compare-names-content-or">OR</Typography>
+          <CompareNameButton name={currentPair.right} onVote={voteForName} />
+        </>
+      ) : (
+        <>
+          <PrimaryButtonSkeleton />
+          <Typography className="compare-names-content-or">OR</Typography>
+          <PrimaryButtonSkeleton />
+        </>
+      )}
     </Box>
   );
 };

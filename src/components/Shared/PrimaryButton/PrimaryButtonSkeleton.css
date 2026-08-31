@@ -1,0 +1,16 @@
+.primary-button-skeleton.MuiSkeleton-root {
+  width: 220px;
+  height: 76px;
+  border-radius: 20px;
+  background: var(--color-primary-highlight);
+}
+
+.primary-button-skeleton.MuiSkeleton-root[data-size='wide'] {
+  width: 320px;
+}
+
+.primary-button-skeleton.MuiSkeleton-root[data-size='compact'] {
+  width: 128px;
+  height: 36px;
+  border-radius: 12px;
+}
