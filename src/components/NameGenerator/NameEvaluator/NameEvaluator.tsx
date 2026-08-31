@@ -18,32 +18,18 @@ export default () => {
   const { approveClick, rejectClick, snoozeClick } = useNameEvaluationActions(currentCandidate);
 
   return (
-    <Box id="name-evaluator">
-      <Box id="name-evaluator-column">
-        <Box id="name-evaluator-content">
-          <Box className="name-evaluator-display-row">
-            <EvaluatedNameDisplay currentCandidate={currentCandidate} givenNameProviderLoaded={givenNameProviderLoaded} />
-            {user?.surName ? (
-              <Typography variant="h3" id="user-surname">
-                {user.surName}
-              </Typography>
-            ) : null}
-          </Box>
-          <Box className="name-evaluator-actions-row">
-            <NameEvaluationActions
-              approveClick={approveClick}
-              disabled={actionDisabled}
-              rejectClick={rejectClick}
-              snoozeClick={snoozeClick}
-            />
-            <MobileNameEvaluationActions
-              approveClick={approveClick}
-              disabled={actionDisabled}
-              rejectClick={rejectClick}
-              snoozeClick={snoozeClick}
-            />
-          </Box>
-        </Box>
+    <Box id="name-evaluator-content">
+      <Box className="name-evaluator-display-row">
+        <EvaluatedNameDisplay currentCandidate={currentCandidate} givenNameProviderLoaded={givenNameProviderLoaded} />
+        {user?.surName ? (
+          <Typography variant="h3" id="user-surname">
+            {user.surName}
+          </Typography>
+        ) : null}
+      </Box>
+      <Box className="name-evaluator-actions-row">
+        <NameEvaluationActions approveClick={approveClick} disabled={actionDisabled} rejectClick={rejectClick} snoozeClick={snoozeClick} />
+        <MobileNameEvaluationActions approveClick={approveClick} disabled={actionDisabled} rejectClick={rejectClick} snoozeClick={snoozeClick} />
       </Box>
     </Box>
   );

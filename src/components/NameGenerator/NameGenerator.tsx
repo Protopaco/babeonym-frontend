@@ -9,10 +9,10 @@ import './NameGenerator.css';
 export default () => {
   const givenNameContext = useGivenNames();
   const { givenNameProviderLoaded } = givenNameContext.state;
-  useNameGeneratorUrlFilters();
+  // useNameGeneratorUrlFilters();
 
   return (
-    <Box className="name-generator">
+    <Box className="name-generator-mode-content">
       {/* <FilterDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} isLoading={!givenNameProviderLoaded} /> */}
       <NameEvaluator />
       <MobileNameFilters isLoading={!givenNameProviderLoaded} />

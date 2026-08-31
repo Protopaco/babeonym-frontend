@@ -12,16 +12,14 @@ const CompareNamesMode = () => {
   const { voteForName } = useCompareNameVoting(currentPair, advancePair);
 
   return (
-    <div className="compare-names-mode">
-      <Box className="compare-names-mode-content">
-        <CompareNamesContent
-          approvedGivenNames={approvedGivenNames}
-          currentPair={currentPair}
-          givenNameProviderLoaded={givenNameProviderLoaded}
-          onVote={voteForName}
-        />
-      </Box>
-    </div>
+    <Box className="compare-names-mode-content">
+      <CompareNamesContent
+        approvedGivenNames={approvedGivenNames}
+        currentPair={currentPair}
+        givenNameProviderLoaded={givenNameProviderLoaded}
+        onVote={voteForName}
+      />
+    </Box>
   );
 };
 
