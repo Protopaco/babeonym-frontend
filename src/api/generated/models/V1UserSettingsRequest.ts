@@ -26,11 +26,11 @@ export interface V1UserSettingsRequest {
      */
     theme: string;
     /**
-     * User surname
+     * User surname. Omit or send null to leave it unset.
      * @type {string}
      * @memberof V1UserSettingsRequest
      */
-    surName: string;
+    surName?: string | null;
 }
 
 /**
@@ -38,7 +38,6 @@ export interface V1UserSettingsRequest {
  */
 export function instanceOfV1UserSettingsRequest(value: object): value is V1UserSettingsRequest {
     if (!('theme' in value) || value['theme'] === undefined) return false;
-    if (!('surName' in value) || value['surName'] === undefined) return false;
     return true;
 }
 
@@ -53,7 +52,7 @@ export function V1UserSettingsRequestFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'theme': json['theme'],
-        'surName': json['surName'],
+        'surName': json['surName'] == null ? undefined : json['surName'],
     };
 }
 

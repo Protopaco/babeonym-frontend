@@ -36,7 +36,7 @@ export interface UserSettings {
      * @type {string}
      * @memberof UserSettings
      */
-    surName: string;
+    surName?: string | null;
 }
 
 /**
@@ -45,7 +45,6 @@ export interface UserSettings {
 export function instanceOfUserSettings(value: object): value is UserSettings {
     if (!('userId' in value) || value['userId'] === undefined) return false;
     if (!('theme' in value) || value['theme'] === undefined) return false;
-    if (!('surName' in value) || value['surName'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function UserSettingsFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'userId': json['userId'],
         'theme': json['theme'],
-        'surName': json['surName'],
+        'surName': json['surName'] == null ? undefined : json['surName'],
     };
 }
 
