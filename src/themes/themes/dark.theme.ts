@@ -14,6 +14,7 @@ const semanticPalette: SemanticPalette = {
   textPrimary: '#000000',
   textSecondary: '#F5F5F5',
   background: '#292929',
+  swatch: 'background',
 };
 
 let theme = createTheme({

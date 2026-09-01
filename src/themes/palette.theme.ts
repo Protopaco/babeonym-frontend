@@ -13,7 +13,19 @@ export default ({
   textPrimary,
   textSecondary,
   background,
+  swatch,
 }: SemanticPalette) => {
+  const swatchColor = {
+    primary,
+    primaryContrast,
+    secondary,
+    secondaryContrast,
+    selected,
+    textPrimary,
+    textSecondary,
+    background,
+  }[swatch];
+
   return {
     palette: {
       primary: {
@@ -26,6 +38,9 @@ export default ({
       },
       selected: {
         main: selected,
+      },
+      swatch: {
+        main: swatchColor,
       },
       background: {
         default: background,
@@ -50,6 +65,8 @@ export default ({
             '--color-secondary-contrast': secondaryContrast,
 
             '--color-selected': selected,
+
+            '--color-swatch': swatchColor,
 
             '--color-text-primary': textPrimary,
             '--color-text-secondary': textSecondary,

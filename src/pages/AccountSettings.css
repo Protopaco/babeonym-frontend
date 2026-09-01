@@ -1,1 +1,50 @@
+.account-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+}
 
+.account-settings-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 620px;
+}
+
+.account-settings-email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-settings-message {
+  max-width: 480px;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.account-settings-error {
+  color: var(--color-error);
+  text-align: center;
+}
+
+.account-settings-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 620px;
+}
+
+@media (max-width: 599px) {
+  .account-settings {
+    padding: 16px;
+  }
+}

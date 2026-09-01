@@ -1,6 +1,8 @@
 # React Frontend Engineering
 
-Use this guidance when implementing, reviewing, or refactoring React frontend code.
+**One function and one export per file.**
+
+Use these rules when implementing, reviewing, or refactoring React frontend code. Do not ignore them unless given express approval.
 
 ## Component Responsibility
 
