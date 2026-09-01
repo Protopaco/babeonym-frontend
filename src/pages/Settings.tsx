@@ -2,12 +2,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
-import SettingsRow from '@/components/Account/SettingsRow/SettingsRow';
-import { useAccountSettings } from '@/pages/useAccountSettings';
-import './AccountSettings.css';
+import SettingsRow from '@/components/Settings/SettingsRow/SettingsRow';
+import { useSettings } from '@/pages/useSettings';
+import './Settings.css';
 
-const AccountSettings = () => {
-  const { user, userProviderLoaded, surNameDraft, setSurNameDraft, pending, errorMessage, saveChanges, logOut } = useAccountSettings();
+const Settings = () => {
+  const { user, userProviderLoaded, surNameDraft, setSurNameDraft, pending, errorMessage, saveChanges, logOut } = useSettings();
 
   if (!userProviderLoaded) {
     return null;
@@ -16,17 +16,17 @@ const AccountSettings = () => {
   const isAnonymousUser = !user || user.authProvider === 'anonymous';
 
   return (
-    <Box className="account-settings">
+    <Box className="settings">
       <SectionHeader title="Account Settings" />
-      <Box className="account-settings-rows">
+      <Box className="settings-rows">
         <SettingsRow label="Sur Name" value={surNameDraft} onChange={setSurNameDraft} />
       </Box>
       {errorMessage ? (
-        <Typography variant="body2" className="account-settings-error" role="alert">
+        <Typography variant="body2" className="settings-error" role="alert">
           {errorMessage}
         </Typography>
       ) : null}
-      <Box className="account-settings-actions">
+      <Box className="settings-actions">
         <PrimaryButton size="compact" text="Save" onClick={saveChanges} disabled={pending} />
         {isAnonymousUser ? null : <PrimaryButton size="compact" text="Log Out" onClick={logOut} disabled={pending} />}
       </Box>
@@ -34,4 +34,4 @@ const AccountSettings = () => {
   );
 };
 
-export default AccountSettings;
+export default Settings;

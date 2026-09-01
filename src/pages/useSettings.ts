@@ -5,7 +5,7 @@ import { useUser } from '@/state/user/user.context';
 const SAVE_ERROR_MESSAGE = 'We could not save your changes. Please try again.';
 const LOGOUT_ERROR_MESSAGE = 'We could not log you out. Please try again.';
 
-export const useAccountSettings = () => {
+export const useSettings = () => {
   const {
     state: { user, userProviderLoaded },
     dispatch,

@@ -3,7 +3,7 @@ import '@/components/Header/AccountLink/AccountLink.css';
 import { Link } from 'react-router-dom';
 import { useUser } from '@/state/user/user.context';
 import { useState } from 'react';
-import AuthModal from '@/components/Account/AuthModal/AuthModal';
+import AuthModal from '@/components/Header/AuthModal/AuthModal';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
 
 export default () => {

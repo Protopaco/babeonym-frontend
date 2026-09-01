@@ -1,4 +1,4 @@
-.account-settings {
+.settings {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-.account-settings-rows {
+.settings-rows {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -17,12 +17,12 @@
   padding: 12px;
 }
 
-.account-settings-error {
+.settings-error {
   color: var(--color-error);
   text-align: center;
 }
 
-.account-settings-actions {
+.settings-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -33,7 +33,7 @@
 }
 
 @media (max-width: 599px) {
-  .account-settings {
+  .settings {
     padding: 16px;
   }
 }
