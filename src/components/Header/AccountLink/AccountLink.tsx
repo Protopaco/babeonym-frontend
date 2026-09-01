@@ -27,7 +27,7 @@ export default () => {
   if (isAnonymousUser) {
     return (
       <>
-        <Typography variant="body1" color="primary" id="account-link" component="button" type="button" onClick={openAuthModal}>
+        <Typography variant="body2" color="primary" id="account-link" component="button" type="button" onClick={openAuthModal}>
           {accountLinkLabel}
         </Typography>
         <AuthModal open={authModalOpen} onClose={closeAuthModal} onGoogleSignIn={startGoogleSignIn} />
@@ -36,7 +36,7 @@ export default () => {
   }
 
   return (
-    <Typography variant="body1" color="primary" id="account-link" component={Link} to="/settings">
+    <Typography variant="body2" color="primary" id="account-link" component={Link} to="/settings">
       {accountLinkLabel}
     </Typography>
   );
