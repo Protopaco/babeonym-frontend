@@ -1,6 +1,12 @@
 #account-link {
   display: block;
   max-width: 240px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  font: inherit;
   overflow: hidden;
   text-decoration: none;
   text-overflow: ellipsis;
