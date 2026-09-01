@@ -1,4 +1,3 @@
-import { themeRegistry } from '@/themes/themeRegistry';
 import type { ThemeId } from '@/models/ThemeId';
 import type { ThemeOption } from '@/models/ThemeOption';
 
@@ -12,5 +11,4 @@ const themeLabels: Record<ThemeId, string> = {
 export const themeOptions: ThemeOption[] = (Object.keys(themeLabels) as ThemeId[]).map((id) => ({
   id,
   label: themeLabels[id],
-  swatch: themeRegistry[id].palette.swatch.main,
 }));

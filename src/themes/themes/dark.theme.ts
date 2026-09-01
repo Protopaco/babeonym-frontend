@@ -1,11 +1,11 @@
 import { createTheme } from '@mui/material/styles';
-import type { SemanticPalette } from '@/models/SemanticPalette';
+import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
 import palette from '@/themes/palette.theme';
 import breakpoints from '@/themes/breakpoints.theme';
 import typography from '@/themes/typography.theme';
 import zIndex from '@/themes/zIndex.theme';
 
-const semanticPalette: SemanticPalette = {
+const semanticPalette: SemanticPaletteColors = {
   primary: '#9400D8',
   primaryContrast: '#F5F5F5',
   secondary: '#E7C5FF',
@@ -14,7 +14,6 @@ const semanticPalette: SemanticPalette = {
   textPrimary: '#000000',
   textSecondary: '#F5F5F5',
   background: '#292929',
-  swatch: 'background',
 };
 
 let theme = createTheme({

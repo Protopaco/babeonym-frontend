@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import type { SemanticPalette } from '@/models/SemanticPalette';
+import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
 
 const defaultTheme = createTheme();
 const defaultError = defaultTheme.palette.error;
@@ -13,19 +13,7 @@ export default ({
   textPrimary,
   textSecondary,
   background,
-  swatch,
-}: SemanticPalette) => {
-  const swatchColor = {
-    primary,
-    primaryContrast,
-    secondary,
-    secondaryContrast,
-    selected,
-    textPrimary,
-    textSecondary,
-    background,
-  }[swatch];
-
+}: SemanticPaletteColors) => {
   return {
     palette: {
       primary: {
@@ -38,9 +26,6 @@ export default ({
       },
       selected: {
         main: selected,
-      },
-      swatch: {
-        main: swatchColor,
       },
       background: {
         default: background,
@@ -65,8 +50,6 @@ export default ({
             '--color-secondary-contrast': secondaryContrast,
 
             '--color-selected': selected,
-
-            '--color-swatch': swatchColor,
 
             '--color-text-primary': textPrimary,
             '--color-text-secondary': textSecondary,
