@@ -22,6 +22,7 @@ import type {
   UserMeResponse,
   UserSettingsResponse,
   V1UserSettingsRequest,
+  V1UserThemeRequest,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
@@ -38,10 +39,16 @@ import {
     UserSettingsResponseToJSON,
     V1UserSettingsRequestFromJSON,
     V1UserSettingsRequestToJSON,
+    V1UserThemeRequestFromJSON,
+    V1UserThemeRequestToJSON,
 } from '../models/index';
 
 export interface V1UserSettingsOperationRequest {
     v1UserSettingsRequest: V1UserSettingsRequest;
+}
+
+export interface V1UserThemeOperationRequest {
+    v1UserThemeRequest: V1UserThemeRequest;
 }
 
 /**
@@ -234,7 +241,7 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates the authenticated user\'s settings such as theme and surname.
+     * Updates the authenticated user\'s settings such as surname.
      * Update user settings
      */
     async v1UserSettingsRaw(requestParameters: V1UserSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSettingsResponse>> {
@@ -245,12 +252,60 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates the authenticated user\'s settings such as theme and surname.
+     * Updates the authenticated user\'s settings such as surname.
      * Update user settings
      */
     async v1UserSettings(requestParameters: V1UserSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSettingsResponse> {
         const response = await this.v1UserSettingsRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Creates request options for v1UserTheme without sending the request
+     */
+    async v1UserThemeRequestOpts(requestParameters: V1UserThemeOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['v1UserThemeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'v1UserThemeRequest',
+                'Required parameter "v1UserThemeRequest" was null or undefined when calling v1UserTheme().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/user/theme`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: V1UserThemeRequestToJSON(requestParameters['v1UserThemeRequest']),
+        };
+    }
+
+    /**
+     * Updates the authenticated user\'s theme.
+     * Update user theme
+     */
+    async v1UserThemeRaw(requestParameters: V1UserThemeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.v1UserThemeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Updates the authenticated user\'s theme.
+     * Update user theme
+     */
+    async v1UserTheme(requestParameters: V1UserThemeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.v1UserThemeRaw(requestParameters, initOverrides);
     }
 
 }

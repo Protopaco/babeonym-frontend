@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { authApi, userApi } from '@/api/client';
 import { useUser } from '@/state/user/user.context';
-import type { ThemeId } from '@/models/ThemeId';
 
-const DEFAULT_THEME: ThemeId = 'light';
 const SAVE_ERROR_MESSAGE = 'We could not save your changes. Please try again.';
 const LOGOUT_ERROR_MESSAGE = 'We could not log you out. Please try again.';
 
@@ -14,7 +12,6 @@ export const useAccountSettings = () => {
   } = useUser();
 
   const [surNameDraft, setSurNameDraft] = useState('');
-  const [themeDraft, setThemeDraft] = useState<ThemeId>(DEFAULT_THEME);
   const [pending, setPending] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -22,8 +19,7 @@ export const useAccountSettings = () => {
   // refetch that follows a successful save or logout.
   useEffect(() => {
     setSurNameDraft(user?.surName ?? '');
-    setThemeDraft((user?.theme as ThemeId) ?? DEFAULT_THEME);
-  }, [user?.id, user?.surName, user?.theme]);
+  }, [user?.id, user?.surName]);
 
   const refreshUser = async () => {
     const { user: refreshedUser } = await userApi.v1UserGet();
@@ -37,7 +33,6 @@ export const useAccountSettings = () => {
       const trimmedSurName = surNameDraft.trim();
       await userApi.v1UserSettings({
         v1UserSettingsRequest: {
-          theme: themeDraft,
           surName: trimmedSurName === '' ? null : trimmedSurName,
         },
       });
@@ -70,8 +65,6 @@ export const useAccountSettings = () => {
     userProviderLoaded,
     surNameDraft,
     setSurNameDraft,
-    themeDraft,
-    setThemeDraft,
     pending,
     errorMessage,
     saveChanges,

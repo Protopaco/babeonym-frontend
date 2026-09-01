@@ -20,12 +20,6 @@ import { mapValues } from '../runtime';
  */
 export interface V1UserSettingsRequest {
     /**
-     * Theme identifier
-     * @type {string}
-     * @memberof V1UserSettingsRequest
-     */
-    theme: string;
-    /**
      * User surname. Omit or send null to leave it unset.
      * @type {string}
      * @memberof V1UserSettingsRequest
@@ -37,7 +31,6 @@ export interface V1UserSettingsRequest {
  * Check if a given object implements the V1UserSettingsRequest interface.
  */
 export function instanceOfV1UserSettingsRequest(value: object): value is V1UserSettingsRequest {
-    if (!('theme' in value) || value['theme'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +44,6 @@ export function V1UserSettingsRequestFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'theme': json['theme'],
         'surName': json['surName'] == null ? undefined : json['surName'],
     };
 }
@@ -67,7 +59,6 @@ export function V1UserSettingsRequestToJSONTyped(value?: V1UserSettingsRequest |
 
     return {
         
-        'theme': value['theme'],
         'surName': value['surName'],
     };
 }

@@ -9,6 +9,7 @@ All URIs are relative to *http://localhost:2221*
 | [**v1UserGet**](UserApi.md#v1userget) | **GET** /api/v1/user/me | Get current user |
 | [**v1UserReset**](UserApi.md#v1userreset) | **POST** /api/v1/user/me/reset | Reset user state |
 | [**v1UserSettings**](UserApi.md#v1usersettingsoperation) | **PUT** /api/v1/user/settings | Update user settings |
+| [**v1UserTheme**](UserApi.md#v1userthemeoperation) | **PUT** /api/v1/user/theme | Update user theme |
 
 
 
@@ -260,7 +261,7 @@ No authorization required
 
 Update user settings
 
-Updates the authenticated user\&#39;s settings such as theme and surname.
+Updates the authenticated user\&#39;s settings such as surname.
 
 ### Example
 
@@ -317,9 +318,79 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | User settings updated |  -  |
-| **400** | Invalid input (missing fields, invalid theme, or inappropriate language) |  -  |
+| **400** | Invalid input (invalid surName value or inappropriate language) |  -  |
 | **401** | Not authenticated |  -  |
 | **500** | Failed to update user settings |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## v1UserTheme
+
+> v1UserTheme(v1UserThemeRequest)
+
+Update user theme
+
+Updates the authenticated user\&#39;s theme.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  UserApi,
+} from '';
+import type { V1UserThemeOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new UserApi();
+
+  const body = {
+    // V1UserThemeRequest
+    v1UserThemeRequest: ...,
+  } satisfies V1UserThemeOperationRequest;
+
+  try {
+    const data = await api.v1UserTheme(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **v1UserThemeRequest** | [V1UserThemeRequest](V1UserThemeRequest.md) |  | |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | User theme updated |  -  |
+| **400** | Invalid input (missing or invalid theme) |  -  |
+| **401** | Not authenticated |  -  |
+| **500** | Failed to update user theme |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

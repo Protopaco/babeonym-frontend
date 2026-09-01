@@ -1,22 +1,22 @@
 
-# V1UserSettingsRequest
+# V1UserThemeRequest
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`surName` | string
+`theme` | string
 
 ## Example
 
 ```typescript
-import type { V1UserSettingsRequest } from ''
+import type { V1UserThemeRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "surName": null,
-} satisfies V1UserSettingsRequest
+  "theme": null,
+} satisfies V1UserThemeRequest
 
 console.log(example)
 
@@ -25,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as V1UserSettingsRequest
+const exampleParsed = JSON.parse(exampleJSON) as V1UserThemeRequest
 console.log(exampleParsed)
 ```
 
