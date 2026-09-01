@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { authApi, userApi } from '@/api/client';
 import { useUser } from '@/state/user/user.context';
-import type { ThemeId } from '@/themes/types.theme';
+import type { ThemeId } from '@/models/ThemeId';
 
 const DEFAULT_THEME: ThemeId = 'light';
 const SAVE_ERROR_MESSAGE = 'We could not save your changes. Please try again.';

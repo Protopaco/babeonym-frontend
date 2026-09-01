@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import type { SemanticPalette } from '@/themes/types.theme.ts';
+import type { SemanticPalette } from '@/models/SemanticPalette';
 import palette from '@/themes/palette.theme';
 import breakpoints from '@/themes/breakpoints.theme';
 import typography from '@/themes/typography.theme';

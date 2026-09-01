@@ -13,7 +13,7 @@ import { TutorialProvider } from '@/state/tutorial/tutorial.provider';
 import { AppLayoutStateProvider } from '@/state/appLayoutState/appLayoutState.provider';
 
 import { themeRegistry } from './themes/themeRegistry';
-import type { ThemeId } from './themes/types.theme';
+import type { ThemeId } from '@/models/ThemeId';
 
 const AppShell = () => {
   const { state } = useUser();

@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import type { SemanticPalette } from '@/themes/types.theme.ts';
+import type { SemanticPalette } from '@/models/SemanticPalette';
 
 const defaultTheme = createTheme();
 const defaultError = defaultTheme.palette.error;
