@@ -13,16 +13,14 @@ type Props = {
 
 export default ({ value, onChange, isReadOnly = false, label }: Props) => {
   return (
-    <Box className="settings-row">
-      <TextField
-        className="settings-row-field"
-        value={value}
-        label={label}
-        onChange={(event) => {
-          onChange(event.target.value);
-        }}
-        slotProps={{ input: { readOnly: isReadOnly } }}
-      />
-    </Box>
+    <TextField
+      className="settings-row-field"
+      value={value}
+      label={label}
+      onChange={(event) => {
+        onChange(event.target.value);
+      }}
+      slotProps={{ input: { readOnly: isReadOnly } }}
+    />
   );
 };
