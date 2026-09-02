@@ -163,6 +163,21 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   const findCandidate = (givenCustomNameBridgeId: number) =>
     state.givenNameCandidates.find((candidate) => candidate.givenCustomNameBridgeId === givenCustomNameBridgeId);
 
+  // Never retried: a comparison adds to the existing ratings rather than setting
+  // them, so replaying a vote whose response was lost would count it twice.
+  const submitCompareVote = async (winnerId: number, loserId: number) => {
+    try {
+      const { approvedGivenNames } = await enqueueRequest(() =>
+        givenNameApi.v1GivenNameCompare({
+          v1GivenNameCompareRequest: { winnerId, loserId },
+        })
+      );
+      dispatch({ type: 'ADD_APPROVED', payload: approvedGivenNames });
+    } catch (error) {
+      console.error('Failed to submit compare vote', error);
+    }
+  };
+
   const removeCandidate = (givenCustomNameBridgeId: number) => {
     dispatch({ type: 'REMOVE_CANDIDATE', payload: givenCustomNameBridgeId });
   };
@@ -245,6 +260,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         approveCandidate,
         rejectCandidate,
         snoozeCandidate,
+        submitCompareVote,
         addCustomGivenName,
         addSelectedGenders,
         removeSelectedGenders,

@@ -20,7 +20,6 @@ import type {
   Etymology,
   GivenName,
   NotAuthenticatedResponse,
-  SuccessResponse,
   V1GivenNameActionRequest,
   V1GivenNameCompareRequest,
   V1GivenNameCustomRequest,
@@ -36,8 +35,6 @@ import {
     GivenNameToJSON,
     NotAuthenticatedResponseFromJSON,
     NotAuthenticatedResponseToJSON,
-    SuccessResponseFromJSON,
-    SuccessResponseToJSON,
     V1GivenNameActionRequestFromJSON,
     V1GivenNameActionRequestToJSON,
     V1GivenNameCompareRequestFromJSON,
@@ -270,18 +267,18 @@ export class GivenNameApi extends runtime.BaseAPI {
      * Records a comparison result between two given names for the authenticated user.
      * Compare two given names
      */
-    async v1GivenNameCompareRaw(requestParameters: V1GivenNameCompareOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+    async v1GivenNameCompareRaw(requestParameters: V1GivenNameCompareOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApprovedGivenNamesResponse>> {
         const requestOptions = await this.v1GivenNameCompareRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApprovedGivenNamesResponseFromJSON(jsonValue));
     }
 
     /**
      * Records a comparison result between two given names for the authenticated user.
      * Compare two given names
      */
-    async v1GivenNameCompare(requestParameters: V1GivenNameCompareOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+    async v1GivenNameCompare(requestParameters: V1GivenNameCompareOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApprovedGivenNamesResponse> {
         const response = await this.v1GivenNameCompareRaw(requestParameters, initOverrides);
         return await response.value();
     }

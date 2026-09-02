@@ -14,7 +14,7 @@ const WorkspaceApprovedNameItem = ({ approvedGivenName, position }: Props) => {
     <motion.li
       className="workspace-approved-name"
       layout="position"
-      transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+      transition={{ type: 'spring', stiffness: 180, damping: 24 }}
     >
       <Typography className="workspace-approved-name-position">{position}</Typography>
       <ApprovedGivenNameChip approvedGivenName={approvedGivenName} size="large" />

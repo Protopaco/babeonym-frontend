@@ -231,7 +231,7 @@ No authorization required
 
 ## v1GivenNameCompare
 
-> SuccessResponse v1GivenNameCompare(v1GivenNameCompareRequest)
+> ApprovedGivenNamesResponse v1GivenNameCompare(v1GivenNameCompareRequest)
 
 Compare two given names
 
@@ -276,7 +276,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**SuccessResponse**](SuccessResponse.md)
+[**ApprovedGivenNamesResponse**](ApprovedGivenNamesResponse.md)
 
 ### Authorization
 
@@ -291,7 +291,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Comparison recorded successfully |  -  |
+| **200** | The user\&#39;s approved given names after the comparison |  -  |
 | **400** | Invalid winnerId or loserId |  -  |
 | **401** | Not authenticated |  -  |
 

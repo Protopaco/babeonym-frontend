@@ -1,9 +1,10 @@
 import type { GivenName } from '@/api/generated';
-import { givenNameApi } from '@/api/client';
 import type { ComparePair } from '@/components/CompareNames/compareNames.types';
-import enqueueRequest from '@/utils/enqueueRequest';
+import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 
 export const useCompareNameVoting = (currentPair: ComparePair | null, advancePair: () => void) => {
+  const { submitCompareVote } = useGivenNamesActions();
+
   const voteForName = (winner: GivenName) => {
     if (!currentPair) {
       return;
@@ -13,16 +14,7 @@ export const useCompareNameVoting = (currentPair: ComparePair | null, advancePai
 
     advancePair();
 
-    enqueueRequest(() =>
-      givenNameApi.v1GivenNameCompare({
-        v1GivenNameCompareRequest: {
-          winnerId: winner.givenCustomNameBridgeId,
-          loserId: loser.givenCustomNameBridgeId,
-        },
-      })
-    ).catch((error) => {
-      console.error('Failed to submit compare vote', error);
-    });
+    submitCompareVote(winner.givenCustomNameBridgeId, loser.givenCustomNameBridgeId);
   };
 
   return {
