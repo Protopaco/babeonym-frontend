@@ -1,5 +1,6 @@
 @import '@/styles/fonts.css';
 @import '@/styles/scrollbar.css';
+@import '@/styles/swatches.css';
 
 .MuiTouchRipple-rippleVisible {
   color: var(--color-primary) !important;

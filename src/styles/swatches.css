@@ -1,0 +1,11 @@
+/*
+ * Theme swatch colors for the theme picker. Every swatch renders at once,
+ * regardless of the active theme, so these are defined globally rather than
+ * per theme. Update them by hand when a theme's colors change.
+ */
+:root {
+  --color-swatch-light: #7b00b4;
+  --color-swatch-dark: #292929;
+  --color-swatch-blue: #065ac7;
+  --color-swatch-pink: #d04883;
+}
