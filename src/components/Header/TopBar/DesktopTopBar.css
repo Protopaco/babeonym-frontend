@@ -8,6 +8,13 @@
   padding: 0 36px;
 }
 
+#desktop-top-bar-account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
 @media (max-width: 599px) {
   #desktop-top-bar {
     display: none;

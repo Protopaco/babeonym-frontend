@@ -1,5 +1,7 @@
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
 import AccountLink from '@/components/Header/AccountLink/AccountLink';
+import SettingsLink from '@/components/Header/SettingsLink/SettingsLink';
 import LogoFull from '@/components/Header/LogoFull/LogoFull';
 import '@/components/Header/TopBar/DesktopTopBar.css';
 
@@ -7,7 +9,10 @@ export default () => {
   return (
     <AppBar id="desktop-top-bar" position="static">
       <LogoFull />
-      <AccountLink />
+      <Box id="desktop-top-bar-account">
+        <AccountLink />
+        <SettingsLink />
+      </Box>
     </AppBar>
   );
 };
