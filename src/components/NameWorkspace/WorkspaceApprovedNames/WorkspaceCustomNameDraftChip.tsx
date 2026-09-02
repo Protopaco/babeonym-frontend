@@ -10,9 +10,10 @@ type Props = {
 };
 
 const WorkspaceCustomNameDraftChip = ({ onClose }: Props) => {
-  const { canSaveCustomName, changeCustomName, customName, errorMessage, handleBlur, handleKeyDown, inputRef, saveCustomName } = useCustomNameDraftChip({
-    onClose,
-  });
+  const { canSaveCustomName, changeCustomName, customName, errorMessage, handleBlur, handleKeyDown, inputRef, saveCustomName, saving } =
+    useCustomNameDraftChip({
+      onClose,
+    });
 
   return (
     <motion.li
@@ -21,7 +22,7 @@ const WorkspaceCustomNameDraftChip = ({ onClose }: Props) => {
       initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      <Box className="workspace-custom-name-draft-label" data-invalid={Boolean(errorMessage)}>
+      <Box className="workspace-custom-name-draft-label" data-invalid={Boolean(errorMessage)} data-saving={saving}>
         <input
           ref={inputRef}
           className="workspace-custom-name-draft-input"
@@ -31,6 +32,7 @@ const WorkspaceCustomNameDraftChip = ({ onClose }: Props) => {
           onKeyDown={handleKeyDown}
           aria-label="Custom name"
           aria-invalid={Boolean(errorMessage)}
+          readOnly={saving}
         />
       </Box>
       <WorkspaceCustomNameDraftActions canSaveCustomName={canSaveCustomName} onCancel={onClose} onSave={saveCustomName} />

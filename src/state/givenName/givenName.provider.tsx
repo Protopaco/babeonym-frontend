@@ -8,6 +8,7 @@ import type { GivenNameState } from '@/state/givenName/givenName.types';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
 import type { Gender } from '@/types/Gender';
 import enqueueRequest from '@/utils/enqueueRequest';
+import retryRequest from '@/utils/retryRequest';
 import { useUser } from '@/state/user/user.context';
 
 const initialState: GivenNameState = {
@@ -74,10 +75,14 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       removeCandidate(givenCustomNameBridgeId);
-      await enqueueRequest(async () => {
-        await givenNameApi.v1GivenNameAction(actionRequest);
-        await addApprovedGivenNames();
-      });
+      // Replaying the pair is safe: the action upserts the state and the refetch
+      // is a read.
+      await enqueueRequest(() =>
+        retryRequest(async () => {
+          await givenNameApi.v1GivenNameAction(actionRequest);
+          await addApprovedGivenNames();
+        })
+      );
     } catch (e) {
       throw e;
     }
@@ -98,12 +103,14 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         removeApprovedGivenName(givenCustomNameBridgeId);
       }
 
-      await enqueueRequest(async () => {
-        await givenNameApi.v1GivenNameAction(actionRequest);
-        if (isApprovedName) {
-          await addApprovedGivenNames();
-        }
-      });
+      await enqueueRequest(() =>
+        retryRequest(async () => {
+          await givenNameApi.v1GivenNameAction(actionRequest);
+          if (isApprovedName) {
+            await addApprovedGivenNames();
+          }
+        })
+      );
     } catch (e) {
       throw e;
     }
@@ -119,7 +126,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       removeCandidate(givenCustomNameBridgeId);
-      await givenNameApi.v1GivenNameAction(actionRequest);
+      await retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest));
     } catch (e) {
       throw e;
     }
@@ -130,14 +137,16 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     if (!trimmedCustomName) return;
 
     try {
-      await enqueueRequest(async () => {
-        await givenNameApi.v1GivenNameCustom({
-          v1GivenNameCustomRequest: {
-            customGivenName: trimmedCustomName,
-          },
-        });
-        await addApprovedGivenNames();
-      });
+      await enqueueRequest(() =>
+        retryRequest(async () => {
+          await givenNameApi.v1GivenNameCustom({
+            v1GivenNameCustomRequest: {
+              customGivenName: trimmedCustomName,
+            },
+          });
+          await addApprovedGivenNames();
+        })
+      );
     } catch (e) {
       throw e;
     }

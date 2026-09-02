@@ -63,5 +63,6 @@ export const useCustomNameDraftChip = ({ onClose }: Props) => {
     handleKeyDown,
     inputRef,
     saveCustomName,
+    saving,
   };
 };
