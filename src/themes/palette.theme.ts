@@ -68,6 +68,7 @@ export default ({
             '--bottom-floating-tutorial-icon-mobile': 'calc(var(--height-filter-drawer-closed) + 15px)',
 
             '--height-header': '124px',
+            '--height-input': '56px',
           },
         },
       },

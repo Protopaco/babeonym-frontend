@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { authApi, userApi } from '@/api/client';
+import { userApi } from '@/api/client';
 import { useUser } from '@/state/user/user.context';
 
 const SAVE_ERROR_MESSAGE = 'We could not save your changes. Please try again.';
-const LOGOUT_ERROR_MESSAGE = 'We could not log you out. Please try again.';
 
 export const useSettings = () => {
   const {
@@ -16,17 +15,19 @@ export const useSettings = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Server values are the source of truth. Re-syncing here also covers the
-  // refetch that follows a successful save or logout.
+  // refetch that follows a successful save.
   useEffect(() => {
     setSurNameDraft(user?.surName ?? '');
   }, [user?.id, user?.surName]);
+
+  const surNameIsDirty = surNameDraft.trim() !== (user?.surName ?? '');
 
   const refreshUser = async () => {
     const { user: refreshedUser } = await userApi.v1UserGet();
     dispatch({ type: 'ADD_USER', payload: refreshedUser });
   };
 
-  const saveChanges = async () => {
+  const saveSurName = async () => {
     setPending(true);
     setErrorMessage(null);
     try {
@@ -38,23 +39,8 @@ export const useSettings = () => {
       });
       await refreshUser();
     } catch (err) {
-      console.error('Unable to save account settings.', err);
+      console.error('Unable to save the surname.', err);
       setErrorMessage(SAVE_ERROR_MESSAGE);
-    } finally {
-      setPending(false);
-    }
-  };
-
-  const logOut = async () => {
-    setPending(true);
-    setErrorMessage(null);
-    try {
-      await authApi.v1AuthLogout();
-      await authApi.v1AuthAnonymous();
-      await refreshUser();
-    } catch (err) {
-      console.error('Unable to log out.', err);
-      setErrorMessage(LOGOUT_ERROR_MESSAGE);
     } finally {
       setPending(false);
     }
@@ -65,9 +51,9 @@ export const useSettings = () => {
     userProviderLoaded,
     surNameDraft,
     setSurNameDraft,
+    surNameIsDirty,
     pending,
     errorMessage,
-    saveChanges,
-    logOut,
+    saveSurName,
   };
 };
