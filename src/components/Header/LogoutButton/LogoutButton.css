@@ -1,0 +1,4 @@
+.logout-button.MuiIconButton-root {
+  padding: 4px;
+  color: var(--color-primary);
+}
