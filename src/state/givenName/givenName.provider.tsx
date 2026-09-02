@@ -7,6 +7,7 @@ import { GivenNameContext } from '@/state/givenName/givenName.context';
 import type { GivenNameState } from '@/state/givenName/givenName.types';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
 import type { Gender } from '@/types/Gender';
+import enqueueRequest from '@/utils/enqueueRequest';
 import { useUser } from '@/state/user/user.context';
 
 const initialState: GivenNameState = {
@@ -73,8 +74,10 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       removeCandidate(givenCustomNameBridgeId);
-      await givenNameApi.v1GivenNameAction(actionRequest);
-      await addApprovedGivenNames();
+      await enqueueRequest(async () => {
+        await givenNameApi.v1GivenNameAction(actionRequest);
+        await addApprovedGivenNames();
+      });
     } catch (e) {
       throw e;
     }
@@ -95,10 +98,12 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         removeApprovedGivenName(givenCustomNameBridgeId);
       }
 
-      await givenNameApi.v1GivenNameAction(actionRequest);
-      if (isApprovedName) {
-        await addApprovedGivenNames();
-      }
+      await enqueueRequest(async () => {
+        await givenNameApi.v1GivenNameAction(actionRequest);
+        if (isApprovedName) {
+          await addApprovedGivenNames();
+        }
+      });
     } catch (e) {
       throw e;
     }
@@ -125,12 +130,14 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     if (!trimmedCustomName) return;
 
     try {
-      await givenNameApi.v1GivenNameCustom({
-        v1GivenNameCustomRequest: {
-          customGivenName: trimmedCustomName,
-        },
+      await enqueueRequest(async () => {
+        await givenNameApi.v1GivenNameCustom({
+          v1GivenNameCustomRequest: {
+            customGivenName: trimmedCustomName,
+          },
+        });
+        await addApprovedGivenNames();
       });
-      await addApprovedGivenNames();
     } catch (e) {
       throw e;
     }
