@@ -8,7 +8,6 @@ Make the compare voting loop feel intentional, playful, and satisfying after the
 
 - Restyle the comparison pair so it no longer feels like default utility cards.
 - Improve the `OR` comparison treatment.
-- Add basic transition or feedback when a vote is cast and the next pair appears.
 - Preserve the optimistic vote behavior.
 - Keep the interaction responsive on desktop and mobile.
 
@@ -21,6 +20,7 @@ Make the compare voting loop feel intentional, playful, and satisfying after the
 
 ## Out Of Scope
 
+- Vote transition animation, which is ticket `[063]`.
 - Name ranking logic.
 - Compare history/results presentation.
 - Backend changes.
