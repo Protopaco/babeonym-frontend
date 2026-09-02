@@ -2,7 +2,7 @@ import Skeleton from '@mui/material/Skeleton';
 import './PrimaryButtonSkeleton.css';
 
 type Props = {
-  size?: 'default' | 'wide' | 'compact';
+  size?: 'default' | 'wide' | 'compact' | 'compact-wide';
 };
 
 const PrimaryButtonSkeleton = ({ size = 'default' }: Props) => (
