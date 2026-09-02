@@ -78,14 +78,9 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       removeCandidate(givenCustomNameBridgeId);
-      // Replaying the pair is safe: the action upserts the state and the refetch
-      // is a read.
-      await enqueueRequest(() =>
-        retryRequest(async () => {
-          await givenNameApi.v1GivenNameAction(actionRequest);
-          await addApprovedGivenNames();
-        })
-      );
+      // The action upserts the state, so replaying it is safe.
+      const { approvedGivenNames } = await enqueueRequest(() => retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest)));
+      dispatch({ type: 'ADD_APPROVED', payload: approvedGivenNames });
     } catch (error) {
       // Nothing downstream handles this, so putting the card back is the way the
       // failure is reported.
@@ -115,14 +110,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         removeApprovedGivenName(givenCustomNameBridgeId);
       }
 
-      await enqueueRequest(() =>
-        retryRequest(async () => {
-          await givenNameApi.v1GivenNameAction(actionRequest);
-          if (isApprovedName) {
-            await addApprovedGivenNames();
-          }
-        })
-      );
+      const { approvedGivenNames } = await enqueueRequest(() => retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest)));
+      dispatch({ type: 'ADD_APPROVED', payload: approvedGivenNames });
     } catch (error) {
       restoreCandidate(candidate);
       if (isApprovedName) {
@@ -156,16 +145,16 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     if (!trimmedCustomName) return;
 
     try {
-      await enqueueRequest(() =>
-        retryRequest(async () => {
-          await givenNameApi.v1GivenNameCustom({
+      const { approvedGivenNames } = await enqueueRequest(() =>
+        retryRequest(() =>
+          givenNameApi.v1GivenNameCustom({
             v1GivenNameCustomRequest: {
               customGivenName: trimmedCustomName,
             },
-          });
-          await addApprovedGivenNames();
-        })
+          })
+        )
       );
+      dispatch({ type: 'ADD_APPROVED', payload: approvedGivenNames });
     } catch (e) {
       throw e;
     }

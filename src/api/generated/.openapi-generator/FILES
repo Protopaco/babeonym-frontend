@@ -4,6 +4,7 @@ apis/HealthApi.ts
 apis/ReferenceApi.ts
 apis/UserApi.ts
 apis/index.ts
+docs/ApprovedGivenNamesResponse.md
 docs/AuthApi.md
 docs/CultureRegion.md
 docs/CultureRegionCulture.md
@@ -42,6 +43,7 @@ docs/V1GivenNameCustomRequest.md
 docs/V1UserSettingsRequest.md
 docs/V1UserThemeRequest.md
 index.ts
+models/ApprovedGivenNamesResponse.ts
 models/CultureRegion.ts
 models/CultureRegionCulture.ts
 models/CultureWithRegions.ts

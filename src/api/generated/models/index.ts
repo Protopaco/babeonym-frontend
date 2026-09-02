@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './ApprovedGivenNamesResponse';
 export * from './CultureRegion';
 export * from './CultureRegionCulture';
 export * from './CultureWithRegions';

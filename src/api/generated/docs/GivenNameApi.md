@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost:2221*
 
 ## v1GivenNameAction
 
-> SuccessResponse v1GivenNameAction(v1GivenNameActionRequest)
+> ApprovedGivenNamesResponse v1GivenNameAction(v1GivenNameActionRequest)
 
 Update given name state
 
@@ -61,7 +61,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**SuccessResponse**](SuccessResponse.md)
+[**ApprovedGivenNamesResponse**](ApprovedGivenNamesResponse.md)
 
 ### Authorization
 
@@ -76,7 +76,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Given name action updated successfully |  -  |
+| **200** | The user\&#39;s approved given names after the action |  -  |
 | **400** | Invalid request parameters |  -  |
 | **401** | Not authenticated |  -  |
 
@@ -300,7 +300,7 @@ No authorization required
 
 ## v1GivenNameCustom
 
-> SuccessResponse v1GivenNameCustom(v1GivenNameCustomRequest)
+> ApprovedGivenNamesResponse v1GivenNameCustom(v1GivenNameCustomRequest)
 
 Add a custom given name
 
@@ -345,7 +345,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**SuccessResponse**](SuccessResponse.md)
+[**ApprovedGivenNamesResponse**](ApprovedGivenNamesResponse.md)
 
 ### Authorization
 
@@ -360,7 +360,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Custom given name added successfully |  -  |
+| **200** | The user\&#39;s approved given names after the custom name is added |  -  |
 | **400** | Invalid or inappropriate custom given name |  -  |
 | **401** | Not authenticated |  -  |
 
