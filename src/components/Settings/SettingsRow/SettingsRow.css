@@ -17,8 +17,8 @@
 
 .settings-row-save.MuiIconButton-root {
   flex: 0 0 auto;
-  width: var(--height-input);
-  height: var(--height-input);
+  width: var(--height-control);
+  height: var(--height-control);
   border-radius: 4px;
   color: var(--color-primary-contrast);
   background-color: var(--color-primary);

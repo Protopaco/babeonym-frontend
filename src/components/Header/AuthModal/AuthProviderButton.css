@@ -1,0 +1,41 @@
+.auth-provider-button.MuiButton-root {
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  height: var(--height-control);
+  padding: 0 16px;
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-background);
+  box-shadow: var(--box-shadow-primary);
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.auth-provider-button.MuiButton-root:hover,
+.auth-provider-button.MuiButton-root:focus-visible {
+  border-color: var(--color-primary);
+  background: var(--color-secondary);
+  color: var(--color-text-secondary);
+}
+
+.auth-provider-button.MuiButton-root.Mui-disabled {
+  border-color: var(--color-border);
+  background: var(--color-background);
+  color: var(--color-text-secondary);
+}
+
+.auth-provider-button-spinner.MuiCircularProgress-root {
+  color: var(--color-primary);
+}
+
+.auth-provider-button .MuiButton-startIcon {
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.auth-provider-button .MuiButton-startIcon .MuiSvgIcon-root {
+  font-size: 24px;
+}
