@@ -1,0 +1,30 @@
+.base-modal-paper.MuiDialog-paper {
+  width: min(360px, calc(100vw - 32px));
+  border: 2px solid var(--color-primary-edge);
+  border-radius: 20px;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  box-shadow: var(--box-shadow-primary);
+}
+
+.base-modal-paper--wide.MuiDialog-paper {
+  width: min(600px, calc(100vw - 32px));
+}
+
+.base-modal-content.MuiDialogContent-root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 24px 0;
+}
+
+.base-modal-close.MuiIconButton-root {
+  flex: 0 0 auto;
+  padding: 4px;
+  color: var(--color-primary);
+}
+
+.base-modal-actions.MuiDialogActions-root {
+  gap: 8px;
+  padding: 16px 24px;
+}
