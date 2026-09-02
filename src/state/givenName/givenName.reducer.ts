@@ -31,6 +31,12 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, givenNameCandidates: filteredCandidates };
     }
 
+    // Only the first candidate is ever shown, so a removed one always belongs
+    // back at the front.
+    case 'RESTORE_CANDIDATE': {
+      return { ...state, givenNameCandidates: [action.payload, ...state.givenNameCandidates] };
+    }
+
     case 'ADD_APPROVED': {
       return { ...state, approvedGivenNames: action.payload };
     }
@@ -39,6 +45,14 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       const approvedGivenNames = state.approvedGivenNames.filter(
         ({ givenCustomNameBridgeId }) => givenCustomNameBridgeId !== action.payload
       );
+
+      return { ...state, approvedGivenNames };
+    }
+
+    case 'RESTORE_APPROVED': {
+      const { givenName, index } = action.payload;
+      const approvedGivenNames = [...state.approvedGivenNames];
+      approvedGivenNames.splice(index, 0, givenName);
 
       return { ...state, approvedGivenNames };
     }

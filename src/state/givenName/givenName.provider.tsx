@@ -1,6 +1,7 @@
 import { useContext, useReducer, useEffect, useMemo, useRef } from 'react';
 import { givenNameApi } from '@/api/client';
 import type { ReactNode } from 'react';
+import type { GivenName } from '@/api/generated/models/GivenName';
 import { ApiV1GivenNameActionPostRequestNewStateEnum } from '@/api/generated/models/ApiV1GivenNameActionPostRequest';
 import type { V1GivenNameActionOperationRequest, V1GivenNameCandidatesRequest } from '@/api/generated/apis/GivenNameApi';
 import { GivenNameContext } from '@/state/givenName/givenName.context';
@@ -73,6 +74,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       },
     };
 
+    const candidate = findCandidate(givenCustomNameBridgeId);
+
     try {
       removeCandidate(givenCustomNameBridgeId);
       // Replaying the pair is safe: the action upserts the state and the refetch
@@ -83,8 +86,11 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
           await addApprovedGivenNames();
         })
       );
-    } catch (e) {
-      throw e;
+    } catch (error) {
+      // Nothing downstream handles this, so putting the card back is the way the
+      // failure is reported.
+      restoreCandidate(candidate);
+      console.error('Unable to approve given name.', error);
     }
   };
 
@@ -96,6 +102,12 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         newState: ApiV1GivenNameActionPostRequestNewStateEnum.Rejected,
       },
     };
+
+    const candidate = findCandidate(givenCustomNameBridgeId);
+    const approvedIndex = state.approvedGivenNames.findIndex(
+      (approvedGivenName) => approvedGivenName.givenCustomNameBridgeId === givenCustomNameBridgeId
+    );
+    const approvedGivenName = state.approvedGivenNames[approvedIndex];
 
     try {
       removeCandidate(givenCustomNameBridgeId);
@@ -111,8 +123,12 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
           }
         })
       );
-    } catch (e) {
-      throw e;
+    } catch (error) {
+      restoreCandidate(candidate);
+      if (isApprovedName) {
+        dispatch({ type: 'RESTORE_APPROVED', payload: { givenName: approvedGivenName, index: approvedIndex } });
+      }
+      console.error('Unable to reject given name.', error);
     }
   };
 
@@ -124,11 +140,14 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       },
     };
 
+    const candidate = findCandidate(givenCustomNameBridgeId);
+
     try {
       removeCandidate(givenCustomNameBridgeId);
       await retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest));
-    } catch (e) {
-      throw e;
+    } catch (error) {
+      restoreCandidate(candidate);
+      console.error('Unable to snooze given name.', error);
     }
   };
 
@@ -152,8 +171,18 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const findCandidate = (givenCustomNameBridgeId: number) =>
+    state.givenNameCandidates.find((candidate) => candidate.givenCustomNameBridgeId === givenCustomNameBridgeId);
+
   const removeCandidate = (givenCustomNameBridgeId: number) => {
     dispatch({ type: 'REMOVE_CANDIDATE', payload: givenCustomNameBridgeId });
+  };
+
+  // Rejecting from the approved list acts on a name that was never a candidate,
+  // so there is nothing to put back.
+  const restoreCandidate = (candidate?: GivenName) => {
+    if (!candidate) return;
+    dispatch({ type: 'RESTORE_CANDIDATE', payload: candidate });
   };
 
   const removeApprovedGivenName = (givenCustomNameBridgeId: number) => {
