@@ -21,6 +21,20 @@
   padding: 0 22px;
 }
 
+.workspace-custom-name-draft-label[data-invalid='true'] {
+  border-color: var(--color-error);
+}
+
+/* Sits outside the flow so a rejected name does not shift the chip list. */
+.workspace-custom-name-draft-error.MuiTypography-root {
+  position: absolute;
+  top: 100%;
+  left: 22px;
+  margin-top: 4px;
+  color: var(--color-error);
+  white-space: nowrap;
+}
+
 .workspace-custom-name-draft-input {
   width: 100%;
   min-width: 0;
