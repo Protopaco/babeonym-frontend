@@ -1,20 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { authApi, userApi } from '@/api/client';
-import { useUser } from '@/state/user/user.context';
+import { authApi } from '@/api/client';
+import { useResetToAnonymousSession } from '@/hooks/useResetToAnonymousSession';
 
 export const useLogout = () => {
-  const { dispatch } = useUser();
-  const navigate = useNavigate();
+  const { resetToAnonymousSession } = useResetToAnonymousSession();
 
-  // Logging out drops the session and immediately starts an anonymous one, so
-  // the app always has a user to work with.
   const logOut = async () => {
     try {
       await authApi.v1AuthLogout();
-      await authApi.v1AuthAnonymous();
-      const { user: refreshedUser } = await userApi.v1UserGet();
-      dispatch({ type: 'ADD_USER', payload: refreshedUser });
-      navigate('/');
+      await resetToAnonymousSession();
     } catch (err) {
       console.error('Unable to log out.', err);
     }

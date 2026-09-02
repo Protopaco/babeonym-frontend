@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
-import DeleteAccount from '@/components/Settings/DeleteAccount/DeleteAccount';
+import DeleteAccountButton from '@/components/Settings/DeleteAccountButton/DeleteAccountButton';
 import SettingsRow from '@/components/Settings/SettingsRow/SettingsRow';
 import ThemePicker from '@/components/Settings/ThemePicker/ThemePicker';
 import { useSettings } from '@/pages/useSettings';
@@ -27,7 +27,7 @@ const Settings = () => {
           errorMessage={errorMessage}
         />
       </Box>
-      <DeleteAccount />
+      <DeleteAccountButton />
     </Box>
   );
 };
