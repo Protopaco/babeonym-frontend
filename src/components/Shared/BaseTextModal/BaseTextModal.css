@@ -8,7 +8,7 @@
 }
 
 .base-text-modal-paper--wide.MuiDialog-paper {
-  width: min(420px, calc(100vw - 32px));
+  width: min(600px, calc(100vw - 32px));
 }
 
 .base-text-modal-content.MuiDialogContent-root {
