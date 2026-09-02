@@ -12,7 +12,7 @@ type Props = {
   open: boolean;
   onClose: () => void;
   title: string;
-  body: string[];
+  body?: string[];
   confirmLabel: string;
   onConfirm: () => void;
   cancelLabel?: string;
@@ -24,7 +24,7 @@ export default ({
   open,
   onClose,
   title,
-  body,
+  body = [],
   confirmLabel,
   onConfirm,
   cancelLabel = 'Cancel',
@@ -55,7 +55,7 @@ export default ({
       </DialogContent>
       <DialogActions className="base-text-modal-actions">
         <PrimaryButton text={cancelLabel} size="compact" onClick={onClose} />
-        <PrimaryButton text={confirmLabel} size="compact" tone={tone} onClick={onConfirm} />
+        <PrimaryButton text={confirmLabel} size="compact" tone={tone} emphasis="fill" onClick={onConfirm} />
       </DialogActions>
     </Dialog>
   );

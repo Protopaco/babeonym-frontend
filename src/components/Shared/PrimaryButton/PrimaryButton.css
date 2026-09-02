@@ -48,3 +48,31 @@
   background: var(--color-error);
   color: var(--color-error-contrast);
 }
+
+.primary-button.MuiButton-root[data-emphasis='fill'] {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.primary-button.MuiButton-root[data-emphasis='fill'][data-tone='danger'] {
+  border-color: var(--color-error);
+  background: var(--color-error);
+  color: var(--color-error-contrast);
+}
+
+/* No darker shade tokens exist, so filled buttons dim on hover instead. */
+.primary-button.MuiButton-root[data-emphasis='fill']:hover,
+.primary-button.MuiButton-root[data-emphasis='fill']:focus-visible {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  filter: brightness(0.92);
+}
+
+.primary-button.MuiButton-root[data-emphasis='fill'][data-tone='danger']:hover,
+.primary-button.MuiButton-root[data-emphasis='fill'][data-tone='danger']:focus-visible {
+  border-color: var(--color-error);
+  background: var(--color-error);
+  color: var(--color-error-contrast);
+}

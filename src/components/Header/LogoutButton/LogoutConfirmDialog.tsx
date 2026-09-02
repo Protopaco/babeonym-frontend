@@ -1,8 +1,5 @@
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
-import './LogoutConfirmDialog.css';
+import BaseTextModal from '@/components/Shared/BaseTextModal/BaseTextModal';
+import '@/components/Header/LogoutButton/LogoutConfirmDialog.css';
 
 type LogoutConfirmDialogProps = {
   open: boolean;
@@ -12,24 +9,13 @@ type LogoutConfirmDialogProps = {
 
 const LogoutConfirmDialog = ({ open, onClose, onConfirm }: LogoutConfirmDialogProps) => {
   return (
-    <Dialog
+    <BaseTextModal
       open={open}
       onClose={onClose}
-      aria-labelledby="logout-confirm-title"
-      slotProps={{ paper: { className: 'logout-confirm-paper' } }}
-    >
-      <DialogTitle id="logout-confirm-title" className="logout-confirm-title">
-        Log out?
-      </DialogTitle>
-      <DialogActions className="logout-confirm-actions">
-        <Button className="logout-confirm-cancel" variant="text" onClick={onClose}>
-          Cancel
-        </Button>
-        <Button className="logout-confirm-accept" variant="outlined" onClick={onConfirm}>
-          Log Out
-        </Button>
-      </DialogActions>
-    </Dialog>
+      title="Log out?"
+      confirmLabel="Log Out"
+      onConfirm={onConfirm}
+    />
   );
 };
 

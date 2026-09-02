@@ -7,9 +7,17 @@ type Props = {
   disabled?: boolean;
   size?: 'default' | 'wide' | 'compact' | 'compact-wide';
   tone?: 'default' | 'danger';
+  emphasis?: 'outline' | 'fill';
 };
 
-export default ({ text, onClick, disabled = false, size = 'default', tone = 'default' }: Props) => {
+export default ({
+  text,
+  onClick,
+  disabled = false,
+  size = 'default',
+  tone = 'default',
+  emphasis = 'outline',
+}: Props) => {
   return (
     <Button
       variant="outlined"
@@ -17,6 +25,7 @@ export default ({ text, onClick, disabled = false, size = 'default', tone = 'def
       disabled={disabled}
       data-size={size}
       data-tone={tone}
+      data-emphasis={emphasis}
       onClick={() => {
         onClick();
       }}
