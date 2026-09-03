@@ -145,7 +145,7 @@ No authorization required
 
 ## v1GivenNameCandidates
 
-> Array&lt;GivenName&gt; v1GivenNameCandidates(popularity, genders, decadeIds, languageIds, cultureIds, limit, include)
+> Array&lt;GivenName&gt; v1GivenNameCandidates(popularity, genderIds, decadeIds, languageIds, cultureIds, limit, excludeBridgeIds, include)
 
 Get given name candidates
 
@@ -167,8 +167,8 @@ async function example() {
   const body = {
     // number | Popularity percentile target from 0.0 to 1.0. (optional)
     popularity: 8.14,
-    // string | Comma-separated list of genders. (optional)
-    genders: male,female,
+    // string | Comma-separated list of gender IDs. (optional)
+    genderIds: 2,3,
     // string | Comma-separated list of decade IDs. (optional)
     decadeIds: 1,2,3,
     // string | Comma-separated list of language IDs. (optional)
@@ -177,6 +177,8 @@ async function example() {
     cultureIds: 2,9,
     // number | Maximum number of results. (optional)
     limit: 56,
+    // string | Comma-separated list of given custom name bridge IDs the caller already holds. Used to top up a partly full queue without being handed the same names back.  (optional)
+    excludeBridgeIds: 12,48,93,
     // string | Comma-separated include options. (optional)
     include: meta,
   } satisfies V1GivenNameCandidatesRequest;
@@ -199,11 +201,12 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **popularity** | `number` | Popularity percentile target from 0.0 to 1.0. | [Optional] [Defaults to `undefined`] |
-| **genders** | `string` | Comma-separated list of genders. | [Optional] [Defaults to `undefined`] |
+| **genderIds** | `string` | Comma-separated list of gender IDs. | [Optional] [Defaults to `undefined`] |
 | **decadeIds** | `string` | Comma-separated list of decade IDs. | [Optional] [Defaults to `undefined`] |
 | **languageIds** | `string` | Comma-separated list of language IDs. | [Optional] [Defaults to `undefined`] |
 | **cultureIds** | `string` | Comma-separated list of culture IDs. | [Optional] [Defaults to `undefined`] |
 | **limit** | `number` | Maximum number of results. | [Optional] [Defaults to `undefined`] |
+| **excludeBridgeIds** | `string` | Comma-separated list of given custom name bridge IDs the caller already holds. Used to top up a partly full queue without being handed the same names back.  | [Optional] [Defaults to `undefined`] |
 | **include** | `string` | Comma-separated include options. | [Optional] [Defaults to `undefined`] |
 
 ### Return type

@@ -14,6 +14,7 @@ docs/Etymology.md
 docs/EtymologyCulture.md
 docs/EtymologyLanguage.md
 docs/EtymologyMeaning.md
+docs/FilterOption.md
 docs/GivenName.md
 docs/GivenNameApi.md
 docs/GivenNameMutationResponse.md
@@ -23,11 +24,13 @@ docs/HealthStatus.md
 docs/LanguageRegion.md
 docs/LanguageRegionLanguage.md
 docs/LanguageWithRegions.md
+docs/NameFilters.md
 docs/NotAuthenticatedResponse.md
 docs/ReferenceApi.md
 docs/ReferenceCulturesResponse.md
 docs/ReferenceDecadesResponse.md
 docs/ReferenceLanguagesResponse.md
+docs/ReferenceNameFiltersResponse.md
 docs/SuccessResponse.md
 docs/User.md
 docs/UserActionHistory.md
@@ -53,6 +56,7 @@ models/Etymology.ts
 models/EtymologyCulture.ts
 models/EtymologyLanguage.ts
 models/EtymologyMeaning.ts
+models/FilterOption.ts
 models/GivenName.ts
 models/GivenNameMutationResponse.ts
 models/GivenNameMutationResponseUser.ts
@@ -60,10 +64,12 @@ models/HealthStatus.ts
 models/LanguageRegion.ts
 models/LanguageRegionLanguage.ts
 models/LanguageWithRegions.ts
+models/NameFilters.ts
 models/NotAuthenticatedResponse.ts
 models/ReferenceCulturesResponse.ts
 models/ReferenceDecadesResponse.ts
 models/ReferenceLanguagesResponse.ts
+models/ReferenceNameFiltersResponse.ts
 models/SuccessResponse.ts
 models/User.ts
 models/UserActionHistory.ts

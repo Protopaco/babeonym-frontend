@@ -19,6 +19,7 @@ import type {
   ReferenceCulturesResponse,
   ReferenceDecadesResponse,
   ReferenceLanguagesResponse,
+  ReferenceNameFiltersResponse,
 } from '../models/index';
 import {
     NotAuthenticatedResponseFromJSON,
@@ -29,6 +30,8 @@ import {
     ReferenceDecadesResponseToJSON,
     ReferenceLanguagesResponseFromJSON,
     ReferenceLanguagesResponseToJSON,
+    ReferenceNameFiltersResponseFromJSON,
+    ReferenceNameFiltersResponseToJSON,
 } from '../models/index';
 
 /**
@@ -150,6 +153,45 @@ export class ReferenceApi extends runtime.BaseAPI {
      */
     async v1ReferenceLanguages(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReferenceLanguagesResponse> {
         const response = await this.v1ReferenceLanguagesRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for v1ReferenceNameFilters without sending the request
+     */
+    async v1ReferenceNameFiltersRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/reference/nameFilters`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Returns every filter option the name workspace offers, grouped by filter type. Each option carries the same shape, so a picker can render any group without knowing which one it has. 
+     * Get name filter options
+     */
+    async v1ReferenceNameFiltersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReferenceNameFiltersResponse>> {
+        const requestOptions = await this.v1ReferenceNameFiltersRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReferenceNameFiltersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns every filter option the name workspace offers, grouped by filter type. Each option carries the same shape, so a picker can render any group without knowing which one it has. 
+     * Get name filter options
+     */
+    async v1ReferenceNameFilters(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReferenceNameFiltersResponse> {
+        const response = await this.v1ReferenceNameFiltersRaw(initOverrides);
         return await response.value();
     }
 

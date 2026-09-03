@@ -49,11 +49,12 @@ export interface V1GivenNameActionOperationRequest {
 
 export interface V1GivenNameCandidatesRequest {
     popularity?: number;
-    genders?: string;
+    genderIds?: string;
     decadeIds?: string;
     languageIds?: string;
     cultureIds?: string;
     limit?: number;
+    excludeBridgeIds?: string;
     include?: string;
 }
 
@@ -177,8 +178,8 @@ export class GivenNameApi extends runtime.BaseAPI {
             queryParameters['popularity'] = requestParameters['popularity'];
         }
 
-        if (requestParameters['genders'] != null) {
-            queryParameters['genders'] = requestParameters['genders'];
+        if (requestParameters['genderIds'] != null) {
+            queryParameters['genderIds'] = requestParameters['genderIds'];
         }
 
         if (requestParameters['decadeIds'] != null) {
@@ -195,6 +196,10 @@ export class GivenNameApi extends runtime.BaseAPI {
 
         if (requestParameters['limit'] != null) {
             queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['excludeBridgeIds'] != null) {
+            queryParameters['excludeBridgeIds'] = requestParameters['excludeBridgeIds'];
         }
 
         if (requestParameters['include'] != null) {
