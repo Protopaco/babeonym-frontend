@@ -16,20 +16,11 @@
 import * as runtime from '../runtime';
 import type {
   NotAuthenticatedResponse,
-  ReferenceCulturesResponse,
-  ReferenceDecadesResponse,
-  ReferenceLanguagesResponse,
   ReferenceNameFiltersResponse,
 } from '../models/index';
 import {
     NotAuthenticatedResponseFromJSON,
     NotAuthenticatedResponseToJSON,
-    ReferenceCulturesResponseFromJSON,
-    ReferenceCulturesResponseToJSON,
-    ReferenceDecadesResponseFromJSON,
-    ReferenceDecadesResponseToJSON,
-    ReferenceLanguagesResponseFromJSON,
-    ReferenceLanguagesResponseToJSON,
     ReferenceNameFiltersResponseFromJSON,
     ReferenceNameFiltersResponseToJSON,
 } from '../models/index';
@@ -38,123 +29,6 @@ import {
  * 
  */
 export class ReferenceApi extends runtime.BaseAPI {
-
-    /**
-     * Creates request options for v1ReferenceCultures without sending the request
-     */
-    async v1ReferenceCulturesRequestOpts(): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/reference/cultures`;
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     * Returns the list of available cultures.
-     * Get cultures
-     */
-    async v1ReferenceCulturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReferenceCulturesResponse>> {
-        const requestOptions = await this.v1ReferenceCulturesRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ReferenceCulturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns the list of available cultures.
-     * Get cultures
-     */
-    async v1ReferenceCultures(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReferenceCulturesResponse> {
-        const response = await this.v1ReferenceCulturesRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for v1ReferenceDecades without sending the request
-     */
-    async v1ReferenceDecadesRequestOpts(): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/reference/decades`;
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     * Returns the list of available decades.
-     * Get decades
-     */
-    async v1ReferenceDecadesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReferenceDecadesResponse>> {
-        const requestOptions = await this.v1ReferenceDecadesRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ReferenceDecadesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns the list of available decades.
-     * Get decades
-     */
-    async v1ReferenceDecades(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReferenceDecadesResponse> {
-        const response = await this.v1ReferenceDecadesRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for v1ReferenceLanguages without sending the request
-     */
-    async v1ReferenceLanguagesRequestOpts(): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/reference/languages`;
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     * Returns the list of available languages.
-     * Get languages
-     */
-    async v1ReferenceLanguagesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReferenceLanguagesResponse>> {
-        const requestOptions = await this.v1ReferenceLanguagesRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ReferenceLanguagesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns the list of available languages.
-     * Get languages
-     */
-    async v1ReferenceLanguages(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReferenceLanguagesResponse> {
-        const response = await this.v1ReferenceLanguagesRaw(initOverrides);
-        return await response.value();
-    }
 
     /**
      * Creates request options for v1ReferenceNameFilters without sending the request

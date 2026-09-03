@@ -1,9 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './CultureRegion';
-export * from './CultureRegionCulture';
-export * from './CultureWithRegions';
-export * from './Decade';
 export * from './ErrorResponse';
 export * from './Etymology';
 export * from './EtymologyCulture';
@@ -14,14 +10,8 @@ export * from './GivenName';
 export * from './GivenNameMutationResponse';
 export * from './GivenNameMutationResponseUser';
 export * from './HealthStatus';
-export * from './LanguageRegion';
-export * from './LanguageRegionLanguage';
-export * from './LanguageWithRegions';
 export * from './NameFilters';
 export * from './NotAuthenticatedResponse';
-export * from './ReferenceCulturesResponse';
-export * from './ReferenceDecadesResponse';
-export * from './ReferenceLanguagesResponse';
 export * from './ReferenceNameFiltersResponse';
 export * from './SuccessResponse';
 export * from './User';
