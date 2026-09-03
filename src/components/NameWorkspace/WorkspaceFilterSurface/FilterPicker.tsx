@@ -1,6 +1,5 @@
 import CancelIcon from '@mui/icons-material/Cancel';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import Chip from '@mui/material/Chip';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -72,7 +71,6 @@ const FilterPicker = ({ ariaLabel, options, searchLabel, searchable = true, sele
       <List className="filter-picker-options themed-scrollbar" aria-label={ariaLabel}>
         {displayOptions.map((option) => (
           <ListItemButton className="filter-picker-option" key={option.id} onClick={() => toggleOption(option.id)}>
-            <Checkbox className="filter-picker-checkbox" checked={selectedOptionIdSet.has(option.id)} tabIndex={-1} />
             <ListItemText primary={option.label} />
           </ListItemButton>
         ))}

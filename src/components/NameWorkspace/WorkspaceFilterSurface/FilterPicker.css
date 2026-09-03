@@ -36,11 +36,6 @@
   font-size: 1rem;
 }
 
-.filter-picker-checkbox.MuiCheckbox-root {
-  color: var(--color-primary);
-  padding: 2px 8px 2px 0;
-}
-
 .filter-picker-selected {
   min-height: 0;
   display: grid;
