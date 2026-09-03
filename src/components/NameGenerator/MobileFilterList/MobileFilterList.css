@@ -1,11 +1,16 @@
 .mobile-filter-list {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
   width: 100%;
 }
 
+/* The drawer gives one list the whole sheet, so the list takes the space it is
+   given rather than capping itself. */
 .mobile-filter-list-options {
-  max-height: 264px;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   box-shadow:
     inset 0 8px 8px -10px var(--color-scroll-edge),

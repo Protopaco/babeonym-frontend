@@ -12,26 +12,34 @@
     bottom: 0;
     left: 0;
     z-index: 1100;
+    gap: 8px;
     width: 100%;
     min-height: var(--height-filter-drawer-closed);
     background: var(--color-secondary);
-    padding: 16px 32px;
+    padding: 16px;
   }
 
-  .mobile-name-filters-trigger {
+  /* One row that scrolls sideways, so the bar grows by a fixed amount however
+     many filters are applied. */
+  .mobile-name-filters-chips {
     display: flex;
-    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+    height: var(--height-filter-chip-row);
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .mobile-name-filters-triggers {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
     width: 100%;
   }
 
-  .mobile-name-filters-trigger .MuiButton-root {
-    min-width: 220px;
+  .mobile-name-filters-triggers .MuiButton-root {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 4px;
   }
-
-  .mobile-name-filters-drawer-paper {
-    max-height: var(--height-filter-drawer-open);
-    border-radius: 16px 16px 0 0;
-    background: var(--color-secondary);
-  }
-
 }

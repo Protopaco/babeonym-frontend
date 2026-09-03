@@ -63,8 +63,9 @@ export default ({
 
             '--width-filter-drawer-open': '450px',
             '--width-filter-drawer-closed': '72px',
-            '--height-filter-drawer-open': 'calc(100dvh - 48px)',
+            '--height-filter-drawer-open': '50dvh',
             '--height-filter-drawer-closed': '88px',
+            '--height-filter-chip-row': '40px',
             '--bottom-floating-tutorial-icon-mobile': 'calc(var(--height-filter-drawer-closed) + 15px)',
 
             '--height-header': '124px',

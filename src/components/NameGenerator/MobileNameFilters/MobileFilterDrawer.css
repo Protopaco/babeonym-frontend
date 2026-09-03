@@ -1,0 +1,31 @@
+/* A bounded flex column, so the list inside shrinks and scrolls rather than
+   growing the paper past the viewport and carrying the header and search field
+   off the top of the screen. */
+.mobile-filter-drawer-paper.MuiDrawer-paper {
+  display: flex;
+  flex-direction: column;
+  max-height: var(--height-filter-drawer-open);
+  border-radius: 16px 16px 0 0;
+  background: var(--color-background);
+}
+
+.mobile-filter-drawer-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  box-sizing: border-box;
+  min-height: 0;
+  padding: 16px 24px 24px;
+}
+
+.mobile-filter-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-filter-drawer-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+}

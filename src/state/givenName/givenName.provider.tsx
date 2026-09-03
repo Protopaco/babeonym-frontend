@@ -9,6 +9,7 @@ import { GivenNameContext } from '@/state/givenName/givenName.context';
 import type { GivenNameState, SelectedNameFilters } from '@/state/givenName/givenName.types';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
 import enqueueRequest from '@/utils/enqueueRequest';
+import { parseFilterIds } from '@/utils/parseFilterIds';
 import retryRequest from '@/utils/retryRequest';
 import { useUser } from '@/state/user/user.context';
 
@@ -295,8 +296,20 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const onLoad = async () => {
+      // This provider sits outside the router, so the initial filters are read
+      // off the location directly. Without it, opening a URL that carries
+      // filters would boot an unfiltered queue and race the sync hook.
+      const bootParams = new URLSearchParams(window.location.search);
+
       try {
-        await getNewCandidates();
+        // applyFilters rather than a bare fetch, so the ids land in state and
+        // later refills keep asking for the same filtered pool.
+        await applyFilters({
+          genderIds: parseFilterIds(bootParams, 'genders'),
+          decadeIds: parseFilterIds(bootParams, 'decades'),
+          languageIds: parseFilterIds(bootParams, 'languages'),
+          cultureIds: parseFilterIds(bootParams, 'cultures'),
+        });
         await addApprovedGivenNames();
       } catch (error) {
         console.error('Unable to load given name data.', error);

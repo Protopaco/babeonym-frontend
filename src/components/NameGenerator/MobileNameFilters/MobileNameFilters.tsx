@@ -1,36 +1,53 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
-import './MobileNameFilters.css';
+import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
+import MobileFilterDrawer from '@/components/NameGenerator/MobileNameFilters/MobileFilterDrawer';
+import { mobileFilterCategories } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
+import type { MobileFilterCategory } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
+import { useMobileAppliedFilterChips } from '@/components/NameGenerator/MobileNameFilters/useMobileAppliedFilterChips';
 import { useAppLayoutState } from '@/state/appLayoutState/appLayoutState.context';
-import MobileNameFiltersSheet from '@/components/NameGenerator/MobileNameFilters/MobileNameFiltersSheet';
+import './MobileNameFilters.css';
 
 type Props = {
   isLoading: boolean;
 };
 
 export default ({ isLoading }: Props) => {
-  const { mobileFilterDrawerOpen, setMobileFilterDrawerOpen } = useAppLayoutState();
+  const { setMobileFilterDrawerOpen } = useAppLayoutState();
+  const [openCategory, setOpenCategory] = useState<MobileFilterCategory | null>(null);
+  const appliedFilterChips = useMobileAppliedFilterChips();
+
+  // The layout state drives sibling chrome, so it follows whichever category is
+  // open rather than a drawer of its own.
+  useEffect(() => {
+    setMobileFilterDrawerOpen(openCategory !== null);
+  }, [openCategory, setMobileFilterDrawerOpen]);
 
   useEffect(() => {
     return () => setMobileFilterDrawerOpen(false);
   }, [setMobileFilterDrawerOpen]);
 
   return (
-    <Box className="mobile-name-filters">
-      <Box className="mobile-name-filters-trigger">
-        <SecondaryButton text="Name Filters" onClick={() => setMobileFilterDrawerOpen(true)} />
+    <Box className={`mobile-name-filters ${appliedFilterChips.length > 0 ? 'mobile-name-filters--has-chips' : ''}`}>
+      {appliedFilterChips.length > 0 && (
+        <Box className="mobile-name-filters-chips themed-scrollbar" aria-label="Applied filters">
+          {appliedFilterChips.map((chip) => (
+            <WorkspaceAppliedFilterChip key={chip.id} label={chip.label} onDelete={chip.onDelete} />
+          ))}
+        </Box>
+      )}
+      <Box className="mobile-name-filters-triggers">
+        {mobileFilterCategories.map((category) => (
+          <SecondaryButton
+            key={category.id}
+            text={category.buttonLabel}
+            disabled={isLoading}
+            onClick={() => setOpenCategory(category)}
+          />
+        ))}
       </Box>
-      <Drawer
-        anchor="bottom"
-        open={mobileFilterDrawerOpen}
-        onClose={() => setMobileFilterDrawerOpen(false)}
-        className="mobile-name-filters-drawer"
-        PaperProps={{ className: 'mobile-name-filters-drawer-paper' }}
-      >
-        <MobileNameFiltersSheet isLoading={isLoading} onClose={() => setMobileFilterDrawerOpen(false)} />
-      </Drawer>
+      <MobileFilterDrawer category={openCategory} onClose={() => setOpenCategory(null)} />
     </Box>
   );
 };

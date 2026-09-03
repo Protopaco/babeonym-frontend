@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { parseFilterIds } from '@/components/NameWorkspace/WorkspaceFilterSurface/parseFilterIds';
+import { parseFilterIds } from '@/utils/parseFilterIds';
 import { writeFilterIds } from '@/components/NameWorkspace/WorkspaceFilterSurface/writeFilterIds';
 import type { FilterPickerOption } from '@/models/FilterPickerOption';
 import type { WorkspaceAppliedFilterChip } from '@/models/WorkspaceAppliedFilterChip';

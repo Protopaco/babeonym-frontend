@@ -5,3 +5,16 @@
   justify-content: center;
   min-height: 360px;
 }
+
+/* The filter bar is fixed to the bottom, so the content it would cover reserves
+   its height here. The chip row makes the bar taller only when filters are
+   applied, so the clearance follows that state. */
+@media (max-width: 599px) {
+  .name-generator-mode-content {
+    padding-bottom: var(--height-filter-drawer-closed);
+  }
+
+  .name-generator-mode-content:has(.mobile-name-filters--has-chips) {
+    padding-bottom: calc(var(--height-filter-drawer-closed) + var(--height-filter-chip-row) + 8px);
+  }
+}

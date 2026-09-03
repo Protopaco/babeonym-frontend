@@ -5,6 +5,7 @@ import WorkspaceModeHeader from '@/components/NameWorkspace/WorkspaceModeHeader/
 import WorkspaceApprovedNames from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceApprovedNames';
 import AccountPromptBanner from '@/components/NameWorkspace/AccountPromptBanner/AccountPromptBanner';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
+import { useSyncWorkspaceFilterParams } from '@/state/givenName/useSyncWorkspaceFilterParams';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './NameWorkspace.css';
@@ -13,6 +14,10 @@ const NameWorkspace = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { state } = useGivenNames();
   const { approvedGivenNames, givenNameProviderLoaded } = state;
+
+  // Mounted on the page rather than inside either filter surface, so a mobile
+  // commit does not depend on the desktop drawer being rendered.
+  useSyncWorkspaceFilterParams();
   const compareModeRequested = searchParams.get('mode') === 'compare';
   const canCompareNames = givenNameProviderLoaded && approvedGivenNames.length >= 2;
   const workspaceMode = compareModeRequested && canCompareNames ? 'compare' : 'add';
