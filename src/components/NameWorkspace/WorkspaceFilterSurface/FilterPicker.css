@@ -73,6 +73,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  overflow-y: auto;
 }
 
 .filter-picker-selected-chip.MuiChip-root {

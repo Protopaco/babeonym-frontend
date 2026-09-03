@@ -69,7 +69,7 @@ const FilterPicker = ({ ariaLabel, options, searchLabel, searchable = true, sele
           }}
         />
       )}
-      <List className="filter-picker-options" aria-label={ariaLabel}>
+      <List className="filter-picker-options themed-scrollbar" aria-label={ariaLabel}>
         {displayOptions.map((option) => (
           <ListItemButton className="filter-picker-option" key={option.id} onClick={() => toggleOption(option.id)}>
             <Checkbox className="filter-picker-checkbox" checked={selectedOptionIdSet.has(option.id)} tabIndex={-1} />
@@ -84,7 +84,7 @@ const FilterPicker = ({ ariaLabel, options, searchLabel, searchable = true, sele
             Clear All
           </Button>
         </div>
-        <div className="filter-picker-selected-list">
+        <div className="filter-picker-selected-list themed-scrollbar">
           {selectedOptions.map((option) => (
             <Chip className="filter-picker-selected-chip" key={option.id} label={option.label} onDelete={() => toggleOption(option.id)} size="small" />
           ))}
