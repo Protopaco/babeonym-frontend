@@ -14,8 +14,24 @@ it from theme tokens so it matches the app in both light and dark.
 
 The desktop filter columns scroll independently inside the filter drawer, so
 their scrollbars sit directly on a themed surface and are the most visible
-case. The mobile filter accordions scroll too and should follow the same rule
+case. The mobile filter lists scroll too and should follow the same rule
 rather than getting their own treatment.
+
+## Current State
+
+Partially done. The shared `.themed-scrollbar` class already exists in
+`src/styles/scrollbar.css`, imported globally from `src/styles/index.css`, and
+styles the track, thumb, and thumb hover from tokens. It is applied on mobile,
+to the filter option list in `MobileFilterList.tsx` and the applied-chip row in
+`MobileNameFilters.tsx`.
+
+What remains is desktop, which is the case this ticket was written for. The
+filter option list in `FilterPicker.tsx` sets `overflow: auto` in
+`FilterPicker.css` but does not carry the class, so it still renders the
+browser default.
+
+The mobile filter accordions named in the original requirements no longer
+exist; the mobile drawer was rebuilt as a list during ticket `[043]`.
 
 ## Requirements
 
