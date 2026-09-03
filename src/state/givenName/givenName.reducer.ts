@@ -1,5 +1,6 @@
 import type { GivenNameState, GivenNameAction } from '@/state/givenName/givenName.types';
 import type { GivenName } from '@/api/generated/models/GivenName';
+import { initialGivenNameState } from '@/state/givenName/givenName.initialState';
 
 export const givenNameReducer = (state: GivenNameState, action: GivenNameAction): GivenNameState => {
   switch (action.type) {
@@ -84,6 +85,13 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
         selectedLanguageIds: languageIds,
         selectedCultureIds: cultureIds,
       };
+    }
+
+    // A new session inherits nothing. Returning the initial state also puts
+    // givenNameProviderLoaded back to false, so the display shows the skeleton
+    // while the provider boots for the new user instead of an empty slot.
+    case 'RESET_GIVEN_NAME_STATE': {
+      return initialGivenNameState;
     }
 
     default:

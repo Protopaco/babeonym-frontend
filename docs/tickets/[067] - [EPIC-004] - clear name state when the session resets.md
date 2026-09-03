@@ -30,6 +30,9 @@ which reads as a data leak even though the data is only in memory.
   and selected filters.
 - Clear the account-prompt flag, so a prompt open at logout does not carry into
   the new session.
+- Clear the exhausted-candidates flag. Leaving it set blocks the new session's
+  refill before it starts, which is worse than the stale state this ticket
+  exists to fix.
 - Let the given-name provider load fresh data for the new anonymous user without
   a manual page reload.
 - Apply to both entry points, since logout and account deletion share the same
@@ -47,6 +50,10 @@ which reads as a data leak even though the data is only in memory.
   the other will leave the two disagreeing.
 - The account-prompt flag lives in the user reducer as `promptAccountCreation`,
   added in ticket `[065]`.
+- `candidatesExhausted` in `givenName.provider.tsx` is read by the refill guard
+  added in ticket `[069]`. While it is set, the refill effect returns before
+  fetching, so a session that ends on the exhausted message would carry that
+  block into the new one and never load names.
 
 ## Acceptance Criteria
 
@@ -57,6 +64,8 @@ which reads as a data leak even though the data is only in memory.
   manual reload.
 - Applied filters do not survive the reset in either the UI or the URL.
 - An account prompt open at the time of logout is not visible afterwards.
+- Logging out while the exhausted-names message is showing leads to a new
+  session that loads names, rather than one still showing that message.
 
 ## Out Of Scope
 

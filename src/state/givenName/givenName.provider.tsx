@@ -8,8 +8,10 @@ import type { V1GivenNameActionOperationRequest, V1GivenNameCandidatesRequest } 
 import { GivenNameContext } from '@/state/givenName/givenName.context';
 import type { GivenNameState, SelectedNameFilters } from '@/state/givenName/givenName.types';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
+import { initialGivenNameState } from '@/state/givenName/givenName.initialState';
 import enqueueRequest from '@/utils/enqueueRequest';
 import { parseFilterIds } from '@/utils/parseFilterIds';
+import { serializeFilterIds } from '@/utils/serializeFilterIds';
 import retryRequest from '@/utils/retryRequest';
 import { useUser } from '@/state/user/user.context';
 
@@ -18,24 +20,16 @@ import { useUser } from '@/state/user/user.context';
 const CANDIDATE_REFILL_THRESHOLD = 25;
 const CANDIDATE_BATCH_SIZE = 50;
 
-const initialState: GivenNameState = {
-  givenNameCandidates: [],
-  approvedGivenNames: [],
-  givenNameProviderLoaded: false,
-  candidatesExhausted: false,
-  selectedGenderIds: [],
-  selectedDecadeIds: [],
-  selectedLanguageIds: [],
-  selectedCultureIds: [],
-};
-
 export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(givenNameReducer, initialState);
+  const [state, dispatch] = useReducer(givenNameReducer, initialGivenNameState);
   const {
     state: { user, userProviderLoaded },
     dispatch: userDispatch,
   } = useUser();
-  const booted = useRef(false);
+  // Holds which user was booted rather than merely that a boot happened. Theme
+  // and settings saves dispatch ADD_USER with a fresh object, so the effect
+  // wakes on every one of them; only a different id means a different person.
+  const bootedUserId = useRef<number | null>(null);
   const refillInFlight = useRef(false);
 
   // The backend matches milestones exactly, so the signal is true on one
@@ -53,17 +47,17 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     pLanguages?: number[],
     pCultures?: number[]
   ): V1GivenNameCandidatesRequest => {
-    const genderIds = pGenders?.length ? pGenders.join(',') : state.selectedGenderIds.length ? state.selectedGenderIds.join(',') : undefined;
+    // Presence, not length. An empty array is the caller saying this category
+    // has no filter, which is what deleting the last chip of one produces.
+    // Treating it as "nothing passed" would fall back to state and re-apply the
+    // filter that was just removed.
+    const genderIds = pGenders ? serializeFilterIds(pGenders) : serializeFilterIds(state.selectedGenderIds);
 
-    const decadeIds = pDecades?.length ? pDecades.join(',') : state.selectedDecadeIds.length ? state.selectedDecadeIds.join(',') : undefined;
+    const decadeIds = pDecades ? serializeFilterIds(pDecades) : serializeFilterIds(state.selectedDecadeIds);
 
-    const languageIds = pLanguages?.length
-      ? pLanguages.join(',')
-      : state.selectedLanguageIds.length
-        ? state.selectedLanguageIds.join(',')
-        : undefined;
+    const languageIds = pLanguages ? serializeFilterIds(pLanguages) : serializeFilterIds(state.selectedLanguageIds);
 
-    const cultureIds = pCultures?.length ? pCultures.join(',') : state.selectedCultureIds.length ? state.selectedCultureIds.join(',') : undefined;
+    const cultureIds = pCultures ? serializeFilterIds(pCultures) : serializeFilterIds(state.selectedCultureIds);
 
     return {
       genderIds,
@@ -287,8 +281,9 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       }
     };
 
-    if (booted.current || !userProviderLoaded || !user) return;
-    booted.current = true;
+    if (!userProviderLoaded || !user) return;
+    if (bootedUserId.current === user.id) return;
+    bootedUserId.current = user.id;
     onLoad();
   }, [userProviderLoaded, user]);
 
