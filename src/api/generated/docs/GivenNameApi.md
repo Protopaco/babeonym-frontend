@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost:2221*
 
 ## v1GivenNameAction
 
-> ApprovedGivenNamesResponse v1GivenNameAction(v1GivenNameActionRequest)
+> GivenNameMutationResponse v1GivenNameAction(v1GivenNameActionRequest)
 
 Update given name state
 
@@ -61,7 +61,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApprovedGivenNamesResponse**](ApprovedGivenNamesResponse.md)
+[**GivenNameMutationResponse**](GivenNameMutationResponse.md)
 
 ### Authorization
 
@@ -231,7 +231,7 @@ No authorization required
 
 ## v1GivenNameCompare
 
-> ApprovedGivenNamesResponse v1GivenNameCompare(v1GivenNameCompareRequest)
+> GivenNameMutationResponse v1GivenNameCompare(v1GivenNameCompareRequest)
 
 Compare two given names
 
@@ -276,7 +276,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApprovedGivenNamesResponse**](ApprovedGivenNamesResponse.md)
+[**GivenNameMutationResponse**](GivenNameMutationResponse.md)
 
 ### Authorization
 
@@ -300,7 +300,7 @@ No authorization required
 
 ## v1GivenNameCustom
 
-> ApprovedGivenNamesResponse v1GivenNameCustom(v1GivenNameCustomRequest)
+> GivenNameMutationResponse v1GivenNameCustom(v1GivenNameCustomRequest)
 
 Add a custom given name
 
@@ -345,7 +345,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**ApprovedGivenNamesResponse**](ApprovedGivenNamesResponse.md)
+[**GivenNameMutationResponse**](GivenNameMutationResponse.md)
 
 ### Authorization
 

@@ -15,24 +15,24 @@
 
 import * as runtime from '../runtime';
 import type {
-  ApprovedGivenNamesResponse,
   ErrorResponse,
   Etymology,
   GivenName,
+  GivenNameMutationResponse,
   NotAuthenticatedResponse,
   V1GivenNameActionRequest,
   V1GivenNameCompareRequest,
   V1GivenNameCustomRequest,
 } from '../models/index';
 import {
-    ApprovedGivenNamesResponseFromJSON,
-    ApprovedGivenNamesResponseToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     EtymologyFromJSON,
     EtymologyToJSON,
     GivenNameFromJSON,
     GivenNameToJSON,
+    GivenNameMutationResponseFromJSON,
+    GivenNameMutationResponseToJSON,
     NotAuthenticatedResponseFromJSON,
     NotAuthenticatedResponseToJSON,
     V1GivenNameActionRequestFromJSON,
@@ -112,18 +112,18 @@ export class GivenNameApi extends runtime.BaseAPI {
      * Updates the state of a given name (approved, rejected, or snoozed) for the authenticated user.
      * Update given name state
      */
-    async v1GivenNameActionRaw(requestParameters: V1GivenNameActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApprovedGivenNamesResponse>> {
+    async v1GivenNameActionRaw(requestParameters: V1GivenNameActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GivenNameMutationResponse>> {
         const requestOptions = await this.v1GivenNameActionRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApprovedGivenNamesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GivenNameMutationResponseFromJSON(jsonValue));
     }
 
     /**
      * Updates the state of a given name (approved, rejected, or snoozed) for the authenticated user.
      * Update given name state
      */
-    async v1GivenNameAction(requestParameters: V1GivenNameActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApprovedGivenNamesResponse> {
+    async v1GivenNameAction(requestParameters: V1GivenNameActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GivenNameMutationResponse> {
         const response = await this.v1GivenNameActionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -267,18 +267,18 @@ export class GivenNameApi extends runtime.BaseAPI {
      * Records a comparison result between two given names for the authenticated user.
      * Compare two given names
      */
-    async v1GivenNameCompareRaw(requestParameters: V1GivenNameCompareOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApprovedGivenNamesResponse>> {
+    async v1GivenNameCompareRaw(requestParameters: V1GivenNameCompareOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GivenNameMutationResponse>> {
         const requestOptions = await this.v1GivenNameCompareRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApprovedGivenNamesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GivenNameMutationResponseFromJSON(jsonValue));
     }
 
     /**
      * Records a comparison result between two given names for the authenticated user.
      * Compare two given names
      */
-    async v1GivenNameCompare(requestParameters: V1GivenNameCompareOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApprovedGivenNamesResponse> {
+    async v1GivenNameCompare(requestParameters: V1GivenNameCompareOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GivenNameMutationResponse> {
         const response = await this.v1GivenNameCompareRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -316,18 +316,18 @@ export class GivenNameApi extends runtime.BaseAPI {
      * Adds a user-defined custom given name for the authenticated user.
      * Add a custom given name
      */
-    async v1GivenNameCustomRaw(requestParameters: V1GivenNameCustomOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApprovedGivenNamesResponse>> {
+    async v1GivenNameCustomRaw(requestParameters: V1GivenNameCustomOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GivenNameMutationResponse>> {
         const requestOptions = await this.v1GivenNameCustomRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApprovedGivenNamesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GivenNameMutationResponseFromJSON(jsonValue));
     }
 
     /**
      * Adds a user-defined custom given name for the authenticated user.
      * Add a custom given name
      */
-    async v1GivenNameCustom(requestParameters: V1GivenNameCustomOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApprovedGivenNamesResponse> {
+    async v1GivenNameCustom(requestParameters: V1GivenNameCustomOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GivenNameMutationResponse> {
         const response = await this.v1GivenNameCustomRaw(requestParameters, initOverrides);
         return await response.value();
     }

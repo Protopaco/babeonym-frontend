@@ -1,5 +1,5 @@
 
-# ApprovedGivenNamesResponse
+# GivenNameMutationResponse
 
 
 ## Properties
@@ -7,16 +7,18 @@
 Name | Type
 ------------ | -------------
 `approvedGivenNames` | [Array&lt;GivenName&gt;](GivenName.md)
+`user` | [GivenNameMutationResponseUser](GivenNameMutationResponseUser.md)
 
 ## Example
 
 ```typescript
-import type { ApprovedGivenNamesResponse } from ''
+import type { GivenNameMutationResponse } from ''
 
 // TODO: Update the object below with actual values
 const example = {
   "approvedGivenNames": null,
-} satisfies ApprovedGivenNamesResponse
+  "user": null,
+} satisfies GivenNameMutationResponse
 
 console.log(example)
 
@@ -25,7 +27,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ApprovedGivenNamesResponse
+const exampleParsed = JSON.parse(exampleJSON) as GivenNameMutationResponse
 console.log(exampleParsed)
 ```
 

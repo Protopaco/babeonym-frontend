@@ -4,7 +4,6 @@ apis/HealthApi.ts
 apis/ReferenceApi.ts
 apis/UserApi.ts
 apis/index.ts
-docs/ApprovedGivenNamesResponse.md
 docs/AuthApi.md
 docs/CultureRegion.md
 docs/CultureRegionCulture.md
@@ -17,6 +16,8 @@ docs/EtymologyLanguage.md
 docs/EtymologyMeaning.md
 docs/GivenName.md
 docs/GivenNameApi.md
+docs/GivenNameMutationResponse.md
+docs/GivenNameMutationResponseUser.md
 docs/HealthApi.md
 docs/HealthStatus.md
 docs/LanguageRegion.md
@@ -43,7 +44,6 @@ docs/V1GivenNameCustomRequest.md
 docs/V1UserSettingsRequest.md
 docs/V1UserThemeRequest.md
 index.ts
-models/ApprovedGivenNamesResponse.ts
 models/CultureRegion.ts
 models/CultureRegionCulture.ts
 models/CultureWithRegions.ts
@@ -54,6 +54,8 @@ models/EtymologyCulture.ts
 models/EtymologyLanguage.ts
 models/EtymologyMeaning.ts
 models/GivenName.ts
+models/GivenNameMutationResponse.ts
+models/GivenNameMutationResponseUser.ts
 models/HealthStatus.ts
 models/LanguageRegion.ts
 models/LanguageRegionLanguage.ts

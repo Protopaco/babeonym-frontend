@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './ApprovedGivenNamesResponse';
 export * from './CultureRegion';
 export * from './CultureRegionCulture';
 export * from './CultureWithRegions';
@@ -11,6 +10,8 @@ export * from './EtymologyCulture';
 export * from './EtymologyLanguage';
 export * from './EtymologyMeaning';
 export * from './GivenName';
+export * from './GivenNameMutationResponse';
+export * from './GivenNameMutationResponseUser';
 export * from './HealthStatus';
 export * from './LanguageRegion';
 export * from './LanguageRegionLanguage';
