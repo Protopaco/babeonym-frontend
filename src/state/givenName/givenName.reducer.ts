@@ -64,8 +64,8 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, givenNameProviderLoaded: true };
     }
 
-    // Replaces all four lists at once. The desktop surface holds its filters in
-    // the URL, so what it applies is the whole selection, not a delta.
+    // Replaces all four lists at once. Both surfaces hold their filters in the
+    // URL, so what they apply is the whole selection, not a delta.
     case 'SET_SELECTED_FILTERS': {
       const { genderIds, decadeIds, languageIds, cultureIds } = action.payload;
 
@@ -78,42 +78,6 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       };
     }
 
-    case 'ADD_SELECTED_GENDER_ID': {
-      return { ...state, selectedGenderIds: [...new Set([...state.selectedGenderIds, ...action.payload])] };
-    }
-
-    case 'REMOVE_SELECTED_GENDER_ID': {
-      const newSelectedGenderIds = state.selectedGenderIds.filter((selectedGenderId) => !action.payload.includes(selectedGenderId));
-
-      return { ...state, selectedGenderIds: newSelectedGenderIds };
-    }
-
-    case 'ADD_SELECTED_DECADE_ID': {
-      return { ...state, selectedDecadeIds: [...new Set([...state.selectedDecadeIds, ...action.payload])] };
-    }
-
-    case 'REMOVE_SELECTED_DECADE_ID': {
-      const newSelectedDecadeIds = state.selectedDecadeIds.filter((selectedDecadeId) => !action.payload.includes(selectedDecadeId));
-      return { ...state, selectedDecadeIds: newSelectedDecadeIds };
-    }
-
-    case 'ADD_SELECTED_LANGUAGE_ID': {
-      return { ...state, selectedLanguageIds: [...new Set([...state.selectedLanguageIds, ...action.payload])] };
-    }
-
-    case 'REMOVE_SELECTED_LANGUAGE_ID': {
-      const newSelectedLanguageIds = state.selectedLanguageIds.filter((selectedLanguageId) => !action.payload.includes(selectedLanguageId));
-      return { ...state, selectedLanguageIds: newSelectedLanguageIds };
-    }
-
-    case 'ADD_SELECTED_CULTURE_ID': {
-      return { ...state, selectedCultureIds: [...new Set([...state.selectedCultureIds, ...action.payload])] };
-    }
-
-    case 'REMOVE_SELECTED_CULTURE_ID': {
-      const newSelectedCultureIds = state.selectedCultureIds.filter((selectedCultureId) => !action.payload.includes(selectedCultureId));
-      return { ...state, selectedCultureIds: newSelectedCultureIds };
-    }
     default:
       return state;
   }

@@ -26,12 +26,4 @@ export type GivenNameAction =
   | { type: 'RESTORE_APPROVED'; payload: { givenName: GivenName; index: number } }
   | { type: 'ADD_APPROVED'; payload: GivenName[] }
   | { type: 'GIVEN_NAME_PROVIDER_LOADED' }
-  | { type: 'SET_SELECTED_FILTERS'; payload: SelectedNameFilters }
-  | { type: 'ADD_SELECTED_GENDER_ID'; payload: number[] }
-  | { type: 'REMOVE_SELECTED_GENDER_ID'; payload: number[] }
-  | { type: 'ADD_SELECTED_DECADE_ID'; payload: number[] }
-  | { type: 'REMOVE_SELECTED_DECADE_ID'; payload: number[] }
-  | { type: 'ADD_SELECTED_LANGUAGE_ID'; payload: number[] }
-  | { type: 'REMOVE_SELECTED_LANGUAGE_ID'; payload: number[] }
-  | { type: 'ADD_SELECTED_CULTURE_ID'; payload: number[] }
-  | { type: 'REMOVE_SELECTED_CULTURE_ID'; payload: number[] };
+  | { type: 'SET_SELECTED_FILTERS'; payload: SelectedNameFilters };

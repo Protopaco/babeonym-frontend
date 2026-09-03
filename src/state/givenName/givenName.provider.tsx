@@ -262,38 +262,6 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: 'GIVEN_NAME_PROVIDER_LOADED' });
   };
 
-  const addSelectedGenderIds = (selectedGenderIds: number[]) => {
-    dispatch({ type: 'ADD_SELECTED_GENDER_ID', payload: selectedGenderIds });
-  };
-
-  const removeSelectedGenderIds = (unselectedGenderIds: number[]) => {
-    dispatch({ type: 'REMOVE_SELECTED_GENDER_ID', payload: unselectedGenderIds });
-  };
-
-  const addSelectedDecadeIds = (selectedDecadeIds: number[]) => {
-    dispatch({ type: 'ADD_SELECTED_DECADE_ID', payload: selectedDecadeIds });
-  };
-
-  const removeSelectedDecadeIds = (unselectedDecadeIds: number[]) => {
-    dispatch({ type: 'REMOVE_SELECTED_DECADE_ID', payload: unselectedDecadeIds });
-  };
-
-  const addSelectedLanguageIds = (selectedLanguageIds: number[]) => {
-    dispatch({ type: 'ADD_SELECTED_LANGUAGE_ID', payload: selectedLanguageIds });
-  };
-
-  const removeSelectedLanguageIds = (unselectedLanguageIds: number[]) => {
-    dispatch({ type: 'REMOVE_SELECTED_LANGUAGE_ID', payload: unselectedLanguageIds });
-  };
-
-  const addSelectedCultureIds = (selectedCultureIds: number[]) => {
-    dispatch({ type: 'ADD_SELECTED_CULTURE_ID', payload: selectedCultureIds });
-  };
-
-  const removeSelectedCultureIds = (unselectedCultureIds: number[]) => {
-    dispatch({ type: 'REMOVE_SELECTED_CULTURE_ID', payload: unselectedCultureIds });
-  };
-
   useEffect(() => {
     const onLoad = async () => {
       // This provider sits outside the router, so the initial filters are read
@@ -344,14 +312,6 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         snoozeCandidate,
         submitCompareVote,
         addCustomGivenName,
-        addSelectedGenderIds,
-        removeSelectedGenderIds,
-        addSelectedDecadeIds,
-        removeSelectedDecadeIds,
-        addSelectedLanguageIds,
-        removeSelectedLanguageIds,
-        addSelectedCultureIds,
-        removeSelectedCultureIds,
       },
     }),
     [state]

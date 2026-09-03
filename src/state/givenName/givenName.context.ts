@@ -13,14 +13,6 @@ export const GivenNameContext = createContext<
         snoozeCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
         submitCompareVote: (winnerId: number, loserId: number) => Promise<void>;
         addCustomGivenName: (customGivenName: string) => Promise<void>;
-        addSelectedGenderIds: (selectedGenderIds: number[]) => void;
-        removeSelectedGenderIds: (unselectedGenderIds: number[]) => void;
-        addSelectedDecadeIds: (selectedDecadeIds: number[]) => void;
-        removeSelectedDecadeIds: (unselectedDecadeIds: number[]) => void;
-        addSelectedLanguageIds: (selectedLanguageIds: number[]) => void;
-        removeSelectedLanguageIds: (unselectedLanguageIds: number[]) => void;
-        addSelectedCultureIds: (selectedCultureIds: number[]) => void;
-        removeSelectedCultureIds: (unselectedCultureIds: number[]) => void;
       };
     }
   | undefined
