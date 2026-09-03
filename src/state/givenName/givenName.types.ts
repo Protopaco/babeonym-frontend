@@ -3,6 +3,10 @@ import type { GivenName } from '@/api/generated/models/GivenName';
 export type GivenNameState = {
   givenNameCandidates: GivenName[];
   givenNameProviderLoaded: boolean;
+  // Set when a fetch brings back nothing new, which means the filtered pool
+  // holds no names beyond the ones already in hand. Separates an empty queue
+  // that is genuinely finished from one still waiting on a request.
+  candidatesExhausted: boolean;
   approvedGivenNames: GivenName[];
   selectedGenderIds: number[];
   selectedDecadeIds: number[];

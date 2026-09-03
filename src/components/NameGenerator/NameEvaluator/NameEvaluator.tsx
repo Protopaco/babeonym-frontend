@@ -12,7 +12,7 @@ export default () => {
   const givenNameContext = useGivenNames();
   const { state: userState } = useUser();
   const { user } = userState;
-  const { givenNameCandidates, givenNameProviderLoaded } = givenNameContext.state;
+  const { givenNameCandidates, givenNameProviderLoaded, candidatesExhausted } = givenNameContext.state;
   const currentCandidate = givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0] : null;
   const actionDisabled = !givenNameProviderLoaded || !currentCandidate;
   const { approveClick, rejectClick, snoozeClick } = useNameEvaluationActions(currentCandidate);
@@ -20,7 +20,11 @@ export default () => {
   return (
     <Box id="name-evaluator-content">
       <Box className="name-evaluator-display-row">
-        <EvaluatedNameDisplay currentCandidate={currentCandidate} givenNameProviderLoaded={givenNameProviderLoaded} />
+        <EvaluatedNameDisplay
+          candidatesExhausted={candidatesExhausted}
+          currentCandidate={currentCandidate}
+          givenNameProviderLoaded={givenNameProviderLoaded}
+        />
         {user?.surName ? (
           <Typography variant="h3" id="user-surname">
             {user.surName}

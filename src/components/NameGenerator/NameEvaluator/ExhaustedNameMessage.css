@@ -1,0 +1,33 @@
+.exhausted-name-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+}
+
+/* Deliberately not name-sized. This sits in the slot a name would occupy, and
+   matching that scale would read as a candidate. */
+.exhausted-name-message-headline.MuiTypography-root {
+  color: var(--color-text-primary);
+  font-size: 20px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.exhausted-name-message-guidance.MuiTypography-root {
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (max-width: 599px) {
+  .exhausted-name-message-headline.MuiTypography-root {
+    font-size: 18px;
+  }
+
+  .exhausted-name-message-guidance.MuiTypography-root {
+    font-size: 14px;
+  }
+}

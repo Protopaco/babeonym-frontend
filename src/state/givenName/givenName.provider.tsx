@@ -3,7 +3,7 @@ import { givenNameApi } from '@/api/client';
 import type { ReactNode } from 'react';
 import type { GivenName } from '@/api/generated/models/GivenName';
 import type { GivenNameMutationResponse } from '@/api/generated/models/GivenNameMutationResponse';
-import { ApiV1GivenNameActionPostRequestNewStateEnum } from '@/api/generated/models/ApiV1GivenNameActionPostRequest';
+import { V1GivenNameActionRequestNewStateEnum } from '@/api/generated/models/V1GivenNameActionRequest';
 import type { V1GivenNameActionOperationRequest, V1GivenNameCandidatesRequest } from '@/api/generated/apis/GivenNameApi';
 import { GivenNameContext } from '@/state/givenName/givenName.context';
 import type { GivenNameState, SelectedNameFilters } from '@/state/givenName/givenName.types';
@@ -22,6 +22,7 @@ const initialState: GivenNameState = {
   givenNameCandidates: [],
   approvedGivenNames: [],
   givenNameProviderLoaded: false,
+  candidatesExhausted: false,
   selectedGenderIds: [],
   selectedDecadeIds: [],
   selectedLanguageIds: [],
@@ -125,7 +126,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     const actionRequest: V1GivenNameActionOperationRequest = {
       v1GivenNameActionRequest: {
         givenCustomNameBridgeId,
-        newState: ApiV1GivenNameActionPostRequestNewStateEnum.Approved,
+        newState: V1GivenNameActionRequestNewStateEnum.Approved,
       },
     };
 
@@ -150,7 +151,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     const actionRequest: V1GivenNameActionOperationRequest = {
       v1GivenNameActionRequest: {
         givenCustomNameBridgeId,
-        newState: ApiV1GivenNameActionPostRequestNewStateEnum.Rejected,
+        newState: V1GivenNameActionRequestNewStateEnum.Rejected,
       },
     };
 
@@ -182,7 +183,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     const actionRequest: V1GivenNameActionOperationRequest = {
       v1GivenNameActionRequest: {
         givenCustomNameBridgeId,
-        newState: ApiV1GivenNameActionPostRequestNewStateEnum.Snoozed,
+        newState: V1GivenNameActionRequestNewStateEnum.Snoozed,
       },
     };
 
@@ -296,9 +297,13 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   // short list.
   useEffect(() => {
     if (!state.givenNameProviderLoaded) return;
+    // Nothing but a filter change can produce names once the pool is spent, and
+    // every action shortens the queue, so without this each one would fire
+    // another refill that cannot return anything.
+    if (state.candidatesExhausted) return;
     if (state.givenNameCandidates.length >= CANDIDATE_REFILL_THRESHOLD) return;
     refillCandidates();
-  }, [state.givenNameCandidates.length, state.givenNameProviderLoaded]);
+  }, [state.givenNameCandidates.length, state.givenNameProviderLoaded, state.candidatesExhausted]);
 
   const value = useMemo(
     () => ({

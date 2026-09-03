@@ -3,8 +3,10 @@ import type { GivenName } from '@/api/generated/models/GivenName';
 
 export const givenNameReducer = (state: GivenNameState, action: GivenNameAction): GivenNameState => {
   switch (action.type) {
+    // A replacing fetch answers the exhausted question outright: whatever comes
+    // back is the whole pool for these filters.
     case 'GET_NEW_CANDIDATES': {
-      return { ...state, givenNameCandidates: action.payload };
+      return { ...state, givenNameCandidates: action.payload, candidatesExhausted: action.payload.length === 0 };
     }
 
     // Refills append rather than replace. A Map keyed by bridge id keeps the
@@ -19,9 +21,15 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
         candidateMap.set(candidate.givenCustomNameBridgeId, candidate);
       });
 
+      const mergedCandidates = Array.from(candidateMap.values());
+
       return {
         ...state,
-        givenNameCandidates: Array.from(candidateMap.values()),
+        givenNameCandidates: mergedCandidates,
+        // Measured after the merge, not off the payload. A refill can return a
+        // full batch of names already held, which adds nothing and still means
+        // the pool is spent.
+        candidatesExhausted: mergedCandidates.length === existingCandidates.length,
       };
     }
 
