@@ -145,20 +145,23 @@ The application should reduce navigation friction and keep users oriented around
 - Account creation is session preservation, not access control.
 - Account prompts should communicate saving or preserving progress, not unlocking continued use.
 - Account prompts should appear when the user has created enough saved value that preservation feels helpful.
-- Approved-name count is the first preferred signal for account prompt timing.
-- Account prompt thresholds should be configurable rather than hardcoded.
-- Initial candidate thresholds include:
-  - after `10` approved names
-  - after `20` approved names
-  - after `30` approved names
-  - then stop prompting unless a separate account CTA is intentionally shown
+- Prompt timing is driven by an action count, not by the approved-name count. Approved-name count is current state and falls when names are rejected, so the same point can be crossed repeatedly.
+- The action count is the number of names the user has ever acted on plus the number of comparisons they have voted on. Both are already recorded and neither ever decreases.
+- The backend owns the prompt rule and sends only a boolean. The frontend never sees the count.
+- Prompt milestones should be configurable rather than hardcoded, and default to `25`, `50`, `75` actions.
+- Milestones match exactly rather than as thresholds. Every action moves the count by one or zero, so exact matching fires each milestone once without recording which have already been shown.
+- The prompt signal travels with the responses to the actions that change the count, so every increment is observed. It is deliberately absent from the user response, where an exact match could only repeat a prompt the user already saw.
 - Prompt copy should frame account creation as helping users save or protect the list they have built.
 - Prompt copy should not imply that account creation is required to continue using the app.
-- Account prompts should be optional and dismissible.
+- Account prompts should be optional and dismissible. A prompt is opened by the signal and stays until dismissed; ignoring one is equivalent to dismissing it.
+- Missing a prompt is preferable to repeating one.
 - Accounts are currently managed through Google OAuth.
 - Microsoft OAuth may be added later.
 - Anonymous usage is connected to cookie and session data.
-- Anonymous saved names, custom names, and ranking data should convert into the created account.
+- Anonymous saved names, custom names, and ranking data convert into the created account only when the provider account is new, in which case the provider is linked onto the existing anonymous user.
+- When an account already exists for that address, the user is signed into it and the anonymous session's work is orphaned. This is deliberate. The database side of a merge is solvable, but asking someone mid-authentication whether to merge their activity, and defining what that activity is, is a question most people cannot answer.
+- Orphaned anonymous data is left in place rather than deleted. A sweeper is post-launch work and depends on metrics and reporting existing first.
+- A user signed into a pre-existing account should be told that is what happened, so an empty list is explained.
 - Backend behavior should be confirmed before implementation because this was built earlier and may need review.
 - Creating an account should help users preserve or restore work across devices, browsers, and sessions.
 - Filters are treated as UI/URL state rather than anonymous persisted account-conversion data.
