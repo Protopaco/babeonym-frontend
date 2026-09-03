@@ -1,33 +1,36 @@
 import { useSearchParams } from 'react-router-dom';
-import { mockNameFilterReferenceData } from '@/components/NameWorkspace/WorkspaceFilterSurface/mockNameFilterReferenceData';
+import { useFilters } from '@/state/filter/filter.context';
 import { useWorkspaceFilterCategory } from '@/components/NameWorkspace/WorkspaceFilterSurface/useWorkspaceFilterCategory';
 
 export const useWorkspaceFilterDraftState = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const {
+    state: { nameFilters },
+  } = useFilters();
   const genderFilters = useWorkspaceFilterCategory({
     categoryLabel: 'Gender',
-    options: mockNameFilterReferenceData.genderOptions,
+    options: nameFilters.genderOptions,
     paramKey: 'genders',
     searchParams,
     setSearchParams,
   });
   const decadeFilters = useWorkspaceFilterCategory({
     categoryLabel: 'Decade',
-    options: mockNameFilterReferenceData.decadeOptions,
+    options: nameFilters.decadeOptions,
     paramKey: 'decades',
     searchParams,
     setSearchParams,
   });
   const cultureFilters = useWorkspaceFilterCategory({
     categoryLabel: 'Culture',
-    options: mockNameFilterReferenceData.cultureOptions,
+    options: nameFilters.cultureOptions,
     paramKey: 'cultures',
     searchParams,
     setSearchParams,
   });
   const languageFilters = useWorkspaceFilterCategory({
     categoryLabel: 'Language',
-    options: mockNameFilterReferenceData.languageOptions,
+    options: nameFilters.languageOptions,
     paramKey: 'languages',
     searchParams,
     setSearchParams,

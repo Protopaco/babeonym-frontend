@@ -11,6 +11,12 @@ const initialState: FilterState = {
   cultures: [],
   decades: [],
   languages: [],
+  nameFilters: {
+    genderOptions: [],
+    decadeOptions: [],
+    cultureOptions: [],
+    languageOptions: [],
+  },
 };
 
 const filterEmptyCultureSections = (cultures: CultureWithRegions[]) => {
@@ -59,12 +65,22 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // The flat option lists the desktop filter surface reads. The three calls
+  // above stay because the mobile accordions still need the region hierarchy.
+  const addNameFilters = async () => {
+    if (state.nameFilters.genderOptions.length < 1) {
+      const { nameFilters } = await referenceApi.v1ReferenceNameFilters();
+      dispatch({ type: 'ADD_NAME_FILTERS', payload: nameFilters });
+    }
+  };
+
   useEffect(() => {
     const onLoad = async () => {
       try {
         await addDecades();
         await addCultures();
         await addLanguages();
+        await addNameFilters();
       } catch (error) {
         console.error('Unable to load filter reference data.', error);
       }

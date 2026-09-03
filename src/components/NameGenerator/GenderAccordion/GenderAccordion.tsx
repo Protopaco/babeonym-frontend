@@ -1,5 +1,5 @@
-import { GenderValues } from '@/types/Gender';
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
+import { useFilters } from '@/state/filter/filter.context';
 
 import { List } from '@mui/material';
 import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
@@ -13,27 +13,30 @@ type Props = {
 
 export default ({ expanded, onChange }: Props) => {
   const givenNameContext = useGivenNames();
-  const { selectedGenders } = givenNameContext.state;
-  const { addSelectedGenders, removeSelectedGenders } = useGivenNamesActions();
+  const { selectedGenderIds } = givenNameContext.state;
+  const { addSelectedGenderIds, removeSelectedGenderIds } = useGivenNamesActions();
+  const {
+    state: { nameFilters },
+  } = useFilters();
 
   return (
     <FilterAccordionFrame expanded={expanded} onChange={onChange} label="Gender" ariaControls="gender-filter-content" id="gender-filter-summary">
       <List>
-        {GenderValues.map((gender, index) => {
-          const selected = selectedGenders.includes(gender);
+        {nameFilters.genderOptions.map(({ id, label }, index) => {
+          const selected = selectedGenderIds.includes(id);
 
           return (
             <FilterListItem
-              key={gender}
+              key={id}
               index={index}
-              label={gender}
+              label={label}
               action={
                 selected
                   ? () => {
-                      removeSelectedGenders([gender]);
+                      removeSelectedGenderIds([id]);
                     }
                   : () => {
-                      addSelectedGenders([gender]);
+                      addSelectedGenderIds([id]);
                     }
               }
               selected={selected}

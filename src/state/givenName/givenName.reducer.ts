@@ -7,20 +7,23 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, givenNameCandidates: action.payload };
     }
 
-    // case 'ADD_CANDIDATES': {
-    //   const existingCandidates = state.givenNameCandidates ?? [];
+    // Refills append rather than replace. A Map keyed by bridge id keeps the
+    // first position of each entry, so existing candidates hold their order and
+    // the one on screen at the front is never displaced.
+    case 'ADD_CANDIDATES': {
+      const existingCandidates = state.givenNameCandidates ?? [];
 
-    //   const candidateMap = new Map<number, GivenName>();
+      const candidateMap = new Map<number, GivenName>();
 
-    //   [...existingCandidates, ...action.payload].forEach((candidate) => {
-    //     candidateMap.set(candidate.givenCustomNameBridgeId, candidate);
-    //   });
+      [...existingCandidates, ...action.payload].forEach((candidate) => {
+        candidateMap.set(candidate.givenCustomNameBridgeId, candidate);
+      });
 
-    //   return {
-    //     ...state,
-    //     givenNameCandidates: Array.from(candidateMap.values()),
-    //   };
-    // }
+      return {
+        ...state,
+        givenNameCandidates: Array.from(candidateMap.values()),
+      };
+    }
 
     case 'REMOVE_CANDIDATE': {
       let filteredCandidates: GivenName[] = [];
@@ -61,14 +64,14 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, givenNameProviderLoaded: true };
     }
 
-    case 'ADD_SELECTED_GENDERS': {
-      return { ...state, selectedGenders: [...new Set([...state.selectedGenders, ...action.payload])] };
+    case 'ADD_SELECTED_GENDER_ID': {
+      return { ...state, selectedGenderIds: [...new Set([...state.selectedGenderIds, ...action.payload])] };
     }
 
-    case 'REMOVE_SELECTED_GENDERS': {
-      const newSelectedGenders = state.selectedGenders.filter((selectedGender) => !action.payload.includes(selectedGender));
+    case 'REMOVE_SELECTED_GENDER_ID': {
+      const newSelectedGenderIds = state.selectedGenderIds.filter((selectedGenderId) => !action.payload.includes(selectedGenderId));
 
-      return { ...state, selectedGenders: newSelectedGenders };
+      return { ...state, selectedGenderIds: newSelectedGenderIds };
     }
 
     case 'ADD_SELECTED_DECADE_ID': {

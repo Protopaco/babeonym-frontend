@@ -8,16 +8,20 @@ import type { V1GivenNameActionOperationRequest, V1GivenNameCandidatesRequest } 
 import { GivenNameContext } from '@/state/givenName/givenName.context';
 import type { GivenNameState } from '@/state/givenName/givenName.types';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
-import type { Gender } from '@/types/Gender';
 import enqueueRequest from '@/utils/enqueueRequest';
 import retryRequest from '@/utils/retryRequest';
 import { useUser } from '@/state/user/user.context';
+
+// The queue is topped up before it can empty, so the floor is the threshold
+// minus whatever is consumed while a refill is in flight, not zero.
+const CANDIDATE_REFILL_THRESHOLD = 25;
+const CANDIDATE_BATCH_SIZE = 50;
 
 const initialState: GivenNameState = {
   givenNameCandidates: [],
   approvedGivenNames: [],
   givenNameProviderLoaded: false,
-  selectedGenders: [],
+  selectedGenderIds: [],
   selectedDecadeIds: [],
   selectedLanguageIds: [],
   selectedCultureIds: [],
@@ -30,6 +34,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     dispatch: userDispatch,
   } = useUser();
   const booted = useRef(false);
+  const refillInFlight = useRef(false);
 
   // The backend matches milestones exactly, so the signal is true on one
   // response only. Every mutation that can move the action count has to read it,
@@ -41,12 +46,12 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
   const buildCandidateRequest = (
     state: GivenNameState,
-    pGenders?: string[],
+    pGenders?: number[],
     pDecades?: number[],
     pLanguages?: number[],
     pCultures?: number[]
   ): V1GivenNameCandidatesRequest => {
-    const genders = pGenders?.length ? pGenders.join(',') : state.selectedGenders.length ? state.selectedGenders.join(',') : undefined;
+    const genderIds = pGenders?.length ? pGenders.join(',') : state.selectedGenderIds.length ? state.selectedGenderIds.join(',') : undefined;
 
     const decadeIds = pDecades?.length ? pDecades.join(',') : state.selectedDecadeIds.length ? state.selectedDecadeIds.join(',') : undefined;
 
@@ -59,20 +64,44 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     const cultureIds = pCultures?.length ? pCultures.join(',') : state.selectedCultureIds.length ? state.selectedCultureIds.join(',') : undefined;
 
     return {
-      genders,
+      genderIds,
       decadeIds,
       languageIds,
       cultureIds,
     };
   };
 
-  const getNewCandidates = async (genders?: string[], decades?: number[], languages?: number[], cultures?: number[]) => {
+  const getNewCandidates = async (genderIds?: number[], decades?: number[], languages?: number[], cultures?: number[]) => {
     try {
-      const request = buildCandidateRequest(state, genders, decades, languages, cultures);
+      const request = buildCandidateRequest(state, genderIds, decades, languages, cultures);
       const nameList = await givenNameApi.v1GivenNameCandidates(request);
       dispatch({ type: 'GET_NEW_CANDIDATES', payload: nameList });
     } catch (e) {
       throw e;
+    }
+  };
+
+  // Tops the queue up before it can run out. The names already held are sent as
+  // exclusions because only names the user has acted on carry a state row, so
+  // the backend would otherwise hand the same ones back.
+  const refillCandidates = async () => {
+    if (refillInFlight.current) return;
+    refillInFlight.current = true;
+
+    try {
+      const request = buildCandidateRequest(state);
+      const nameList = await givenNameApi.v1GivenNameCandidates({
+        ...request,
+        limit: CANDIDATE_BATCH_SIZE,
+        excludeBridgeIds: state.givenNameCandidates.map(({ givenCustomNameBridgeId }) => givenCustomNameBridgeId).join(','),
+      });
+      dispatch({ type: 'ADD_CANDIDATES', payload: nameList });
+    } catch (error) {
+      // The user still has names in hand, so a failed top-up is not worth
+      // reporting. The next action that shortens the queue tries again.
+      console.error('Unable to refill given name candidates.', error);
+    } finally {
+      refillInFlight.current = false;
     }
   };
 
@@ -217,12 +246,12 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: 'GIVEN_NAME_PROVIDER_LOADED' });
   };
 
-  const addSelectedGenders = (selectedGenders: Gender[]) => {
-    dispatch({ type: 'ADD_SELECTED_GENDERS', payload: selectedGenders });
+  const addSelectedGenderIds = (selectedGenderIds: number[]) => {
+    dispatch({ type: 'ADD_SELECTED_GENDER_ID', payload: selectedGenderIds });
   };
 
-  const removeSelectedGenders = (unselectedGenders: Gender[]) => {
-    dispatch({ type: 'REMOVE_SELECTED_GENDERS', payload: unselectedGenders });
+  const removeSelectedGenderIds = (unselectedGenderIds: number[]) => {
+    dispatch({ type: 'REMOVE_SELECTED_GENDER_ID', payload: unselectedGenderIds });
   };
 
   const addSelectedDecadeIds = (selectedDecadeIds: number[]) => {
@@ -266,6 +295,15 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     onLoad();
   }, [userProviderLoaded, user]);
 
+  // Watching the length rather than calling from each action keeps every path
+  // that shortens the queue covered, including a filter change that returns a
+  // short list.
+  useEffect(() => {
+    if (!state.givenNameProviderLoaded) return;
+    if (state.givenNameCandidates.length >= CANDIDATE_REFILL_THRESHOLD) return;
+    refillCandidates();
+  }, [state.givenNameCandidates.length, state.givenNameProviderLoaded]);
+
   const value = useMemo(
     () => ({
       state,
@@ -277,8 +315,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         snoozeCandidate,
         submitCompareVote,
         addCustomGivenName,
-        addSelectedGenders,
-        removeSelectedGenders,
+        addSelectedGenderIds,
+        removeSelectedGenderIds,
         addSelectedDecadeIds,
         removeSelectedDecadeIds,
         addSelectedLanguageIds,
