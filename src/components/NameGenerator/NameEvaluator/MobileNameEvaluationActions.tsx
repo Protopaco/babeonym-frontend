@@ -1,6 +1,6 @@
-import BedtimeOutlinedIcon from '@mui/icons-material/BedtimeOutlined';
-import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import BedtimeIcon from '@mui/icons-material/Bedtime';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import './MobileNameEvaluationActions.css';
@@ -16,13 +16,13 @@ export default ({ approveClick, disabled, rejectClick, snoozeClick }: Props) => 
   return (
     <Box className="mobile-name-evaluation-actions">
       <IconButton className="mobile-name-evaluation-action-button" onClick={approveClick} disabled={disabled} aria-label="Approve name">
-        <ThumbUpOutlinedIcon />
+        <ThumbUpIcon />
       </IconButton>
       <IconButton className="mobile-name-evaluation-action-button" onClick={snoozeClick} disabled={disabled} aria-label="Snooze name">
-        <BedtimeOutlinedIcon />
+        <BedtimeIcon />
       </IconButton>
       <IconButton className="mobile-name-evaluation-action-button" onClick={rejectClick} disabled={disabled} aria-label="Reject name">
-        <ThumbDownOutlinedIcon />
+        <ThumbDownIcon />
       </IconButton>
     </Box>
   );
