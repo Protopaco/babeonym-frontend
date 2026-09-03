@@ -1,13 +1,16 @@
 .workspace-approved-name {
-  display: grid;
-  grid-template-columns: 24px minmax(0, 1fr);
+  display: flex;
   align-items: center;
   gap: 12px;
   box-sizing: border-box;
   min-width: 0;
 }
 
+/* Fixed rather than content-sized, so a two-digit rank does not push its chip
+   out of line with the single-digit rows above it. */
 .workspace-approved-name-position {
+  flex-shrink: 0;
+  width: 24px;
   margin: 0;
   color: var(--color-text-secondary);
   font-size: 0.875rem;

@@ -1,7 +1,16 @@
 .workspace-add-name-item {
   display: flex;
   align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
   min-width: 0;
+}
+
+/* Empty stand-in for the rank slot. The add button has no rank, but without
+   the slot it starts 36px left of every chip in the column. */
+.workspace-add-name-position {
+  flex-shrink: 0;
+  width: 24px;
 }
 
 .workspace-add-name-button.MuiIconButton-root {
