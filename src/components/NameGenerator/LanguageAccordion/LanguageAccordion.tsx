@@ -1,11 +1,7 @@
 import { useFilters } from '@/state/filter/filter.context';
-
-import List from '@mui/material/List';
-import ContinentAccordion from './ContinentAccordion/ContinentAccordion';
-import type { LanguageWithRegions } from '@/api/generated';
+import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import FilterAccordionFrame from '@/components/NameGenerator/FilterAccordionFrame/FilterAccordionFrame';
-import FilterSearchField from '@/components/NameGenerator/FilterSearchField/FilterSearchField';
-import { useNestedFilterSearch } from '@/components/NameGenerator/useNestedFilterSearch';
+import MobileFilterList from '@/components/NameGenerator/MobileFilterList/MobileFilterList';
 import './LanguageAccordion.css';
 
 type Props = {
@@ -13,27 +9,13 @@ type Props = {
   onChange: (event: React.SyntheticEvent, expanded: boolean) => void;
 };
 
-const filterLanguages = (languages: LanguageWithRegions[], searchValue: string) => {
-  return languages
-    .map((continent) => ({
-      ...continent,
-      regions: continent.regions
-        .map((region) => ({
-          ...region,
-          languages: region.languages.filter((language) => language.label.toLowerCase().includes(searchValue)),
-        }))
-        .filter((region) => region.languages.length > 0),
-    }))
-    .filter((continent) => continent.regions.length > 0);
-};
-
 export default ({ expanded, onChange }: Props) => {
-  const filterContext = useFilters();
-  const { languages } = filterContext.state;
-  const { displayItems: displayLanguages, handleSearchChange } = useNestedFilterSearch({
-    filterItems: filterLanguages,
-    items: languages,
-  });
+  const {
+    state: { nameFilters },
+  } = useFilters();
+  const givenNameContext = useGivenNames();
+  const { selectedLanguageIds } = givenNameContext.state;
+  const { addSelectedLanguageIds, removeSelectedLanguageIds } = useGivenNamesActions();
 
   return (
     <FilterAccordionFrame
@@ -43,12 +25,15 @@ export default ({ expanded, onChange }: Props) => {
       ariaControls="language-filter-content"
       id="language-filter-summary"
     >
-      <FilterSearchField id="language-filter-search" onChange={handleSearchChange} />
-      <List>
-        {displayLanguages.map((continent) => {
-          return <ContinentAccordion key={continent.id} continent={continent} />;
-        })}
-      </List>
+      <MobileFilterList
+        options={nameFilters.languageOptions}
+        searchId="language-filter-search"
+        selectedOptionIds={selectedLanguageIds}
+        onToggle={(optionId) =>
+          selectedLanguageIds.includes(optionId) ? removeSelectedLanguageIds([optionId]) : addSelectedLanguageIds([optionId])
+        }
+        onUnselectAll={() => removeSelectedLanguageIds(selectedLanguageIds)}
+      />
     </FilterAccordionFrame>
   );
 };

@@ -1,4 +1,10 @@
-.decade-filter-list {
+.mobile-filter-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mobile-filter-list-options {
   max-height: 264px;
   overflow-y: auto;
   box-shadow:

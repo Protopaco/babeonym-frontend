@@ -1,9 +1,7 @@
-import { useMemo, useState } from 'react';
 import { useFilters } from '@/state/filter/filter.context';
-
-import DecadeFilterList from '@/components/NameGenerator/DecadesAccordion/DecadeFilterList';
+import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import FilterAccordionFrame from '@/components/NameGenerator/FilterAccordionFrame/FilterAccordionFrame';
-import FilterSearchField from '@/components/NameGenerator/FilterSearchField/FilterSearchField';
+import MobileFilterList from '@/components/NameGenerator/MobileFilterList/MobileFilterList';
 import './DecadesAccordion.css';
 
 type Props = {
@@ -12,26 +10,24 @@ type Props = {
 };
 
 export default ({ expanded, onChange }: Props) => {
-  const filterContext = useFilters();
-  const { decades } = filterContext.state;
-  const [searchValue, setSearchValue] = useState('');
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-  };
-
-  const displayDecades = useMemo(() => {
-    if (searchValue != '') {
-      return decades.filter((decade) => decade.label.includes(searchValue));
-    }
-
-    return decades;
-  }, [searchValue, decades]);
+  const {
+    state: { nameFilters },
+  } = useFilters();
+  const givenNameContext = useGivenNames();
+  const { selectedDecadeIds } = givenNameContext.state;
+  const { addSelectedDecadeIds, removeSelectedDecadeIds } = useGivenNamesActions();
 
   return (
     <FilterAccordionFrame expanded={expanded} onChange={onChange} label="Decades" ariaControls="decade-filter-content" id="decade-filter-summary">
-      <FilterSearchField id="decade-filter-search" onChange={handleSearchChange} type="number" />
-      <DecadeFilterList decades={displayDecades} />
+      <MobileFilterList
+        options={nameFilters.decadeOptions}
+        searchId="decade-filter-search"
+        selectedOptionIds={selectedDecadeIds}
+        onToggle={(optionId) =>
+          selectedDecadeIds.includes(optionId) ? removeSelectedDecadeIds([optionId]) : addSelectedDecadeIds([optionId])
+        }
+        onUnselectAll={() => removeSelectedDecadeIds(selectedDecadeIds)}
+      />
     </FilterAccordionFrame>
   );
 };

@@ -1,9 +1,7 @@
 import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import { useFilters } from '@/state/filter/filter.context';
-
-import { List } from '@mui/material';
-import FilterListItem from '@/components/NameGenerator/FilterListItem/FilterListItem';
 import FilterAccordionFrame from '@/components/NameGenerator/FilterAccordionFrame/FilterAccordionFrame';
+import MobileFilterList from '@/components/NameGenerator/MobileFilterList/MobileFilterList';
 import './GenderAccordion.css';
 
 type Props = {
@@ -21,29 +19,16 @@ export default ({ expanded, onChange }: Props) => {
 
   return (
     <FilterAccordionFrame expanded={expanded} onChange={onChange} label="Gender" ariaControls="gender-filter-content" id="gender-filter-summary">
-      <List>
-        {nameFilters.genderOptions.map(({ id, label }, index) => {
-          const selected = selectedGenderIds.includes(id);
-
-          return (
-            <FilterListItem
-              key={id}
-              index={index}
-              label={label}
-              action={
-                selected
-                  ? () => {
-                      removeSelectedGenderIds([id]);
-                    }
-                  : () => {
-                      addSelectedGenderIds([id]);
-                    }
-              }
-              selected={selected}
-            />
-          );
-        })}
-      </List>
+      <MobileFilterList
+        options={nameFilters.genderOptions}
+        searchId="gender-filter-search"
+        searchable={false}
+        selectedOptionIds={selectedGenderIds}
+        onToggle={(optionId) =>
+          selectedGenderIds.includes(optionId) ? removeSelectedGenderIds([optionId]) : addSelectedGenderIds([optionId])
+        }
+        onUnselectAll={() => removeSelectedGenderIds(selectedGenderIds)}
+      />
     </FilterAccordionFrame>
   );
 };

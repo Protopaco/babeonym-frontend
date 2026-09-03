@@ -1,11 +1,7 @@
 import { useFilters } from '@/state/filter/filter.context';
-
-import List from '@mui/material/List';
-import ContinentAccordion from '@/components/NameGenerator/CultureAccordion/ContinentAccordion/ContinentAccordion';
-import type { CultureWithRegions } from '@/api/generated';
+import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import FilterAccordionFrame from '@/components/NameGenerator/FilterAccordionFrame/FilterAccordionFrame';
-import FilterSearchField from '@/components/NameGenerator/FilterSearchField/FilterSearchField';
-import { useNestedFilterSearch } from '@/components/NameGenerator/useNestedFilterSearch';
+import MobileFilterList from '@/components/NameGenerator/MobileFilterList/MobileFilterList';
 import './CultureAccordion.css';
 
 type Props = {
@@ -13,27 +9,13 @@ type Props = {
   onChange: (event: React.SyntheticEvent, expanded: boolean) => void;
 };
 
-const filterCultures = (cultures: CultureWithRegions[], searchValue: string) => {
-  return cultures
-    .map((continent) => ({
-      ...continent,
-      regions: continent.regions
-        .map((region) => ({
-          ...region,
-          cultures: region.cultures.filter((culture) => culture.label.toLowerCase().includes(searchValue)),
-        }))
-        .filter((region) => region.cultures.length > 0),
-    }))
-    .filter((continent) => continent.regions.length > 0);
-};
-
 export default ({ expanded, onChange }: Props) => {
-  const filterContext = useFilters();
-  const { cultures } = filterContext.state;
-  const { displayItems: displayCultures, handleSearchChange } = useNestedFilterSearch({
-    filterItems: filterCultures,
-    items: cultures,
-  });
+  const {
+    state: { nameFilters },
+  } = useFilters();
+  const givenNameContext = useGivenNames();
+  const { selectedCultureIds } = givenNameContext.state;
+  const { addSelectedCultureIds, removeSelectedCultureIds } = useGivenNamesActions();
 
   return (
     <FilterAccordionFrame
@@ -43,12 +25,15 @@ export default ({ expanded, onChange }: Props) => {
       ariaControls="culture-filter-content"
       id="culture-filter-summary"
     >
-      <FilterSearchField id="culture-filter-search" onChange={handleSearchChange} />
-      <List>
-        {displayCultures.map((continent) => {
-          return <ContinentAccordion key={continent.id} continent={continent} />;
-        })}
-      </List>
+      <MobileFilterList
+        options={nameFilters.cultureOptions}
+        searchId="culture-filter-search"
+        selectedOptionIds={selectedCultureIds}
+        onToggle={(optionId) =>
+          selectedCultureIds.includes(optionId) ? removeSelectedCultureIds([optionId]) : addSelectedCultureIds([optionId])
+        }
+        onUnselectAll={() => removeSelectedCultureIds(selectedCultureIds)}
+      />
     </FilterAccordionFrame>
   );
 };
