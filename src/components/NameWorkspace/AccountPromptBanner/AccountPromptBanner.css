@@ -1,0 +1,40 @@
+.account-prompt-banner {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background: var(--color-secondary);
+  border-radius: 8px;
+}
+
+.account-prompt-banner-copy {
+  margin: 0;
+  color: var(--color-secondary-contrast);
+  font-size: 1rem;
+}
+
+.account-prompt-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.account-prompt-banner-dismiss.MuiIconButton-root {
+  color: var(--color-secondary-contrast);
+}
+
+@media (max-width: 599px) {
+  .account-prompt-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 32px;
+  }
+
+  .account-prompt-banner-actions {
+    align-self: stretch;
+    justify-content: space-between;
+  }
+}

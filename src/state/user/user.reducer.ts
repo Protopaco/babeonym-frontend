@@ -7,6 +7,10 @@ export const userReducer = (state: UserState, action: UserAction): UserState => 
       return { ...state, user: action.payload };
     case 'USER_PROVIDER_LOADED':
       return { ...state, userProviderLoaded: true };
+    case 'PROMPT_ACCOUNT_CREATION':
+      return { ...state, promptAccountCreation: true };
+    case 'DISMISS_ACCOUNT_PROMPT':
+      return { ...state, promptAccountCreation: false };
     default:
       return state;
   }

@@ -2,6 +2,7 @@ import { useContext, useReducer, useEffect, useMemo, useRef } from 'react';
 import { givenNameApi } from '@/api/client';
 import type { ReactNode } from 'react';
 import type { GivenName } from '@/api/generated/models/GivenName';
+import type { GivenNameMutationResponse } from '@/api/generated/models/GivenNameMutationResponse';
 import { ApiV1GivenNameActionPostRequestNewStateEnum } from '@/api/generated/models/ApiV1GivenNameActionPostRequest';
 import type { V1GivenNameActionOperationRequest, V1GivenNameCandidatesRequest } from '@/api/generated/apis/GivenNameApi';
 import { GivenNameContext } from '@/state/givenName/givenName.context';
@@ -26,8 +27,17 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(givenNameReducer, initialState);
   const {
     state: { user, userProviderLoaded },
+    dispatch: userDispatch,
   } = useUser();
   const booted = useRef(false);
+
+  // The backend matches milestones exactly, so the signal is true on one
+  // response only. Every mutation that can move the action count has to read it,
+  // including snooze, which otherwise has no use for the response.
+  const applyAccountPromptSignal = (response: GivenNameMutationResponse) => {
+    if (!response.user.promptAccountCreation) return;
+    userDispatch({ type: 'PROMPT_ACCOUNT_CREATION' });
+  };
 
   const buildCandidateRequest = (
     state: GivenNameState,
@@ -79,8 +89,9 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     try {
       removeCandidate(givenCustomNameBridgeId);
       // The action upserts the state, so replaying it is safe.
-      const { approvedGivenNames } = await enqueueRequest(() => retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest)));
-      dispatch({ type: 'ADD_APPROVED', payload: approvedGivenNames });
+      const response = await enqueueRequest(() => retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest)));
+      dispatch({ type: 'ADD_APPROVED', payload: response.approvedGivenNames });
+      applyAccountPromptSignal(response);
     } catch (error) {
       // Nothing downstream handles this, so putting the card back is the way the
       // failure is reported.
@@ -110,8 +121,9 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         removeApprovedGivenName(givenCustomNameBridgeId);
       }
 
-      const { approvedGivenNames } = await enqueueRequest(() => retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest)));
-      dispatch({ type: 'ADD_APPROVED', payload: approvedGivenNames });
+      const response = await enqueueRequest(() => retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest)));
+      dispatch({ type: 'ADD_APPROVED', payload: response.approvedGivenNames });
+      applyAccountPromptSignal(response);
     } catch (error) {
       restoreCandidate(candidate);
       if (isApprovedName) {
@@ -133,7 +145,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       removeCandidate(givenCustomNameBridgeId);
-      await retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest));
+      const response = await retryRequest(() => givenNameApi.v1GivenNameAction(actionRequest));
+      applyAccountPromptSignal(response);
     } catch (error) {
       restoreCandidate(candidate);
       console.error('Unable to snooze given name.', error);
@@ -145,7 +158,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     if (!trimmedCustomName) return;
 
     try {
-      const { approvedGivenNames } = await enqueueRequest(() =>
+      const response = await enqueueRequest(() =>
         retryRequest(() =>
           givenNameApi.v1GivenNameCustom({
             v1GivenNameCustomRequest: {
@@ -154,7 +167,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
           })
         )
       );
-      dispatch({ type: 'ADD_APPROVED', payload: approvedGivenNames });
+      dispatch({ type: 'ADD_APPROVED', payload: response.approvedGivenNames });
+      applyAccountPromptSignal(response);
     } catch (e) {
       throw e;
     }
@@ -167,12 +181,13 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
   // them, so replaying a vote whose response was lost would count it twice.
   const submitCompareVote = async (winnerId: number, loserId: number) => {
     try {
-      const { approvedGivenNames } = await enqueueRequest(() =>
+      const response = await enqueueRequest(() =>
         givenNameApi.v1GivenNameCompare({
           v1GivenNameCompareRequest: { winnerId, loserId },
         })
       );
-      dispatch({ type: 'ADD_APPROVED', payload: approvedGivenNames });
+      dispatch({ type: 'ADD_APPROVED', payload: response.approvedGivenNames });
+      applyAccountPromptSignal(response);
     } catch (error) {
       console.error('Failed to submit compare vote', error);
     }

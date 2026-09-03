@@ -8,6 +8,7 @@ import { userApi, authApi } from '@/api/client';
 const initialState: UserState = {
   user: null,
   userProviderLoaded: false,
+  promptAccountCreation: false,
 };
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {

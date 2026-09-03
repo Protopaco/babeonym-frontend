@@ -3,6 +3,7 @@ import CompareNamesMode from '@/components/CompareNames/CompareNamesMode';
 import WorkspaceModeContent from '@/components/NameWorkspace/WorkspaceModeContent/WorkspaceModeContent';
 import WorkspaceModeHeader from '@/components/NameWorkspace/WorkspaceModeHeader/WorkspaceModeHeader';
 import WorkspaceApprovedNames from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceApprovedNames';
+import AccountPromptBanner from '@/components/NameWorkspace/AccountPromptBanner/AccountPromptBanner';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -58,6 +59,7 @@ const NameWorkspace = () => {
       <WorkspaceModeContent>
         {workspaceMode === 'compare' ? <CompareNamesMode /> : <NameGenerator />}
       </WorkspaceModeContent>
+      <AccountPromptBanner />
       <WorkspaceApprovedNames approvedGivenNames={approvedGivenNames} isLoading={!givenNameProviderLoaded} />
     </div>
   );
