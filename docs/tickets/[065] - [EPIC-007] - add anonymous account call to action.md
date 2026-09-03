@@ -13,8 +13,11 @@ completely.
 
 ## Requirements
 
-- Show a small, low-weight call to action reading roughly "Want to save your
-  progress?" with a create-account action.
+- Show an inline banner reading roughly "Want to save your progress?" with a
+  create-account action. A modal was considered and rejected: it interrupts,
+  which contradicts the requirement that the prompt be easily ignored and that
+  nothing wall off an anonymous user. If conversion turns out to be poor, a modal
+  on the first milestone only is the fallback worth trying.
 - Open it when a mutation response carries the account prompt signal from ticket
   `[064]`. The frontend does not own the cadence rule and does not see the
   underlying count.
@@ -34,9 +37,15 @@ completely.
   `startGoogleSignIn`.
 - The backend fires on exact milestone matches, so the signal is true for one
   response only. The component holds its own open state from that point.
-- Placement is not settled. The prompt should be visible in both the workspace
-  and compare modes, which suggests a single component near the approved names
-  rather than one copy per mode. Confirm placement before building.
+- Placement is settled. `AccountPromptBanner` renders from `NameWorkspace.tsx`
+  between `WorkspaceModeContent` and `WorkspaceApprovedNames`, which is outside
+  the add/compare branch, so one instance covers both modes.
+- Open state lives in the user provider rather than the given-name provider. The
+  signal arrives on name mutations, but whether to offer an account is a fact
+  about the user, and keeping it in the name domain would recreate in the
+  frontend the coupling that `[064]` removed from the wire.
+- Every mutation that can move the action count has to read the signal, including
+  the snooze path, which previously discarded its response entirely.
 - Signing in from an anonymous session preserves the user's work only when the
   provider account is new. `getGoogleCallback.ts` links the provider onto the
   existing user in that case. When an account already exists for that address,

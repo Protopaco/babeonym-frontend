@@ -154,6 +154,7 @@ The application should reduce navigation friction and keep users oriented around
 - Prompt copy should frame account creation as helping users save or protect the list they have built.
 - Prompt copy should not imply that account creation is required to continue using the app.
 - Account prompts should be optional and dismissible. A prompt is opened by the signal and stays until dismissed; ignoring one is equivalent to dismissing it.
+- The prompt is an inline banner, not a modal. A modal interrupts, which contradicts both the easily-ignored requirement and the rule that anonymous users are never walled off. If conversion proves poor, a modal on the first milestone only is the fallback to try before changing anything else.
 - Missing a prompt is preferable to repeating one.
 - Accounts are currently managed through Google OAuth.
 - Microsoft OAuth may be added later.
