@@ -6,7 +6,7 @@ import type { GivenNameMutationResponse } from '@/api/generated/models/GivenName
 import { ApiV1GivenNameActionPostRequestNewStateEnum } from '@/api/generated/models/ApiV1GivenNameActionPostRequest';
 import type { V1GivenNameActionOperationRequest, V1GivenNameCandidatesRequest } from '@/api/generated/apis/GivenNameApi';
 import { GivenNameContext } from '@/state/givenName/givenName.context';
-import type { GivenNameState } from '@/state/givenName/givenName.types';
+import type { GivenNameState, SelectedNameFilters } from '@/state/givenName/givenName.types';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
 import enqueueRequest from '@/utils/enqueueRequest';
 import retryRequest from '@/utils/retryRequest';
@@ -78,6 +78,21 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       dispatch({ type: 'GET_NEW_CANDIDATES', payload: nameList });
     } catch (e) {
       throw e;
+    }
+  };
+
+  // The dispatch has not landed by the time the fetch is built, so the ids are
+  // passed through rather than read back off state.
+  const applyFilters = async (filters: SelectedNameFilters) => {
+    const { genderIds, decadeIds, languageIds, cultureIds } = filters;
+    dispatch({ type: 'SET_SELECTED_FILTERS', payload: filters });
+
+    try {
+      await getNewCandidates(genderIds, decadeIds, languageIds, cultureIds);
+    } catch (error) {
+      // The queue the user already has still matches the previous filters, so
+      // leaving it in place is the safer failure.
+      console.error('Unable to apply name filters.', error);
     }
   };
 
@@ -310,6 +325,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       dispatch,
       actions: {
         getNewCandidates,
+        applyFilters,
         approveCandidate,
         rejectCandidate,
         snoozeCandidate,

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { GivenNameState, GivenNameAction } from '@/state/givenName/givenName.types';
+import type { GivenNameState, GivenNameAction, SelectedNameFilters } from '@/state/givenName/givenName.types';
 
 export const GivenNameContext = createContext<
   | {
@@ -7,6 +7,7 @@ export const GivenNameContext = createContext<
       dispatch: React.Dispatch<GivenNameAction>;
       actions: {
         getNewCandidates: (genderIds?: number[], decades?: number[], languages?: number[], cultures?: number[]) => Promise<void>;
+        applyFilters: (filters: SelectedNameFilters) => Promise<void>;
         approveCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
         rejectCandidate: (givenCustomNameBridgeId: number) => Promise<void>;
         snoozeCandidate: (givenCustomNameBridgeId: number) => Promise<void>;

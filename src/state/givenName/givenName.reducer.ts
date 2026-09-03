@@ -64,6 +64,20 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, givenNameProviderLoaded: true };
     }
 
+    // Replaces all four lists at once. The desktop surface holds its filters in
+    // the URL, so what it applies is the whole selection, not a delta.
+    case 'SET_SELECTED_FILTERS': {
+      const { genderIds, decadeIds, languageIds, cultureIds } = action.payload;
+
+      return {
+        ...state,
+        selectedGenderIds: genderIds,
+        selectedDecadeIds: decadeIds,
+        selectedLanguageIds: languageIds,
+        selectedCultureIds: cultureIds,
+      };
+    }
+
     case 'ADD_SELECTED_GENDER_ID': {
       return { ...state, selectedGenderIds: [...new Set([...state.selectedGenderIds, ...action.payload])] };
     }

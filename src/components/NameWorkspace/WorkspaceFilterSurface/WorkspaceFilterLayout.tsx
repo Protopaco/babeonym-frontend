@@ -6,6 +6,7 @@ import LanguageFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurf
 import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
 import WorkspaceFilterToggle from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceFilterToggle';
 import { useWorkspaceFilterDraftState } from '@/components/NameWorkspace/WorkspaceFilterSurface/useWorkspaceFilterDraftState';
+import { useSyncWorkspaceFilterParams } from '@/components/NameWorkspace/WorkspaceFilterSurface/useSyncWorkspaceFilterParams';
 import './WorkspaceFilterLayout.css';
 
 type Props = {
@@ -16,6 +17,8 @@ type Props = {
 const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
   const { appliedFilterChips, availableFilterOptions, clearDraftFilters, commitDraftFilters, draftFilters, hasDraftFilters, setDraftFilters } =
     useWorkspaceFilterDraftState();
+
+  useSyncWorkspaceFilterParams();
 
   const handleSetFilters = () => {
     commitDraftFilters();
