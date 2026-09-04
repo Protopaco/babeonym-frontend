@@ -1,0 +1,6 @@
+/* Reads its size from the button rather than restating it, so the size variants
+   stay defined in one place. */
+.primary-text-button-label {
+  font-size: var(--button-font-size, 1rem);
+  line-height: 1;
+}

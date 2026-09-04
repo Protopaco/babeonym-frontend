@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import AuthModal from '@/components/Header/AuthModal/AuthModal';
-import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
+import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
 import { useUser } from '@/state/user/user.context';
 import '@/components/NameWorkspace/AccountPromptBanner/AccountPromptBanner.css';
@@ -36,7 +36,7 @@ const AccountPromptBanner = () => {
     <Container maxWidth="lg" component="aside" className="account-prompt-banner" aria-label="Save your progress">
       <Typography className="account-prompt-banner-copy">Want to save your progress?</Typography>
       <div className="account-prompt-banner-actions">
-        <PrimaryButton text="Create an account" onClick={openAuthModal} size="compact-wide" />
+        <PrimaryTextButton text="Create an account" onClick={openAuthModal} size="compact-wide" />
         <IconButton className="account-prompt-banner-dismiss" aria-label="Dismiss" onClick={dismiss}>
           <CloseIcon fontSize="small" />
         </IconButton>

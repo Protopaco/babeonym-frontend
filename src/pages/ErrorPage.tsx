@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
-import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
+import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
 import './ErrorPage.css';
@@ -57,7 +57,7 @@ const ErrorPage = () => {
         {message}
       </Typography>
       <Box className="error-page-actions">
-        {showRetrySignIn ? <PrimaryButton text="Try again" onClick={startGoogleSignIn} /> : null}
+        {showRetrySignIn ? <PrimaryTextButton text="Try again" onClick={startGoogleSignIn} /> : null}
         <SecondaryButton text="Return home" onClick={returnHome} />
       </Box>
     </Box>

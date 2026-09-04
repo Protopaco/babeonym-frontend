@@ -4,7 +4,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
+import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import '@/components/Shared/BaseModal/BaseModal.css';
 
@@ -52,9 +52,9 @@ export default ({
         {children}
       </DialogContent>
       <DialogActions className="base-modal-actions">
-        <PrimaryButton text={closeLabel} size={buttonSize} onClick={onClose} />
+        <PrimaryTextButton text={closeLabel} size={buttonSize} onClick={onClose} />
         {onConfirm && confirmLabel ? (
-          <PrimaryButton text={confirmLabel} size={buttonSize} tone={tone} emphasis="fill" onClick={onConfirm} />
+          <PrimaryTextButton text={confirmLabel} size={buttonSize} tone={tone} emphasis="fill" onClick={onConfirm} />
         ) : null}
       </DialogActions>
     </Dialog>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
+import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import DeleteAccountDialog from '@/components/Settings/DeleteAccountButton/DeleteAccountDialog';
 import { useDeleteAccount } from '@/components/Settings/DeleteAccountButton/useDeleteAccount';
 import { useUser } from '@/state/user/user.context';
@@ -34,7 +34,7 @@ const DeleteAccountButton = () => {
 
   return (
     <Box className="delete-account-button">
-      <PrimaryButton text="Delete Account" size="compact-wide" tone="danger" onClick={openConfirm} />
+      <PrimaryTextButton text="Delete Account" size="compact-wide" tone="danger" onClick={openConfirm} />
       <DeleteAccountDialog open={confirmOpen} onClose={closeConfirm} onConfirm={confirmDelete} />
     </Box>
   );

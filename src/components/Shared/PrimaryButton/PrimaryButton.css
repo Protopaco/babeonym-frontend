@@ -1,4 +1,6 @@
 .primary-button.MuiButton-root {
+  --button-font-size: 28px;
+
   width: 220px;
   height: 76px;
   margin: 0;
@@ -7,7 +9,6 @@
   background: var(--color-background);
   box-shadow: var(--box-shadow-primary);
   color: var(--color-text-secondary);
-  font-size: 28px;
   font-weight: 400;
   text-transform: none;
 }
@@ -17,24 +18,66 @@
 }
 
 .primary-button.MuiButton-root[data-size='compact'] {
+  --button-font-size: 0.875rem;
+
   width: 128px;
   height: 36px;
   border-radius: 12px;
-  font-size: 0.875rem;
 }
 
 .primary-button.MuiButton-root[data-size='compact-wide'] {
+  --button-font-size: 0.875rem;
+
   width: 180px;
   height: 36px;
   border-radius: 12px;
-  font-size: 0.875rem;
 }
 
-.primary-button.MuiButton-root:hover,
+/* An icon button is the same colour language in a different box, so only the
+   dimensions change here. Size is ignored: an icon has nothing to be wide for. */
+.primary-button.MuiButton-root[data-shape='icon'] {
+  --button-icon-size: 60px;
+
+  width: 135px;
+  height: 135px;
+  min-width: 0;
+  border-width: 10px;
+  border-radius: 50%;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Sized for a thumb rather than a cursor. Owned here because the base owns the
+   box, and this is the same button at a different scale. */
+@media (max-width: 599px) {
+  .primary-button.MuiButton-root[data-shape='icon'] {
+    --button-icon-size: 52px;
+
+    width: 96px;
+    height: 96px;
+    border-width: 6px;
+  }
+}
+
+/* A touchscreen fires :hover on tap and leaves it there until something else is
+   tapped, so the fill would read as a selected state. Guarded to pointers that
+   can genuinely hover; touch gets :active below instead. */
+@media (hover: hover) {
+  .primary-button.MuiButton-root:hover {
+    border-color: var(--color-text-secondary);
+    background: var(--color-secondary);
+    color: var(--color-text-secondary);
+  }
+}
+
 .primary-button.MuiButton-root:focus-visible {
   border-color: var(--color-text-secondary);
   background: var(--color-secondary);
   color: var(--color-text-secondary);
+}
+
+.primary-button.MuiButton-root[data-shape='icon']:active {
+  background: var(--color-secondary);
 }
 
 .primary-button.MuiButton-root[data-tone='danger'] {
@@ -42,7 +85,14 @@
   color: var(--color-error);
 }
 
-.primary-button.MuiButton-root[data-tone='danger']:hover,
+@media (hover: hover) {
+  .primary-button.MuiButton-root[data-tone='danger']:hover {
+    border-color: var(--color-error);
+    background: var(--color-error);
+    color: var(--color-error-contrast);
+  }
+}
+
 .primary-button.MuiButton-root[data-tone='danger']:focus-visible {
   border-color: var(--color-error);
   background: var(--color-error);
@@ -62,7 +112,21 @@
 }
 
 /* No darker shade tokens exist, so filled buttons dim on hover instead. */
-.primary-button.MuiButton-root[data-emphasis='fill']:hover,
+@media (hover: hover) {
+  .primary-button.MuiButton-root[data-emphasis='fill']:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-primary-contrast);
+    filter: brightness(0.92);
+  }
+
+  .primary-button.MuiButton-root[data-emphasis='fill'][data-tone='danger']:hover {
+    border-color: var(--color-error);
+    background: var(--color-error);
+    color: var(--color-error-contrast);
+  }
+}
+
 .primary-button.MuiButton-root[data-emphasis='fill']:focus-visible {
   border-color: var(--color-primary);
   background: var(--color-primary);
@@ -70,7 +134,6 @@
   filter: brightness(0.92);
 }
 
-.primary-button.MuiButton-root[data-emphasis='fill'][data-tone='danger']:hover,
 .primary-button.MuiButton-root[data-emphasis='fill'][data-tone='danger']:focus-visible {
   border-color: var(--color-error);
   background: var(--color-error);

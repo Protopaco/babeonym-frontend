@@ -1,0 +1,12 @@
+/* Reads its size from the button rather than restating it, so desktop and
+   mobile scale from one place. */
+.primary-icon-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary-icon-button-icon svg {
+  width: var(--button-icon-size, 24px);
+  height: var(--button-icon-size, 24px);
+}

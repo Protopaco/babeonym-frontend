@@ -4,7 +4,6 @@ import '@/components/NameGenerator/NameEvaluator/NameEvaluator.css';
 import { Typography } from '@mui/material';
 import { useUser } from '@/state/user/user.context';
 import EvaluatedNameDisplay from '@/components/NameGenerator/NameEvaluator/EvaluatedNameDisplay';
-import MobileNameEvaluationActions from '@/components/NameGenerator/NameEvaluator/MobileNameEvaluationActions';
 import NameEvaluationActions from '@/components/NameGenerator/NameEvaluator/NameEvaluationActions';
 import { useNameEvaluationActions } from '@/components/NameGenerator/NameEvaluator/useNameEvaluationActions';
 
@@ -33,7 +32,6 @@ export default () => {
       </Box>
       <Box className="name-evaluator-actions-row">
         <NameEvaluationActions approveClick={approveClick} disabled={actionDisabled} rejectClick={rejectClick} snoozeClick={snoozeClick} />
-        <MobileNameEvaluationActions approveClick={approveClick} disabled={actionDisabled} rejectClick={rejectClick} snoozeClick={snoozeClick} />
       </Box>
     </Box>
   );
