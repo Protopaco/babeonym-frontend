@@ -2,19 +2,19 @@
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 48px;
   min-height: 360px;
-  padding: 0 25vw;
+  padding: 0 24px;
 }
 
-/* Fixed so the outgoing and incoming buttons can overlap during a swap instead
-   of both taking space and shoving the OR sideways. Matches the default
-   PrimaryButton size. */
+/* Fixed so the outgoing and incoming chips can overlap during a swap instead of
+   both taking space and shoving the OR sideways. Matches the compare chip. */
 .compare-names-mode-slot {
   position: relative;
   flex-shrink: 0;
-  width: 220px;
-  height: 76px;
+  width: 300px;
+  height: 88px;
 }
 
 .compare-names-mode-motion {
@@ -22,9 +22,15 @@
   inset: 0;
 }
 
+.compare-names-content-or {
+  color: var(--color-primary);
+  font-size: 2rem;
+}
+
 @media (max-width: 599px) {
   .compare-names-mode-content {
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
     min-height: 320px;
     text-align: center;
   }

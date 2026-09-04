@@ -3,11 +3,11 @@ import Box from '@mui/material/Box';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import type { GivenName } from '@/api/generated';
 import { useCompareNamePair } from '@/components/CompareNames/useCompareNamePair';
-import CompareNameButton from './CompareNameButton';
+import CompareNameChip from '@/components/CompareNames/CompareNameChip/CompareNameChip';
 import { Typography } from '@mui/material';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
 import './CompareNamesMode.css';
-import PrimaryButtonSkeleton from '../Shared/PrimaryButton/PrimaryButtonSkeleton';
+import NameChipSkeleton from '@/components/Shared/NameChipSkeleton/NameChipSkeleton';
 import { useCompareNameVoting } from '@/components/CompareNames/useCompareNameVoting';
 
 type VotedSide = 'left' | 'right' | null;
@@ -61,7 +61,7 @@ const CompareNamesMode = () => {
                 exit="exit"
                 transition={slotTransition}
               >
-                <CompareNameButton name={currentPair.left} onVote={vote('left')} />
+                <CompareNameChip name={currentPair.left} onVote={vote('left')} />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -78,16 +78,20 @@ const CompareNamesMode = () => {
                 exit="exit"
                 transition={slotTransition}
               >
-                <CompareNameButton name={currentPair.right} onVote={vote('right')} />
+                <CompareNameChip name={currentPair.right} onVote={vote('right')} />
               </motion.div>
             </AnimatePresence>
           </div>
         </>
       ) : (
         <>
-          <PrimaryButtonSkeleton />
+          <div className="compare-names-mode-slot">
+            <NameChipSkeleton size="compare" />
+          </div>
           <Typography className="compare-names-content-or">OR</Typography>
-          <PrimaryButtonSkeleton />
+          <div className="compare-names-mode-slot">
+            <NameChipSkeleton size="compare" />
+          </div>
         </>
       )}
     </Box>

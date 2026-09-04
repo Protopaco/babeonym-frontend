@@ -1,0 +1,42 @@
+.base-name-chip {
+  --name-chip-font-size: 1rem;
+
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 150px;
+  height: 44px;
+  border: 2px solid var(--color-primary);
+  border-radius: 22px;
+  background: var(--color-background);
+  overflow: hidden;
+  padding: 0 16px;
+}
+
+/* Owned here rather than by the wrapping control, so a chip's fill stays this
+   component's business. */
+.base-name-chip[data-interactive='true']:hover {
+  background: var(--color-secondary);
+}
+
+.base-name-chip[data-size='large'] {
+  --name-chip-font-size: 1.25rem;
+
+  width: 198px;
+  height: 60px;
+  border-width: 3px;
+  border-radius: 30px;
+  padding: 0 22px;
+}
+
+.base-name-chip[data-size='compare'] {
+  --name-chip-font-size: 2rem;
+
+  width: 300px;
+  height: 88px;
+  border-width: 4px;
+  border-radius: 44px;
+  padding: 0 32px;
+}
