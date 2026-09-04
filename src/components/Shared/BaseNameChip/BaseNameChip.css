@@ -21,6 +21,14 @@
   background: var(--color-secondary);
 }
 
+.base-name-chip[data-state='invalid'] {
+  border-color: var(--color-error);
+}
+
+.base-name-chip[data-state='saving'] {
+  opacity: 0.5;
+}
+
 .base-name-chip[data-size='large'] {
   --name-chip-font-size: 1.25rem;
 

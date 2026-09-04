@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import { motion } from 'motion/react';
-import WorkspaceCustomNameDraftChip from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceCustomNameDraftChip';
+import CustomNameChip from '@/components/NameWorkspace/WorkspaceApprovedNames/CustomNameChip';
 import './WorkspaceCustomNameDraftItem.css';
 
 type Props = {
@@ -16,7 +16,7 @@ const WorkspaceCustomNameDraftItem = ({ onClose }: Props) => {
       animate={{ opacity: 1, y: 0 }}
     >
       <AddIcon className="workspace-custom-name-draft-marker" />
-      <WorkspaceCustomNameDraftChip onClose={onClose} />
+      <CustomNameChip onClose={onClose} />
     </motion.li>
   );
 };

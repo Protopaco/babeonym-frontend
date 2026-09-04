@@ -1,0 +1,28 @@
+.custom-name-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 244px;
+  height: 60px;
+}
+
+/* Sits outside the flow so a rejected name does not shift the chip list. */
+.custom-name-chip-error.MuiTypography-root {
+  position: absolute;
+  top: 100%;
+  left: 22px;
+  margin-top: 4px;
+  color: var(--color-error);
+  white-space: nowrap;
+}
+
+.custom-name-chip-input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: var(--name-chip-font-size, 1rem);
+}
