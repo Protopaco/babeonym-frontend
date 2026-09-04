@@ -7,6 +7,7 @@ import { useCompareNamePair } from '@/components/CompareNames/useCompareNamePair
 import CompareNameChip from '@/components/CompareNames/CompareNameChip/CompareNameChip';
 import { Typography } from '@mui/material';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
+import { useUser } from '@/state/user/user.context';
 import './CompareNamesMode.css';
 import NameChipSkeleton from '@/components/Shared/NameChipSkeleton/NameChipSkeleton';
 import { useCompareNameVoting } from '@/components/CompareNames/useCompareNameVoting';
@@ -19,6 +20,8 @@ const SLOT_TRAVEL_PX = 88;
 
 const CompareNamesMode = () => {
   const { state } = useGivenNames();
+  const { state: userState } = useUser();
+  const { user } = userState;
   const { approvedGivenNames, givenNameProviderLoaded } = state;
   const { currentPair, advancePair } = useCompareNamePair(approvedGivenNames, givenNameProviderLoaded);
   const { voteForName } = useCompareNameVoting(currentPair, advancePair);
@@ -44,52 +47,71 @@ const CompareNamesMode = () => {
   // carry over into the next pair still animates with its partner.
   const pairKey = currentPair ? `${currentPair.left.givenCustomNameBridgeId}:${currentPair.right.givenCustomNameBridgeId}` : '';
 
+  // Under each chip rather than once beneath the pair, so each option reads as
+  // a whole name — which is most of what the comparison is for. Deliberately
+  // outside the animating element: the surname is the same on both sides and
+  // does not change between pairs, so travelling with the chip on every vote
+  // would be motion with nothing behind it.
+  const surname = user?.surName ? <Typography className="compare-names-mode-surname">{user.surName}</Typography> : null;
+
   return (
     <Box className="compare-names-mode-content">
       {currentPair && currentPair.left && currentPair.right ? (
         <>
           <div className="compare-names-mode-slot">
-            <AnimatePresence initial={false} custom={votedSide === 'left'}>
-              <motion.div
-                key={pairKey}
-                className="compare-names-mode-motion"
-                custom={votedSide === 'left'}
-                variants={slotVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={slotTransition}
-              >
-                <CompareNameChip name={currentPair.left} onVote={vote('left')} />
-              </motion.div>
-            </AnimatePresence>
+            <div className="compare-names-mode-chip-area">
+              <AnimatePresence initial={false} custom={votedSide === 'left'}>
+                <motion.div
+                  key={pairKey}
+                  className="compare-names-mode-motion"
+                  custom={votedSide === 'left'}
+                  variants={slotVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={slotTransition}
+                >
+                  <CompareNameChip name={currentPair.left} onVote={vote('left')} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            {surname}
           </div>
           <Typography className="compare-names-content-or">OR</Typography>
           <div className="compare-names-mode-slot">
-            <AnimatePresence initial={false} custom={votedSide === 'right'}>
-              <motion.div
-                key={pairKey}
-                className="compare-names-mode-motion"
-                custom={votedSide === 'right'}
-                variants={slotVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={slotTransition}
-              >
-                <CompareNameChip name={currentPair.right} onVote={vote('right')} />
-              </motion.div>
-            </AnimatePresence>
+            <div className="compare-names-mode-chip-area">
+              <AnimatePresence initial={false} custom={votedSide === 'right'}>
+                <motion.div
+                  key={pairKey}
+                  className="compare-names-mode-motion"
+                  custom={votedSide === 'right'}
+                  variants={slotVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={slotTransition}
+                >
+                  <CompareNameChip name={currentPair.right} onVote={vote('right')} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            {surname}
           </div>
         </>
       ) : (
         <>
           <div className="compare-names-mode-slot">
-            <NameChipSkeleton size="compare" />
+            <div className="compare-names-mode-chip-area">
+              <NameChipSkeleton size="compare" />
+            </div>
+            {surname}
           </div>
           <Typography className="compare-names-content-or">OR</Typography>
           <div className="compare-names-mode-slot">
-            <NameChipSkeleton size="compare" />
+            <div className="compare-names-mode-chip-area">
+              <NameChipSkeleton size="compare" />
+            </div>
+            {surname}
           </div>
         </>
       )}

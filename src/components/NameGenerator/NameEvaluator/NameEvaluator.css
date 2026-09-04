@@ -20,8 +20,14 @@
   padding-bottom: 3vh;
 }
 
+/* Sized and coloured deliberately rather than left on h3's defaults: it sits
+   under a 120px given name and has to read as the second half of one name,
+   not as a heading that happens to be nearby. Still well short of the given
+   name, which stays the thing being decided on. */
 #user-surname {
   margin: 0;
+  color: var(--color-primary);
+  font-size: 40px;
 }
 
 @media (--mobile) {
@@ -29,8 +35,7 @@
     min-height: auto;
   }
 
-  #name-evaluator-content {
-    grid-template-rows: 160px auto;
-    row-gap: var(--spacing-md);
+  #user-surname {
+    font-size: 30px;
   }
 }

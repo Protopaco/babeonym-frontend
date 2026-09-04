@@ -4,16 +4,27 @@
   align-items: center;
   justify-content: center;
   gap: 48px;
-  min-height: 360px;
+  /* Room for a full name on each side rather than a given name alone. */
+  min-height: 400px;
   padding: 0 24px;
 }
 
-/* Fixed so the outgoing and incoming chips can overlap during a swap instead of
-   both taking space and shoving the OR sideways. Matches the compare chip. */
+/* The chip and the surname beneath it. Only the chip animates, so the slot
+   itself keeps a stable size and the OR stays put. */
 .compare-names-mode-slot {
-  position: relative;
   flex-shrink: 0;
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Fixed so the outgoing and incoming chips can overlap during a swap instead of
+   both taking space and shoving the surname down. Matches the compare chip. */
+.compare-names-mode-chip-area {
+  position: relative;
+  width: 100%;
   height: 88px;
 }
 
@@ -22,7 +33,23 @@
   inset: 0;
 }
 
-.compare-names-content-or {
+/* Matches the generator's surname exactly, so the same name reads the same way
+   in both modes.
+
+   Indented to start where the given name above it starts: the compare chip has
+   a 4px border and 32px of padding, so its text begins 36px in from the slot's
+   edge. Hardcoded rather than read from the chip, which publishes no inset. */
+.compare-names-mode-surname.MuiTypography-root {
+  margin: 0;
+  padding-left: 36px;
+  color: var(--color-primary);
+  font-size: 40px;
+  line-height: 1.25;
+}
+
+/* Compound so it beats MUI's Typography class, which is two classes deep and
+   would otherwise win on specificity and hold this at its own 20px. */
+.compare-names-content-or.MuiTypography-root {
   color: var(--color-primary);
   font-size: 2rem;
 }
@@ -31,7 +58,11 @@
   .compare-names-mode-content {
     flex-direction: column;
     justify-content: center;
-    min-height: 320px;
+    min-height: 360px;
     text-align: center;
+  }
+
+  .compare-names-mode-surname.MuiTypography-root {
+    font-size: 30px;
   }
 }

@@ -3,7 +3,10 @@
   box-sizing: border-box;
   width: 100%;
   height: 20vh;
-  min-height: 360px;
+  /* Room for a full name rather than a given name alone: the surname sits
+     under a 120px candidate and needs space of its own without crowding the
+     action buttons below it. */
+  min-height: 400px;
   /* padding: 48px 48px 32px; */
   display: flex;
   align-items: center;
