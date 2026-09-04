@@ -6,6 +6,8 @@ import LanguageFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurf
 import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
 import WorkspaceFilterToggle from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceFilterToggle';
 import { useWorkspaceFilterDraftState } from '@/components/NameWorkspace/WorkspaceFilterSurface/useWorkspaceFilterDraftState';
+import { AnimatePresence, motion } from 'motion/react';
+import motionTokens from '@/themes/motion.theme';
 import './WorkspaceFilterLayout.css';
 
 type Props = {
@@ -45,33 +47,47 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
           ))}
         </div>
       </div>
-      {isOpen && (
-        <div className="workspace-filter-layout-selector-row">
-          <div className="workspace-filter-layout-columns" aria-label="Available filter categories">
-            <GenderFilterColumn
-              options={availableFilterOptions.genders}
-              selectedOptionIds={draftFilters.genders}
-              onChange={setDraftFilters.genders}
-            />
-            <DecadeFilterColumn
-              options={availableFilterOptions.decades}
-              selectedOptionIds={draftFilters.decades}
-              onChange={setDraftFilters.decades}
-            />
-            <CultureFilterColumn
-              options={availableFilterOptions.cultures}
-              selectedOptionIds={draftFilters.cultures}
-              onChange={setDraftFilters.cultures}
-            />
-            <LanguageFilterColumn
-              options={availableFilterOptions.languages}
-              selectedOptionIds={draftFilters.languages}
-              onChange={setDraftFilters.languages}
-            />
-          </div>
-          <WorkspaceFilterActions isOpen={isOpen} onClose={handleCloseFilters} onSetFilters={handleSetFilters} disabled={!hasDraftFilters} />
-        </div>
-      )}
+      {/* The row unmounts when the drawer closes, so it needs AnimatePresence to
+          stay mounted long enough to animate out. The height animation lives on
+          this wrapper rather than the row itself: the wrapper clips, so the
+          row's own padding collapses with it and the row keeps its layout. */}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            className="workspace-filter-layout-selector-reveal"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out }}
+          >
+            <div className="workspace-filter-layout-selector-row">
+              <div className="workspace-filter-layout-columns" aria-label="Available filter categories">
+                <GenderFilterColumn
+                  options={availableFilterOptions.genders}
+                  selectedOptionIds={draftFilters.genders}
+                  onChange={setDraftFilters.genders}
+                />
+                <DecadeFilterColumn
+                  options={availableFilterOptions.decades}
+                  selectedOptionIds={draftFilters.decades}
+                  onChange={setDraftFilters.decades}
+                />
+                <CultureFilterColumn
+                  options={availableFilterOptions.cultures}
+                  selectedOptionIds={draftFilters.cultures}
+                  onChange={setDraftFilters.cultures}
+                />
+                <LanguageFilterColumn
+                  options={availableFilterOptions.languages}
+                  selectedOptionIds={draftFilters.languages}
+                  onChange={setDraftFilters.languages}
+                />
+              </div>
+              <WorkspaceFilterActions isOpen={isOpen} onClose={handleCloseFilters} onSetFilters={handleSetFilters} disabled={!hasDraftFilters} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

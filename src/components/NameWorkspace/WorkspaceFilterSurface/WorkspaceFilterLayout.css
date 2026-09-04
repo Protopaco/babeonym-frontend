@@ -33,6 +33,12 @@
   overflow: hidden;
 }
 
+/* Clips the selector row while its height is animating, so the row's own
+   padding collapses with it instead of leaving a band behind when closed. */
+.workspace-filter-layout-selector-reveal {
+  overflow: hidden;
+}
+
 .workspace-filter-layout-columns {
   min-width: 0;
   display: grid;

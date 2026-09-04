@@ -17,12 +17,3 @@
   font-weight: 400;
   font-size: 0.875rem;
 }
-
-.workspace-filter-toggle-button.MuiIconButton-root {
-  color: var(--color-primary-contrast);
-  padding: 0;
-}
-
-.workspace-filter-toggle-button .workspace-filter-toggle-chevron--open {
-  transform: rotate(180deg);
-}
