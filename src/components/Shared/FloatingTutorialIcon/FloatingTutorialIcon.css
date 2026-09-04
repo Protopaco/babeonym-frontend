@@ -5,44 +5,11 @@
   z-index: 1150;
 }
 
+/* Anchors the mobile label to the button. The button draws its own circle, so
+   nothing here paints a border or a background. */
 .floating-tutorial-icon-button {
   position: relative;
-  width: 88px;
-  height: 88px;
-  border: 2px solid var(--color-primary);
-  border-radius: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-background);
-}
-
-.floating-tutorial-icon.MuiIconButton-root {
-  color: var(--color-primary);
-  box-shadow: var(--box-shadow-primary);
-}
-
-.floating-tutorial-icon-button:hover,
-.floating-tutorial-icon-button:has(.floating-tutorial-icon:focus-visible) {
-  background: var(--color-primary-highlight);
-}
-
-.floating-tutorial-icon-button[data-tutorial-enabled='true'] {
-  background: var(--color-primary);
-}
-
-.floating-tutorial-icon.MuiIconButton-root[data-tutorial-enabled='true'] {
-  color: var(--color-primary-contrast);
-}
-
-.floating-tutorial-icon-button[data-tutorial-enabled='true']:hover,
-.floating-tutorial-icon-button[data-tutorial-enabled='true']:has(.floating-tutorial-icon:focus-visible) {
-  background: var(--color-text-secondary);
-}
-
-.floating-tutorial-icon svg {
-  width: 58px;
-  height: 52px;
 }
 
 .floating-tutorial-icon-mobile-label {
@@ -57,21 +24,6 @@
 
   .floating-tutorial-icon-container[data-mobile-filter-drawer-open='true'] {
     display: none;
-  }
-
-  .floating-tutorial-icon-button {
-    width: 64px;
-    height: 64px;
-  }
-
-  .floating-tutorial-icon.MuiIconButton-root {
-    width: 64px;
-    height: 64px;
-  }
-
-  .floating-tutorial-icon svg {
-    width: 42px;
-    height: 38px;
   }
 
   .floating-tutorial-icon-mobile-label {

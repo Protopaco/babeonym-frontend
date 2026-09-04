@@ -11,6 +11,9 @@ type Props = {
   tone?: 'default' | 'danger';
   emphasis?: 'outline' | 'fill';
   label?: string;
+  // Set only by toggles, so a screen reader announces the on/off state rather
+  // than treating the control as a one-shot action.
+  pressed?: boolean;
 };
 
 // The button everything else is built on. It owns the box and the colour
@@ -26,6 +29,7 @@ export default ({
   tone = 'default',
   emphasis = 'outline',
   label,
+  pressed,
 }: Props) => {
   return (
     <Button
@@ -37,6 +41,7 @@ export default ({
       data-tone={tone}
       data-emphasis={emphasis}
       aria-label={label}
+      aria-pressed={pressed}
       onClick={() => {
         onClick();
       }}

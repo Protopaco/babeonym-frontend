@@ -6,7 +6,9 @@
   justify-content: center;
 }
 
+/* Height only, so an icon that is not square keeps its proportions. Square MUI
+   icons come out the same either way. */
 .primary-icon-button-icon svg {
-  width: var(--button-icon-size, 24px);
+  width: auto;
   height: var(--button-icon-size, 24px);
 }

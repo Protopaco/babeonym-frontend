@@ -47,6 +47,16 @@
   padding: 0;
 }
 
+/* A secondary icon action — small enough to sit beside content rather than be
+   the thing you came for, so the ring thins out with it. */
+.primary-button.MuiButton-root[data-shape='icon'][data-size='compact'] {
+  --button-icon-size: 52px;
+
+  width: 88px;
+  height: 88px;
+  border-width: 2px;
+}
+
 /* Sized for a thumb rather than a cursor. Owned here because the base owns the
    box, and this is the same button at a different scale. */
 @media (max-width: 599px) {
@@ -56,6 +66,14 @@
     width: 96px;
     height: 96px;
     border-width: 6px;
+  }
+
+  .primary-button.MuiButton-root[data-shape='icon'][data-size='compact'] {
+    --button-icon-size: 38px;
+
+    width: 64px;
+    height: 64px;
+    border-width: 2px;
   }
 }
 
