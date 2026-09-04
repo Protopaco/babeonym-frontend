@@ -7,6 +7,7 @@
    different slots — one inside SectionHeader's Typography, one beside it — and
    would otherwise render at two different sizes. Matches h4. */
 .workspace-mode-header-button {
+  position: relative;
   padding: 10px 28px;
   border: 0;
   border-radius: 28px;
@@ -19,10 +20,23 @@
 }
 
 /* The fill alone says which mode you are on; both labels stay legible so the
-   pair reads as two options rather than a heading and an afterthought. */
-.workspace-mode-header-button[data-active='true'] {
+   pair reads as two options rather than a heading and an afterthought.
+
+   It is its own element rather than a background on the button because it
+   travels between the two tabs, which means it has to exist independently of
+   either of them. */
+.workspace-mode-header-pill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 28px;
   background: var(--color-secondary);
-  color: var(--color-primary);
+}
+
+/* Above the pill, which would otherwise paint over it. */
+.workspace-mode-header-label {
+  position: relative;
+  z-index: 1;
 }
 
 .workspace-mode-header-button:disabled {

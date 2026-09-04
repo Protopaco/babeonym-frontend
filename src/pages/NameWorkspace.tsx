@@ -63,7 +63,7 @@ const NameWorkspace = () => {
         onAddModeClick={showAddMode}
         onCompareModeClick={showCompareMode}
       />
-      <WorkspaceModeContent>
+      <WorkspaceModeContent mode={workspaceMode}>
         {workspaceMode === 'compare' ? <CompareNamesMode /> : <NameGenerator />}
       </WorkspaceModeContent>
       <ExistingAccountNotice />

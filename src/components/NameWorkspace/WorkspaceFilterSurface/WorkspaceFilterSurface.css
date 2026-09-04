@@ -1,29 +1,28 @@
+/* The collapsed band is the floor, not a separate state: the surface is never
+   shorter than this, and the filter rows animate on top of it. */
 .workspace-filter-surface {
   box-sizing: border-box;
   width: 100%;
+  min-height: 21px;
   background: var(--color-primary);
   border-bottom: 2px solid var(--color-primary-edge);
 }
 
-.workspace-filter-surface--inactive {
-  min-height: 21px;
-  background: var(--color-primary);
-}
-
-.workspace-filter-surface--closed,
-.workspace-filter-surface--open {
-  min-height: 42px;
+/* Clips the filter rows while their height animates, so they are hidden by the
+   band rather than spilling past it on the way out. */
+.workspace-filter-surface-reveal {
+  overflow: hidden;
 }
 
 @media (--mobile) {
-  .workspace-filter-surface--inactive {
-    height: 0;
+  /* Mobile has its own filter surface below the generator, so this one is only
+     ever the band, and collapses away entirely. */
+  .workspace-filter-surface {
+    min-height: 0;
     border-bottom: 0;
   }
 
-  .workspace-filter-surface--closed,
-  .workspace-filter-surface--open {
-    min-height: 0;
+  .workspace-filter-surface-reveal {
     display: none;
   }
 }

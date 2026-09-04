@@ -1,5 +1,7 @@
 import BaseTooltip from '@/components/Shared/BaseTooltip/BaseTooltip';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
+import { motion } from 'motion/react';
+import motionTokens from '@/themes/motion.theme';
 import './WorkspaceModeHeader.css';
 
 type WorkspaceMode = 'add' | 'compare';
@@ -20,12 +22,26 @@ const WorkspaceModeHeader = ({ activeMode, canCompareNames, onAddModeClick, onCo
   // paints the label the same colour as the active fill, hiding it.
   const compareTabDisabled = !canCompareNames && activeMode !== 'compare';
 
+  // One pill shared by both tabs. Because the two render it under the same
+  // layoutId, motion sees it leave one button and arrive in the other and
+  // tweens the box between them, including the width change between the two
+  // labels. The buttons sit in different SectionHeader slots, which layoutId
+  // does not care about.
+  const activePill = (
+    <motion.span
+      layoutId="workspace-mode-header-pill"
+      className="workspace-mode-header-pill"
+      transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out }}
+    />
+  );
+
   return (
     <div className="workspace-mode-header">
       <SectionHeader
         title={
           <button className="workspace-mode-header-button" data-active={activeMode === 'add'} onClick={onAddModeClick} type="button">
-            Name Generator
+            {activeMode === 'add' ? activePill : null}
+            <span className="workspace-mode-header-label">Name Generator</span>
           </button>
         }
         action={
@@ -38,7 +54,8 @@ const WorkspaceModeHeader = ({ activeMode, canCompareNames, onAddModeClick, onCo
                 onClick={onCompareModeClick}
                 type="button"
               >
-                Compare Names
+                {activeMode === 'compare' ? activePill : null}
+                <span className="workspace-mode-header-label">Compare Names</span>
               </button>
             </span>
           </BaseTooltip>

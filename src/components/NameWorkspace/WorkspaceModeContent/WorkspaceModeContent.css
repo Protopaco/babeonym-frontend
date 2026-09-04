@@ -1,9 +1,24 @@
 .workspace-mode-content {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   height: 20vh;
   min-height: 360px;
   /* padding: 48px 48px 32px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* The two modes pass each other on the way in and out, so their travel is
+     clipped to the frame rather than spilling across the page. */
+  overflow: hidden;
+}
+
+/* Fills the frame so a mode can centre itself the way it did when it was the
+   only child, and so the pane taken out of flow on its way out keeps the size
+   it had rather than collapsing to its content. */
+.workspace-mode-content-pane {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

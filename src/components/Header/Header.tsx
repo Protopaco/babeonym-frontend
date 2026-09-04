@@ -12,7 +12,7 @@ const Header = () => {
   // page can never disagree. Whether the workspace is on screen at all is the
   // header's own question, since it renders on every route.
   const isWorkspaceRoute = location.pathname === '/';
-  const filterSurfaceMode = isWorkspaceRoute && workspaceMode === 'add' ? 'add' : 'inactive';
+  const filterSurfaceMode = isWorkspaceRoute && workspaceMode === 'add' ? 'filters' : 'collapsed';
 
   return (
     <div id="header">
