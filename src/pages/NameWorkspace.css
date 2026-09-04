@@ -5,6 +5,6 @@
 
 @media (max-width: 599px) {
   .name-workspace {
-    min-height: calc(100vh - 96px);
+    min-height: calc(100vh - var(--height-header-mobile));
   }
 }
