@@ -10,14 +10,7 @@ type Props = {
   emphasis?: 'outline' | 'fill';
 };
 
-export default ({
-  text,
-  onClick,
-  disabled = false,
-  size = 'default',
-  tone = 'default',
-  emphasis = 'outline',
-}: Props) => {
+export default ({ text, onClick, disabled = false, size = 'default', tone = 'default', emphasis = 'outline' }: Props) => {
   return (
     <Button
       variant="outlined"
@@ -30,6 +23,7 @@ export default ({
         onClick();
       }}
       className="primary-button"
+      disableRipple={true}
     >
       {text}
     </Button>

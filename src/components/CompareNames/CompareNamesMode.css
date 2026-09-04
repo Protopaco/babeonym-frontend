@@ -7,6 +7,21 @@
   padding: 0 25vw;
 }
 
+/* Fixed so the outgoing and incoming buttons can overlap during a swap instead
+   of both taking space and shoving the OR sideways. Matches the default
+   PrimaryButton size. */
+.compare-names-mode-slot {
+  position: relative;
+  flex-shrink: 0;
+  width: 220px;
+  height: 76px;
+}
+
+.compare-names-mode-motion {
+  position: absolute;
+  inset: 0;
+}
+
 @media (max-width: 599px) {
   .compare-names-mode-content {
     align-items: flex-start;
