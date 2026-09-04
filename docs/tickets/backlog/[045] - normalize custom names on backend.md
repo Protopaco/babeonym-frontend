@@ -36,4 +36,3 @@ The UI should send the custom name exactly as entered. Name cleanup should live 
 - Custom-name normalization happens in the backend.
 - The UI can continue sending raw user input.
 - Normalized names preserve intentional spelling and punctuation.
-- Unit tests cover casing, apostrophes, existing correct casing, and unique spellings.

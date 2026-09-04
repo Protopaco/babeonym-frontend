@@ -23,6 +23,23 @@ This document captures the default React architecture rules for Babeonym UI work
 - Keep variants named by intent, such as `size="wide"` or `variant="compact"`.
 - Do not create one-off parent overrides for reusable components.
 
+## Breakpoints
+
+- The app has three tiers: mobile `<600px`, tablet `600px-899px`, desktop `>=900px`.
+- The values match MUI's defaults and the style guide's three type scales.
+- Component CSS must not write breakpoint pixel values. Use the named queries:
+  - `@media (--mobile)` - mobile only
+  - `@media (--tablet)` - tablet only
+  - `@media (--desktop)` - desktop only
+  - `@media (--below-desktop)` - mobile and tablet together
+- The names are defined in `src/styles/breakpoints.css` and resolved at build
+  time by `postcss-custom-media`, wired up in `vite.config.ts`. That file is
+  loaded as global data, so it is never imported by a stylesheet and emits
+  nothing.
+- The JS side declares the same tiers in `src/themes/breakpoints.theme.ts` for
+  MUI. A media query condition cannot read a custom property, so the two cannot
+  share one definition and a change has to be made in both.
+
 ## Theme Tokens
 
 - Never hardcode raw colors in component or page CSS.
