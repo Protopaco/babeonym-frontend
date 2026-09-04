@@ -1,9 +1,8 @@
 import type { GivenName } from '@/api/generated';
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
 import BaseNameChip from '@/components/Shared/BaseNameChip/BaseNameChip';
+import NameChipAction from '@/components/Shared/NameChipAction/NameChipAction';
 import NameTypography from '@/components/Shared/NameTypography/NameTypography';
 import '@/components/Shared/ListNameChip/ListNameChip.css';
 import { motion } from 'motion/react';
@@ -34,11 +33,9 @@ const ListNameChip = ({ approvedGivenName, size = 'default' }: Props) => {
       <BaseNameChip size={size}>
         <NameTypography name={givenName} />
       </BaseNameChip>
-      <Box className="list-name-chip-delete-drawer">
-        <IconButton className="list-name-chip-delete" onClick={rejectClick} aria-label={`Remove ${givenName}`}>
-          <DeleteIcon />
-        </IconButton>
-      </Box>
+      <div className="list-name-chip-drawer">
+        <NameChipAction icon={<DeleteIcon />} label={`Remove ${givenName}`} onClick={rejectClick} size={size} fill="error" />
+      </div>
     </motion.div>
   );
 };

@@ -1,0 +1,42 @@
+/* Sized entirely by the chip it wraps, so the button is only a hit target and a
+   place to declare the fill. */
+/* The negative margin is the overlap: it holds the flat end under whatever the
+   action slid out from, so a consumer can animate a plain full-width slide and
+   still never expose it. Owned here so no per-size number leaks outward. */
+.name-chip-action.MuiButtonBase-root {
+  flex-shrink: 0;
+  margin-left: -22px;
+  border-radius: 0 22px 22px 0;
+  padding: 0;
+}
+
+/* Matches the pill's radius so the ripple and focus ring follow its outline. */
+.name-chip-action.MuiButtonBase-root[data-size='large'] {
+  margin-left: -30px;
+  border-radius: 0 30px 30px 0;
+}
+
+/* The fill reaches the pill as a custom property rather than a prop, and the
+   icon inherits `color` because MUI icons paint with currentColor. */
+.name-chip-action.MuiButtonBase-root[data-fill='primary'] {
+  --name-chip-fill: var(--color-primary);
+
+  color: var(--color-primary-contrast);
+}
+
+.name-chip-action.MuiButtonBase-root[data-fill='secondary'] {
+  --name-chip-fill: var(--color-secondary);
+
+  color: var(--color-secondary-contrast);
+}
+
+.name-chip-action.MuiButtonBase-root[data-fill='error'] {
+  --name-chip-fill: var(--color-error);
+  --name-chip-border: var(--color-error);
+
+  color: var(--color-error-contrast);
+}
+
+.name-chip-action.MuiButtonBase-root.Mui-disabled {
+  pointer-events: none;
+}

@@ -1,67 +1,35 @@
+/* Only as wide as the chip, so the drawer can be placed at the chip's right
+   edge without repeating the chip's width here. */
 .list-name-chip {
   position: relative;
   display: flex;
   align-items: center;
-  width: 188px;
+  width: 150px;
   height: 44px;
 }
 
-/* Sits behind the chip and is revealed on hover, so its offset is measured
-   against this wrapper rather than the chip itself. */
-.list-name-chip-delete-drawer {
+/* Sits behind the chip and slides out from under it. The chip is opaque, so at
+   rest the drawer is hidden by being translated back across its own width. */
+.list-name-chip-drawer {
   position: absolute;
-  top: 3px;
-  left: 140px;
+  top: 0;
+  left: 100%;
   z-index: 0;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 38px;
-  height: 38px;
-  border-radius: 0 19px 19px 0;
-  background: var(--color-error);
+  transform: translateX(-100%);
   opacity: 0;
-  transform: translateX(0);
   transition:
     opacity 0.12s ease,
     transform 0.18s ease;
 }
 
-.list-name-chip-delete {
-  width: 38px;
-  height: 38px;
-  background: none;
-  color: var(--color-error-contrast);
-}
-
-.list-name-chip-delete svg {
-  color: var(--color-error-contrast);
-}
-
-.list-name-chip:hover .list-name-chip-delete-drawer,
-.list-name-chip:focus-within .list-name-chip-delete-drawer {
-  opacity: 1;
+.list-name-chip:hover .list-name-chip-drawer,
+.list-name-chip:focus-within .list-name-chip-drawer {
   transform: translateX(0);
-}
-
-.list-name-chip-delete:hover {
-  background: none;
+  opacity: 1;
 }
 
 .list-name-chip[data-size='large'] {
-  width: 244px;
-  height: 60px;
-}
-
-.list-name-chip[data-size='large'] .list-name-chip-delete-drawer {
-  top: 5px;
-  left: 184px;
-  width: 50px;
-  height: 50px;
-  border-radius: 0 25px 25px 0;
-}
-
-.list-name-chip[data-size='large'] .list-name-chip-delete {
-  width: 50px;
+  width: 198px;
   height: 60px;
 }

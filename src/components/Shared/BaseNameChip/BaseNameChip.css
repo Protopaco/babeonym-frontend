@@ -6,11 +6,14 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  width: 150px;
   height: 44px;
-  border: 2px solid var(--color-primary);
+  /* Defaulted alongside the fill, so an extension can restate the outline to
+     match whatever colour it painted the pill. */
+  border: 2px solid var(--name-chip-border, var(--color-primary));
   border-radius: 22px;
-  background: var(--color-background);
+  /* Defaulted rather than fixed, so an extension can recolour the pill without
+     this component growing a prop for every fill it might need. */
+  background: var(--name-chip-fill, var(--color-background));
   overflow: hidden;
   padding: 0 16px;
 }
@@ -32,7 +35,6 @@
 .base-name-chip[data-size='large'] {
   --name-chip-font-size: 1.25rem;
 
-  width: 198px;
   height: 60px;
   border-width: 3px;
   border-radius: 30px;
@@ -42,9 +44,40 @@
 .base-name-chip[data-size='compare'] {
   --name-chip-font-size: 2rem;
 
-  width: 300px;
   height: 88px;
   border-width: 4px;
   border-radius: 44px;
   padding: 0 32px;
 }
+
+/* Width is the one dimension that is not a function of size alone: a name needs
+   room to read, an action only needs to stay a pill rather than a circle. */
+.base-name-chip[data-shape='name'] {
+  width: 150px;
+}
+
+/* Only the rounded right end of an action is ever on screen — the flat end stays
+   tucked under whatever it slid out from — so the left edge is left unfinished
+   and the padding pushes the icon into the half that shows. */
+.base-name-chip[data-shape='action'] {
+  width: 48px;
+  justify-content: center;
+  border-left: 0;
+  border-radius: 0 22px 22px 0;
+  padding: 0 0 0 22px;
+}
+
+.base-name-chip[data-size='large'][data-shape='action'] {
+  width: 70px;
+  border-radius: 0 30px 30px 0;
+  padding-left: 30px;
+}
+
+.base-name-chip[data-size='large'][data-shape='name'] {
+  width: 198px;
+}
+
+.base-name-chip[data-size='compare'][data-shape='name'] {
+  width: 300px;
+}
+
