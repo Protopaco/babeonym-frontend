@@ -2,6 +2,28 @@
 @import '@/styles/scrollbar.css';
 @import '@/styles/swatches.css';
 
+/* The CSS half of reduced-motion handling. Deliberately global and blunt: it
+   covers component transitions, the skeleton loops, and MUI's own transitions,
+   which no component owns and none of them would otherwise catch.
+
+   Durations are collapsed to a near-zero value rather than to none, so a
+   transition still fires its end event and any code waiting on one is not left
+   hanging. Loops are cut to a single pass, which stops the skeleton shimmers —
+   decorative infinite motion is what this setting exists to turn off.
+
+   The motion/react half is MotionConfig in src/main.tsx. Between them, nothing
+   in the app handles reduced motion on its own. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .MuiTouchRipple-rippleVisible {
   color: var(--color-primary) !important;
 }

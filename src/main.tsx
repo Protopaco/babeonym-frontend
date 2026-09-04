@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import { MotionConfig } from 'motion/react';
 
 import App from './App';
 import '@/styles/index.css';
@@ -24,7 +25,14 @@ const AppShell = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <App />
+      {/* Every motion component in the tree honours the OS reduced-motion
+          setting from here, so no component handles it itself. Transform and
+          layout animation is dropped and opacity is kept, so a reduced-motion
+          user still sees a fade rather than an abrupt swap. The CSS half of
+          this lives in src/styles/index.css. */}
+      <MotionConfig reducedMotion="user">
+        <App />
+      </MotionConfig>
     </ThemeProvider>
   );
 };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import motionTokens from '@/themes/motion.theme';
 import type { GivenName } from '@/api/generated';
 import { useCompareNamePair } from '@/components/CompareNames/useCompareNamePair';
@@ -23,17 +23,14 @@ const CompareNamesMode = () => {
   const { currentPair, advancePair } = useCompareNamePair(approvedGivenNames, givenNameProviderLoaded);
   const { voteForName } = useCompareNameVoting(currentPair, advancePair);
   const [votedSide, setVotedSide] = useState<VotedSide>(null);
-  const shouldReduceMotion = useReducedMotion();
-
-  const slotOffset = shouldReduceMotion ? 0 : SLOT_TRAVEL_PX;
 
   const slotVariants = {
-    initial: { opacity: 0, y: slotOffset },
+    initial: { opacity: 0, y: SLOT_TRAVEL_PX },
     animate: { opacity: 1, y: 0 },
     // The winner leaves upward and the loser downward, so the exit itself says
     // which name was picked. Read through AnimatePresence's `custom`, because an
     // exiting element otherwise keeps the props it held before the click.
-    exit: (wasVoted: boolean) => ({ opacity: 0, y: wasVoted ? -slotOffset : slotOffset }),
+    exit: (wasVoted: boolean) => ({ opacity: 0, y: wasVoted ? -SLOT_TRAVEL_PX : SLOT_TRAVEL_PX }),
   };
 
   const slotTransition = { duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out } as const;

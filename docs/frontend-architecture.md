@@ -40,6 +40,31 @@ This document captures the default React architecture rules for Babeonym UI work
   MUI. A media query condition cannot read a custom property, so the two cannot
   share one definition and a change has to be made in both.
 
+## Motion
+
+The app animates with two systems. Which one to use is decided by what is being
+animated, not by preference.
+
+- **`motion/react`** for anything CSS cannot express: an element animating out
+  before it unmounts, and `layout` animation, which measures position before and
+  after a reflow. `AnimatePresence` and `layout` are the tells.
+- **Plain CSS** for state transitions and loops: a hover or data-attribute
+  change moving between two declared states, and keyframe animations that
+  repeat. Doing these in `motion/react` would mean lifting hover into React
+  state and re-rendering on pointer move, which is worse on every axis.
+- **Springs** only for interruptible layout animation, where a list can reorder
+  while items are still moving. A spring has no duration, so it consumes no
+  duration token; everything else should.
+
+Durations and easing come from `src/themes/motion.theme.ts` — TS values for
+`motion/react`, CSS custom properties for stylesheets. Travel distance stays
+component-owned, because it scales with the size of the thing moving.
+
+Reduced motion is handled centrally in two places and nowhere else:
+`MotionConfig reducedMotion="user"` in `src/main.tsx` for the library, and a
+global `prefers-reduced-motion` block in `src/styles/index.css` for CSS. No
+component should call `useReducedMotion` or write its own guard.
+
 ## Theme Tokens
 
 - Never hardcode raw colors in component or page CSS.
