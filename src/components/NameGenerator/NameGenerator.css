@@ -9,7 +9,7 @@
 /* The filter bar is fixed to the bottom, so the content it would cover reserves
    its height here. The chip row makes the bar taller only when filters are
    applied, so the clearance follows that state. */
-@media (max-width: 599px) {
+@media (--mobile) {
   .name-generator-mode-content {
     padding-bottom: var(--height-filter-drawer-closed);
   }

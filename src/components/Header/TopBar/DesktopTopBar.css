@@ -15,7 +15,7 @@
   min-width: 0;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   #desktop-top-bar {
     display: none;
   }

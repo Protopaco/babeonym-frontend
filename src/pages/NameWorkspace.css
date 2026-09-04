@@ -9,7 +9,7 @@
   padding: 0 24px;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .name-workspace {
     min-height: calc(100vh - var(--height-header-mobile));
     padding: 0;

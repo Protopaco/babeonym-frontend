@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .mobile-tutorial-hint {
     position: absolute;
     top: 0;

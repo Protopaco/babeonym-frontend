@@ -23,7 +23,7 @@
   justify-content: space-around;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .settings {
     padding: 16px;
   }

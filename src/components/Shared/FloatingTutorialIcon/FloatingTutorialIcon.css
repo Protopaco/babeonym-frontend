@@ -16,7 +16,7 @@
   display: none;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .floating-tutorial-icon-container {
     right: 20px;
     bottom: var(--bottom-floating-tutorial-icon-mobile);

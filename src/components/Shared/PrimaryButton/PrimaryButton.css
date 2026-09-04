@@ -59,7 +59,7 @@
 
 /* Sized for a thumb rather than a cursor. Owned here because the base owns the
    box, and this is the same button at a different scale. */
-@media (max-width: 599px) {
+@media (--mobile) {
   .primary-button.MuiButton-root[data-shape='icon'] {
     --button-icon-size: 52px;
 

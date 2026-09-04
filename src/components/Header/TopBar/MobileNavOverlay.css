@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   #mobile-nav-overlay {
     position: fixed;
     inset: 0;

@@ -45,7 +45,7 @@
   }
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .workspace-approved-names-skeleton {
     justify-content: center;
     gap: 22px 18px;

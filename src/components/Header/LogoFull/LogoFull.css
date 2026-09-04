@@ -10,7 +10,7 @@
   color: var(--color-primary);
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   #logo-full {
     color: var(--color-primary-contrast);
   }

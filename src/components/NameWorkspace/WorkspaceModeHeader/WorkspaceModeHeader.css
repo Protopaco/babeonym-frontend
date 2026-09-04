@@ -42,7 +42,7 @@
   justify-content: flex-end;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .workspace-mode-header {
     margin: var(--spacing-lg) 0 var(--spacing-md);
   }

@@ -17,7 +17,7 @@
   font-weight: 700;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .workspace-approved-name {
     text-align: left;
   }

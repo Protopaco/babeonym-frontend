@@ -40,7 +40,10 @@
   gap: 12px;
 }
 
-@media (max-width: 899px) {
+/* Tablet halves the filter columns and stacks the rows. Written as
+   --below-desktop rather than --tablet because these rules also apply on
+   mobile, where the whole surface is hidden by the block underneath. */
+@media (--below-desktop) {
   .workspace-filter-layout-summary-row,
   .workspace-filter-layout-selector-row {
     grid-template-columns: 1fr;
@@ -57,7 +60,7 @@
   }
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .workspace-filter-layout {
     display: none;
   }

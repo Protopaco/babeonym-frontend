@@ -15,7 +15,7 @@
   font-size: 1rem;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .workspace-custom-name-draft-item {
     text-align: left;
   }

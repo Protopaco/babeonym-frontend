@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .exhausted-name-message-headline.MuiTypography-root {
     font-size: 18px;
   }

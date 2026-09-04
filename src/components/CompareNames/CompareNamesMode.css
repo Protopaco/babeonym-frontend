@@ -27,7 +27,7 @@
   font-size: 2rem;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .compare-names-mode-content {
     flex-direction: column;
     justify-content: center;

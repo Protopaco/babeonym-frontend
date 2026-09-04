@@ -28,7 +28,7 @@
   line-height: 1;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .evaluated-name-display {
     min-height: 150px;
     display: flex;

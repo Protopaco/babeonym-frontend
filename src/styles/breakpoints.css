@@ -1,0 +1,19 @@
+/* The app's three layout tiers, and the only place their pixel values are
+   written. Component CSS references these names rather than repeating numbers.
+
+   The values match MUI's breakpoints, which src/themes/breakpoints.theme.ts
+   declares for the JS side: sm 600, md 900. They also match the style guide's
+   three type scales, so mobile, tablet and desktop mean the same thing whether
+   a rule is written here or in the theme.
+
+   These are resolved at build time by postcss-custom-media, wired up in
+   vite.config.ts. This file is never imported by a stylesheet — it is loaded as
+   global data, so nothing here is emitted into the bundle. */
+
+@custom-media --mobile (max-width: 599px);
+@custom-media --tablet (min-width: 600px) and (max-width: 899px);
+@custom-media --desktop (min-width: 900px);
+
+/* Mobile and tablet together. Distinct from --tablet: a rule written here
+   applies below 600 as well. */
+@custom-media --below-desktop (max-width: 899px);

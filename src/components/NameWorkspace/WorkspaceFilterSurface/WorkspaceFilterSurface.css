@@ -15,7 +15,7 @@
   min-height: 42px;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .workspace-filter-surface--inactive {
     height: 0;
     border-bottom: 0;

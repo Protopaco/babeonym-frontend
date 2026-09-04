@@ -10,7 +10,7 @@
   list-style: none;
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .workspace-approved-names-list {
     display: flex;
     flex-direction: column;

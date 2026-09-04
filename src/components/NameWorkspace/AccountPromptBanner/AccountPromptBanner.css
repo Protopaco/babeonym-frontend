@@ -26,7 +26,7 @@
   color: var(--color-secondary-contrast);
 }
 
-@media (max-width: 599px) {
+@media (--mobile) {
   .account-prompt-banner {
     flex-direction: column;
     align-items: flex-start;
