@@ -1,10 +1,17 @@
+/* The one column every section on the page measures against, so the tab rule,
+   the generator and the name list share a left and right edge. */
 .name-workspace {
+  box-sizing: border-box;
   min-height: calc(100vh - var(--height-header));
   width: 100%;
+  max-width: var(--width-workspace-column);
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 @media (max-width: 599px) {
   .name-workspace {
     min-height: calc(100vh - var(--height-header-mobile));
+    padding: 0;
   }
 }

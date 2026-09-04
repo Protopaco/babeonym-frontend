@@ -1,54 +1,40 @@
 .workspace-mode-header {
   width: 100%;
   margin: var(--spacing-xl) 0 var(--spacing-lg);
-  height: 15vh;
-  max-height: 80px;
-  min-height: 55px;
-  display: flex;
-  align-items: end;
 }
 
-.workspace-mode-header-inner {
-  display: flex;
-  justify-content: space-between;
-  width: 75%;
-  max-width: 70vw;
-  margin: 0 auto;
-  border-bottom: 3px solid var(--color-secondary);
-}
-
-.workspace-mode-header-inner[data-active-mode='add'] {
-  border-image: linear-gradient(to right, var(--color-primary) 0 50%, var(--color-secondary) 50% 100%) 1;
-}
-
-.workspace-mode-header-inner[data-active-mode='compare'] {
-  border-image: linear-gradient(to right, var(--color-secondary) 0 50%, var(--color-primary) 50% 100%) 1;
-}
-
+/* Font size is stated rather than inherited because the two buttons sit in
+   different slots — one inside SectionHeader's Typography, one beside it — and
+   would otherwise render at two different sizes. Matches h4. */
 .workspace-mode-header-button {
-  padding: 0 0 var(--spacing-xs);
+  padding: 10px 28px;
   border: 0;
-  background: transparent;
-  color: var(--color-secondary);
+  border-radius: 28px;
+  background: var(--color-background);
+  color: var(--color-primary);
   font-family: var(--font-family-primary);
-  font-size: 2.75rem;
-  font-weight: var(--font-weight-semibold);
+  font-size: 2.125rem;
   line-height: 1;
   cursor: pointer;
 }
 
+/* The fill alone says which mode you are on; both labels stay legible so the
+   pair reads as two options rather than a heading and an afterthought. */
 .workspace-mode-header-button[data-active='true'] {
+  background: var(--color-secondary);
   color: var(--color-primary);
 }
 
 .workspace-mode-header-button:disabled {
-  color: var(--color-disabled);
-  -webkit-text-fill-color: var(--color-disabled);
+  color: var(--color-secondary);
+  -webkit-text-fill-color: var(--color-secondary);
   cursor: not-allowed;
 }
 
-.workspace-mode-header-button:not(:disabled):hover {
-  color: var(--color-primary);
+@media (hover: hover) {
+  .workspace-mode-header-button:not(:disabled):not([data-active='true']):hover {
+    background: var(--color-primary-highlight);
+  }
 }
 
 .workspace-mode-header-tooltip-target {
@@ -59,11 +45,6 @@
 @media (max-width: 599px) {
   .workspace-mode-header {
     margin: var(--spacing-lg) 0 var(--spacing-md);
-  }
-
-  .workspace-mode-header-inner {
-    width: min(100% - var(--spacing-md), 100%);
-    gap: var(--spacing-xs);
   }
 
   .workspace-mode-header-button {

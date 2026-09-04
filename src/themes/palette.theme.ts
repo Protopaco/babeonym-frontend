@@ -61,6 +61,7 @@ export default ({
             '--color-error-contrast': defaultError.contrastText,
             '--box-shadow-primary': `0 4px 4px ${secondaryContrast}80`,
 
+            '--width-workspace-column': '1200px',
             '--width-filter-drawer-open': '450px',
             '--width-filter-drawer-closed': '72px',
             '--height-filter-drawer-open': '50dvh',
