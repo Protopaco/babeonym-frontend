@@ -32,7 +32,7 @@
   inset: 0;
   content: '';
   background: linear-gradient(90deg, transparent, var(--color-primary-edge), transparent);
-  animation: workspace-approved-names-skeleton-pulse 1.4s ease-in-out infinite;
+  animation: workspace-approved-names-skeleton-pulse var(--motion-duration-1400) var(--motion-ease-in-out) infinite;
 }
 
 @keyframes workspace-approved-names-skeleton-pulse {

@@ -6,6 +6,7 @@ import NameChipAction from '@/components/Shared/NameChipAction/NameChipAction';
 import NameTypography from '@/components/Shared/NameTypography/NameTypography';
 import '@/components/Shared/ListNameChip/ListNameChip.css';
 import { motion } from 'motion/react';
+import motionTokens from '@/themes/motion.theme';
 
 type Props = {
   approvedGivenName: GivenName;
@@ -26,7 +27,7 @@ const ListNameChip = ({ approvedGivenName, size = 'default' }: Props) => {
       initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       exit={{ opacity: 0, x: -8 }}
-      transition={{ duration: 0.18, ease: 'easeOut' }}
+      transition={{ duration: motionTokens.durationSeconds[180], ease: motionTokens.ease.out }}
       className="list-name-chip"
       data-size={size}
     >

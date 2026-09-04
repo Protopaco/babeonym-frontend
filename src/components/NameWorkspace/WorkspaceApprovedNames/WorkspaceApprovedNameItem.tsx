@@ -11,6 +11,10 @@ type Props = {
 
 const WorkspaceApprovedNameItem = ({ approvedGivenName, position }: Props) => {
   return (
+    // A spring rather than one of the duration tokens, because a spring has no
+    // duration to take from them. It is the right shape here: the list reorders
+    // while items may still be moving, and a spring absorbs that interruption
+    // where a fixed duration would restart and jerk.
     <motion.li
       className="workspace-approved-name"
       layout="position"

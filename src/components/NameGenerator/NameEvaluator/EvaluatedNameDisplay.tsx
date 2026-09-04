@@ -5,6 +5,7 @@ import MobileTutorialHint from '@/components/Shared/MobileTutorialHint/MobileTut
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import { Typography } from '@mui/material';
 import { AnimatePresence, motion } from 'motion/react';
+import motionTokens from '@/themes/motion.theme';
 import './EvaluatedNameDisplay.css';
 
 type Props = {
@@ -33,7 +34,7 @@ export default ({ currentCandidate, givenNameProviderLoaded, candidatesExhausted
               initial={{ opacity: 0, y: 42 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -42 }}
-              transition={{ duration: 0.26, ease: 'easeOut' }}
+              transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out }}
             >
               <TutorialTooltip title="Do you like this name?" placement="top">
                 <Typography variant="h2" className="evaluated-name-display-name">

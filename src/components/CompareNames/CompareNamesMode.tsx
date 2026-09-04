@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import motionTokens from '@/themes/motion.theme';
 import type { GivenName } from '@/api/generated';
 import { useCompareNamePair } from '@/components/CompareNames/useCompareNamePair';
 import CompareNameChip from '@/components/CompareNames/CompareNameChip/CompareNameChip';
@@ -12,8 +13,9 @@ import { useCompareNameVoting } from '@/components/CompareNames/useCompareNameVo
 
 type VotedSide = 'left' | 'right' | null;
 
+// Travel stays component-owned: it scales with the size of the thing moving,
+// which the token module deliberately does not try to standardize.
 const SLOT_TRAVEL_PX = 88;
-const SLOT_DURATION_SECONDS = 0.3;
 
 const CompareNamesMode = () => {
   const { state } = useGivenNames();
@@ -34,7 +36,7 @@ const CompareNamesMode = () => {
     exit: (wasVoted: boolean) => ({ opacity: 0, y: wasVoted ? -slotOffset : slotOffset }),
   };
 
-  const slotTransition = { duration: SLOT_DURATION_SECONDS, ease: 'easeOut' } as const;
+  const slotTransition = { duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out } as const;
 
   const vote = (side: Exclude<VotedSide, null>) => (name: GivenName) => {
     setVotedSide(side);

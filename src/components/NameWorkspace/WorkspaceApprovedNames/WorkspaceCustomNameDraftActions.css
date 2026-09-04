@@ -19,9 +19,11 @@
   z-index: 0;
   transform: translateX(-100%);
   opacity: 0;
+  /* The fade is the shorter of the two on purpose: it resolves before the slide
+     finishes, so the action does not smear as it travels. */
   transition:
-    opacity 0.14s ease,
-    transform 0.18s ease;
+    opacity var(--motion-duration-120) var(--motion-ease-out),
+    transform var(--motion-duration-180) var(--motion-ease-out);
 }
 
 .workspace-custom-name-draft-drawer[data-can-save='true'] .workspace-custom-name-draft-save {

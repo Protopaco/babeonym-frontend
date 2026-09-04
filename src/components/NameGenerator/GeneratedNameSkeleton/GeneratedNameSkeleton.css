@@ -12,7 +12,7 @@
   inset: 0;
   content: '';
   background: linear-gradient(90deg, transparent, var(--color-primary-edge), transparent);
-  animation: generated-name-skeleton-pulse 1.4s ease-in-out infinite;
+  animation: generated-name-skeleton-pulse var(--motion-duration-1400) var(--motion-ease-in-out) infinite;
 }
 
 @keyframes generated-name-skeleton-pulse {

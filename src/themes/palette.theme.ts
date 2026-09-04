@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
+import motion from '@/themes/motion.theme';
 
 const defaultTheme = createTheme();
 const defaultError = defaultTheme.palette.error;
@@ -72,6 +73,8 @@ export default ({
             '--height-header': '124px',
             '--height-header-mobile': '96px',
             '--height-control': '56px',
+
+            ...motion.cssVariables,
           },
         },
       },
