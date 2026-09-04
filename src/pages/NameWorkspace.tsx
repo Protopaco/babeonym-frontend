@@ -4,6 +4,7 @@ import WorkspaceModeContent from '@/components/NameWorkspace/WorkspaceModeConten
 import WorkspaceModeHeader from '@/components/NameWorkspace/WorkspaceModeHeader/WorkspaceModeHeader';
 import WorkspaceApprovedNames from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceApprovedNames';
 import AccountPromptBanner from '@/components/NameWorkspace/AccountPromptBanner/AccountPromptBanner';
+import ExistingAccountNotice from '@/components/NameWorkspace/ExistingAccountNotice/ExistingAccountNotice';
 import { useGivenNames } from '@/state/givenName/givenName.provider';
 import { useSyncWorkspaceFilterParams } from '@/state/givenName/useSyncWorkspaceFilterParams';
 import { useEffect } from 'react';
@@ -64,6 +65,7 @@ const NameWorkspace = () => {
       <WorkspaceModeContent>
         {workspaceMode === 'compare' ? <CompareNamesMode /> : <NameGenerator />}
       </WorkspaceModeContent>
+      <ExistingAccountNotice />
       <AccountPromptBanner />
       <WorkspaceApprovedNames approvedGivenNames={approvedGivenNames} isLoading={!givenNameProviderLoaded} />
     </div>

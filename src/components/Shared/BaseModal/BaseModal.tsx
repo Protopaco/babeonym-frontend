@@ -14,12 +14,23 @@ type Props = {
   title: string;
   children: ReactNode;
   size?: 'default' | 'wide';
+  closeLabel?: string;
   confirmLabel?: string;
   onConfirm?: () => void;
   tone?: 'default' | 'danger';
 };
 
-export default ({ open, onClose, title, children, size = 'default', confirmLabel, onConfirm, tone = 'default' }: Props) => {
+export default ({
+  open,
+  onClose,
+  title,
+  children,
+  size = 'default',
+  closeLabel = 'Cancel',
+  confirmLabel,
+  onConfirm,
+  tone = 'default',
+}: Props) => {
   const buttonSize = size === 'wide' ? 'compact-wide' : 'compact';
 
   return (
@@ -41,7 +52,7 @@ export default ({ open, onClose, title, children, size = 'default', confirmLabel
         {children}
       </DialogContent>
       <DialogActions className="base-modal-actions">
-        <PrimaryButton text="Cancel" size={buttonSize} onClick={onClose} />
+        <PrimaryButton text={closeLabel} size={buttonSize} onClick={onClose} />
         {onConfirm && confirmLabel ? (
           <PrimaryButton text={confirmLabel} size={buttonSize} tone={tone} emphasis="fill" onClick={onConfirm} />
         ) : null}
