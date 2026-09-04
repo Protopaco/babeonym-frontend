@@ -23,6 +23,7 @@
    it would lose to this rule inside its own media query. */
 .evaluated-name-display-name.MuiTypography-root {
   margin: 0;
+  color: var(--color-primary);
   font-size: 120px;
   line-height: 1;
 }

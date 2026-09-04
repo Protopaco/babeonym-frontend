@@ -7,5 +7,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: var(--name-chip-font-size, 1rem);
-  line-height: 1;
+  /* Tall enough to contain descenders. At 1 the line box is exactly the font
+     size, so the overflow rule above clips the tails off a y or a g. */
+  line-height: 1.25;
 }

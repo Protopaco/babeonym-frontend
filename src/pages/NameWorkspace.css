@@ -5,7 +5,7 @@
   min-height: calc(100vh - var(--height-header));
   width: 100%;
   max-width: var(--width-workspace-column);
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 0 24px;
 }
 
