@@ -26,8 +26,11 @@ what a name may contain are not stated anywhere.
 - Digits are not allowed.
 - No other punctuation or symbols are allowed.
 - Leading and trailing whitespace is not allowed in the committed value.
-- The user is told what is wrong, in the existing error affordance, rather than
-  having input silently dropped.
+- ~~The user is told what is wrong, in the existing error affordance, rather than
+  having input silently dropped.~~ Dropped: disallowed characters are pruned
+  silently as they are typed, by `stripDisallowedNameCharacters` in
+  `changeCustomName`. This matches the input's `maxLength`, which truncates
+  silently too — explaining one and not the other would be the odd combination.
 - Whatever this rejects stays consistent with what [045] accepts, so a name that
   passes here is never rewritten unrecognisably by the backend.
 
