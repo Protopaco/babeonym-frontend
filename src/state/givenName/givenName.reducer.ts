@@ -53,6 +53,14 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, approvedGivenNames: action.payload };
     }
 
+    // Array order is the display order for the approved list, so a reorder is
+    // the whole list in its new sequence. Identical in effect to ADD_APPROVED,
+    // kept separate so the reducer reads as what it is: this one carries stale
+    // ratings until the write comes back, and is the action a rollback undoes.
+    case 'REORDER_APPROVED': {
+      return { ...state, approvedGivenNames: action.payload };
+    }
+
     case 'REMOVE_APPROVED': {
       const approvedGivenNames = state.approvedGivenNames.filter(
         ({ givenCustomNameBridgeId }) => givenCustomNameBridgeId !== action.payload

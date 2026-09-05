@@ -4,6 +4,11 @@
   gap: 12px;
   box-sizing: border-box;
   min-width: 0;
+  /* Set here rather than left to motion, which only applies it when it owns the
+     drag listener. The listener is off so that touch-action stays untouched and
+     the page keeps scrolling, which means this has to be stated: without it a
+     mouse drag selects the name text as it moves. */
+  user-select: none;
 }
 
 /* Fixed rather than content-sized, so a two-digit rank does not push its chip
@@ -15,6 +20,31 @@
   color: var(--color-text-secondary);
   font-size: 0.875rem;
   font-weight: 700;
+}
+
+/* Absent for a mouse, which can pick the row up anywhere, so nothing is spent on
+   a control it does not need. */
+.workspace-approved-name-grip {
+  display: none;
+  flex-shrink: 0;
+  /* Square rather than icon-sized: the icon is what is seen, this is what is
+     hit. 44px is the smallest target a fingertip lands on reliably, and the row
+     is 60px tall so it costs nothing vertically. */
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  color: var(--color-text-secondary);
+}
+
+@media (--touch) {
+  .workspace-approved-name-grip {
+    display: flex;
+    /* Scoped to the grip rather than the row. This is the one place a finger is
+       not allowed to scroll, which is what makes a drag from here unambiguous
+       while the rest of the list still scrolls normally. */
+    touch-action: none;
+  }
 }
 
 @media (--mobile) {

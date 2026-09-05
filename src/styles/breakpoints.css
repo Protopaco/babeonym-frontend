@@ -17,3 +17,11 @@
 /* Mobile and tablet together. Distinct from --tablet: a rule written here
    applies below 600 as well. */
 @custom-media --below-desktop (max-width: 899px);
+
+/* Not a breakpoint, and kept here anyway so there is one place to look for a
+   named query. This one asks what the pointer is rather than how wide the
+   window is: coarse means a finger or stylus. Width cannot answer that — a
+   tablet at 800px is a finger, and a narrow desktop window is still a mouse —
+   so a rule that exists because of how the input behaves belongs on this
+   instead of on --mobile. */
+@custom-media --touch (pointer: coarse);

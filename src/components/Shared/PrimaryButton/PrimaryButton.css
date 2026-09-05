@@ -54,7 +54,7 @@
 
   width: 88px;
   height: 88px;
-  border-width: 2px;
+  border-width: 4px;
 }
 
 /* Sized for a thumb rather than a cursor. Owned here because the base owns the

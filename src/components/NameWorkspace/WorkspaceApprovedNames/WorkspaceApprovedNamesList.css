@@ -1,8 +1,11 @@
+/* Row-major: 1, 2, 3 across the first row, then down. It used to fill column
+   first, but motion's grid reordering works out a drop position by finding the
+   visual row a name was dropped into and reading it left to right. In a
+   column-first list the name beside number 1 is number 5, so every drop would
+   resolve to the wrong position. */
 .workspace-approved-names-list {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-template-rows: repeat(var(--workspace-approved-names-row-count), auto);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   box-sizing: border-box;
   margin: 0;

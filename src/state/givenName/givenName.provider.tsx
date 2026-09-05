@@ -233,6 +233,37 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // Applied on its own, without a request, so every drag lands on screen
+  // immediately. The write is separate and debounced by the caller, since
+  // someone rearranging a list usually moves several names in a row.
+  const reorderApprovedGivenNames = (reorderedGivenNames: GivenName[]) => {
+    dispatch({ type: 'REORDER_APPROVED', payload: reorderedGivenNames });
+  };
+
+  // Not retried: the request sets an absolute order rather than adjusting the
+  // current one, so replaying a lost write could let a stale order overwrite a
+  // newer one. The caller passes the order to fall back to, captured before the
+  // first drag of the run rather than read from state here, which by now holds
+  // the optimistic order this is trying to undo.
+  const saveApprovedGivenNamesOrder = async (reorderedGivenNames: GivenName[], previousGivenNames: GivenName[]) => {
+    try {
+      const response = await enqueueRequest(() =>
+        givenNameApi.v1GivenNameOrder({
+          v1GivenNameOrderRequest: {
+            givenCustomNameBridgeIds: reorderedGivenNames.map(({ givenCustomNameBridgeId }) => givenCustomNameBridgeId),
+          },
+        })
+      );
+      // Replaced with the server's copy rather than left as the optimistic one,
+      // so the ratings the respace just wrote are the ones held locally.
+      dispatch({ type: 'ADD_APPROVED', payload: response.approvedGivenNames });
+      applyAccountPromptSignal(response);
+    } catch (error) {
+      dispatch({ type: 'REORDER_APPROVED', payload: previousGivenNames });
+      console.error('Unable to reorder given names.', error);
+    }
+  };
+
   const removeCandidate = (givenCustomNameBridgeId: number) => {
     dispatch({ type: 'REMOVE_CANDIDATE', payload: givenCustomNameBridgeId });
   };
@@ -312,6 +343,8 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
         snoozeCandidate,
         submitCompareVote,
         addCustomGivenName,
+        reorderApprovedGivenNames,
+        saveApprovedGivenNamesOrder,
       },
     }),
     [state]
