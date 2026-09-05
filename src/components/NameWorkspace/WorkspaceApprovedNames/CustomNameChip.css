@@ -22,7 +22,9 @@
   border: 0;
   outline: 0;
   background: none;
-  color: var(--color-text-primary);
+  /* Matches the saved chips the draft sits among, rather than the body text
+     colour it inherited by default. */
+  color: var(--color-primary);
   font: inherit;
   font-size: var(--name-chip-font-size, 1rem);
 }
