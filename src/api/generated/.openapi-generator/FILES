@@ -35,6 +35,7 @@ docs/V1AuthAnonymous400Response.md
 docs/V1GivenNameActionRequest.md
 docs/V1GivenNameCompareRequest.md
 docs/V1GivenNameCustomRequest.md
+docs/V1GivenNameOrderRequest.md
 docs/V1UserSettingsRequest.md
 docs/V1UserThemeRequest.md
 index.ts
@@ -63,6 +64,7 @@ models/V1AuthAnonymous400Response.ts
 models/V1GivenNameActionRequest.ts
 models/V1GivenNameCompareRequest.ts
 models/V1GivenNameCustomRequest.ts
+models/V1GivenNameOrderRequest.ts
 models/V1UserSettingsRequest.ts
 models/V1UserThemeRequest.ts
 models/index.ts

@@ -25,5 +25,6 @@ export * from './V1AuthAnonymous400Response';
 export * from './V1GivenNameActionRequest';
 export * from './V1GivenNameCompareRequest';
 export * from './V1GivenNameCustomRequest';
+export * from './V1GivenNameOrderRequest';
 export * from './V1UserSettingsRequest';
 export * from './V1UserThemeRequest';

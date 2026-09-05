@@ -23,6 +23,7 @@ import type {
   V1GivenNameActionRequest,
   V1GivenNameCompareRequest,
   V1GivenNameCustomRequest,
+  V1GivenNameOrderRequest,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
@@ -41,6 +42,8 @@ import {
     V1GivenNameCompareRequestToJSON,
     V1GivenNameCustomRequestFromJSON,
     V1GivenNameCustomRequestToJSON,
+    V1GivenNameOrderRequestFromJSON,
+    V1GivenNameOrderRequestToJSON,
 } from '../models/index';
 
 export interface V1GivenNameActionOperationRequest {
@@ -68,6 +71,10 @@ export interface V1GivenNameCustomOperationRequest {
 
 export interface V1GivenNameEtymologyRequest {
     givenCustomNameBridgeId: number;
+}
+
+export interface V1GivenNameOrderOperationRequest {
+    v1GivenNameOrderRequest: V1GivenNameOrderRequest;
 }
 
 export interface V1GivenNameSearchRequest {
@@ -381,6 +388,55 @@ export class GivenNameApi extends runtime.BaseAPI {
      */
     async v1GivenNameEtymology(requestParameters: V1GivenNameEtymologyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Etymology> {
         const response = await this.v1GivenNameEtymologyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for v1GivenNameOrder without sending the request
+     */
+    async v1GivenNameOrderRequestOpts(requestParameters: V1GivenNameOrderOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['v1GivenNameOrderRequest'] == null) {
+            throw new runtime.RequiredError(
+                'v1GivenNameOrderRequest',
+                'Required parameter "v1GivenNameOrderRequest" was null or undefined when calling v1GivenNameOrder().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/givenName/order`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: V1GivenNameOrderRequestToJSON(requestParameters['v1GivenNameOrderRequest']),
+        };
+    }
+
+    /**
+     * Rewrites the authenticated user\'s ratings so the approved list matches the submitted order. Ratings are respaced evenly rather than nudged, so the order holds even for a user who has never compared any names. 
+     * Set the order of the user\'s approved given names
+     */
+    async v1GivenNameOrderRaw(requestParameters: V1GivenNameOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GivenNameMutationResponse>> {
+        const requestOptions = await this.v1GivenNameOrderRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GivenNameMutationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Rewrites the authenticated user\'s ratings so the approved list matches the submitted order. Ratings are respaced evenly rather than nudged, so the order holds even for a user who has never compared any names. 
+     * Set the order of the user\'s approved given names
+     */
+    async v1GivenNameOrder(requestParameters: V1GivenNameOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GivenNameMutationResponse> {
+        const response = await this.v1GivenNameOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost:2221*
 | [**v1GivenNameCompare**](GivenNameApi.md#v1givennamecompareoperation) | **POST** /api/v1/givenName/compare | Compare two given names |
 | [**v1GivenNameCustom**](GivenNameApi.md#v1givennamecustomoperation) | **POST** /api/v1/givenName/custom | Add a custom given name |
 | [**v1GivenNameEtymology**](GivenNameApi.md#v1givennameetymology) | **GET** /api/v1/givenName/etymology/{givenCustomNameBridgeId} | Get given name etymology |
+| [**v1GivenNameOrder**](GivenNameApi.md#v1givennameorderoperation) | **POST** /api/v1/givenName/order | Set the order of the user\&#39;s approved given names |
 | [**v1GivenNameSearch**](GivenNameApi.md#v1givennamesearch) | **GET** /api/v1/givenName/search | Search given names |
 
 
@@ -434,6 +435,75 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Etymology data |  -  |
 | **400** | Invalid givenCustomNameBridgeId |  -  |
+| **401** | Not authenticated |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## v1GivenNameOrder
+
+> GivenNameMutationResponse v1GivenNameOrder(v1GivenNameOrderRequest)
+
+Set the order of the user\&#39;s approved given names
+
+Rewrites the authenticated user\&#39;s ratings so the approved list matches the submitted order. Ratings are respaced evenly rather than nudged, so the order holds even for a user who has never compared any names. 
+
+### Example
+
+```ts
+import {
+  Configuration,
+  GivenNameApi,
+} from '';
+import type { V1GivenNameOrderOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new GivenNameApi();
+
+  const body = {
+    // V1GivenNameOrderRequest
+    v1GivenNameOrderRequest: ...,
+  } satisfies V1GivenNameOrderOperationRequest;
+
+  try {
+    const data = await api.v1GivenNameOrder(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **v1GivenNameOrderRequest** | [V1GivenNameOrderRequest](V1GivenNameOrderRequest.md) |  | |
+
+### Return type
+
+[**GivenNameMutationResponse**](GivenNameMutationResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The user\&#39;s approved given names in their new order |  -  |
+| **400** | Invalid or unrecognised given name order |  -  |
 | **401** | Not authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
