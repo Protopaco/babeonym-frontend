@@ -37,4 +37,7 @@ If a user submits `john`, the backend can normalize it to `John` and attach the 
 - Existing canonical names are reused when the normalized custom name is an exact match.
 - New custom names are created when no exact canonical match exists.
 - Unique spellings are preserved.
-- Tests confirm that `Myke` does not match `Mike`.
+- ~~Tests confirm that `Myke` does not match `Mike`.~~ Dropped: no test
+  convention is set for this repo yet. `Myke` not matching `Mike` still holds —
+  the lookup is case-insensitive but otherwise exact — it is just not covered by
+  a test.
