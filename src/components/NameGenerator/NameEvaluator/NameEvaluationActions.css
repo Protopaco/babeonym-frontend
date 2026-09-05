@@ -6,3 +6,9 @@
   align-items: center;
   gap: 80px;
 }
+
+@media (--mobile) {
+  .name-evaluation-actions {
+    gap: 40px;
+  }
+}

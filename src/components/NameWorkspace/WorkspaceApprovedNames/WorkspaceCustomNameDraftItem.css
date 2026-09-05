@@ -15,6 +15,20 @@
   font-size: 1rem;
 }
 
+/* Stands in for the grip the name rows carry, so the draft chip lands in the
+   same column as the names it is about to join. Only where the grip is. */
+.workspace-custom-name-draft-grip-slot {
+  display: none;
+  flex-shrink: 0;
+  width: var(--workspace-name-grip-size);
+}
+
+@media (--touch) {
+  .workspace-custom-name-draft-grip-slot {
+    display: block;
+  }
+}
+
 @media (--mobile) {
   .workspace-custom-name-draft-item {
     text-align: left;

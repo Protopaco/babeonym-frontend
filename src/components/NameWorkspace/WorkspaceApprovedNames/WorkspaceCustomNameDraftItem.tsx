@@ -16,6 +16,7 @@ const WorkspaceCustomNameDraftItem = ({ onClose }: Props) => {
       animate={{ opacity: 1, y: 0 }}
     >
       <AddIcon className="workspace-custom-name-draft-marker" />
+      <span className="workspace-custom-name-draft-grip-slot" aria-hidden="true" />
       <CustomNameChip onClose={onClose} />
     </motion.li>
   );

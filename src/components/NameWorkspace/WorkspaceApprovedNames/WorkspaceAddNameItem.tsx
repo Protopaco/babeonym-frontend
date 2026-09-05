@@ -11,6 +11,7 @@ const WorkspaceAddNameItem = ({ onClick }: Props) => {
   return (
     <li className="workspace-add-name-item">
       <span className="workspace-add-name-position" aria-hidden="true" />
+      <span className="workspace-add-name-grip-slot" aria-hidden="true" />
       <Tooltip title="Add custom name">
         <IconButton className="workspace-add-name-button" onClick={onClick} aria-label="Add custom name">
           <AddIcon />

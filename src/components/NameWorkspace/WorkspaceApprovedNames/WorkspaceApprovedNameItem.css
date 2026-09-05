@@ -32,8 +32,8 @@
      is 60px tall so it costs nothing vertically. */
   align-items: center;
   justify-content: center;
-  width: 33px;
-  height: 33px;
+  width: var(--workspace-name-grip-size);
+  height: var(--workspace-name-grip-size);
   color: var(--color-text-secondary);
 }
 

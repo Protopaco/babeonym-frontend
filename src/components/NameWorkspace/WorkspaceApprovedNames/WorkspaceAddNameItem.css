@@ -13,6 +13,21 @@
   width: 24px;
 }
 
+/* The second empty stand-in, for the grip the name rows carry. Only present
+   where the grip is, so the add button keeps the names' left edge on touch and
+   does not leave a gap on a mouse, where no row has a grip. */
+.workspace-add-name-grip-slot {
+  display: none;
+  flex-shrink: 0;
+  width: var(--workspace-name-grip-size);
+}
+
+@media (--touch) {
+  .workspace-add-name-grip-slot {
+    display: block;
+  }
+}
+
 .workspace-add-name-button.MuiIconButton-root {
   width: 60px;
   height: 60px;
