@@ -31,9 +31,11 @@ export default ({ currentCandidate, givenNameProviderLoaded, candidatesExhausted
             <motion.div
               key={currentCandidate.givenCustomNameBridgeId}
               className="evaluated-name-display-motion"
-              initial={{ opacity: 0, y: 42 }}
+              // Drops in from above and leaves below, matching the direction a
+              // compare pair arrives from. The two used to run opposite ways.
+              initial={{ opacity: 0, y: -42 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -42 }}
+              exit={{ opacity: 0, y: 42 }}
               transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out }}
             >
               <TutorialTooltip title="Do you like this name?" placement="top">

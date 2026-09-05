@@ -1,6 +1,17 @@
 .compare-names-mode-content {
+  /* The surname's line box and the gap above it, reserved whether or not the
+     user has a surname. Declared once here because three rules need to agree:
+     the surname block is this tall, the slot uses this gap, and the OR reserves
+     the sum of both so it lines up with the names rather than with the middle
+     of the taller stack. Local rather than a theme token — it is a measurement
+     of this component's insides, not a value the app shares. */
+  --compare-surname-height: 30px;
+  --compare-surname-gap: 9px;
+
   display: flex;
   flex: 1;
+  /* Centred as a group. The OR lines up with the chips because it reserves the
+     same height as a slot, not because the row is aligned differently. */
   align-items: center;
   justify-content: center;
   gap: 48px;
@@ -17,7 +28,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--compare-surname-gap);
 }
 
 /* Fixed so the outgoing and incoming chips can overlap during a swap instead of
@@ -38,18 +49,30 @@
 
    Indented to start where the given name above it starts: the compare chip has
    a 4px border and 32px of padding, so its text begins 36px in from the slot's
-   edge. Hardcoded rather than read from the chip, which publishes no inset. */
+   edge. Hardcoded rather than read from the chip, which publishes no inset.
+
+   Height is held even when there is nothing to show, so the pair sits in the
+   same place for a user with no surname as for one with. */
 .compare-names-mode-surname.MuiTypography-root {
+  height: var(--compare-surname-height);
   margin: 0;
   padding-left: 36px;
   color: var(--color-primary);
-  font-size: 40px;
+  font-size: 1.5rem;
   line-height: 1.25;
 }
 
 /* Compound so it beats MUI's Typography class, which is two classes deep and
-   would otherwise win on specificity and hold this at its own 20px. */
+   would otherwise win on specificity and hold this at its own 20px.
+
+   Given the chip area's height and centred inside it, then padded by exactly
+   what a slot devotes to its surname, so the whole box matches a slot and
+   centring puts the OR level with the two names. */
 .compare-names-content-or.MuiTypography-root {
+  display: flex;
+  align-items: center;
+  height: 88px;
+  margin: 0 0 calc(var(--compare-surname-height) + var(--compare-surname-gap));
   color: var(--color-primary);
   font-size: 2rem;
 }
@@ -57,12 +80,19 @@
 @media (--mobile) {
   .compare-names-mode-content {
     flex-direction: column;
+    /* Restated because the column reverses what align-items controls: on
+       desktop it aligns the row vertically, here it would push the slots to
+       the left edge. */
+    align-items: center;
     justify-content: center;
     min-height: 360px;
     text-align: center;
   }
 
-  .compare-names-mode-surname.MuiTypography-root {
-    font-size: 30px;
+  /* Stacked, so there is no pair to line up with and the reserved height would
+     only add empty space between the two names. */
+  .compare-names-content-or.MuiTypography-root {
+    height: auto;
+    margin: 0;
   }
 }
