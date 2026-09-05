@@ -5,6 +5,15 @@ import WorkspaceCustomNameDraftActions from '@/components/NameWorkspace/Workspac
 import { useCustomNameDraftChip } from '@/components/NameWorkspace/WorkspaceApprovedNames/useCustomNameDraftChip';
 import '@/components/NameWorkspace/WorkspaceApprovedNames/CustomNameChip.css';
 
+// The longest name in given_names is 15 characters, so a custom name capped
+// here can never outrun the canonical names it sits alongside. It is also
+// roughly where a name stops fitting the compare chip, which clips rather than
+// wrapping or shrinking.
+//
+// Enforced only in the input: the backend accepts any length, so this is a
+// guard rail rather than a constraint.
+const CUSTOM_NAME_MAX_LENGTH = 15;
+
 type Props = {
   onClose: () => void;
 };
@@ -24,6 +33,7 @@ const CustomNameChip = ({ onClose }: Props) => {
           ref={inputRef}
           className="custom-name-chip-input"
           value={customName}
+          maxLength={CUSTOM_NAME_MAX_LENGTH}
           onBlur={handleBlur}
           onChange={(event) => changeCustomName(event.target.value)}
           onKeyDown={handleKeyDown}
