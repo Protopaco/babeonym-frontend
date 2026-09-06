@@ -1,0 +1,30 @@
+<!--
+  A copy of src/assets/icons/icon-baby.svg, not a reference to it. A favicon is
+  loaded as a standalone document with no inherited colour, so the source
+  asset's fill="currentColor" would resolve to black. That asset stays as it is
+  because FloatingTutorialIcon inlines it through svgr and colours it from the
+  theme; hardcoding a fill there would break it.
+
+  Three things differ from the source:
+
+  - The viewBox is square. The mark is 368.64x331.2, roughly 1.11:1, and a
+    favicon is square, so it is padded rather than stretched.
+  - The fills are explicit.
+  - The mark sits on an opaque tile. On transparent the dark purple sinks into
+    a dark tab strip, which would otherwise need a prefers-color-scheme swap;
+    the tile carries its own background so the tab strip never shows through.
+
+  The colour is the light theme's primary. It cannot follow the theme picker —
+  the browser owns the tab, not the app — so it is fixed to the brand purple.
+
+  This is a placeholder. The mark is a filled silhouette with fine interior
+  detail and reads as a blob at 16px; a favicon that works at that size is a
+  design task, not a scaling one.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368.64 368.64">
+  <rect width="368.64" height="368.64" rx="64" fill="#7B00B4"/>
+  <g transform="translate(44.2 58.5) scale(0.76)" fill="#FFFFFF">
+    <path d="M349.5,129.62c-1.51,0-2.97.37-4.38,1.06C332.51,51.25,275.57.22,185.21,0c-12.89,7.54-23.6,19.07-28.32,33.62-1.64,5.08-2.66,11.45-.49,15.88,2.52,5.16,7.71,8.3,12.9,10.15,2.28.81,4.62,1.44,6.97,1.91.77.16,1.54.29,2.32.42.15.02.25.04.31.05.07,0,.19.02.36.04,5.72.72,11.58.95,17.15-.81,6.6-2.1,14.05-8.57,14.31-16.12.21-5.91-5.43-9.55-10.29-11.27-4.69-1.66-10.46-2.53-15.27-.79-2.3.83-5.16,2.9-5.53,5.55-.52,3.71,5.38,3.27,7.73,2.84,6.66-1.22,9.5,9.12,2.81,10.35-5.8,1.06-12.4.95-17.1-3.21-4.5-3.98-5.13-10.02-2.69-15.36,4.2-9.19,14.03-12.45,23.39-11.65,8.27.71,17.12,3.82,22.66,10.37,6.91,8.17,5.64,19.06-.36,27.37-10.39,14.43-28.67,15.97-44.61,12.12-8-1.93-16.15-5.69-21.42-12.3-5.33-6.68-6.38-14.87-4.76-23.19,2.67-13.68,10.57-25.87,20.88-35.25C86.07,7.23,35.74,56.73,24.07,130.95c-1.58-.88-3.25-1.34-4.96-1.34-10.94,0-19.81,19.06-19.81,42.56s8.87,42.56,19.81,42.56c2.52,0,4.93-1.02,7.14-2.87,16.1,73.07,72.02,119.35,158.35,119.35s142.03-46.08,158.25-118.93c2.07,1.58,4.3,2.45,6.62,2.45,10.94,0,19.81-19.06,19.81-42.56s-8.87-42.56-19.81-42.56h.02ZM91.31,154.72c-5.84,3.6-11.15-5.69-5.34-9.27,18.63-11.47,42.74-11.35,61.22.36,5.77,3.66.45,12.94-5.34,9.27-15.4-9.75-35.02-9.92-50.55-.36h0ZM249.01,207.46c-1,13.05-4.56,25.2-10.29,35.15-2.65,4.6-5.79,8.72-9.33,12.34-.44.7-1.02,1.29-1.69,1.66-11.2,10.56-26.15,16.39-42.95,16.39h-.14c-9.15-.02-40.26-2.53-56.5-34.09-7.05-13.72-8.36-25.72-8.52-31.66-.03-1.23.49-2.41,1.42-3.21.93-.79,2.17-1.11,3.36-.86,39.36,8.18,80.5,8.18,119.86,0,1.22-.25,2.5.09,3.44.93s1.43,2.08,1.34,3.35h.01ZM277.33,155.07c-15.4-9.75-35.02-9.92-50.55-.36-5.84,3.6-11.15-5.69-5.34-9.27,18.63-11.47,42.74-11.35,61.22.36,5.77,3.66.45,12.94-5.34,9.27Z"/>
+    <path d="M128.54,211.06c.7,5.68,2.53,13.75,7.16,22.71h0c2.07,4.01,4.43,7.46,6.96,10.45,25.78-13.99,58.56-16.77,83.32.67,1.93-2.31,3.76-4.9,5.44-7.8,4.31-7.44,7.23-16.34,8.57-25.99-36.7,6.91-74.76,6.9-111.45-.03h0Z"/>
+  </g>
+</svg>
