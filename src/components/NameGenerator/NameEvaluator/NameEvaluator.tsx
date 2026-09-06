@@ -12,7 +12,7 @@ export default () => {
   const givenNameContext = useGivenNames();
   const { state: userState } = useUser();
   const { user } = userState;
-  const { givenNameCandidates, givenNameProviderLoaded, candidatesExhausted, approvedGivenNames } = givenNameContext.state;
+  const { givenNameCandidates, givenNameProviderLoaded, candidatesExhausted, approvedGivenNames, candidateErrorMessage } = givenNameContext.state;
   const currentCandidate = givenNameCandidates && givenNameCandidates.length > 0 ? givenNameCandidates[0] : null;
   // Derived rather than held in state: it is a function of the approved list
   // and nothing else, so storing it would only give it a way to disagree.
@@ -22,11 +22,16 @@ export default () => {
   // display. Derived here rather than in EvaluatedNameDisplay because the
   // surname beside it has to know the same thing, and two copies would drift.
   const isAwaitingCandidates = !givenNameProviderLoaded || (!currentCandidate && !candidatesExhausted);
+  // Withheld while there is still a name to show. A top-up that fails with
+  // names in hand is not the user's problem, and the next action that shortens
+  // the queue tries again. Resolved once here so the display and the surname
+  // below agree on whether a message is on screen.
+  const visibleCandidateErrorMessage = currentCandidate ? null : candidateErrorMessage;
   // The surname is a suffix to a first name, so it only makes sense while one
   // is on screen. Beside a message it reads as a stray word. The skeleton still
   // counts as a name — it stands in for one — so the row does not jump when the
   // name lands.
-  const isMessageShowing = atApprovedNameLimit || (!isAwaitingCandidates && !currentCandidate);
+  const isMessageShowing = atApprovedNameLimit || !!visibleCandidateErrorMessage || (!isAwaitingCandidates && !currentCandidate);
   // Disabled as well as hidden. The queue still holds candidates at the cap, so
   // without this the buttons would act on a name that is no longer on screen.
   const actionDisabled = !givenNameProviderLoaded || !currentCandidate || atApprovedNameLimit;
@@ -37,6 +42,7 @@ export default () => {
       <Box className="name-evaluator-display-row">
         <EvaluatedNameDisplay
           atApprovedNameLimit={atApprovedNameLimit}
+          candidateErrorMessage={visibleCandidateErrorMessage}
           currentCandidate={currentCandidate}
           isAwaitingCandidates={isAwaitingCandidates}
         />

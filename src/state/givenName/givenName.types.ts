@@ -7,6 +7,10 @@ export type GivenNameState = {
   // holds no names beyond the ones already in hand. Separates an empty queue
   // that is genuinely finished from one still waiting on a request.
   candidatesExhausted: boolean;
+  // Resolved copy, not the error. The provider maps it where it is caught, so
+  // the display renders a string and decides nothing. Null means no failure
+  // outstanding; any successful fetch clears it.
+  candidateErrorMessage: string | null;
   approvedGivenNames: GivenName[];
   selectedGenderIds: number[];
   selectedDecadeIds: number[];
@@ -31,5 +35,6 @@ export type GivenNameAction =
   | { type: 'ADD_APPROVED'; payload: GivenName[] }
   | { type: 'REORDER_APPROVED'; payload: GivenName[] }
   | { type: 'GIVEN_NAME_PROVIDER_LOADED' }
+  | { type: 'CANDIDATE_FETCH_FAILED'; payload: string }
   | { type: 'SET_SELECTED_FILTERS'; payload: SelectedNameFilters }
   | { type: 'RESET_GIVEN_NAME_STATE' };

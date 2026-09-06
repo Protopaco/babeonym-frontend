@@ -8,6 +8,7 @@ export const initialGivenNameState: GivenNameState = {
   approvedGivenNames: [],
   givenNameProviderLoaded: false,
   candidatesExhausted: false,
+  candidateErrorMessage: null,
   selectedGenderIds: [],
   selectedDecadeIds: [],
   selectedLanguageIds: [],

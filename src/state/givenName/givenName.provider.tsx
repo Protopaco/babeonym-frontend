@@ -14,6 +14,7 @@ import { parseFilterIds } from '@/utils/parseFilterIds';
 import { serializeFilterIds } from '@/utils/serializeFilterIds';
 import retryRequest from '@/utils/retryRequest';
 import approvedGivenNameLimit from '@/utils/approvedGivenNameLimit';
+import getErrorMessage from '@/utils/getErrorMessage';
 import { useUser } from '@/state/user/user.context';
 
 // The queue is topped up before it can empty, so the floor is the threshold
@@ -89,6 +90,7 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
       // The queue the user already has still matches the previous filters, so
       // leaving it in place is the safer failure.
+      dispatch({ type: 'CANDIDATE_FETCH_FAILED', payload: getErrorMessage(error) });
       console.error('Unable to apply name filters.', error);
     }
   };
@@ -109,8 +111,11 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       });
       dispatch({ type: 'ADD_CANDIDATES', payload: nameList });
     } catch (error) {
-      // The user still has names in hand, so a failed top-up is not worth
-      // reporting. The next action that shortens the queue tries again.
+      // Recorded rather than shown outright. The display only reaches the
+      // failure branch once the queue is empty, so a top-up that fails while
+      // the user still has names in hand stays invisible, and the next action
+      // that shortens the queue tries again.
+      dispatch({ type: 'CANDIDATE_FETCH_FAILED', payload: getErrorMessage(error) });
       console.error('Unable to refill given name candidates.', error);
     } finally {
       refillInFlight.current = false;

@@ -7,7 +7,12 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
     // A replacing fetch answers the exhausted question outright: whatever comes
     // back is the whole pool for these filters.
     case 'GET_NEW_CANDIDATES': {
-      return { ...state, givenNameCandidates: action.payload, candidatesExhausted: action.payload.length === 0 };
+      return {
+        ...state,
+        givenNameCandidates: action.payload,
+        candidatesExhausted: action.payload.length === 0,
+        candidateErrorMessage: null,
+      };
     }
 
     // Refills append rather than replace. A Map keyed by bridge id keeps the
@@ -31,6 +36,7 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
         // full batch of names already held, which adds nothing and still means
         // the pool is spent.
         candidatesExhausted: mergedCandidates.length === existingCandidates.length,
+        candidateErrorMessage: null,
       };
     }
 
@@ -79,6 +85,13 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
 
     case 'GIVEN_NAME_PROVIDER_LOADED': {
       return { ...state, givenNameProviderLoaded: true };
+    }
+
+    // Carries finished copy rather than the error, so nothing downstream has to
+    // know what failed. Every successful fetch clears it, so a failure that
+    // recovers on the next attempt never lingers on screen.
+    case 'CANDIDATE_FETCH_FAILED': {
+      return { ...state, candidateErrorMessage: action.payload };
     }
 
     // Replaces all four lists at once. Both surfaces hold their filters in the

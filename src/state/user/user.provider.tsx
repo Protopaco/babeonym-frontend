@@ -9,6 +9,7 @@ const initialState: UserState = {
   user: null,
   userProviderLoaded: false,
   promptAccountCreation: false,
+  sessionLoadFailed: false,
 };
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
@@ -26,9 +27,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           const { user } = await userApi.v1UserGet();
           dispatch({ type: 'ADD_USER', payload: user });
         } catch (e: any) {
+          // Nothing downstream can work without a user, so this is the one
+          // failure worth taking the whole screen. AppLayout reads the flag and
+          // redirects; the provider cannot, being mounted above the router.
+          dispatch({ type: 'USER_LOAD_FAILED' });
           console.error('Unable to create anonymous user session.', e);
         }
       } else {
+        dispatch({ type: 'USER_LOAD_FAILED' });
         console.error('Unable to load user session.', err);
       }
     } finally {

@@ -1,0 +1,27 @@
+/* Sized and spaced to match ExhaustedNameMessage and NameLimitMessage. All
+   three occupy the same slot and mean the same kind of thing — the generator
+   has stopped, and here is why — so they should not read as different sorts of
+   message. This one is a single line by design: a failure the user did not ask
+   about does not get a paragraph. */
+.candidate-error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+}
+
+/* Deliberately not name-sized. This sits in the slot a name would occupy, and
+   matching that scale would read as a candidate. */
+.candidate-error-message-headline.MuiTypography-root {
+  color: var(--color-text-primary);
+  font-size: 20px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+@media (--mobile) {
+  .candidate-error-message-headline.MuiTypography-root {
+    font-size: 18px;
+  }
+}

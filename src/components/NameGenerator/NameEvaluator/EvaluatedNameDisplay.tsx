@@ -1,6 +1,7 @@
 import type { GivenName } from '@/api/generated';
 import ExhaustedNameMessage from '@/components/NameGenerator/NameEvaluator/ExhaustedNameMessage';
 import NameLimitMessage from '@/components/NameGenerator/NameEvaluator/NameLimitMessage';
+import CandidateErrorMessage from '@/components/NameGenerator/NameEvaluator/CandidateErrorMessage';
 import GeneratedNameSkeleton from '@/components/NameGenerator/GeneratedNameSkeleton/GeneratedNameSkeleton';
 import MobileTutorialHint from '@/components/Shared/MobileTutorialHint/MobileTutorialHint';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
@@ -13,15 +14,25 @@ type Props = {
   currentCandidate: GivenName | null;
   isAwaitingCandidates: boolean;
   atApprovedNameLimit: boolean;
+  candidateErrorMessage: string | null;
 };
 
-export default ({ currentCandidate, isAwaitingCandidates, atApprovedNameLimit }: Props) => {
+export default ({ currentCandidate, isAwaitingCandidates, atApprovedNameLimit, candidateErrorMessage }: Props) => {
   return (
     <div className="evaluated-name-display">
       {currentCandidate && !atApprovedNameLimit ? <MobileTutorialHint text="Do you like this name?" /> : null}
       <div className="evaluated-name-display-slot">
+        {/* Ahead of the skeleton, because a failed fetch leaves the exact state
+            the skeleton reads as "still loading": no candidate, and nothing
+            having come back empty to mark the pool spent. Without this branch
+            it shimmers forever.
+
+            Already withheld by NameEvaluator while a candidate is in hand, so
+            this only has to decide the order. */}
         {atApprovedNameLimit ? (
           <NameLimitMessage />
+        ) : candidateErrorMessage ? (
+          <CandidateErrorMessage message={candidateErrorMessage} />
         ) : isAwaitingCandidates ? (
           <GeneratedNameSkeleton />
         ) : currentCandidate ? (
