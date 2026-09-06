@@ -5,6 +5,7 @@ import WorkspaceAddNameItem from '@/components/NameWorkspace/WorkspaceApprovedNa
 import WorkspaceApprovedNameItem from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceApprovedNameItem';
 import WorkspaceCustomNameDraftItem from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceCustomNameDraftItem';
 import { useApprovedNamesReorder } from '@/components/NameWorkspace/WorkspaceApprovedNames/useApprovedNamesReorder';
+import approvedGivenNameLimit from '@/utils/approvedGivenNameLimit';
 import './WorkspaceApprovedNamesList.css';
 
 type Props = {
@@ -14,6 +15,10 @@ type Props = {
 const WorkspaceApprovedNamesList = ({ approvedGivenNames }: Props) => {
   const [draftVisible, setDraftVisible] = useState(false);
   const { reorder } = useApprovedNamesReorder(approvedGivenNames);
+  // The server refuses the write past this, so the button is taken away rather
+  // than left to fail. Nothing explains its absence here; the generator is
+  // showing the limit message at the same time, which is where the answer is.
+  const atApprovedNameLimit = approvedGivenNames.length >= approvedGivenNameLimit;
 
   return (
     <LayoutGroup>
@@ -33,7 +38,7 @@ const WorkspaceApprovedNamesList = ({ approvedGivenNames }: Props) => {
             what registers with it, so these are invisible to its geometry and
             cannot become a drop position. */}
         {draftVisible ? <WorkspaceCustomNameDraftItem onClose={() => setDraftVisible(false)} /> : null}
-        {!draftVisible ? <WorkspaceAddNameItem onClick={() => setDraftVisible(true)} /> : null}
+        {!draftVisible && !atApprovedNameLimit ? <WorkspaceAddNameItem onClick={() => setDraftVisible(true)} /> : null}
       </Reorder.Group>
     </LayoutGroup>
   );

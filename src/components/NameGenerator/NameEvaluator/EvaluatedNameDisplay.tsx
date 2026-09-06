@@ -1,5 +1,6 @@
 import type { GivenName } from '@/api/generated';
 import ExhaustedNameMessage from '@/components/NameGenerator/NameEvaluator/ExhaustedNameMessage';
+import NameLimitMessage from '@/components/NameGenerator/NameEvaluator/NameLimitMessage';
 import GeneratedNameSkeleton from '@/components/NameGenerator/GeneratedNameSkeleton/GeneratedNameSkeleton';
 import MobileTutorialHint from '@/components/Shared/MobileTutorialHint/MobileTutorialHint';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
@@ -10,21 +11,18 @@ import './EvaluatedNameDisplay.css';
 
 type Props = {
   currentCandidate: GivenName | null;
-  givenNameProviderLoaded: boolean;
-  candidatesExhausted: boolean;
+  isAwaitingCandidates: boolean;
+  atApprovedNameLimit: boolean;
 };
 
-export default ({ currentCandidate, givenNameProviderLoaded, candidatesExhausted }: Props) => {
-  // An empty queue is only worth explaining once the pool is known to be spent.
-  // Until then a request is still outstanding, so the skeleton is the honest
-  // display.
-  const isAwaitingCandidates = !givenNameProviderLoaded || (!currentCandidate && !candidatesExhausted);
-
+export default ({ currentCandidate, isAwaitingCandidates, atApprovedNameLimit }: Props) => {
   return (
     <div className="evaluated-name-display">
-      {currentCandidate ? <MobileTutorialHint text="Do you like this name?" /> : null}
+      {currentCandidate && !atApprovedNameLimit ? <MobileTutorialHint text="Do you like this name?" /> : null}
       <div className="evaluated-name-display-slot">
-        {isAwaitingCandidates ? (
+        {atApprovedNameLimit ? (
+          <NameLimitMessage />
+        ) : isAwaitingCandidates ? (
           <GeneratedNameSkeleton />
         ) : currentCandidate ? (
           <AnimatePresence initial={false}>

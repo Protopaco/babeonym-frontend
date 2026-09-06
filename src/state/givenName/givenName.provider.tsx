@@ -13,6 +13,7 @@ import enqueueRequest from '@/utils/enqueueRequest';
 import { parseFilterIds } from '@/utils/parseFilterIds';
 import { serializeFilterIds } from '@/utils/serializeFilterIds';
 import retryRequest from '@/utils/retryRequest';
+import approvedGivenNameLimit from '@/utils/approvedGivenNameLimit';
 import { useUser } from '@/state/user/user.context';
 
 // The queue is topped up before it can empty, so the floor is the threshold
@@ -327,9 +328,18 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     // every action shortens the queue, so without this each one would fire
     // another refill that cannot return anything.
     if (state.candidatesExhausted) return;
+    // At the cap the server refuses an approval, so there is nothing useful to
+    // do with more candidates. Stopping the refill here is what empties the
+    // queue and lets the generator explain itself.
+    if (state.approvedGivenNames.length >= approvedGivenNameLimit) return;
     if (state.givenNameCandidates.length >= CANDIDATE_REFILL_THRESHOLD) return;
     refillCandidates();
-  }, [state.givenNameCandidates.length, state.givenNameProviderLoaded, state.candidatesExhausted]);
+  }, [
+    state.givenNameCandidates.length,
+    state.givenNameProviderLoaded,
+    state.candidatesExhausted,
+    state.approvedGivenNames.length,
+  ]);
 
   const value = useMemo(
     () => ({
