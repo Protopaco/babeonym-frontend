@@ -34,14 +34,21 @@
 }
 
 /* An icon button is the same colour language in a different box, so only the
-   dimensions change here. Size is ignored: an icon has nothing to be wide for. */
-.primary-button.MuiButton-root[data-shape='icon'] {
-  --button-icon-size: 60px;
+   dimensions change here. Size is ignored: an icon has nothing to be wide for.
 
-  width: 135px;
-  height: 135px;
+   Clamped rather than stepped at a breakpoint. Three of these sit in a row in
+   the generator, so what fits is a function of the width available, not of
+   which side of 600px it falls: at a fixed 96px they needed 288px of the 296px
+   a 360px screen offers and were clipped at both edges. The 4rem floor is a
+   touch target rather than a look — below that a thumb starts missing. The
+   135px ceiling is what this has always been on a wide screen. */
+.primary-button.MuiButton-root[data-shape='icon'] {
+  --button-icon-size: clamp(2.2rem, 12vw, 60px);
+
+  width: clamp(4rem, 22vw, 135px);
+  height: clamp(4rem, 22vw, 135px);
   min-width: 0;
-  border-width: 7px;
+  border-width: clamp(4px, 1.4vw, 7px);
   border-radius: 50%;
   box-shadow: none;
   padding: 0;
@@ -57,17 +64,11 @@
   border-width: 4px;
 }
 
-/* Sized for a thumb rather than a cursor. Owned here because the base owns the
-   box, and this is the same button at a different scale. */
+/* The default icon size no longer steps here — the clamp above covers every
+   width. Compact still does: it is the floating tutorial icon, which sits over
+   the page rather than in a row, so its size is a judgement about how much of
+   the screen it should take rather than a question of what fits. */
 @media (--mobile) {
-  .primary-button.MuiButton-root[data-shape='icon'] {
-    --button-icon-size: 52px;
-
-    width: 96px;
-    height: 96px;
-    border-width: 6px;
-  }
-
   .primary-button.MuiButton-root[data-shape='icon'][data-size='compact'] {
     --button-icon-size: 38px;
 

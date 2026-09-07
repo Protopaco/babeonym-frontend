@@ -29,7 +29,7 @@
 
 @media (--mobile) {
   .workspace-mode-content {
-    min-height: 320px;
+    min-height: 35vh;
     padding: 15px 32px 24px;
   }
 }

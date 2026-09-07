@@ -7,8 +7,17 @@
   gap: 80px;
 }
 
+/* The gaps absorb the leftover rather than being a fixed number, because a
+   fixed one only ever fits a single viewport. Three 80px buttons need 240px,
+   and everything above that is split between them: 28px each at 360, more on a
+   wider phone. The row used to carry a 40px gap, which needed 368px in the
+   296px a 360px screen actually offers, and the outer two buttons were clipped
+   at the screen edges. */
 @media (--mobile) {
   .name-evaluation-actions {
-    gap: 40px;
+    /* Cleared rather than left alone: gap is a minimum, so the base 80px would
+       be added on top of the distribution and put the row back over budget. */
+    gap: 0;
+    justify-content: space-between;
   }
 }

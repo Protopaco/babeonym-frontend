@@ -31,10 +31,6 @@
 }
 
 @media (--mobile) {
-  #name-evaluator-column {
-    min-height: auto;
-  }
-
   #user-surname {
     font-size: 30px;
   }

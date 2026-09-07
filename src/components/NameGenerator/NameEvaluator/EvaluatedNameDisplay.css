@@ -19,28 +19,46 @@
   text-align: center;
 }
 
-/* Compound so it beats MUI's h2, which the mobile override below must match or
-   it would lose to this rule inside its own media query. */
+/* Compound so it beats MUI's h2.
+
+   One clamp rather than a fixed size per breakpoint, because the size is not a
+   free choice: the whole name has to be on screen at every width, and the size
+   that guarantees that is a fixed share of the width available.
+
+   11vw is where that lands. The longest name the corpus holds is 15 characters,
+   which is why custom names are capped there too, and the widest 15-character
+   name runs about 7.5em in League Spartan — Maximilian-Rose measures 6.8em from
+   the font's own advance widths, and the rest is headroom for wider letters. At
+   360px the name has 296px to sit in, and 296 / 7.5 is 39.5px, or 11vw. Because
+   the font and the space both scale with the viewport, fitting at the narrowest
+   supported width means fitting at all of them.
+
+   The 2.5rem floor only binds below 364px, under the 360px this is designed to.
+   The 7.5rem ceiling is the size this has always been on a wide screen. */
 .evaluated-name-display-name.MuiTypography-root {
   margin: 0;
   color: var(--color-primary);
-  font-size: 120px;
+  font-size: clamp(2.5rem, 11vw, 7.5rem);
   line-height: 1;
   font-weight: 400;
 }
 
+/* No min-height here. It used to be 150px with the slot bottom-aligned inside
+   it, and the slot's own minimum is 120px — so 30px above the name was reserved
+   and never filled. The slot sets the height; this box hugs it. */
 @media (--mobile) {
-  .evaluated-name-display {
-    min-height: 150px;
-    display: flex;
-    align-items: flex-end;
-  }
-
   .evaluated-name-display-slot {
-    min-height: 120px;
+    min-height: 10vh;
   }
 
+  /* Heavier here than on desktop, which is not an inconsistency. The weight is
+     a judgement about how the name reads beside the surname under it, and that
+     relationship changes with size: at 120px the name already dominates and 600
+     made it feel heavy, while at 40px it sits close enough to the surname's own
+     600 that 400 reads as the lighter of the two. Same compound selector as the
+     base rule — a media query adds no specificity, so this wins on source order
+     alone. */
   .evaluated-name-display-name.MuiTypography-root {
-    font-size: 64px;
+    font-weight: 600;
   }
 }

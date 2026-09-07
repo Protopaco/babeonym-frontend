@@ -1,6 +1,11 @@
+/* Centred rather than baseline-aligned. Baseline only lines two items up when
+   both expose a comparable one, and the title sits inside a Typography while
+   the action is a plain flex box — so once either wrapped to two lines, as the
+   workspace mode tabs do on mobile, the two sat at visibly different heights.
+   An icon action has no text baseline to offer at all. */
 .section-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   margin: 0 0 14px;
@@ -19,7 +24,7 @@
 
 .section-header-action {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: flex-end;
   min-width: 96px;
 }

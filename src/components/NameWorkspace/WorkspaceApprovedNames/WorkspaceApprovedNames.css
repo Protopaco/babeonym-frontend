@@ -20,8 +20,11 @@
 }
 
 @media (--mobile) {
+  /* The bottom used to be 120px, clearing the fixed filter bar. .name-workspace
+     reserves that now, at the end of the scroll where it belongs, so this only
+     needs the spacing that separates the last name from it. */
   .workspace-approved-names {
-    padding: 24px 32px 120px;
+    padding: 24px 32px 24px;
   }
 
   .workspace-approved-names-desktop-header {

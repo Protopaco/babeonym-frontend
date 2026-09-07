@@ -6,15 +6,18 @@
   min-height: 360px;
 }
 
-/* The filter bar is fixed to the bottom, so the content it would cover reserves
-   its height here. The chip row makes the bar taller only when filters are
-   applied, so the clearance follows that state. */
+/* The 360px floor is a desktop figure and taller than the 320px frame this sits
+   in on mobile, so it was padding the block out and the surplus split above and
+   below the name. Sized to its content instead.
+
+   The clearance for the fixed filter bar used to be reserved here. It moved to
+   .name-workspace, because the bar is fixed to the bottom of the viewport while
+   this block sits in the middle of the page with the name list below it — so
+   the reserved height opened an 88px band between the action buttons and Your
+   Names instead of protecting anything. Only the last thing in the scroll can
+   usefully hold that padding. */
 @media (--mobile) {
   .name-generator-mode-content {
-    padding-bottom: var(--height-filter-drawer-closed);
-  }
-
-  .name-generator-mode-content:has(.mobile-name-filters--has-chips) {
-    padding-bottom: calc(var(--height-filter-drawer-closed) + var(--height-filter-chip-row) + 8px);
+    min-height: auto;
   }
 }

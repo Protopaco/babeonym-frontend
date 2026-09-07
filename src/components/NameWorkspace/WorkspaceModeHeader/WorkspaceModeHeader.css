@@ -11,7 +11,14 @@
   padding: 10px 28px;
   border: 0;
   border-radius: 28px;
-  background: var(--color-background);
+  /* Transparent, not the page colour. The pill travels between the two buttons
+     and passes over whichever one it is not inside — an opaque fill there paints
+     over it, and the button's own 28px corner is what bit a curve out of the
+     pill mid-flight. z-index cannot answer it: the pill sits inside one button's
+     stacking context, so raising it there cannot lift it above a sibling button
+     that paints later. Nothing depends on the fill — the active state is the
+     pill, and the hover rule below sets its own. */
+  background: transparent;
   color: var(--color-primary);
   font-family: var(--font-family-primary);
   font-size: 2.125rem;
@@ -57,11 +64,17 @@
 }
 
 @media (--mobile) {
+  /* The gutter the page drops at this width. .name-workspace sets padding to 0
+     on mobile, so without this the header runs to the viewport edge and the
+     active pill — inset: 0 on a button starting at x: 0 — touches it. 32px is
+     what the generator frame and the name list already use, so the tabs, the
+     rule under them and Your Names share an edge. */
   .workspace-mode-header {
     margin: var(--spacing-lg) 0 var(--spacing-md);
+    padding: 0 32px;
   }
 
   .workspace-mode-header-button {
-    font-size: 1.5rem;
+    font-size: 5.3vw;
   }
 }

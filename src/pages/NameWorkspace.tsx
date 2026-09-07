@@ -1,4 +1,5 @@
 import NameGenerator from '@/components/NameGenerator/NameGenerator';
+import MobileNameFilters from '@/components/NameGenerator/MobileNameFilters/MobileNameFilters';
 import CompareNamesMode from '@/components/CompareNames/CompareNamesMode';
 import WorkspaceModeContent from '@/components/NameWorkspace/WorkspaceModeContent/WorkspaceModeContent';
 import WorkspaceModeHeader from '@/components/NameWorkspace/WorkspaceModeHeader/WorkspaceModeHeader';
@@ -63,9 +64,13 @@ const NameWorkspace = () => {
         onAddModeClick={showAddMode}
         onCompareModeClick={showCompareMode}
       />
-      <WorkspaceModeContent mode={workspaceMode}>
-        {workspaceMode === 'compare' ? <CompareNamesMode /> : <NameGenerator />}
-      </WorkspaceModeContent>
+      <WorkspaceModeContent mode={workspaceMode}>{workspaceMode === 'compare' ? <CompareNamesMode /> : <NameGenerator />}</WorkspaceModeContent>
+      {/* Outside WorkspaceModeContent deliberately. The bar is position: fixed,
+          and the panes inside that component are transformed as they slide — a
+          transformed ancestor is what a fixed descendant measures itself
+          against, so rendered in there it left the viewport bottom mid-switch.
+          Still generator-only, which is what the mode check is for. */}
+      {workspaceMode === 'add' ? <MobileNameFilters isLoading={!givenNameProviderLoaded} /> : null}
       <ExistingAccountNotice />
       <AccountPromptBanner />
       <WorkspaceApprovedNames approvedGivenNames={approvedGivenNames} isLoading={!givenNameProviderLoaded} />

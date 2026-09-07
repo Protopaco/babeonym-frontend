@@ -9,9 +9,22 @@
   padding: 0 24px;
 }
 
+/* The filter bar is fixed to the bottom of the viewport, so the page reserves
+   its height at the end of the scroll. This belongs here rather than on the
+   generator, which used to carry it: that block sits mid-page with the name
+   list below it, so the clearance opened a gap in the middle instead of
+   protecting the content the bar covers.
+
+   The chip row makes the bar taller only when filters are applied, so the
+   clearance follows that state. The filter component is a descendant, so :has
+   still reaches it from here. */
 @media (--mobile) {
   .name-workspace {
     min-height: calc(100vh - var(--height-header-mobile));
-    padding: 0;
+    padding: 0 0 var(--height-filter-drawer-closed);
+  }
+
+  .name-workspace:has(.mobile-name-filters--has-chips) {
+    padding-bottom: calc(var(--height-filter-drawer-closed) + var(--height-filter-chip-row) + 8px);
   }
 }
