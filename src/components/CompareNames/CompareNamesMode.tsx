@@ -65,64 +65,70 @@ const CompareNamesMode = () => {
   );
 
   return (
-    <Box className="compare-names-mode-content">
-      {currentPair && currentPair.left && currentPair.right ? (
-        <>
-          <div className="compare-names-mode-slot">
-            <div className="compare-names-mode-chip-area">
-              <AnimatePresence initial={false}>
-                <motion.div
-                  key={pairKey}
-                  className="compare-names-mode-motion"
-                  variants={leftSlotVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  transition={slotTransition}
-                >
-                  <CompareNameChip name={currentPair.left} onVote={voteForName} />
-                </motion.div>
-              </AnimatePresence>
+    <Box className="compare-names-mode">
+      {/* Permanent rather than part of the tutorial. Nothing else on this
+          screen says the chips are the answer to a question, and a mode that
+          needs a prompt to be legible needs it whether or not help is on. */}
+      <Typography className="compare-names-mode-prompt">Which do you prefer?</Typography>
+      <Box className="compare-names-mode-content">
+        {currentPair && currentPair.left && currentPair.right ? (
+          <>
+            <div className="compare-names-mode-slot">
+              <div className="compare-names-mode-chip-area">
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={pairKey}
+                    className="compare-names-mode-motion"
+                    variants={leftSlotVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={slotTransition}
+                  >
+                    <CompareNameChip name={currentPair.left} onVote={voteForName} />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              {surname}
             </div>
-            {surname}
-          </div>
-          {separator}
-          <div className="compare-names-mode-slot">
-            <div className="compare-names-mode-chip-area">
-              <AnimatePresence initial={false}>
-                <motion.div
-                  key={pairKey}
-                  className="compare-names-mode-motion"
-                  variants={rightSlotVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  transition={slotTransition}
-                >
-                  <CompareNameChip name={currentPair.right} onVote={voteForName} />
-                </motion.div>
-              </AnimatePresence>
+            {separator}
+            <div className="compare-names-mode-slot">
+              <div className="compare-names-mode-chip-area">
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={pairKey}
+                    className="compare-names-mode-motion"
+                    variants={rightSlotVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={slotTransition}
+                  >
+                    <CompareNameChip name={currentPair.right} onVote={voteForName} />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              {surname}
             </div>
-            {surname}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="compare-names-mode-slot">
-            <div className="compare-names-mode-chip-area">
-              <NameChipSkeleton size="compare" />
+          </>
+        ) : (
+          <>
+            <div className="compare-names-mode-slot">
+              <div className="compare-names-mode-chip-area">
+                <NameChipSkeleton size="compare" />
+              </div>
+              {surname}
             </div>
-            {surname}
-          </div>
-          {separator}
-          <div className="compare-names-mode-slot">
-            <div className="compare-names-mode-chip-area">
-              <NameChipSkeleton size="compare" />
+            {separator}
+            <div className="compare-names-mode-slot">
+              <div className="compare-names-mode-chip-area">
+                <NameChipSkeleton size="compare" />
+              </div>
+              {surname}
             </div>
-            {surname}
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </Box>
     </Box>
   );
 };

@@ -5,20 +5,15 @@
 }
 
 @media (--mobile) {
-  /* Mirrors #mobile-menu-button on the other side of the bar. Absolute like the
-     menu button, so the logo stays centred on the bar rather than on whatever
-     space is left between the two.
+  /* Last of the three controls grouped at the right of the bar, so it sits in
+     flow and takes its place from that group.
 
-     Stretched to the bar's full height rather than hugging the button, so that
-     the label below can measure from the bar's bottom edge. Hugging the button
-     put the label 10px under a control centred in a taller bar — which left it
-     overlapping the bar, with its arrow drawn primary-on-primary and therefore
-     invisible. The button is centred by this box now instead of by the bar. */
+     Stretched to the bar's full height rather than hugging the button, because
+     the label below measures from this box's centre — which has to be the
+     bar's. Relative so that label has something to be positioned against. */
   #mobile-tutorial-toggle {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 24px;
+    position: relative;
+    align-self: stretch;
     display: flex;
     align-items: center;
   }
@@ -27,16 +22,18 @@
      white on the bar when off, primary inside a white circle when on. The bar
      is already primary, so the usual filled-primary treatment would disappear
      into it. */
+  /* 24px glyph, 44px box — see SettingsLink.css for why those two numbers. A
+     rounded square rather than MUI's default circle, so the active state does
+     not repeat the account icon's own round shape. */
   #mobile-tutorial-button {
+    border-radius: 8px;
+    padding: 10px;
     color: var(--color-primary-contrast);
   }
 
-  /* Smaller than the 40px menu icon opposite it. A question mark is a single
-     dense glyph where the hamburger is three thin rules, so matching their box
-     sizes made this one read as the louder of the two. */
   #mobile-tutorial-button svg {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
   }
 
   #mobile-tutorial-button[data-tutorial-enabled='true'] {
@@ -50,7 +47,7 @@
      Measured from the button rather than from the bar's bottom edge, so the gap
      is the one you see — the button is centred in a bar half again its height,
      and hanging the bubble under the bar left it looking adrift. 50% is the
-     bar's centre and so the button's: 15px clears the glyph, 4px is the gap,
+     bar's centre and so the button's: 12px clears the glyph, 4px is the gap,
      12px is the arrow. In px from the centre rather than from the bar's height
      token, so a taller bar moves the whole thing rather than opening the gap
      back up.
@@ -59,14 +56,14 @@
      bar, where a primary fill on a primary bar shows only its outline. That is
      deliberate — it reads as the bubble emerging from behind the header.
 
-     Anchored to the button's left edge rather than centred on it: centred, the
-     bubble is wider than the space to its left and would be clipped by the
-     viewport, which is what the old bottom-right one did on the other side. The
-     arrow is offset to sit under the button instead. */
+     Anchored to the button's right edge, because the button is now the last of
+     three at the right of the bar: hung from its left edge the bubble would run
+     past the viewport, and centred on it, further still. The arrow is offset to
+     sit under the button instead. */
   .mobile-tutorial-toggle-label {
     position: absolute;
-    top: calc(50% + 31px);
-    left: 0;
+    top: calc(50% + 28px);
+    right: 0;
     padding: 8px 14px 6px;
     border: 2px solid var(--color-primary-contrast);
     border-radius: 16px;
@@ -86,15 +83,18 @@
      diagonals. 4px of offset on a 45-degree edge reads as about 2.8px of rim —
      the nearest whole-pixel match to the bubble's own 2px border.
 
-     23px is the button's own centre: a 30px glyph in MUI's 8px icon padding. */
+     22px is the button's own centre, measured from the right because that is
+     the edge the bubble hangs from: a 24px glyph in 10px of padding. */
   .mobile-tutorial-toggle-label::before,
   .mobile-tutorial-toggle-label::after {
     position: absolute;
-    left: 23px;
+    right: 22px;
     width: 0;
     height: 0;
     content: '';
-    transform: translateX(-50%);
+    /* Positive because the offset is now from the right edge: the triangle has
+       to move back over that point, not away from it. */
+    transform: translateX(50%);
   }
 
   .mobile-tutorial-toggle-label::before {

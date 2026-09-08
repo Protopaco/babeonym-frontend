@@ -1,28 +1,23 @@
 import AppBar from '@mui/material/AppBar';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import LogoFull from '@/components/Header/LogoFull/LogoFull';
 import MobileTutorialToggle from '@/components/Header/TopBar/MobileTutorialToggle';
+import MobileAccountButton from '@/components/Header/TopBar/MobileAccountButton';
+import SettingsLink from '@/components/Header/SettingsLink/SettingsLink';
 import '@/components/Header/TopBar/MobileTopBar.css';
 
-type MobileTopBarProps = {
-  mobileMenuOpen: boolean;
-  onOpenMenu: () => void;
-};
-
-export default ({ mobileMenuOpen, onOpenMenu }: MobileTopBarProps) => {
+// The menu it replaced held three links: this page, a dead route, and settings.
+// One destination does not need a drawer to reach it.
+export default () => {
   return (
     <AppBar id="mobile-top-bar" position="static">
-      <MobileTutorialToggle />
       <LogoFull />
-      <IconButton
-        id="mobile-menu-button"
-        aria-label="Open navigation menu"
-        aria-expanded={mobileMenuOpen}
-        onClick={onOpenMenu}
-      >
-        <MenuIcon />
-      </IconButton>
+      {/* Grouped rather than split across the bar: three controls at two
+          different edges read as three unrelated things. */}
+      <div id="mobile-top-bar-controls">
+        <MobileAccountButton />
+        <SettingsLink />
+        <MobileTutorialToggle />
+      </div>
     </AppBar>
   );
 };

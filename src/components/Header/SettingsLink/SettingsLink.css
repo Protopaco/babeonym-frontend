@@ -2,3 +2,21 @@
   padding: 4px;
   color: var(--color-primary);
 }
+
+/* Sits in the purple bar at this width rather than on the page, so it paints in
+   the contrast colour.
+
+   A 24px glyph in a 44px box, which is the standard pair: 24 is the app-bar
+   icon size in both Material and iOS, and 44 is the smallest target a fingertip
+   lands on reliably. The bar's other two controls carry the same numbers. */
+@media (--mobile) {
+  .settings-link.MuiIconButton-root {
+    padding: 10px;
+    color: var(--color-primary-contrast);
+  }
+
+  .settings-link.MuiIconButton-root svg {
+    width: 24px;
+    height: 24px;
+  }
+}

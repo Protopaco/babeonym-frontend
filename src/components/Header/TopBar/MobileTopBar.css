@@ -12,20 +12,25 @@
     height: var(--height-header-mobile);
     background: var(--color-primary);
     display: flex;
-    justify-content: center;
+    /* Stated because MUI's AppBar is a column by default. It went unnoticed
+       while the only child in flow was the wordmark. */
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     padding: 0 24px;
   }
 
-  #mobile-menu-button {
-    position: absolute;
-    right: 24px;
-    display: flex;
-    color: var(--color-primary-contrast);
-  }
+  /* Both ends are in flow now, so nothing here is positioned: the wordmark
+     takes the left padding and this takes the right.
 
-  #mobile-menu-button svg {
-    width: 40px;
-    height: 40px;
+     Three 44px targets and two 4px gaps: 140px, starting at 196 where the
+     wordmark ends at 156. The gap is small because the targets are not — 4px
+     between boxes puts 24px between the glyphs themselves, which is the size of
+     a glyph and reads as even. */
+  #mobile-top-bar-controls {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    gap: 4px;
   }
 }

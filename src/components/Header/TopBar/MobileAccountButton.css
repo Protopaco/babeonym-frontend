@@ -1,0 +1,19 @@
+/* Mobile only. The desktop bar names the account rather than picturing it, and
+   keeps sign-out as its own control. */
+.mobile-account-button.MuiIconButton-root {
+  display: none;
+}
+
+@media (--mobile) {
+  /* 24px glyph, 44px box — see SettingsLink.css for why those two numbers. */
+  .mobile-account-button.MuiIconButton-root {
+    display: flex;
+    padding: 10px;
+    color: var(--color-primary-contrast);
+  }
+
+  .mobile-account-button.MuiIconButton-root svg {
+    width: 24px;
+    height: 24px;
+  }
+}

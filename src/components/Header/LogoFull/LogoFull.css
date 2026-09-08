@@ -10,8 +10,12 @@
   color: var(--color-primary);
 }
 
+/* Two pixels shorter here than on desktop, which is 10px of width: the bar
+   carries three controls at this size, and at 26px the wordmark and the pair on
+   the right overlapped at 360. */
 @media (--mobile) {
   #logo-full {
+    height: 24px;
     color: var(--color-primary-contrast);
   }
 }

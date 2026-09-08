@@ -28,8 +28,17 @@
 }
 
 @media (--mobile) {
+  /* Sized for compare, which is the taller of the two modes: stacked, it holds
+     two chips, two surnames, the OR and the prompt. Everything in that stack
+     scales with viewport height, so the whole of it comes to about 0.39 of the
+     screen plus this box's own padding — 45vh clears that on a 667px screen by
+     a pixel and on a 924px one by seventeen.
+
+     One height for both modes on purpose: they slide past each other, and a
+     frame that resized between them would move the list underneath. The
+     generator spends the difference on whitespace. */
   .workspace-mode-content {
-    min-height: 35vh;
+    min-height: 45vh;
     padding: 15px 32px 24px;
   }
 }

@@ -1,16 +1,21 @@
-import Typography from '@mui/material/Typography';
-import '@/components/Header/AccountLink/AccountLink.css';
-import { useUser } from '@/state/user/user.context';
 import { useState } from 'react';
+import IconButton from '@mui/material/IconButton';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AuthModal from '@/components/Header/AuthModal/AuthModal';
 import LogoutConfirmDialog from '@/components/Header/LogoutButton/LogoutConfirmDialog';
 import { useLogout } from '@/components/Header/LogoutButton/useLogout';
+import { useUser } from '@/state/user/user.context';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
+import '@/components/Header/TopBar/MobileAccountButton.css';
 
-/* One control in two states, matching the icon in the mobile bar: signed out it
-   offers an account, signed in it gives one up. It used to link to Settings
-   when signed in, which the gear beside it already does, and sign-out lived in
-   an icon of its own. */
+/* One control in two states rather than two controls: outlined when there is no
+   account behind it, filled once there is. Fill is what the bar already uses to
+   say active — the tutorial toggle beside it does the same — so the two read as
+   one convention.
+
+   Not a variant of AccountLink, which goes to Settings when signed in. Here the
+   gear covers Settings, so this side is only ever about signing in or out. */
 export default () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [logoutConfirmOpen, setLogoutConfirmOpen] = useState(false);
@@ -24,7 +29,6 @@ export default () => {
   }
 
   const isAnonymousUser = !user || user.authProvider === 'anonymous';
-  const accountLinkLabel = isAnonymousUser ? 'Sign In / Sign Up' : (user.email ?? 'Account');
 
   const confirmLogOut = () => {
     setLogoutConfirmOpen(false);
@@ -33,16 +37,13 @@ export default () => {
 
   return (
     <>
-      <Typography
-        variant="button"
-        color="primary"
-        id="account-link"
-        component="button"
-        type="button"
+      <IconButton
+        className="mobile-account-button"
+        aria-label={isAnonymousUser ? 'Sign in or sign up' : 'Log out'}
         onClick={() => (isAnonymousUser ? setAuthModalOpen(true) : setLogoutConfirmOpen(true))}
       >
-        {accountLinkLabel}
-      </Typography>
+        {isAnonymousUser ? <AccountCircleOutlinedIcon /> : <AccountCircleIcon />}
+      </IconButton>
       <AuthModal open={authModalOpen} onClose={() => setAuthModalOpen(false)} onGoogleSignIn={startGoogleSignIn} />
       <LogoutConfirmDialog open={logoutConfirmOpen} onClose={() => setLogoutConfirmOpen(false)} onConfirm={confirmLogOut} />
     </>

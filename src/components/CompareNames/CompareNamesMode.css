@@ -1,3 +1,25 @@
+/* A column holding the prompt above the pair. The pair itself is a row on
+   desktop, so the prompt cannot live inside it — it would become a third item
+   beside the names. */
+.compare-names-mode {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Permanent, not part of the tutorial: see the note in the component. Sized
+   between the surname and the names themselves — it asks the question, it is
+   not one of the answers. */
+.compare-names-mode-prompt.MuiTypography-root {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
 .compare-names-mode-content {
   /* The surname's line box and the gap above it, reserved whether or not the
      user has a surname. Declared once here because three rules need to agree:
@@ -20,9 +42,16 @@
      same height as a slot, not because the row is aligned differently. */
   align-items: center;
   justify-content: center;
-  gap: 48px;
-  /* Room for a full name on each side rather than a given name alone. */
-  min-height: 400px;
+  /* Nothing to space: the separator between the two slots is as wide as a
+     surname, because it holds a hidden copy of one to match a slot's height.
+     That box is the gap. */
+  gap: 0;
+  /* Room for a full name on each side rather than a given name alone. Reduced
+     from 400 to make room for the prompt: the frame this sits in is 400 tall
+     and clips, and the pair's own content is only about 130px, so the 400 was
+     reserved space rather than needed space. The pair now sits a little higher
+     and the prompt occupies what it gave up. */
+  min-height: 340px;
   padding: 0 24px;
 }
 
@@ -73,23 +102,51 @@
   line-height: 1.25;
 }
 
+/* Holds a copy of the surname so the separator's box is exactly as tall as a
+   real slot without anything having to know how tall a surname is. Hidden
+   rather than removed: it is there for its height alone, and it was rendering
+   as a third surname under the OR. aria-hidden already keeps it out of the
+   accessibility tree; this keeps it out of the picture. */
+.compare-names-mode-separator-spacer {
+  visibility: hidden;
+}
+
 /* Compound so it beats MUI's Typography class, which is two classes deep and
    would otherwise win on specificity and hold this at its own 20px.
 
-   Given the chip area's height and centred inside it, then padded by exactly
-   what a slot devotes to its surname, so the whole box matches a slot and
-   centring puts the OR level with the two names. */
+   Centred on the pair rather than lifted to sit level with the two names. It
+   used to reserve a surname's height below itself for that, which read as the
+   OR floating above the row now that the prompt sits over the whole block. */
 .compare-names-content-or.MuiTypography-root {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 88px;
-  margin: 0 0 calc(var(--compare-surname-height) + var(--compare-surname-gap));
+  margin: 0;
   color: var(--color-primary);
   font-size: 2rem;
 }
 
 @media (--mobile) {
+  /* Every part of this stack scales with the viewport's height, because height
+     is what it is short of: two chips, two surnames, the OR and the prompt have
+     to fit a frame that cannot grow. The chips were already 8vh; these are the
+     pieces that were not, and their being fixed is what forced the frame to
+     carry a px floor. Each clamp keeps a rem minimum — type that scales freely
+     becomes unreadable — so the floors sit on the type rather than on the
+     layout. Below about 600px tall they bind and the stack stops shrinking. */
+  .compare-names-mode-prompt.MuiTypography-root {
+    font-size: clamp(1rem, 2.7vh, 1.25rem);
+  }
+
+  .compare-names-mode {
+    gap: clamp(12px, 3.2vh, 24px);
+  }
+
   .compare-names-mode-content {
+    --compare-surname-height: clamp(1.25rem, 4vh, 1.875rem);
+    --compare-surname-gap: clamp(6px, 1.2vh, 9px);
+
     flex-direction: column;
     /* Restated because the column reverses what align-items controls: on
        desktop it aligns the row vertically, here it would push the slots to
@@ -100,7 +157,10 @@
        columns; stacked it is the only thing between a surname and the next
        name, and the pair has to fit a frame it cannot grow. */
     gap: 0;
-    min-height: 360px;
+    /* No reserved height here any more. The frame above sets the space and
+       every piece inside now scales to fill it, so a floor here would only
+       fight that. */
+    min-height: 0;
     text-align: center;
   }
 
@@ -115,18 +175,32 @@
      also why it can be small, since it no longer competes with the names. */
   .compare-names-content-or.MuiTypography-root {
     height: auto;
-    /* Pinned to the slot's right edge rather than centred: left would align it
-       to the chip's border while the name starts 36px further in, and the right
-       side has no such inset. This is a block inside the separator, which
-       shrink-wraps to the word, so the calc goes negative and the pill grows to
-       absorb it — the width is whatever reaching that edge costs, not a choice.
-       width: fit-content makes it hug the word instead, still pinned right. */
-    margin: 12px calc((100% - var(--compare-slot-width)) / 2) 12px auto;
+    /* Centred, now that the surname below it is right-aligned: the name reads
+       from the left of its chip, the surname ends at the right, and this sits
+       between them. It was pinned right when the surname was still centred and
+       the column needed a counterweight. */
+    margin: clamp(8px, 1.6vh, 12px) 0;
     border-radius: 14px;
     background: var(--color-primary);
     padding: 4px 14px;
     color: var(--color-primary-contrast);
-    font-size: 1rem;
+    font-size: clamp(0.75rem, 2.2vh, 1rem);
+  }
+
+  /* Right-aligned where the desktop row indents it to match its own name.
+     Stacked, the three items are a name reading from the left of its chip, a
+     centred OR, and this — so ending it at the right edge balances the column
+     instead of stacking everything on one side. The inset swaps sides with the
+     text: the last letter now lands where the chip's text area ends. */
+  .compare-names-mode-surname.MuiTypography-root {
+    /* Stretched because the slot is align-items: flex-start, which shrinks its
+       children to their content — text-align has nothing to align inside a box
+       that is exactly as wide as its text. */
+    align-self: stretch;
+    padding-right: var(--compare-text-inset);
+    padding-left: 0;
+    text-align: right;
+    font-size: clamp(1rem, 3.2vh, 1.5rem);
   }
 
   /* The separator carries a hidden copy of the surname so its box matches a
