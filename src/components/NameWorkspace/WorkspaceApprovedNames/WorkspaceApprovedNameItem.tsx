@@ -47,14 +47,18 @@ const WorkspaceApprovedNameItem = ({ approvedGivenName, position }: Props) => {
       layout="position"
       transition={{ type: 'spring', stiffness: 180, damping: 24 }}
     >
-      <Typography className="workspace-approved-name-position">{position}</Typography>
       {/* Shown only to a coarse pointer, where dragging needs somewhere of its
           own to start. Hidden from assistive technology: it does nothing a
           keyboard or screen reader can use, and reordering by keyboard does not
-          exist yet either way. */}
+          exist yet either way.
+
+          First in the row rather than between the rank and the name: those two
+          belong together, and a control sat between them separated a name from
+          its own position. */}
       <span className="workspace-approved-name-grip" aria-hidden="true" onPointerDown={startGripDrag}>
         <DragIndicatorIcon />
       </span>
+      <Typography className="workspace-approved-name-position">{position}</Typography>
       <ListNameChip approvedGivenName={approvedGivenName} size="large" />
     </Reorder.Item>
   );

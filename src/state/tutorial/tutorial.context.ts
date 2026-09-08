@@ -3,6 +3,8 @@ import { createContext, useContext } from 'react';
 type TutorialContextValue = {
   tutorialEnabled: boolean;
   toggleTutorialEnabled: () => void;
+  tutorialLabelDismissed: boolean;
+  dismissTutorialLabel: () => void;
 };
 
 export const TutorialContext = createContext<TutorialContextValue | undefined>(undefined);

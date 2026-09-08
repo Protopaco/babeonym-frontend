@@ -49,11 +49,20 @@ const CompareNamesMode = () => {
   // outside the animating element: the surname is the same on both sides and
   // does not change between pairs, so travelling with the chip on every vote
   // would be motion with nothing behind it.
-  //
-  // Rendered whether or not there is a surname to show. Its height is reserved
-  // either way, so the pair sits in the same place for every user and does not
-  // jump when a surname is set in Settings.
-  const surname = <Typography className="compare-names-mode-surname">{user?.surName ?? ''}</Typography>;
+  const surname = user?.surName ? <Typography className="compare-names-mode-surname">{user.surName}</Typography> : null;
+
+  // The OR is built like a slot so the row can stay centred as a group and
+  // still line the three items up on their names. It carries a hidden copy of
+  // the surname, which makes its box exactly as tall as a real slot without
+  // anything having to know how tall a surname is.
+  const separator = (
+    <div className="compare-names-mode-separator">
+      <Typography className="compare-names-content-or">OR</Typography>
+      <div className="compare-names-mode-separator-spacer" aria-hidden="true">
+        {surname}
+      </div>
+    </div>
+  );
 
   return (
     <Box className="compare-names-mode-content">
@@ -77,7 +86,7 @@ const CompareNamesMode = () => {
             </div>
             {surname}
           </div>
-          <Typography className="compare-names-content-or">OR</Typography>
+          {separator}
           <div className="compare-names-mode-slot">
             <div className="compare-names-mode-chip-area">
               <AnimatePresence initial={false}>
@@ -105,7 +114,7 @@ const CompareNamesMode = () => {
             </div>
             {surname}
           </div>
-          <Typography className="compare-names-content-or">OR</Typography>
+          {separator}
           <div className="compare-names-mode-slot">
             <div className="compare-names-mode-chip-area">
               <NameChipSkeleton size="compare" />

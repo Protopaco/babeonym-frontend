@@ -5,56 +5,20 @@
   z-index: 1150;
 }
 
-/* Anchors the mobile label to the button. The button draws its own circle, so
+/* Anchors the tooltip to the button. The button draws its own circle, so
    nothing here paints a border or a background. */
 .floating-tutorial-icon-button {
   position: relative;
   display: flex;
 }
 
-.floating-tutorial-icon-mobile-label {
-  display: none;
-}
-
+/* Desktop only. Floating over the page works where there is room to spare; on a
+   phone it parked permanently over the name list, and moving it down only
+   changed which row it covered, since the list scrolls underneath. The mobile
+   toggle lives in the top bar instead, beside the menu button, where it is
+   always visible and outside the scrolling area entirely. */
 @media (--mobile) {
   .floating-tutorial-icon-container {
-    right: 20px;
-    bottom: var(--bottom-floating-tutorial-icon-mobile);
-  }
-
-  .floating-tutorial-icon-container[data-mobile-filter-drawer-open='true'] {
     display: none;
-  }
-
-  .floating-tutorial-icon-mobile-label {
-    position: absolute;
-    left: 50%;
-    bottom: calc(100% + 10px);
-    display: block;
-    padding: 8px 14px 6px;
-    border: 2px solid var(--color-primary-contrast);
-    border-radius: 16px;
-    background: var(--color-primary);
-    color: var(--color-primary-contrast);
-    box-shadow: var(--box-shadow-primary);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.25;
-    white-space: nowrap;
-    transform: translateX(-50%);
-    pointer-events: none;
-  }
-
-  .floating-tutorial-icon-mobile-label::after {
-    position: absolute;
-    left: 50%;
-    bottom: -10px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid var(--color-primary);
-    border-right: 10px solid transparent;
-    border-left: 10px solid transparent;
-    content: '';
-    transform: translateX(-50%);
   }
 }

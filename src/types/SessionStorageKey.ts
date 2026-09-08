@@ -1,1 +1,1 @@
-export type SessionStorageKey = 'tutorialEnabled';
+export type SessionStorageKey = 'tutorialEnabled' | 'tutorialLabelDismissed';

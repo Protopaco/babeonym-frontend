@@ -37,9 +37,18 @@
     width: 100%;
   }
 
+  /* Sized to their labels rather than to each other. Equal widths gave every
+     button the same 76px at 360, which starved LANGUAGE — 67px of text in 68px
+     of room — while DECADE sat on 20px of slack. Measured from the font: the
+     four labels are 216px of text, so 10px of side padding and the three gaps
+     make a 320px row inside the 328px available, and the widest label ends up
+     with the same breathing room as the narrowest.
+
+     An exception to the app's equal-width button rows, taken here because the
+     row is fixed at four items whose labels are known. */
   .mobile-name-filters-triggers .MuiButton-root {
-    flex: 1;
+    flex: 0 1 auto;
     min-width: 0;
-    padding: 6px 4px;
+    padding: 6px 10px;
   }
 }

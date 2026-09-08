@@ -7,6 +7,12 @@
      of this component's insides, not a value the app shares. */
   --compare-surname-height: 30px;
   --compare-surname-gap: 9px;
+  /* Published because the OR has to occupy the same box as a slot to sit on the
+     same left edge, and it is not inside one. */
+  --compare-slot-width: 300px;
+  /* The compare chip's border plus its padding, which is where its text starts.
+     Anything meant to line up with a name indents by this. */
+  --compare-text-inset: 36px;
 
   display: flex;
   flex: 1;
@@ -24,7 +30,7 @@
    itself keeps a stable size and the OR stays put. */
 .compare-names-mode-slot {
   flex-shrink: 0;
-  width: 300px;
+  width: var(--compare-slot-width);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -32,11 +38,16 @@
 }
 
 /* Fixed so the outgoing and incoming chips can overlap during a swap instead of
-   both taking space and shoving the surname down. Matches the compare chip. */
+   both taking space and shoving the surname down.
+
+   Must match the compare chip's own height in BaseNameChip.css. The chip is
+   absolutely positioned inside this box, so this is what actually sets the
+   slot's height — changing the chip alone leaves it rattling in a taller area
+   rather than making the pair shorter. */
 .compare-names-mode-chip-area {
   position: relative;
   width: 100%;
-  height: 88px;
+  height: 8vh;
 }
 
 .compare-names-mode-motion {
@@ -56,7 +67,7 @@
 .compare-names-mode-surname.MuiTypography-root {
   height: var(--compare-surname-height);
   margin: 0;
-  padding-left: 36px;
+  padding-left: var(--compare-text-inset);
   color: var(--color-primary);
   font-size: 1.5rem;
   line-height: 1.25;
@@ -85,14 +96,46 @@
        the left edge. */
     align-items: center;
     justify-content: center;
+    /* Closed up from the 48px the row uses. Side by side that gap separates two
+       columns; stacked it is the only thing between a surname and the next
+       name, and the pair has to fit a frame it cannot grow. */
+    gap: 0;
     min-height: 360px;
     text-align: center;
   }
 
   /* Stacked, so there is no pair to line up with and the reserved height would
-     only add empty space between the two names. */
+     only add empty space between the two names.
+
+     Drawn as a filled chip rather than left as a plain word. Stacked, a name is
+     a chip and the surname 9px under it, so spacing alone put less room between
+     the two names than inside each one, and the word read as belonging to the
+     surname above it. Being the one filled thing on the screen makes it read as
+     a separator by its own weight rather than by the space around it — which is
+     also why it can be small, since it no longer competes with the names. */
   .compare-names-content-or.MuiTypography-root {
     height: auto;
-    margin: 0;
+    /* Pinned to the slot's right edge rather than centred: left would align it
+       to the chip's border while the name starts 36px further in, and the right
+       side has no such inset. This is a block inside the separator, which
+       shrink-wraps to the word, so the calc goes negative and the pill grows to
+       absorb it — the width is whatever reaching that edge costs, not a choice.
+       width: fit-content makes it hug the word instead, still pinned right. */
+    margin: 12px calc((100% - var(--compare-slot-width)) / 2) 12px auto;
+    border-radius: 14px;
+    background: var(--color-primary);
+    padding: 4px 14px;
+    color: var(--color-primary-contrast);
+    font-size: 1rem;
+  }
+
+  /* The separator carries a hidden copy of the surname so its box matches a
+     slot's height in the desktop row. It is aria-hidden, not visually hidden,
+     so stacked it rendered as a third surname between the OR and the second
+     name — and put the divider between a real surname and a phantom one rather
+     than between the two names. There is no row to match here, so it has no
+     job. */
+  .compare-names-mode-separator-spacer {
+    display: none;
   }
 }

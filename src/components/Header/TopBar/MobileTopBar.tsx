@@ -2,6 +2,7 @@ import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoFull from '@/components/Header/LogoFull/LogoFull';
+import MobileTutorialToggle from '@/components/Header/TopBar/MobileTutorialToggle';
 import '@/components/Header/TopBar/MobileTopBar.css';
 
 type MobileTopBarProps = {
@@ -12,6 +13,7 @@ type MobileTopBarProps = {
 export default ({ mobileMenuOpen, onOpenMenu }: MobileTopBarProps) => {
   return (
     <AppBar id="mobile-top-bar" position="static">
+      <MobileTutorialToggle />
       <LogoFull />
       <IconButton
         id="mobile-menu-button"

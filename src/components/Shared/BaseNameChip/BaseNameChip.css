@@ -41,10 +41,18 @@
   padding: 0 22px;
 }
 
+/* Height is viewport-relative here where the other sizes are fixed, because
+   compare stacks two of these on mobile inside a frame that cannot grow — the
+   name list below it must not move when the modes slide past each other, so the
+   pair has to fit whatever height the screen offers.
+
+   CompareNames.mode's .compare-names-mode-chip-area has to carry the same value:
+   the chip is absolutely positioned inside it, so that box is what sets the
+   slot's height. If one changes the other has to follow. */
 .base-name-chip[data-size='compare'] {
   --name-chip-font-size: 2rem;
 
-  height: 88px;
+  height: 8vh;
   border-width: 4px;
   border-radius: 44px;
   padding: 0 32px;
@@ -80,4 +88,3 @@
 .base-name-chip[data-size='compare'][data-shape='name'] {
   width: 300px;
 }
-
