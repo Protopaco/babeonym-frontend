@@ -3,7 +3,6 @@ import ExhaustedNameMessage from '@/components/NameGenerator/NameEvaluator/Exhau
 import NameLimitMessage from '@/components/NameGenerator/NameEvaluator/NameLimitMessage';
 import CandidateErrorMessage from '@/components/NameGenerator/NameEvaluator/CandidateErrorMessage';
 import GeneratedNameSkeleton from '@/components/NameGenerator/GeneratedNameSkeleton/GeneratedNameSkeleton';
-import MobileTutorialHint from '@/components/Shared/MobileTutorialHint/MobileTutorialHint';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import { Typography } from '@mui/material';
 import { AnimatePresence, motion } from 'motion/react';
@@ -20,7 +19,6 @@ type Props = {
 export default ({ currentCandidate, isAwaitingCandidates, atApprovedNameLimit, candidateErrorMessage }: Props) => {
   return (
     <div className="evaluated-name-display">
-      {currentCandidate && !atApprovedNameLimit ? <MobileTutorialHint text="Do you like this name?" /> : null}
       <div className="evaluated-name-display-slot">
         {/* Ahead of the skeleton, because a failed fetch leaves the exact state
             the skeleton reads as "still loading": no candidate, and nothing
