@@ -37,6 +37,17 @@ export const useWorkspaceFilterDraftState = () => {
   });
   const filterCategories = [genderFilters, decadeFilters, cultureFilters, languageFilters];
   const hasDraftFilters = filterCategories.some((filterCategory) => filterCategory.hasDraftOptions);
+  const hasAppliedFilters = filterCategories.some((filterCategory) => filterCategory.hasAppliedOptions);
+
+  // Clears what is in effect, and deliberately leaves the draft alone. This one
+  // belongs to the filter row, where the applied chips are; the drawer's own
+  // Clear All is what discards a draft.
+  const clearAppliedFilters = () => {
+    const nextParams = new URLSearchParams(searchParams);
+
+    filterCategories.forEach((filterCategory) => filterCategory.clearAppliedToParams(nextParams));
+    setSearchParams(nextParams, { replace: true });
+  };
 
   const commitDraftFilters = () => {
     const nextParams = new URLSearchParams(searchParams);
@@ -54,8 +65,10 @@ export const useWorkspaceFilterDraftState = () => {
       genders: genderFilters.availableOptions,
       languages: languageFilters.availableOptions,
     },
+    clearAppliedFilters,
     clearDraftFilters: () => filterCategories.forEach((filterCategory) => filterCategory.clearDraft()),
     commitDraftFilters,
+    hasAppliedFilters,
     draftFilters: {
       cultures: cultureFilters.draftOptionIds,
       decades: decadeFilters.draftOptionIds,

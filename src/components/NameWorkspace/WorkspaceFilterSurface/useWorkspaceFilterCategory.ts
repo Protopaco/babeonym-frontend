@@ -45,10 +45,18 @@ export const useWorkspaceFilterCategory = ({ categoryLabel, options, paramKey, s
     writeFilterIds(nextParams, paramKey, [...new Set([...appliedOptionIds, ...draftOptionIds])]);
   };
 
+  // Takes the params rather than writing them, so all four categories can be
+  // cleared in one navigation instead of four.
+  const clearAppliedToParams = (nextParams: URLSearchParams) => {
+    writeFilterIds(nextParams, paramKey, []);
+  };
+
   return {
     appliedFilterChips,
     applyDraftToParams,
     availableOptions,
+    clearAppliedToParams,
+    hasAppliedOptions: appliedOptionIds.length > 0,
     clearDraft: () => setDraftOptionIds([]),
     draftOptionIds,
     hasDraftOptions: draftOptionIds.length > 0,

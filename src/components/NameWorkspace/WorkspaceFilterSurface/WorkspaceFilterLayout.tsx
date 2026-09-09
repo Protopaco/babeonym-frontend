@@ -4,6 +4,7 @@ import DecadeFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurfac
 import GenderFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurface/GenderFilterColumn';
 import LanguageFilterColumn from '@/components/NameWorkspace/WorkspaceFilterSurface/LanguageFilterColumn';
 import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
+import WorkspaceClearFiltersButton from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceClearFiltersButton';
 import WorkspaceFilterToggle from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceFilterToggle';
 import { useWorkspaceFilterDraftState } from '@/components/NameWorkspace/WorkspaceFilterSurface/useWorkspaceFilterDraftState';
 import { AnimatePresence, motion } from 'motion/react';
@@ -16,8 +17,17 @@ type Props = {
 };
 
 const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
-  const { appliedFilterChips, availableFilterOptions, clearDraftFilters, commitDraftFilters, draftFilters, hasDraftFilters, setDraftFilters } =
-    useWorkspaceFilterDraftState();
+  const {
+    appliedFilterChips,
+    availableFilterOptions,
+    clearAppliedFilters,
+    clearDraftFilters,
+    commitDraftFilters,
+    draftFilters,
+    hasAppliedFilters,
+    hasDraftFilters,
+    setDraftFilters,
+  } = useWorkspaceFilterDraftState();
 
   const handleSetFilters = () => {
     commitDraftFilters();
@@ -46,6 +56,10 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
             <WorkspaceAppliedFilterChip key={chip.id} label={chip.label} onDelete={chip.onDelete} />
           ))}
         </div>
+        {/* Absent rather than disabled when nothing is applied: with no chips
+            there is no row to bound, and a control that spends most of its life
+            greyed out is noise. */}
+        {hasAppliedFilters ? <WorkspaceClearFiltersButton onClearFilters={clearAppliedFilters} /> : null}
       </div>
       {/* The row unmounts when the drawer closes, so it needs AnimatePresence to
           stay mounted long enough to animate out. The height animation lives on

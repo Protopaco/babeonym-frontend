@@ -12,8 +12,12 @@
   align-items: stretch;
 }
 
+/* Toggle, chips, clear. The chips take what is left between the two ends, and
+   scroll inside it — so the ends are what stop the row running off the edge.
+   The third column collapses to nothing when no filters are applied, since the
+   button is not rendered then. */
 .workspace-filter-layout-summary-row {
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) auto;
   min-height: 42px;
   padding: 6px 36px;
 }
