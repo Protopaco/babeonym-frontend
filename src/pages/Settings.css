@@ -1,4 +1,8 @@
 .settings {
+  /* The page's one content column. The back row and the rows below it share it
+     so their left edges line up. */
+  --settings-column-width: 420px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,12 +16,23 @@
   flex-direction: row;
 }
 
+/* Aligned to the content column's left edge rather than the viewport's. The
+   page is centred — the header shrink-wraps to its title and the rows cap at
+   the column width — so a lone arrow in the far corner of a wide window would
+   read as a stray rather than as this page's control. */
+.settings-back {
+  display: flex;
+  width: 100%;
+  max-width: var(--settings-column-width);
+  margin-bottom: 8px;
+}
+
 .settings-rows {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  max-width: 420px;
+  max-width: var(--settings-column-width);
   padding: 12px;
   min-height: 40vh;
   justify-content: space-around;

@@ -1,0 +1,25 @@
+/* Sits on the page rather than in the header bar, so it paints in the page's
+   primary rather than the bar's contrast colour. That is the one place this
+   differs from SettingsLink, which is otherwise the same control. */
+.page-back-link.MuiIconButton-root {
+  padding: 4px;
+  color: var(--color-primary);
+}
+
+/* A 24px glyph in a 44px box — the smallest target a fingertip lands on
+   reliably.
+
+   Keyed on the pointer rather than on --mobile, because that is what the number
+   is actually about. SettingsLink can use --mobile since it only exists in the
+   mobile bar; this one is on the page at every width, and a tablet at 800px is
+   still a finger. */
+@media (--touch) {
+  .page-back-link.MuiIconButton-root {
+    padding: 10px;
+  }
+
+  .page-back-link.MuiIconButton-root svg {
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import PageBackLink from '@/components/Shared/PageBackLink/PageBackLink';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import DeleteAccountButton from '@/components/Settings/DeleteAccountButton/DeleteAccountButton';
 import SettingsRow from '@/components/Settings/SettingsRow/SettingsRow';
@@ -15,6 +16,9 @@ const Settings = () => {
 
   return (
     <Box className="settings">
+      <Box className="settings-back">
+        <PageBackLink />
+      </Box>
       <SectionHeader title="Settings" />
       <Box className="settings-rows">
         <ThemePicker />
