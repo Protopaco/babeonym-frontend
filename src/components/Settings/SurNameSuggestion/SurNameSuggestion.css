@@ -1,0 +1,14 @@
+/* Sits in the field's helper slot, so it inherits MUI's caption size and
+   spacing and only has to state its colour. */
+.sur-name-suggestion {
+  color: var(--color-text-secondary);
+}
+
+/* Reads as the one thing to tap. component="button" gives MUI's Link a real
+   button underneath, which arrives with a browser default font — hence the
+   inherit. */
+.sur-name-suggestion-accept.MuiLink-root {
+  color: var(--color-primary);
+  font: inherit;
+  font-weight: 600;
+}

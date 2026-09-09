@@ -55,34 +55,44 @@ which lands back at a wrong value, with an extra step.
 
 ## Requirements
 
-- On save, when the surname differs from its capitalized form, show an inline
-  suggestion under the field: the value as saved, and the capitalized form as a
-  tappable alternative.
+- **Two gates decide whether a suggestion appears at all**, and the first does
+  most of the work:
+  1. The saved value is entirely lower case. A capital anywhere means the user
+     was thinking about case, so `van der Berg` and `McKenna` are never
+     touched.
+  2. The capitalized form differs from what was saved.
+- **The suggestion capitalizes the first letter of every segment**, where a
+  segment starts at the beginning or after a space or hyphen. `smith-jones`
+  offers `Smith-Jones`, which first-letter-only would get wrong as
+  `Smith-jones` — and hyphenated surnames are far more common here than
+  particles. `van der berg` offers `Van Der Berg`, which is wrong, and harmless:
+  it is an offer, and ignoring it costs nothing.
+- **It appears on save**, not on blur. Blur fires when the user tabs toward the
+  save button, so a suggestion there can arrive mid-thought.
 - Tapping the suggestion sets the field to the capitalized form and saves it.
-- Ignoring the suggestion is a valid answer. It does not reappear for that
-  value.
+- **It is transient and nothing is persisted.** It clears when the field changes
+  again or the page unmounts. No dismissed flag, no per-user state, no session
+  storage — ignoring it makes it go away.
 - The app never rewrites the surname on its own. The stored value is always what
   the user chose.
 - Nothing changes for a surname that is already capitalized — no suggestion, no
   extra render.
 
-## Open Questions
+## Decisions Already Made
 
-- **Which capitalization the suggestion offers.** First letter only, or every
-  segment. First letter is the smaller error, but `mckenna` then suggests
-  `Mckenna`, which is wrong in a different way. Possibly the suggestion should
-  only appear when the whole value is lower case, where the intent is least
-  ambiguous.
-- **When the suggestion stops.** Per value, per session, or once dismissed
-  never again for that user. Per value is the simplest and means a user who
-  edits their surname later is asked again about the new one.
-- Whether the suggestion appears on save or as soon as the field loses focus.
-  Save is the moment the user has committed; blur fires while they may still be
-  typing.
-- Whether given names should move to the same model. They are capitalized
-  silently today, and the sticky problem applies to them too — just far less
-  often, since a given name rarely wants a lower-case segment. Out of scope
-  here, but the answer should be deliberate.
+- **Given names are left alone.** They are capitalized on the backend, silently,
+  every segment, and the sticky problem technically applies to them too. It
+  applies far less often, because a given name almost never wants a lower-case
+  segment, and changing it would mean pulling normalization out of the API into
+  the client. Deliberate, not an oversight.
+- **The capitalizer is duplicated on the client.** `normalizeCustomGivenName` in
+  the backend already implements this rule. Sharing it would need an endpoint;
+  the logic is a single regex replace, so two copies in two languages is the
+  cheaper answer for now.
+- **The choice of rule stopped being fraught once the app stopped rewriting.**
+  Every rule that fixes `stevens` also damages `van der Berg` — but only if it
+  is imposed. As a suggestion, the right rule is the one that helps the most
+  people, and the rest ignore it.
 
 ## Implementation Notes
 
@@ -101,9 +111,12 @@ which lands back at a wrong value, with an extra step.
 ## Acceptance Criteria
 
 - Saving `stevens` offers `Stevens`, and one tap stores it.
-- Saving `van der Berg` stores exactly that, and the suggestion does not
-  reappear for it.
+- Saving `smith-jones` offers `Smith-Jones`.
+- Saving `van der Berg` stores exactly that and shows nothing, because it
+  already contains a capital.
 - Saving `Stevens` shows nothing.
+- Ignoring a suggestion and editing the field clears it, and it does not come
+  back until the next save.
 - No stored surname is ever different from what the user chose.
 
 ## Out Of Scope

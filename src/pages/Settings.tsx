@@ -4,13 +4,23 @@ import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import AboutButton from '@/components/Settings/AboutButton/AboutButton';
 import DeleteAccountButton from '@/components/Settings/DeleteAccountButton/DeleteAccountButton';
 import SettingsRow from '@/components/Settings/SettingsRow/SettingsRow';
+import SurNameSuggestion from '@/components/Settings/SurNameSuggestion/SurNameSuggestion';
 import ThemePicker from '@/components/Settings/ThemePicker/ThemePicker';
 import { useSettings } from '@/pages/useSettings';
 import { NAME_MAX_LENGTH } from '@/constants/nameMaxLength';
 import './Settings.css';
 
 const Settings = () => {
-  const { userProviderLoaded, surNameDraft, changeSurNameDraft, surNameIsDirty, errorMessage, saveSurName } = useSettings();
+  const {
+    userProviderLoaded,
+    surNameDraft,
+    changeSurNameDraft,
+    surNameIsDirty,
+    errorMessage,
+    saveSurName,
+    surNameSuggestion,
+    acceptSurNameSuggestion,
+  } = useSettings();
 
   if (!userProviderLoaded) {
     return null;
@@ -32,6 +42,11 @@ const Settings = () => {
           isDirty={surNameIsDirty}
           onSave={saveSurName}
           errorMessage={errorMessage}
+          suggestion={
+            surNameSuggestion === null ? undefined : (
+              <SurNameSuggestion savedSurName={surNameDraft} suggestedSurName={surNameSuggestion} onAccept={acceptSurNameSuggestion} />
+            )
+          }
         />
       </Box>
       <Box className="settings-footer">

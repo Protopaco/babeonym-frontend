@@ -1,8 +1,27 @@
+/* A column, so the message can sit under the whole row rather than inside the
+   field. */
 .settings-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* The field and the save button, and nothing that changes height. Centred
+   because the two are not the same height: the input takes its size from
+   body1, which the type scale grows at 600px, while the button is a fixed
+   --height-control square. */
+.settings-row-controls {
   display: flex;
   align-items: center;
   gap: 8px;
   width: 100%;
+}
+
+/* Indented to the field's text rather than the field's edge, so it reads as
+   belonging to the value above it. FormHelperText brings its own size, spacing
+   and error colour. */
+.settings-row-message.MuiFormHelperText-root {
+  margin-left: 14px;
 }
 
 .settings-row-field {
