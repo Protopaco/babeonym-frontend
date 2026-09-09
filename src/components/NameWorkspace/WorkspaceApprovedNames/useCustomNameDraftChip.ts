@@ -2,7 +2,7 @@ import type { KeyboardEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import getCustomNameErrorMessage from '@/utils/getCustomNameErrorMessage';
-import stripDisallowedNameCharacters from '@/utils/stripDisallowedNameCharacters';
+import normalizeNameInput from '@/utils/normalizeNameInput';
 
 type Props = {
   onClose: () => void;
@@ -23,7 +23,7 @@ export const useCustomNameDraftChip = ({ onClose }: Props) => {
   }, []);
 
   const changeCustomName = (updatedCustomName: string) => {
-    setCustomName(stripDisallowedNameCharacters(updatedCustomName));
+    setCustomName(normalizeNameInput(updatedCustomName));
     setErrorMessage('');
   };
 

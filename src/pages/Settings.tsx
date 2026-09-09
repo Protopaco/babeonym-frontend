@@ -6,10 +6,11 @@ import DeleteAccountButton from '@/components/Settings/DeleteAccountButton/Delet
 import SettingsRow from '@/components/Settings/SettingsRow/SettingsRow';
 import ThemePicker from '@/components/Settings/ThemePicker/ThemePicker';
 import { useSettings } from '@/pages/useSettings';
+import { NAME_MAX_LENGTH } from '@/constants/nameMaxLength';
 import './Settings.css';
 
 const Settings = () => {
-  const { userProviderLoaded, surNameDraft, setSurNameDraft, surNameIsDirty, errorMessage, saveSurName } = useSettings();
+  const { userProviderLoaded, surNameDraft, changeSurNameDraft, surNameIsDirty, errorMessage, saveSurName } = useSettings();
 
   if (!userProviderLoaded) {
     return null;
@@ -26,7 +27,8 @@ const Settings = () => {
         <SettingsRow
           label="Sur Name"
           value={surNameDraft}
-          onChange={setSurNameDraft}
+          onChange={changeSurNameDraft}
+          maxLength={NAME_MAX_LENGTH}
           isDirty={surNameIsDirty}
           onSave={saveSurName}
           errorMessage={errorMessage}

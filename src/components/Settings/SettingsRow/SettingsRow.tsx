@@ -14,9 +14,12 @@ type Props = {
   isDirty?: boolean;
   onSave?: () => void;
   errorMessage?: string | null;
+  // The native cap, so the cursor does not jump when a caller's own handler
+  // truncates the value. What the limit means is the caller's business.
+  maxLength?: number;
 };
 
-export default ({ value, onChange, isReadOnly = false, label, isDirty = false, onSave, errorMessage = null }: Props) => {
+export default ({ value, onChange, isReadOnly = false, label, isDirty = false, onSave, errorMessage = null, maxLength }: Props) => {
   return (
     <Box className="settings-row">
       <TextField
@@ -34,6 +37,7 @@ export default ({ value, onChange, isReadOnly = false, label, isDirty = false, o
           }
         }}
         slotProps={{
+          htmlInput: { maxLength },
           input: {
             readOnly: isReadOnly,
             endAdornment:

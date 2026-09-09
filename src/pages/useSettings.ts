@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { userApi } from '@/api/client';
 import { useUser } from '@/state/user/user.context';
+import normalizeNameInput from '@/utils/normalizeNameInput';
 
 const SAVE_ERROR_MESSAGE = 'We could not save your changes. Please try again.';
 
@@ -21,6 +22,17 @@ export const useSettings = () => {
   }, [user?.id, user?.surName]);
 
   const surNameIsDirty = surNameDraft.trim() !== (user?.surName ?? '');
+
+  // A surname obeys the same rules as a name typed into the list — same
+  // characters, same length — because it is shown alongside them. Applied here
+  // rather than in SettingsRow, which is a generic field and should not know
+  // what its value means.
+  //
+  // The effect above stays raw on purpose: it carries the server's value, and
+  // normalizing there would silently edit what the user already saved.
+  const changeSurNameDraft = (value: string) => {
+    setSurNameDraft(normalizeNameInput(value));
+  };
 
   const refreshUser = async () => {
     const { user: refreshedUser } = await userApi.v1UserGet();
@@ -50,7 +62,7 @@ export const useSettings = () => {
     user,
     userProviderLoaded,
     surNameDraft,
-    setSurNameDraft,
+    changeSurNameDraft,
     surNameIsDirty,
     pending,
     errorMessage,
