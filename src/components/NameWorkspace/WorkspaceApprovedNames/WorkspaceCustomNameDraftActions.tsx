@@ -12,18 +12,11 @@ type Props = {
 const WorkspaceCustomNameDraftActions = ({ canSaveCustomName, onCancel, onSave }: Props) => {
   return (
     <div className="workspace-custom-name-draft-drawer" data-can-save={canSaveCustomName}>
+      <div className="workspace-custom-name-draft-save">
+        <NameChipAction icon={<CheckIcon />} label="Save custom name" onClick={onSave} size="large" fill="primary" disabled={!canSaveCustomName} />
+      </div>
       <div className="workspace-custom-name-draft-cancel">
         <NameChipAction icon={<CloseIcon />} label="Cancel custom name" onClick={onCancel} size="large" fill="secondary" />
-      </div>
-      <div className="workspace-custom-name-draft-save">
-        <NameChipAction
-          icon={<CheckIcon />}
-          label="Save custom name"
-          onClick={onSave}
-          size="large"
-          fill="primary"
-          disabled={!canSaveCustomName}
-        />
       </div>
     </div>
   );

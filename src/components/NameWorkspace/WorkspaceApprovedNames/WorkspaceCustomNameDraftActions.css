@@ -7,26 +7,39 @@
   display: flex;
 }
 
-/* Cancel is always out and sits above save, so save can hide by sitting exactly
-   underneath it rather than by being clipped. */
+/* Save takes the slot nearest the name, so the two read in the order they are
+   reached: finish the name, then keep it.
+
+   That makes cancel the one that travels. It is always out, and when there is
+   nothing to save it pulls in over save's slot to hug the chip, sliding back
+   out as save arrives.
+
+   Save paints above cancel because each action tucks its own flat left end
+   under whatever precedes it — see the negative margin in NameChipAction. Save
+   comes first, so it has to cover cancel's flat end rather than be covered by
+   it. It hides by going transparent, and a transparent element paints nothing,
+   so it does not need to be underneath anything to disappear. */
 .workspace-custom-name-draft-cancel {
   position: relative;
-  z-index: 1;
+  z-index: 0;
+  transform: translateX(-100%);
+  transition: transform var(--motion-duration-180) var(--motion-ease-out);
 }
 
 .workspace-custom-name-draft-save {
   position: relative;
-  z-index: 0;
-  transform: translateX(-100%);
+  z-index: 1;
   opacity: 0;
-  /* The fade is the shorter of the two on purpose: it resolves before the slide
-     finishes, so the action does not smear as it travels. */
-  transition:
-    opacity var(--motion-duration-120) var(--motion-ease-out),
-    transform var(--motion-duration-180) var(--motion-ease-out);
+  /* Shorter than cancel's slide on purpose: it resolves before cancel has
+     finished clearing the slot, so save is already solid by the time it is
+     uncovered. */
+  transition: opacity var(--motion-duration-120) var(--motion-ease-out);
+}
+
+.workspace-custom-name-draft-drawer[data-can-save='true'] .workspace-custom-name-draft-cancel {
+  transform: translateX(0);
 }
 
 .workspace-custom-name-draft-drawer[data-can-save='true'] .workspace-custom-name-draft-save {
-  transform: translateX(0);
   opacity: 1;
 }

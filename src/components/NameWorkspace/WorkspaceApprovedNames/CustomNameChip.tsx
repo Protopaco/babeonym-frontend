@@ -19,7 +19,9 @@ const CustomNameChip = ({ onClose }: Props) => {
   const chipState = saving ? 'saving' : errorMessage ? 'invalid' : 'default';
 
   return (
-    <motion.li className="custom-name-chip" layout initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+    // A div, not an li. WorkspaceCustomNameDraftItem is the list item; this is
+    // the control inside it, and nesting one li in another is invalid HTML.
+    <motion.div className="custom-name-chip" layout initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
       <BaseNameChip size="large" state={chipState}>
         <input
           ref={inputRef}
@@ -40,7 +42,7 @@ const CustomNameChip = ({ onClose }: Props) => {
           {errorMessage}
         </Typography>
       ) : null}
-    </motion.li>
+    </motion.div>
   );
 };
 
