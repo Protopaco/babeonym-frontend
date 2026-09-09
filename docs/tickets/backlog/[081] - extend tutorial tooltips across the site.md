@@ -6,7 +6,7 @@ Backlog
 
 ## Summary
 
-Apply tutorial tooltips to the eight controls listed below. The mechanism is
+Apply tutorial tooltips to the nine controls listed below. The mechanism is
 built and proven, but it is deployed on two controls, both in the name
 generator.
 
@@ -35,7 +35,7 @@ what its label says fails all three, and gets nothing.
 
 ## Requirements
 
-Eight controls, each with the copy below. Copy says why the control matters, not
+Nine controls, each with the copy below. Copy says why the control matters, not
 what it is named, and is short enough to sit in the pill.
 
 | Control | Copy | Why it qualifies |
@@ -48,12 +48,13 @@ what it is named, and is short enough to sit in the pill.
 | Delete name drawer | Takes it off your list for good | Hidden behind a hover drawer, and irreversible. |
 | Add (+) | Add a name the generator hasn't shown you | Unlabelled. Nothing says you can enter a name yourself. |
 | Compare name chips | Pick the one you like better | The gesture is stated nowhere — nothing says the chip is the vote. |
+| Settings back link | Back to your names | Unlabelled, and an arrow cannot say where it lands. Built under [089]. |
 
-Two of these are already live and only need to be left alone: the candidate name
-and Snooze.
+Three of these are already live and only need to be left alone: the candidate
+name, Snooze, and the settings back link.
 
-All eight sit on the two screens a new user actually lands on, which is where a
-tutorial is worth having.
+All but the back link sit on the two screens a new user actually lands on, which
+is where a tutorial is worth having.
 
 Also required:
 
@@ -108,7 +109,7 @@ not required.
 
 ## Acceptance Criteria
 
-- The eight controls above have tutorial coverage, working on desktop and on
+- The nine controls above have tutorial coverage, working on desktop and on
   touch.
 - Copy matches the table, or the change is recorded here.
 - Tutorial off is visually identical to today.
