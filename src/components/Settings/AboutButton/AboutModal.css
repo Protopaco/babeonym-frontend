@@ -1,0 +1,21 @@
+/* Matches the other modals' body copy, which all reset the Typography margin
+   and take the primary text colour. */
+.about-modal-copy.MuiTypography-root {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+/* The name and the address sit tight together as one signature. BaseModal's
+   content already puts 12px between its children, so this only has to close the
+   gap within the block. */
+.about-modal-credit {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--color-text-primary);
+}
+
+.about-modal-email.MuiLink-root {
+  align-self: flex-start;
+  color: var(--color-primary);
+}

@@ -38,6 +38,24 @@
   justify-content: space-around;
 }
 
+/* Both footer buttons on one row, and the page owns it rather than either of
+   them — Settings is the only place these buttons appear.
+
+   space-between rather than centring so About keeps the left edge whether or
+   not Delete Account is beside it: Delete renders nothing for an anonymous
+   user, and a centred row would move About when they sign in. */
+.settings-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--settings-column-width);
+  border-top: 1px solid var(--color-border);
+  padding: 12px;
+}
+
 @media (--mobile) {
   .settings {
     padding: 16px;

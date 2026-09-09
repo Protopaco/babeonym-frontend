@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import PageBackLink from '@/components/Shared/PageBackLink/PageBackLink';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
+import AboutButton from '@/components/Settings/AboutButton/AboutButton';
 import DeleteAccountButton from '@/components/Settings/DeleteAccountButton/DeleteAccountButton';
 import SettingsRow from '@/components/Settings/SettingsRow/SettingsRow';
 import ThemePicker from '@/components/Settings/ThemePicker/ThemePicker';
@@ -31,7 +32,10 @@ const Settings = () => {
           errorMessage={errorMessage}
         />
       </Box>
-      <DeleteAccountButton />
+      <Box className="settings-footer">
+        <AboutButton />
+        <DeleteAccountButton />
+      </Box>
     </Box>
   );
 };

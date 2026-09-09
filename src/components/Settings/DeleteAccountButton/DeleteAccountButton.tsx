@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Box from '@mui/material/Box';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import DeleteAccountDialog from '@/components/Settings/DeleteAccountButton/DeleteAccountDialog';
 import { useDeleteAccount } from '@/components/Settings/DeleteAccountButton/useDeleteAccount';
@@ -32,11 +31,12 @@ const DeleteAccountButton = () => {
     deleteAccount();
   };
 
+  // Just the button and its dialog. Settings owns the row it sits in.
   return (
-    <Box className="delete-account-button">
+    <>
       <PrimaryTextButton text="Delete Account" size="compact-wide" tone="danger" onClick={openConfirm} />
       <DeleteAccountDialog open={confirmOpen} onClose={closeConfirm} onConfirm={confirmDelete} />
-    </Box>
+    </>
   );
 };
 
