@@ -1,12 +1,15 @@
-#main {
-  position: static;
-  width: 100vw;
-  padding-top: var(--height-header);
-  height: 100vh;
+/* The app shell. A column so the header can sit in flow above the page and the
+   page can take whatever is left, rather than the page being told how tall the
+   header is — see Header.css for why it is no longer told. */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-@media (--mobile) {
-  #main {
-    padding-top: var(--height-header-mobile);
-  }
+#main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
 }

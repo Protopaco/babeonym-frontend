@@ -70,7 +70,9 @@ export default ({
             '--height-filter-chip-row': '40px',
             '--bottom-floating-tutorial-icon-mobile': 'calc(var(--height-filter-drawer-closed) + 15px)',
 
-            '--height-header': '124px',
+            // No --height-header. The header sits in flow and the page clears
+            // it on its own — see Header.css. This one is the mobile bar's own
+            // height, not a clearance the page has to reserve.
             '--height-header-mobile': '96px',
             '--height-control': '56px',
 

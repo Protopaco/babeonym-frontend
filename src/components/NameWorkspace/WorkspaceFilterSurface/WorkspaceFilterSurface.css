@@ -1,6 +1,11 @@
 /* The collapsed band is the floor, not a separate state: the surface is never
    shorter than this, and the filter rows animate on top of it. */
+/* Relative so the open filter drawer can hang from it. It has to be this
+   element rather than anything nearer the drawer: the reveal below clips, and
+   clipping reaches any absolutely positioned descendant whose containing block
+   is inside it. */
 .workspace-filter-surface {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   min-height: 21px;

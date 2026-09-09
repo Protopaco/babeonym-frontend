@@ -83,7 +83,13 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
                   onChange={setDraftFilters.languages}
                 />
               </div>
-              <WorkspaceFilterActions isOpen={isOpen} onClose={handleCloseFilters} onSetFilters={handleSetFilters} disabled={!hasDraftFilters} />
+              <WorkspaceFilterActions
+                isOpen={isOpen}
+                onClearAll={clearDraftFilters}
+                onClose={handleCloseFilters}
+                onSetFilters={handleSetFilters}
+                disabled={!hasDraftFilters}
+              />
             </div>
           </motion.div>
         )}

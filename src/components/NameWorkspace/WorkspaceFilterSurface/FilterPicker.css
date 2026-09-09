@@ -10,6 +10,20 @@
   grid-template-rows: minmax(0, 1fr) 80px;
 }
 
+/* The three boxes below — the search field, the option list and the selected
+   chips — all take the page's background rather than staying transparent. The
+   selector row is --color-secondary, so untinted controls picked it up and the
+   whole panel read as one wash of colour with only faint borders inside it.
+   Filled, the row becomes a mat and the controls sit on it. */
+/* 12px inside the frame's 20px. The app already speaks in those two radii —
+   20 is the modal and the default button, 12 the compact one — and 20 less the
+   frame's 6px of padding wants roughly 14, so the two nest rather than sitting
+   at odds. */
+.filter-picker-search .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background: var(--color-background);
+}
+
 .filter-picker-search .MuiInputLabel-root,
 .filter-picker-search .MuiInputBase-input {
   color: var(--color-primary);
@@ -20,10 +34,26 @@
   border-color: var(--color-primary-edge);
 }
 
-.filter-picker-options {
+/* The box. It holds the border, the radius and the fill, and its padding is
+   what holds the scrolling child clear of the corners — see the comment in
+   FilterPicker.tsx. */
+.filter-picker-options,
+.filter-picker-selected {
+  box-sizing: border-box;
+  min-height: 0;
+  display: flex;
+  border: 1px solid var(--color-primary-edge);
+  border-radius: 12px;
+  background: var(--color-background);
+  padding: 6px;
+}
+
+/* The scroller. Fills the box, and its scrollbar lands 6px in from the rounded
+   edge rather than under it. */
+.filter-picker-options-list {
+  flex: 1;
   min-height: 0;
   overflow: auto;
-  border: 1px solid var(--color-primary-edge);
   padding: 0;
 }
 
@@ -36,37 +66,22 @@
   font-size: 1rem;
 }
 
-.filter-picker-selected {
-  min-height: 0;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: 4px;
-}
-
-.filter-picker-selected-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.filter-picker-selected-label,
-.filter-picker-selected-label.MuiTypography-root {
+/* Dimmed rather than given a colour of its own, because there is no dim-primary
+   token and --color-primary-edge at 20% is too faint to read as text. */
+.filter-picker-selected-placeholder,
+.filter-picker-selected-placeholder.MuiTypography-root {
   color: var(--color-primary);
+  opacity: 0.5;
   font-size: 1rem;
 }
 
-.filter-picker-clear.MuiButton-root {
-  color: var(--color-primary);
-  font-size: 0.6rem;
-  min-width: 0;
-  padding: 0 4px;
-}
-
+/* The chip box's scroller, matching the option list's. */
 .filter-picker-selected-list {
+  flex: 1;
   min-height: 0;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   gap: 4px;
   overflow-y: auto;
 }

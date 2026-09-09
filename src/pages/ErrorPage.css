@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  min-height: calc(100vh - var(--height-header));
+  flex: 1;
   width: 100%;
   padding: 24px;
   text-align: center;
@@ -21,10 +21,4 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-}
-
-@media (--mobile) {
-  .error-page {
-    min-height: calc(100vh - var(--height-header-mobile));
-  }
 }

@@ -1,4 +1,7 @@
+/* Holds its width instead of compressing, so the row it sits in scrolls when it
+   runs out of space rather than squeezing every chip narrower. */
 .workspace-applied-filter-chip.MuiChip-root {
+  flex-shrink: 0;
   width: 100%;
   max-width: 180px;
   justify-content: space-between;

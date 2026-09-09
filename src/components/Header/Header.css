@@ -1,7 +1,19 @@
+/* Sticky rather than fixed, and no height of its own.
+
+   Sticky keeps it pinned while still occupying space in flow, so the page
+   clears it by itself — at any width, on any route, whatever the filter surface
+   is doing. Fixed took it out of flow, which meant the page had to be told the
+   header's height, and the single number it was told was wrong on every route:
+   short on the desktop workspace, shorter on settings, and short enough on a
+   tablet that the header sat over the top of the page.
+
+   The open filter drawer is out of flow (see WorkspaceFilterLayout.css), so
+   opening it still overlays the page rather than pushing it down. */
 #header {
-  position: fixed;
+  position: sticky;
+  top: 0;
   z-index: 1200;
+  box-sizing: border-box;
   width: 100%;
-  height: var(--height-header);
   padding: 2px;
 }

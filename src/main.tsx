@@ -14,13 +14,13 @@ import { TutorialProvider } from '@/state/tutorial/tutorial.provider';
 import { AppLayoutStateProvider } from '@/state/appLayoutState/appLayoutState.provider';
 
 import { themeRegistry } from './themes/themeRegistry';
-import type { ThemeId } from '@/models/ThemeId';
+import useStoredThemeId from '@/themes/useStoredThemeId';
 
 const AppShell = () => {
   const { state } = useUser();
 
-  const storedTheme: ThemeId = (state.user?.theme as ThemeId) ?? 'light';
-  const theme = themeRegistry[storedTheme] ?? themeRegistry.light;
+  const themeId = useStoredThemeId(state.user?.theme);
+  const theme = themeRegistry[themeId];
 
   return (
     <ThemeProvider theme={theme}>

@@ -12,12 +12,17 @@
   font-weight: 400;
 }
 
+/* The frame. Its padding and the gaps between the boxes inside it are the only
+   parts of it you see, so the colour here is what separates a column from the
+   panel behind it. Secondary made the whole panel one wash — the frame, the mat
+   it sat on and the untinted controls were all the same colour. */
 .filter-column-selector {
   box-sizing: border-box;
   min-width: 0;
   min-height: 72px;
   display: grid;
   border: 1px solid var(--color-primary-edge);
-  background: var(--color-secondary);
+  border-radius: 20px;
+  background: var(--color-primary);
   padding: 6px;
 }

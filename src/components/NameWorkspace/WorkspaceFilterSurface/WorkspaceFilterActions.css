@@ -5,7 +5,23 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  gap: 12px;
   padding: 0;
+}
+
+/* Stacked on desktop, where the actions sit in a column of their own beside the
+   filters. Side by side they shared that column's width with a gap between
+   them, which was enough to wrap "Set Filters" onto two lines; stacked, each
+   gets the whole width back.
+
+   Below desktop the actions run under the filters rather than beside them, so
+   there is room for the two to sit in a row. */
+@media (--desktop) {
+  .workspace-filter-actions {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }
 
 .workspace-filter-actions-close.MuiIconButton-root {

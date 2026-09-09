@@ -1,6 +1,16 @@
+/* The top margin is the space between the header and the tabs. It was written
+   against --spacing-xl and --spacing-lg, which are defined nowhere — an
+   undefined custom property throws away the whole declaration, so this has been
+   rendering with no margin at all and the tabs have been sitting flush against
+   the filter bar.
+
+   Literal values rather than tokens because this is the only component that
+   ever asked for a spacing scale, and nobody has designed one. 14px at the
+   bottom matches SectionHeader's own bottom margin, so the rule under the tabs
+   keeps its relationship to what follows. */
 .workspace-mode-header {
   width: 100%;
-  margin: var(--spacing-xl) 0 var(--spacing-lg);
+  margin: 24px 0 14px;
 }
 
 /* Font size is stated rather than inherited because the two buttons sit in
@@ -70,7 +80,7 @@
      what the generator frame and the name list already use, so the tabs, the
      rule under them and Your Names share an edge. */
   .workspace-mode-header {
-    margin: var(--spacing-lg) 0 var(--spacing-md);
+    margin: 16px 0 8px;
     padding: 0 32px;
   }
 

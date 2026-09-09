@@ -34,8 +34,22 @@
 }
 
 /* Clips the selector row while its height is animating, so the row's own
-   padding collapses with it instead of leaving a band behind when closed. */
+   padding collapses with it instead of leaving a band behind when closed.
+
+   Out of flow, hanging below the summary row rather than sitting under it, so
+   the header keeps its resting height and opening the drawer overlays the page
+   instead of pushing it down.
+
+   Its containing block is .workspace-filter-surface, deliberately — see the
+   position: relative there. Hung from anything inside
+   .workspace-filter-surface-reveal it would be clipped away entirely, because
+   an overflow: hidden ancestor still clips an absolutely positioned element
+   whose containing block sits inside it. */
 .workspace-filter-layout-selector-reveal {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
   overflow: hidden;
 }
 
@@ -46,19 +60,41 @@
   gap: 12px;
 }
 
-/* Tablet halves the filter columns and stacks the rows. Written as
+/* Tablet halves the filter columns and stacks the selector row. Written as
    --below-desktop rather than --tablet because these rules also apply on
-   mobile, where the whole surface is hidden by the block underneath. */
+   mobile, where the whole surface is hidden by the block underneath.
+
+   The summary row is deliberately left alone. Stacked, it put an empty chips
+   row and a 16px gap under the toggle, so the bar stood at about 64px with a
+   36px button floating at the top of it. Side by side the bar is its 42px
+   minimum and the toggle fills it. */
 @media (--below-desktop) {
-  .workspace-filter-layout-summary-row,
+  .workspace-filter-layout-summary-row {
+    padding: 12px 20px;
+  }
+
   .workspace-filter-layout-selector-row {
     grid-template-columns: 1fr;
     padding: 12px 20px;
   }
 
+  /* Scrolls sideways rather than wrapping. Wrapped, every extra filter added a
+     row to the bar and pushed the page down with it; scrolling keeps the bar one
+     row tall however many are applied.
+
+     The scrollbar is hidden rather than styled: a horizontal bar across the
+     purple strip reads as a mistake, this width is a touch device where swiping
+     is the expected gesture, and a chip cut off at the edge is the affordance.
+
+     Only tablet in practice — the whole layout is display: none on mobile. */
   .workspace-filter-layout-applied-chips {
-    flex-wrap: wrap;
-    overflow: visible;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .workspace-filter-layout-applied-chips::-webkit-scrollbar {
+    display: none;
   }
 
   .workspace-filter-layout-columns {

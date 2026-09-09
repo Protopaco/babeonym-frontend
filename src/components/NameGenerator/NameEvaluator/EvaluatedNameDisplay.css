@@ -1,6 +1,7 @@
 .evaluated-name-display {
   position: relative;
   width: 100%;
+  cursor: default;
 }
 
 .evaluated-name-display-slot {

@@ -1,5 +1,4 @@
 import CancelIcon from '@mui/icons-material/Cancel';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -27,9 +26,7 @@ const FilterPicker = ({ ariaLabel, options, searchLabel, searchable = true, sele
   const normalizedSearchValue = searchValue.trim().toLowerCase();
   const availableOptions = options.filter((option) => !selectedOptionIdSet.has(option.id));
   const displayOptions =
-    searchable && normalizedSearchValue
-      ? availableOptions.filter((option) => option.searchText.includes(normalizedSearchValue))
-      : availableOptions;
+    searchable && normalizedSearchValue ? availableOptions.filter((option) => option.searchText.includes(normalizedSearchValue)) : availableOptions;
   const selectedOptions = options.filter((option) => selectedOptionIdSet.has(option.id));
 
   const toggleOption = (optionId: number) => {
@@ -68,24 +65,40 @@ const FilterPicker = ({ ariaLabel, options, searchLabel, searchable = true, sele
           }}
         />
       )}
-      <List className="filter-picker-options themed-scrollbar" aria-label={ariaLabel}>
-        {displayOptions.map((option) => (
-          <ListItemButton className="filter-picker-option" key={option.id} onClick={() => toggleOption(option.id)}>
-            <ListItemText primary={option.label} />
-          </ListItemButton>
-        ))}
-      </List>
-      <div className="filter-picker-selected" aria-label="Selected filters">
-        <div className="filter-picker-selected-heading">
-          <Typography className="filter-picker-selected-label">Selected</Typography>
-          <Button className="filter-picker-clear" onClick={() => onChange([])} disabled={selectedOptionIds.length === 0} size="small">
-            Clear All
-          </Button>
-        </div>
-        <div className="filter-picker-selected-list themed-scrollbar">
-          {selectedOptions.map((option) => (
-            <Chip className="filter-picker-selected-chip" key={option.id} label={option.label} onDelete={() => toggleOption(option.id)} size="small" />
+      {/* The box and the thing that scrolls are separate elements on purpose.
+          The box carries the border, the radius and the fill; the child inside
+          it does the scrolling, so its scrollbar sits in from the border box and
+          never reaches the rounded corners to be clipped by them. Doing it this
+          way rather than by styling the scrollbar is what makes Firefox behave
+          like the others, since ::-webkit-scrollbar does nothing there. */}
+      <div className="filter-picker-options">
+        <List className="filter-picker-options-list themed-scrollbar" aria-label={ariaLabel}>
+          {displayOptions.map((option) => (
+            <ListItemButton className="filter-picker-option" key={option.id} onClick={() => toggleOption(option.id)}>
+              <ListItemText primary={option.label} />
+            </ListItemButton>
           ))}
+        </List>
+      </div>
+      {/* The word sits inside the box as a placeholder rather than above it as a
+          heading. As a heading it needed a row of its own on the frame, and that
+          row was a band of primary across the middle of every column — heavier
+          than the 6px the frame shows anywhere else. */}
+      <div className="filter-picker-selected">
+        <div className="filter-picker-selected-list themed-scrollbar" aria-label="Selected filters">
+          {selectedOptions.length === 0 ? (
+            <Typography className="filter-picker-selected-placeholder">Selected</Typography>
+          ) : (
+            selectedOptions.map((option) => (
+              <Chip
+                className="filter-picker-selected-chip"
+                key={option.id}
+                label={option.label}
+                onDelete={() => toggleOption(option.id)}
+                size="small"
+              />
+            ))
+          )}
         </div>
       </div>
     </div>

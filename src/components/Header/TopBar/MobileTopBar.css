@@ -3,12 +3,10 @@
 }
 
 @media (--mobile) {
+  /* In flow. #header is sticky and does the pinning, so taking this out of
+     flow would leave the header measuring nothing and the bar covering the top
+     of the page. */
   #mobile-top-bar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1200;
     height: var(--height-header-mobile);
     background: var(--color-primary);
     display: flex;
