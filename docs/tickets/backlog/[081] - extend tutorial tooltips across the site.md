@@ -71,7 +71,7 @@ likely to be read together.
 | Control | Copy |
 |---|---|
 | Filters toggle (desktop) | Narrows the names you're shown |
-| Category buttons in the mobile tray | Narrows the names you're shown |
+| Mobile filter tray (the button row) | Narrows the names you're shown |
 
 ### Header and Settings
 
@@ -133,8 +133,14 @@ likely to be read together.
 - **The theme picker is hinted on its label**, not its four swatches.
 - **`TutorialTooltip` wraps its child in spans**, which become the flex item in
   place of the control. Where that matters, the unhinted case is rendered bare
-  rather than wrapped with an empty title. The mobile filter tray is the
-  tightest place this happens — its four buttons use 320 of 328px at 360 wide.
+  rather than wrapped with an empty title.
+- **The mobile filter tray is hinted on its button row**, not on each button and
+  not on the tray. Wrapped individually, the buttons stopped shrinking — a span
+  in place of a button keeps `min-width: auto` — and at a narrow width LANGUAGE
+  ran off the screen. The tray itself is `position: fixed`, so a span around it
+  has nothing in flow to measure and the bubble would anchor to the wrong place.
+  The applied chips sit outside the hint, so their delete buttons act on the
+  first tap.
 - `BaseTooltip` takes an optional `open` and disables its own listeners when it
   is supplied.
 - Tooltips are Popper-rendered into a portal, so an ancestor's `overflow:
