@@ -16,11 +16,19 @@ type Props = {
 export default ({ approveClick, disabled, rejectClick, snoozeClick }: Props) => {
   return (
     <Box className="name-evaluation-actions">
-      <PrimaryIconButton icon={<ThumbUpIcon />} label="Approve name" onClick={approveClick} disabled={disabled} />
-      <TutorialTooltip title="Skip this name for now" placement="top">
+      {/* Save, later, never — one voice across the three, and the two that get
+          confused share a construction so the difference between them is the
+          words "later" and "Don't" rather than a tone. The moon in particular
+          says nothing on its own about the name coming back. */}
+      <TutorialTooltip title="Save this name" placement="top">
+        <PrimaryIconButton icon={<ThumbUpIcon />} label="Approve name" onClick={approveClick} disabled={disabled} />
+      </TutorialTooltip>
+      <TutorialTooltip title="Show it again later" placement="top">
         <PrimaryIconButton icon={<BedtimeIcon />} label="Snooze name" onClick={snoozeClick} disabled={disabled} />
       </TutorialTooltip>
-      <PrimaryIconButton icon={<ThumbDownIcon />} label="Reject name" onClick={rejectClick} disabled={disabled} />
+      <TutorialTooltip title="Don't show it again" placement="top">
+        <PrimaryIconButton icon={<ThumbDownIcon />} label="Reject name" onClick={rejectClick} disabled={disabled} />
+      </TutorialTooltip>
     </Box>
   );
 };

@@ -3,6 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { themeOptions } from '@/themes/themeOptions';
 import { useThemePicker } from '@/components/Settings/ThemePicker/useThemePicker';
+import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import './ThemePicker.css';
 
 export default () => {
@@ -10,9 +11,14 @@ export default () => {
 
   return (
     <Box className="theme-picker">
-      <Typography variant="body2" className="theme-picker-label">
-        Theme
-      </Typography>
+      {/* On the label rather than the swatches. There are four of them and a
+          tooltip stays open on a coarse pointer, so hinting each would put four
+          bubbles over one row. */}
+      <TutorialTooltip title="Changes the color scheme" placement="right">
+        <Typography variant="body2" className="theme-picker-label">
+          Theme
+        </Typography>
+      </TutorialTooltip>
       <Box className="theme-picker-swatches">
         {themeOptions.map(({ id, label }) => (
           <IconButton

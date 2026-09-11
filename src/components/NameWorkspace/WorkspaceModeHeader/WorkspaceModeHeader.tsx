@@ -1,5 +1,6 @@
 import BaseTooltip from '@/components/Shared/BaseTooltip/BaseTooltip';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
+import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import { motion } from 'motion/react';
 import motionTokens from '@/themes/motion.theme';
 import './WorkspaceModeHeader.css';
@@ -35,30 +36,47 @@ const WorkspaceModeHeader = ({ activeMode, canCompareNames, onAddModeClick, onCo
     />
   );
 
+  // The span is what a tooltip listens on: a disabled button fires no pointer
+  // events of its own.
+  const compareTab = (
+    <span className="workspace-mode-header-tooltip-target">
+      <button
+        className="workspace-mode-header-button"
+        data-active={activeMode === 'compare'}
+        disabled={compareTabDisabled}
+        onClick={onCompareModeClick}
+        type="button"
+      >
+        {activeMode === 'compare' ? activePill : null}
+        <span className="workspace-mode-header-label">Compare Names</span>
+      </button>
+    </span>
+  );
+
   return (
     <div className="workspace-mode-header">
       <SectionHeader
         title={
-          <button className="workspace-mode-header-button" data-active={activeMode === 'add'} onClick={onAddModeClick} type="button">
-            {activeMode === 'add' ? activePill : null}
-            <span className="workspace-mode-header-label">Name Generator</span>
-          </button>
+          <TutorialTooltip title="Find new names" placement="bottom">
+            <button className="workspace-mode-header-button" data-active={activeMode === 'add'} onClick={onAddModeClick} type="button">
+              {activeMode === 'add' ? activePill : null}
+              <span className="workspace-mode-header-label">Name Generator</span>
+            </button>
+          </TutorialTooltip>
         }
         action={
-          <BaseTooltip title={compareTabDisabled ? 'Add at least 2 names to compare.' : ''} placement="top">
-            <span className="workspace-mode-header-tooltip-target">
-              <button
-                className="workspace-mode-header-button"
-                data-active={activeMode === 'compare'}
-                disabled={compareTabDisabled}
-                onClick={onCompareModeClick}
-                type="button"
-              >
-                {activeMode === 'compare' ? activePill : null}
-                <span className="workspace-mode-header-label">Compare Names</span>
-              </button>
-            </span>
-          </BaseTooltip>
+          // One tooltip or the other, never both. Disabled, the tab owes an
+          // explanation whether or not the tutorial is on; enabled, there is
+          // nothing to explain and the tutorial's own hint takes the slot.
+          compareTabDisabled ? (
+            <BaseTooltip title="Add at least 2 names to compare." placement="top">
+              {compareTab}
+            </BaseTooltip>
+          ) : (
+            <TutorialTooltip title="Rank the ones you saved" placement="bottom">
+              {compareTab}
+            </TutorialTooltip>
+          )
         }
       />
     </div>
