@@ -24,6 +24,25 @@
   }
 }
 
+/* Nothing outside an input is selectable, and nothing outside an input shows
+   the text cursor. Scoped to body rather than #root so it reaches the dialogs,
+   tooltips and drawers MUI portals into document.body.
+
+   Selection is restored explicitly rather than left to inputs being exempt by
+   default: an inherited user-select: none can interfere with caret placement
+   and focus inside a field on iOS Safari. */
+body {
+  cursor: default;
+  user-select: none;
+}
+
+input,
+textarea,
+[contenteditable] {
+  cursor: text;
+  user-select: text;
+}
+
 .MuiTouchRipple-rippleVisible {
   color: var(--color-primary) !important;
 }

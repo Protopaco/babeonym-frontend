@@ -15,7 +15,15 @@
   color: var(--color-text-primary);
 }
 
-.about-modal-email.MuiLink-root {
+/* Placement only — the button owns how it looks. The row is content-width so
+   the button sits against the address rather than out at the modal's edge. */
+.about-modal-email-row {
+  display: flex;
+  align-items: center;
   align-self: flex-start;
+  gap: 4px;
+}
+
+.about-modal-email.MuiLink-root {
   color: var(--color-primary);
 }

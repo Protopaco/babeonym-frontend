@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import BaseModal from '@/components/Shared/BaseModal/BaseModal';
+import CopyEmailButton from '@/components/Settings/AboutButton/CopyEmailButton';
 import '@/components/Settings/AboutButton/AboutModal.css';
 
 // Forwards to Paul's own address, so if it ever attracts spam the forward
@@ -32,9 +33,14 @@ const AboutModal = ({ open, onClose }: Props) => {
           when the site exists. */}
       <Box className="about-modal-credit">
         <Typography variant="body1">Built by Paul Stevens</Typography>
-        <Link className="about-modal-email" href={`mailto:${CONTACT_EMAIL}`}>
-          {CONTACT_EMAIL}
-        </Link>
+        {/* The address is not selectable, so copying it is the only way to use
+            it without a mail app. */}
+        <Box className="about-modal-email-row">
+          <Link className="about-modal-email" href={`mailto:${CONTACT_EMAIL}`}>
+            {CONTACT_EMAIL}
+          </Link>
+          <CopyEmailButton email={CONTACT_EMAIL} />
+        </Box>
       </Box>
     </BaseModal>
   );

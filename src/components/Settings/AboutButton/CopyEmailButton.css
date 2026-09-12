@@ -1,0 +1,12 @@
+/* Sits beside the address rather than competing with it: the padding is the
+   same as the modal's close button, and the icon is stepped down from body
+   text so the address stays the thing being read. */
+.copy-email-button.MuiIconButton-root {
+  flex: 0 0 auto;
+  padding: 4px;
+  color: var(--color-primary);
+}
+
+.copy-email-button .MuiSvgIcon-root {
+  font-size: 18px;
+}
