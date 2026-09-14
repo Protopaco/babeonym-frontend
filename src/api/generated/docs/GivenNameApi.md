@@ -9,7 +9,6 @@ All URIs are relative to *http://localhost:2221*
 | [**v1GivenNameCandidates**](GivenNameApi.md#v1givennamecandidates) | **GET** /api/v1/givenName/candidates | Get given name candidates |
 | [**v1GivenNameCompare**](GivenNameApi.md#v1givennamecompareoperation) | **POST** /api/v1/givenName/compare | Compare two given names |
 | [**v1GivenNameCustom**](GivenNameApi.md#v1givennamecustomoperation) | **POST** /api/v1/givenName/custom | Add a custom given name |
-| [**v1GivenNameEtymology**](GivenNameApi.md#v1givennameetymology) | **GET** /api/v1/givenName/etymology/{givenCustomNameBridgeId} | Get given name etymology |
 | [**v1GivenNameOrder**](GivenNameApi.md#v1givennameorderoperation) | **POST** /api/v1/givenName/order | Set the order of the user\&#39;s approved given names |
 | [**v1GivenNameSearch**](GivenNameApi.md#v1givennamesearch) | **GET** /api/v1/givenName/search | Search given names |
 
@@ -78,7 +77,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The user\&#39;s approved given names after the action |  -  |
-| **400** | Invalid request parameters |  -  |
+| **400** | Invalid request parameters, or the account already holds the maximum number of approved given names |  -  |
 | **401** | Not authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -146,7 +145,7 @@ No authorization required
 
 ## v1GivenNameCandidates
 
-> Array&lt;GivenName&gt; v1GivenNameCandidates(popularity, genderIds, decadeIds, languageIds, cultureIds, limit, excludeBridgeIds, include)
+> Array&lt;GivenName&gt; v1GivenNameCandidates(genderIds, decadeIds, languageIds, cultureIds, limit, excludeBridgeIds)
 
 Get given name candidates
 
@@ -166,8 +165,6 @@ async function example() {
   const api = new GivenNameApi();
 
   const body = {
-    // number | Popularity percentile target from 0.0 to 1.0. (optional)
-    popularity: 8.14,
     // string | Comma-separated list of gender IDs. (optional)
     genderIds: 2,3,
     // string | Comma-separated list of decade IDs. (optional)
@@ -180,8 +177,6 @@ async function example() {
     limit: 56,
     // string | Comma-separated list of given custom name bridge IDs the caller already holds. Used to top up a partly full queue without being handed the same names back.  (optional)
     excludeBridgeIds: 12,48,93,
-    // string | Comma-separated include options. (optional)
-    include: meta,
   } satisfies V1GivenNameCandidatesRequest;
 
   try {
@@ -201,14 +196,12 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **popularity** | `number` | Popularity percentile target from 0.0 to 1.0. | [Optional] [Defaults to `undefined`] |
 | **genderIds** | `string` | Comma-separated list of gender IDs. | [Optional] [Defaults to `undefined`] |
 | **decadeIds** | `string` | Comma-separated list of decade IDs. | [Optional] [Defaults to `undefined`] |
 | **languageIds** | `string` | Comma-separated list of language IDs. | [Optional] [Defaults to `undefined`] |
 | **cultureIds** | `string` | Comma-separated list of culture IDs. | [Optional] [Defaults to `undefined`] |
 | **limit** | `number` | Maximum number of results. | [Optional] [Defaults to `undefined`] |
 | **excludeBridgeIds** | `string` | Comma-separated list of given custom name bridge IDs the caller already holds. Used to top up a partly full queue without being handed the same names back.  | [Optional] [Defaults to `undefined`] |
-| **include** | `string` | Comma-separated include options. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -365,76 +358,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The user\&#39;s approved given names after the custom name is added |  -  |
-| **400** | Invalid or inappropriate custom given name |  -  |
-| **401** | Not authenticated |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## v1GivenNameEtymology
-
-> Etymology v1GivenNameEtymology(givenCustomNameBridgeId)
-
-Get given name etymology
-
-Returns etymology information for a specific given name.
-
-### Example
-
-```ts
-import {
-  Configuration,
-  GivenNameApi,
-} from '';
-import type { V1GivenNameEtymologyRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new GivenNameApi();
-
-  const body = {
-    // number | ID of the given name
-    givenCustomNameBridgeId: 56,
-  } satisfies V1GivenNameEtymologyRequest;
-
-  try {
-    const data = await api.v1GivenNameEtymology(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **givenCustomNameBridgeId** | `number` | ID of the given name | [Defaults to `undefined`] |
-
-### Return type
-
-[**Etymology**](Etymology.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Etymology data |  -  |
-| **400** | Invalid givenCustomNameBridgeId |  -  |
+| **400** | Invalid or inappropriate custom given name, or the account already holds the maximum number of approved given names |  -  |
 | **401** | Not authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

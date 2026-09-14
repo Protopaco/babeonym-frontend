@@ -43,16 +43,10 @@ import {
 export interface Etymology {
     /**
      * 
-     * @type {number}
+     * @type {Array<EtymologyMeaning>}
      * @memberof Etymology
      */
-    givenCustomNameBridgeId: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Etymology
-     */
-    givenName: string;
+    meanings: Array<EtymologyMeaning>;
     /**
      * 
      * @type {Array<EtymologyLanguage>}
@@ -65,23 +59,15 @@ export interface Etymology {
      * @memberof Etymology
      */
     cultures: Array<EtymologyCulture>;
-    /**
-     * 
-     * @type {EtymologyMeaning}
-     * @memberof Etymology
-     */
-    meaning: EtymologyMeaning;
 }
 
 /**
  * Check if a given object implements the Etymology interface.
  */
 export function instanceOfEtymology(value: object): value is Etymology {
-    if (!('givenCustomNameBridgeId' in value) || value['givenCustomNameBridgeId'] === undefined) return false;
-    if (!('givenName' in value) || value['givenName'] === undefined) return false;
+    if (!('meanings' in value) || value['meanings'] === undefined) return false;
     if (!('languages' in value) || value['languages'] === undefined) return false;
     if (!('cultures' in value) || value['cultures'] === undefined) return false;
-    if (!('meaning' in value) || value['meaning'] === undefined) return false;
     return true;
 }
 
@@ -95,11 +81,9 @@ export function EtymologyFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'givenCustomNameBridgeId': json['givenCustomNameBridgeId'],
-        'givenName': json['givenName'],
+        'meanings': ((json['meanings'] as Array<any>).map(EtymologyMeaningFromJSON)),
         'languages': ((json['languages'] as Array<any>).map(EtymologyLanguageFromJSON)),
         'cultures': ((json['cultures'] as Array<any>).map(EtymologyCultureFromJSON)),
-        'meaning': EtymologyMeaningFromJSON(json['meaning']),
     };
 }
 
@@ -114,11 +98,9 @@ export function EtymologyToJSONTyped(value?: Etymology | null, ignoreDiscriminat
 
     return {
         
-        'givenCustomNameBridgeId': value['givenCustomNameBridgeId'],
-        'givenName': value['givenName'],
+        'meanings': ((value['meanings'] as Array<any>).map(EtymologyMeaningToJSON)),
         'languages': ((value['languages'] as Array<any>).map(EtymologyLanguageToJSON)),
         'cultures': ((value['cultures'] as Array<any>).map(EtymologyCultureToJSON)),
-        'meaning': EtymologyMeaningToJSON(value['meaning']),
     };
 }
 

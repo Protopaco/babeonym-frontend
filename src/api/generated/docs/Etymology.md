@@ -6,11 +6,9 @@
 
 Name | Type
 ------------ | -------------
-`givenCustomNameBridgeId` | number
-`givenName` | string
+`meanings` | [Array&lt;EtymologyMeaning&gt;](EtymologyMeaning.md)
 `languages` | [Array&lt;EtymologyLanguage&gt;](EtymologyLanguage.md)
 `cultures` | [Array&lt;EtymologyCulture&gt;](EtymologyCulture.md)
-`meaning` | [EtymologyMeaning](EtymologyMeaning.md)
 
 ## Example
 
@@ -19,11 +17,9 @@ import type { Etymology } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "givenCustomNameBridgeId": null,
-  "givenName": null,
+  "meanings": null,
   "languages": null,
   "cultures": null,
-  "meaning": null,
 } satisfies Etymology
 
 console.log(example)

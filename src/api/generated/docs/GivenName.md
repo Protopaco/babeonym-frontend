@@ -9,8 +9,8 @@ Name | Type
 `givenName` | string
 `givenCustomNameBridgeId` | number
 `rating` | number
-`percentile` | number
 `gender` | string
+`etymology` | [Etymology](Etymology.md)
 
 ## Example
 
@@ -22,8 +22,8 @@ const example = {
   "givenName": Oliver,
   "givenCustomNameBridgeId": 42,
   "rating": 1000,
-  "percentile": 92,
   "gender": male,
+  "etymology": null,
 } satisfies GivenName
 
 console.log(example)

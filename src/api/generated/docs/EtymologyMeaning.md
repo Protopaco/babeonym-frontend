@@ -6,10 +6,9 @@
 
 Name | Type
 ------------ | -------------
-`_short` | string
-`_long` | string
-`dateCreated` | Date
-`dateUpdated` | Date
+`id` | number
+`text` | string
+`language` | [EtymologyLanguage](EtymologyLanguage.md)
 
 ## Example
 
@@ -18,10 +17,9 @@ import type { EtymologyMeaning } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "_short": null,
-  "_long": null,
-  "dateCreated": null,
-  "dateUpdated": null,
+  "id": null,
+  "text": null,
+  "language": null,
 } satisfies EtymologyMeaning
 
 console.log(example)

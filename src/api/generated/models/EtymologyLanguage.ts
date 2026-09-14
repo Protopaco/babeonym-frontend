@@ -36,7 +36,7 @@ export interface EtymologyLanguage {
      * @type {string}
      * @memberof EtymologyLanguage
      */
-    flag: string | null;
+    flag: string;
 }
 
 /**

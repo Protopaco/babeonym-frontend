@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { EtymologyLanguage } from './EtymologyLanguage';
+import {
+    EtymologyLanguageFromJSON,
+    EtymologyLanguageFromJSONTyped,
+    EtymologyLanguageToJSON,
+    EtymologyLanguageToJSONTyped,
+} from './EtymologyLanguage';
+
 /**
  * 
  * @export
@@ -21,38 +29,31 @@ import { mapValues } from '../runtime';
 export interface EtymologyMeaning {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof EtymologyMeaning
      */
-    _short: string | null;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof EtymologyMeaning
      */
-    _long: string | null;
+    text: string;
     /**
      * 
-     * @type {Date}
+     * @type {EtymologyLanguage}
      * @memberof EtymologyMeaning
      */
-    dateCreated: Date | null;
-    /**
-     * 
-     * @type {Date}
-     * @memberof EtymologyMeaning
-     */
-    dateUpdated: Date | null;
+    language: EtymologyLanguage | null;
 }
 
 /**
  * Check if a given object implements the EtymologyMeaning interface.
  */
 export function instanceOfEtymologyMeaning(value: object): value is EtymologyMeaning {
-    if (!('_short' in value) || value['_short'] === undefined) return false;
-    if (!('_long' in value) || value['_long'] === undefined) return false;
-    if (!('dateCreated' in value) || value['dateCreated'] === undefined) return false;
-    if (!('dateUpdated' in value) || value['dateUpdated'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('text' in value) || value['text'] === undefined) return false;
+    if (!('language' in value) || value['language'] === undefined) return false;
     return true;
 }
 
@@ -66,10 +67,9 @@ export function EtymologyMeaningFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        '_short': json['short'],
-        '_long': json['long'],
-        'dateCreated': (json['dateCreated'] == null ? null : new Date(json['dateCreated'])),
-        'dateUpdated': (json['dateUpdated'] == null ? null : new Date(json['dateUpdated'])),
+        'id': json['id'],
+        'text': json['text'],
+        'language': EtymologyLanguageFromJSON(json['language']),
     };
 }
 
@@ -84,10 +84,9 @@ export function EtymologyMeaningToJSONTyped(value?: EtymologyMeaning | null, ign
 
     return {
         
-        'short': value['_short'],
-        'long': value['_long'],
-        'dateCreated': value['dateCreated'] == null ? value['dateCreated'] : value['dateCreated'].toISOString(),
-        'dateUpdated': value['dateUpdated'] == null ? value['dateUpdated'] : value['dateUpdated'].toISOString(),
+        'id': value['id'],
+        'text': value['text'],
+        'language': EtymologyLanguageToJSON(value['language']),
     };
 }
 

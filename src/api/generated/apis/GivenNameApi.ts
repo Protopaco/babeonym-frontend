@@ -16,7 +16,6 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  Etymology,
   GivenName,
   GivenNameMutationResponse,
   NotAuthenticatedResponse,
@@ -28,8 +27,6 @@ import type {
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    EtymologyFromJSON,
-    EtymologyToJSON,
     GivenNameFromJSON,
     GivenNameToJSON,
     GivenNameMutationResponseFromJSON,
@@ -51,14 +48,12 @@ export interface V1GivenNameActionOperationRequest {
 }
 
 export interface V1GivenNameCandidatesRequest {
-    popularity?: number;
     genderIds?: string;
     decadeIds?: string;
     languageIds?: string;
     cultureIds?: string;
     limit?: number;
     excludeBridgeIds?: string;
-    include?: string;
 }
 
 export interface V1GivenNameCompareOperationRequest {
@@ -67,10 +62,6 @@ export interface V1GivenNameCompareOperationRequest {
 
 export interface V1GivenNameCustomOperationRequest {
     v1GivenNameCustomRequest: V1GivenNameCustomRequest;
-}
-
-export interface V1GivenNameEtymologyRequest {
-    givenCustomNameBridgeId: number;
 }
 
 export interface V1GivenNameOrderOperationRequest {
@@ -181,10 +172,6 @@ export class GivenNameApi extends runtime.BaseAPI {
     async v1GivenNameCandidatesRequestOpts(requestParameters: V1GivenNameCandidatesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
-        if (requestParameters['popularity'] != null) {
-            queryParameters['popularity'] = requestParameters['popularity'];
-        }
-
         if (requestParameters['genderIds'] != null) {
             queryParameters['genderIds'] = requestParameters['genderIds'];
         }
@@ -207,10 +194,6 @@ export class GivenNameApi extends runtime.BaseAPI {
 
         if (requestParameters['excludeBridgeIds'] != null) {
             queryParameters['excludeBridgeIds'] = requestParameters['excludeBridgeIds'];
-        }
-
-        if (requestParameters['include'] != null) {
-            queryParameters['include'] = requestParameters['include'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -341,53 +324,6 @@ export class GivenNameApi extends runtime.BaseAPI {
      */
     async v1GivenNameCustom(requestParameters: V1GivenNameCustomOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GivenNameMutationResponse> {
         const response = await this.v1GivenNameCustomRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for v1GivenNameEtymology without sending the request
-     */
-    async v1GivenNameEtymologyRequestOpts(requestParameters: V1GivenNameEtymologyRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['givenCustomNameBridgeId'] == null) {
-            throw new runtime.RequiredError(
-                'givenCustomNameBridgeId',
-                'Required parameter "givenCustomNameBridgeId" was null or undefined when calling v1GivenNameEtymology().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/givenName/etymology/{givenCustomNameBridgeId}`;
-        urlPath = urlPath.replace(`{${"givenCustomNameBridgeId"}}`, encodeURIComponent(String(requestParameters['givenCustomNameBridgeId'])));
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     * Returns etymology information for a specific given name.
-     * Get given name etymology
-     */
-    async v1GivenNameEtymologyRaw(requestParameters: V1GivenNameEtymologyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Etymology>> {
-        const requestOptions = await this.v1GivenNameEtymologyRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => EtymologyFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns etymology information for a specific given name.
-     * Get given name etymology
-     */
-    async v1GivenNameEtymology(requestParameters: V1GivenNameEtymologyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Etymology> {
-        const response = await this.v1GivenNameEtymologyRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

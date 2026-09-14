@@ -69,6 +69,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Anonymous session created |  -  |
 | **400** | User is already authenticated |  -  |
+| **429** | Too many sessions created from this address |  -  |
 | **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

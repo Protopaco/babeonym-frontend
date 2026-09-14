@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Etymology } from './Etymology';
+import {
+    EtymologyFromJSON,
+    EtymologyFromJSONTyped,
+    EtymologyToJSON,
+    EtymologyToJSONTyped,
+} from './Etymology';
+
 /**
  * 
  * @export
@@ -38,17 +46,17 @@ export interface GivenName {
      */
     rating: number;
     /**
-     * 
-     * @type {number}
-     * @memberof GivenName
-     */
-    percentile?: number | null;
-    /**
      * Key of Gender enum
      * @type {string}
      * @memberof GivenName
      */
     gender?: string | null;
+    /**
+     * Null when the name has no meanings, languages or cultures.
+     * @type {Etymology}
+     * @memberof GivenName
+     */
+    etymology?: Etymology | null;
 }
 
 /**
@@ -74,8 +82,8 @@ export function GivenNameFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'givenName': json['givenName'],
         'givenCustomNameBridgeId': json['givenCustomNameBridgeId'],
         'rating': json['rating'],
-        'percentile': json['percentile'] == null ? undefined : json['percentile'],
         'gender': json['gender'] == null ? undefined : json['gender'],
+        'etymology': json['etymology'] == null ? undefined : EtymologyFromJSON(json['etymology']),
     };
 }
 
@@ -93,8 +101,8 @@ export function GivenNameToJSONTyped(value?: GivenName | null, ignoreDiscriminat
         'givenName': value['givenName'],
         'givenCustomNameBridgeId': value['givenCustomNameBridgeId'],
         'rating': value['rating'],
-        'percentile': value['percentile'],
         'gender': value['gender'],
+        'etymology': EtymologyToJSON(value['etymology']),
     };
 }
 
