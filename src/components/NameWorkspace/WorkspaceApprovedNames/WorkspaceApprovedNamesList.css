@@ -9,8 +9,10 @@
      same widths so their chips line up with the names. Only the name rows have a
      grip, so without a shared value the other two drift the moment this changes. */
   --workspace-name-grip-size: 24px;
-  /* Two digits, which is all a rank can reach under the approved name limit. */
-  --workspace-name-rank-width: 18px;
+  /* Two digits, which is all a rank can reach under the approved name limit. At
+     the rank's 1.4rem bold that is about 25px; narrower, and mobile's clipping
+     cuts the second digit off. */
+  --workspace-name-rank-width: 28px;
 
   /* The frame a collapsing draft chip is held in place against, once
      AnimatePresence lifts it out of the flow. */
