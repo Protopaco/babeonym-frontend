@@ -10,6 +10,7 @@ import { useGivenNames } from '@/state/givenName/givenName.provider';
 import { useSyncWorkspaceFilterParams } from '@/state/givenName/useSyncWorkspaceFilterParams';
 import { useWorkspaceMode } from '@/state/givenName/useWorkspaceMode';
 import { useEffect } from 'react';
+import { AnimatePresence } from 'motion/react';
 import { useSearchParams } from 'react-router-dom';
 import './NameWorkspace.css';
 
@@ -69,8 +70,10 @@ const NameWorkspace = () => {
           and the panes inside that component are transformed as they slide — a
           transformed ancestor is what a fixed descendant measures itself
           against, so rendered in there it left the viewport bottom mid-switch.
-          Still generator-only, which is what the mode check is for. */}
-      {workspaceMode === 'add' ? <MobileNameFilters isLoading={!givenNameProviderLoaded} /> : null}
+          Still generator-only, which is what the mode check is for. Presence
+          lets it slide away with the generator instead of vanishing; no initial
+          animation, so it is already in place on page load. */}
+      <AnimatePresence initial={false}>{workspaceMode === 'add' ? <MobileNameFilters isLoading={!givenNameProviderLoaded} /> : null}</AnimatePresence>
       <ExistingAccountNotice />
       <AccountPromptBanner />
       <WorkspaceApprovedNames approvedGivenNames={approvedGivenNames} isLoading={!givenNameProviderLoaded} />

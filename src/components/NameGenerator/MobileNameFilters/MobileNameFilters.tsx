@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
+import { motion } from 'motion/react';
+import motionTokens from '@/themes/motion.theme';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
 import MobileFilterDrawer from '@/components/NameGenerator/MobileNameFilters/MobileFilterDrawer';
@@ -32,7 +34,16 @@ export default ({ isLoading }: Props) => {
   }, [setMobileFilterDrawerOpen]);
 
   return (
-    <Box className={`mobile-name-filters ${appliedFilterChips.length > 0 ? 'mobile-name-filters--has-chips' : ''}`}>
+    // Slides itself rather than being slid by a wrapper: the tray is position:
+    // fixed, and a transformed ancestor would become what it is fixed against.
+    // Same duration and easing as the workspace panes, so it leaves with them.
+    <motion.div
+      className={`mobile-name-filters ${appliedFilterChips.length > 0 ? 'mobile-name-filters--has-chips' : ''}`}
+      initial={{ y: '100%' }}
+      animate={{ y: 0 }}
+      exit={{ y: '100%' }}
+      transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out }}
+    >
       {appliedFilterChips.length > 0 && (
         <Box className="mobile-name-filters-chips themed-scrollbar" aria-label="Applied filters">
           {appliedFilterChips.map((chip) => (
@@ -62,6 +73,6 @@ export default ({ isLoading }: Props) => {
         </Box>
       </TutorialTooltip>
       <MobileFilterDrawer category={openCategory} onClose={() => setOpenCategory(null)} />
-    </Box>
+    </motion.div>
   );
 };
