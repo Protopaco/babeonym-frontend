@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import motionTokens from '@/themes/motion.theme';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
@@ -44,13 +44,26 @@ export default ({ isLoading }: Props) => {
       exit={{ y: '100%' }}
       transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out }}
     >
-      {appliedFilterChips.length > 0 && (
-        <Box className="mobile-name-filters-chips themed-scrollbar" aria-label="Applied filters">
-          {appliedFilterChips.map((chip) => (
-            <WorkspaceAppliedFilterChip key={chip.id} label={chip.label} onDelete={chip.onDelete} />
-          ))}
-        </Box>
-      )}
+      {/* Grows from nothing and collapses back, rather than the tray jumping by
+          the row's height. Eased at both ends like WorkspaceFilterSurface's
+          reveal, which moves a similarly short distance. */}
+      <AnimatePresence initial={false}>
+        {appliedFilterChips.length > 0 && (
+          <motion.div
+            className="mobile-name-filters-chips-reveal"
+            initial={{ height: 0 }}
+            animate={{ height: 'auto' }}
+            exit={{ height: 0 }}
+            transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.inOut }}
+          >
+            <Box className="mobile-name-filters-chips themed-scrollbar" aria-label="Applied filters">
+              {appliedFilterChips.map((chip) => (
+                <WorkspaceAppliedFilterChip key={chip.id} label={chip.label} onDelete={chip.onDelete} />
+              ))}
+            </Box>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* One hint for the row rather than one per button. The labels already say
           which category each button is; what they do not say is what the row is
           for. Same words as the desktop Filters toggle, so the idea reads the

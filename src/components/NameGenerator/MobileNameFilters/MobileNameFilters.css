@@ -12,11 +12,22 @@
     bottom: 0;
     left: 0;
     z-index: 1100;
-    gap: 8px;
     width: 100%;
     min-height: var(--height-filter-drawer-closed);
     background: var(--color-secondary);
     padding: 16px;
+  }
+
+  /* Clips the chip row while its height animates. The space between the row and
+     the buttons lives here as padding rather than as the tray's gap: a flex gap
+     appears the moment the row mounts, where padding collapses with the height.
+     Border-box so height 0 hides that padding too, and no shrinking so the
+     column cannot squeeze the row. */
+  .mobile-name-filters-chips-reveal {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding-bottom: 8px;
+    overflow: hidden;
   }
 
   /* One row that scrolls sideways, so the bar grows by a fixed amount however
