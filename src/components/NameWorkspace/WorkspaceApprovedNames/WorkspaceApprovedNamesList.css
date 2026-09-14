@@ -4,11 +4,13 @@
    column-first list the name beside number 1 is number 5, so every drop would
    resolve to the wrong position. */
 .workspace-approved-names-list {
-  /* Published here because three rows have to agree on it: the name rows draw a
-     grip this wide, and the add button and draft chip reserve the same width so
-     their chips line up with the names. Only the name rows have a grip, so
-     without a shared value the other two drift the moment this changes. */
-  --workspace-name-grip-size: 33px;
+  /* Published here because three rows have to agree on these: the name rows draw
+     a grip and a rank this wide, and the add button and draft chip reserve the
+     same widths so their chips line up with the names. Only the name rows have a
+     grip, so without a shared value the other two drift the moment this changes. */
+  --workspace-name-grip-size: 24px;
+  /* Two digits, which is all a rank can reach under the approved name limit. */
+  --workspace-name-rank-width: 18px;
 
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -20,7 +22,7 @@
 }
 
 /* Two columns rather than three. A row needs about 280px once the grip is
-   there, which three of them cannot have below 900px — the chips are a fixed
+   there (24 grip, 26 rank and gaps, 225 chip), which three of them cannot have below 900px — the chips are a fixed
    width, so they overflow their columns rather than shrinking. */
 @media (--tablet) {
   .workspace-approved-names-list {

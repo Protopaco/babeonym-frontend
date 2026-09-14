@@ -1,16 +1,17 @@
 .workspace-custom-name-draft-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
   box-sizing: border-box;
   min-width: 0;
 }
 
-/* Same 24px leading slot the ranked rows use, so the draft chip lands in the
+/* Same leading rank slot the ranked rows use, so the draft chip lands in the
    same column as the names it will join. */
-.workspace-custom-name-draft-marker {
+.workspace-custom-name-draft-marker.MuiSvgIcon-root {
   flex-shrink: 0;
-  width: 24px;
+  width: var(--workspace-name-rank-width);
+  margin-right: 4px;
   color: var(--color-text-secondary);
   font-size: 1rem;
 }

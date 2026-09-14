@@ -12,3 +12,10 @@
      size, so the overflow rule above clips the tails off a y or a g. */
   line-height: 1.25;
 }
+
+/* A step down rather than a cut. The chip cannot grow and a name is never
+   shortened, so the longest names shrink to fit; the ellipsis above is only a
+   last resort. */
+.name-typography.MuiTypography-root[data-long='true'] {
+  font-size: calc(var(--name-chip-font-size, 1rem) * 0.8);
+}

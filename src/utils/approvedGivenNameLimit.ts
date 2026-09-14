@@ -8,5 +8,8 @@
  * stop a script accumulating thousands of names, not to hold a real user to an
  * exact figure, and if the numbers drift the only visible effect is that the UI
  * stops slightly before or after the server does.
+ *
+ * 99 rather than 100 keeps a name's rank to two digits, so the Your Names rank
+ * slot can be sized for two.
  */
-export default 100;
+export default 99;

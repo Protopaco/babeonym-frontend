@@ -1,7 +1,7 @@
 .workspace-approved-name {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
   box-sizing: border-box;
   min-width: 0;
   /* Set here rather than left to motion, which only applies it when it owns the
@@ -12,11 +12,12 @@
 }
 
 /* Fixed rather than content-sized, so a two-digit rank does not push its chip
-   out of line with the single-digit rows above it. */
-.workspace-approved-name-position {
+   out of line with the single-digit rows above it. The right margin adds to the
+   row gap so the rank sits closer to its grip than to its chip. */
+.workspace-approved-name-position.MuiTypography-root {
   flex-shrink: 0;
-  width: 24px;
-  margin: 0;
+  width: var(--workspace-name-rank-width);
+  margin: 0 4px 0 0;
   color: var(--color-text-secondary);
   font-size: 0.875rem;
   font-weight: 700;
@@ -27,13 +28,13 @@
 .workspace-approved-name-grip {
   display: none;
   flex-shrink: 0;
-  /* Square rather than icon-sized: the icon is what is seen, this is what is
-     hit. 44px is the smallest target a fingertip lands on reliably, and the row
-     is 60px tall so it costs nothing vertically. */
+  /* Narrow but full row height: the icon is what is seen, this is what is hit.
+     Width is what the chip needs on a phone, so the target is made up in height
+     instead, where the 60px row costs nothing. */
+  align-self: stretch;
   align-items: center;
   justify-content: center;
   width: var(--workspace-name-grip-size);
-  height: var(--workspace-name-grip-size);
   color: var(--color-text-secondary);
 }
 

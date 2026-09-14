@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { FONT_FAMILY } from '@/constants/fontFamily';
 import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
 import palette from '@/themes/palette.theme';
 import breakpoints from '@/themes/breakpoints.theme';
@@ -20,6 +21,7 @@ let theme = createTheme({
   ...breakpoints,
   ...palette(semanticPalette),
   ...zIndex,
+  typography: { fontFamily: FONT_FAMILY },
 });
 
 theme = createTheme(theme, typography(theme));

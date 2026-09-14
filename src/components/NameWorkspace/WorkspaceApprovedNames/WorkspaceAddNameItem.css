@@ -1,16 +1,17 @@
 .workspace-add-name-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
   box-sizing: border-box;
   min-width: 0;
 }
 
 /* Empty stand-in for the rank slot. The add button has no rank, but without
-   the slot it starts 36px left of every chip in the column. */
+   the slot it starts 26px left of every chip in the column. */
 .workspace-add-name-position {
   flex-shrink: 0;
-  width: 24px;
+  width: var(--workspace-name-rank-width);
+  margin-right: 4px;
 }
 
 /* The second empty stand-in, for the grip the name rows carry. Only present
