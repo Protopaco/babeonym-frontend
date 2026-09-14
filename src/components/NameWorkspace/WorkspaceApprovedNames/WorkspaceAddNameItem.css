@@ -1,7 +1,8 @@
 .workspace-add-name-item {
   display: flex;
   align-items: center;
-  gap: 4px;
+  /* Spacing sits on the slots as margins, matching the name rows. */
+  gap: 0;
   box-sizing: border-box;
   min-width: 0;
 }
@@ -11,7 +12,7 @@
 .workspace-add-name-position {
   flex-shrink: 0;
   width: var(--workspace-name-rank-width);
-  margin-right: 4px;
+  margin-right: 8px;
 }
 
 /* The second empty stand-in, for the grip the name rows carry. Only present
@@ -21,6 +22,7 @@
   display: none;
   flex-shrink: 0;
   width: var(--workspace-name-grip-size);
+  margin-right: 4px;
 }
 
 @media (--touch) {

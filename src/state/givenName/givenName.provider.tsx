@@ -1,4 +1,4 @@
-import { useContext, useReducer, useEffect, useMemo, useRef } from 'react';
+import { startTransition, useContext, useReducer, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { givenNameApi } from '@/api/client';
 import type { ReactNode } from 'react';
 import type { GivenName } from '@/api/generated/models/GivenName';
@@ -6,6 +6,7 @@ import type { GivenNameMutationResponse } from '@/api/generated/models/GivenName
 import { V1GivenNameActionRequestNewStateEnum } from '@/api/generated/models/V1GivenNameActionRequest';
 import type { V1GivenNameActionOperationRequest, V1GivenNameCandidatesRequest } from '@/api/generated/apis/GivenNameApi';
 import { GivenNameContext } from '@/state/givenName/givenName.context';
+import { GivenNameActionsContext } from '@/state/givenName/givenNameActions.context';
 import type { GivenNameState, SelectedNameFilters } from '@/state/givenName/givenName.types';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
 import { initialGivenNameState } from '@/state/givenName/givenName.initialState';
@@ -213,7 +214,13 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
           })
         )
       );
-      dispatch({ type: 'ADD_APPROVED', payload: response.approvedGivenNames });
+      // A transition, so the draft chip's close renders first and its exit starts
+      // straight away. Replacing the list re-renders every row, and done in the
+      // same render it froze the page for the length of the exit, so the chip
+      // popped out instead of shrinking away.
+      startTransition(() => {
+        dispatch({ type: 'ADD_APPROVED', payload: response.approvedGivenNames });
+      });
       applyAccountPromptSignal(response);
     } catch (e) {
       throw e;
@@ -346,26 +353,67 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
     state.approvedGivenNames.length,
   ]);
 
+  // The action functions are rebuilt every render, and several read state, so
+  // they cannot simply be memoized once. The ref always holds the latest set;
+  // the stable object below calls through it, so its identity never changes while
+  // every call still sees current state.
+  const latestActionsRef = useRef({
+    getNewCandidates,
+    applyFilters,
+    approveCandidate,
+    rejectCandidate,
+    snoozeCandidate,
+    submitCompareVote,
+    addCustomGivenName,
+    reorderApprovedGivenNames,
+    saveApprovedGivenNamesOrder,
+  });
+
+  useLayoutEffect(() => {
+    latestActionsRef.current = {
+      getNewCandidates,
+      applyFilters,
+      approveCandidate,
+      rejectCandidate,
+      snoozeCandidate,
+      submitCompareVote,
+      addCustomGivenName,
+      reorderApprovedGivenNames,
+      saveApprovedGivenNamesOrder,
+    };
+  });
+
+  const actions = useMemo(
+    () => ({
+      getNewCandidates: (...args: Parameters<typeof getNewCandidates>) => latestActionsRef.current.getNewCandidates(...args),
+      applyFilters: (...args: Parameters<typeof applyFilters>) => latestActionsRef.current.applyFilters(...args),
+      approveCandidate: (...args: Parameters<typeof approveCandidate>) => latestActionsRef.current.approveCandidate(...args),
+      rejectCandidate: (...args: Parameters<typeof rejectCandidate>) => latestActionsRef.current.rejectCandidate(...args),
+      snoozeCandidate: (...args: Parameters<typeof snoozeCandidate>) => latestActionsRef.current.snoozeCandidate(...args),
+      submitCompareVote: (...args: Parameters<typeof submitCompareVote>) => latestActionsRef.current.submitCompareVote(...args),
+      addCustomGivenName: (...args: Parameters<typeof addCustomGivenName>) => latestActionsRef.current.addCustomGivenName(...args),
+      reorderApprovedGivenNames: (...args: Parameters<typeof reorderApprovedGivenNames>) =>
+        latestActionsRef.current.reorderApprovedGivenNames(...args),
+      saveApprovedGivenNamesOrder: (...args: Parameters<typeof saveApprovedGivenNamesOrder>) =>
+        latestActionsRef.current.saveApprovedGivenNamesOrder(...args),
+    }),
+    []
+  );
+
   const value = useMemo(
     () => ({
       state,
       dispatch,
-      actions: {
-        getNewCandidates,
-        applyFilters,
-        approveCandidate,
-        rejectCandidate,
-        snoozeCandidate,
-        submitCompareVote,
-        addCustomGivenName,
-        reorderApprovedGivenNames,
-        saveApprovedGivenNamesOrder,
-      },
+      actions,
     }),
-    [state]
+    [state, actions]
   );
 
-  return <GivenNameContext.Provider value={value}>{children}</GivenNameContext.Provider>;
+  return (
+    <GivenNameContext.Provider value={value}>
+      <GivenNameActionsContext.Provider value={actions}>{children}</GivenNameActionsContext.Provider>
+    </GivenNameContext.Provider>
+  );
 };
 
 export const useGivenNames = () => {
@@ -376,7 +424,12 @@ export const useGivenNames = () => {
   return context;
 };
 
+// Read from the actions-only context, so a component that only calls actions
+// does not re-render when name state changes.
 export const useGivenNamesActions = () => {
-  const { actions } = useGivenNames();
+  const actions = useContext(GivenNameActionsContext);
+  if (!actions) {
+    throw new Error('useGivenNamesActions must be used inside GivenNamesProvider');
+  }
   return actions;
 };

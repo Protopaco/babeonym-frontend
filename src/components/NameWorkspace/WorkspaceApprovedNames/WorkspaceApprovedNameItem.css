@@ -1,7 +1,9 @@
 .workspace-approved-name {
   display: flex;
   align-items: center;
-  gap: 4px;
+  /* No gap. The grip and rank carry their own spacing as a right margin, so on
+     mobile they can collapse to nothing without leaving a gap behind. */
+  gap: 0;
   box-sizing: border-box;
   min-width: 0;
   /* Set here rather than left to motion, which only applies it when it owns the
@@ -12,12 +14,12 @@
 }
 
 /* Fixed rather than content-sized, so a two-digit rank does not push its chip
-   out of line with the single-digit rows above it. The right margin adds to the
-   row gap so the rank sits closer to its grip than to its chip. */
+   out of line with the single-digit rows above it. Twice the grip's margin, so
+   the rank sits closer to its grip than to its chip. */
 .workspace-approved-name-position.MuiTypography-root {
   flex-shrink: 0;
   width: var(--workspace-name-rank-width);
-  margin: 0 4px 0 0;
+  margin: 0 8px 0 0;
   color: var(--color-text-secondary);
   font-size: 0.875rem;
   font-weight: 700;
@@ -35,7 +37,14 @@
   align-items: center;
   justify-content: center;
   width: var(--workspace-name-grip-size);
+  margin-right: 4px;
   color: var(--color-text-secondary);
+}
+
+/* Its own flex item, so the collapse below can be keyed off the chip rather
+   than the whole row. */
+.workspace-approved-name-chip-slot {
+  flex-shrink: 0;
 }
 
 @media (--touch) {
@@ -51,5 +60,41 @@
 @media (--mobile) {
   .workspace-approved-name {
     text-align: left;
+  }
+
+  /* A phone has no room beside the chip for its drawer, so while the drawer is
+     out the grip and rank fold away and the chip slides left into their space.
+     Clipped so the icon and digits do not spill out as the width closes.
+
+     Undelayed here, so closing is immediate — the same as the drawer's own
+     transition, which takes its delay from the state it is heading towards. */
+  .workspace-approved-name-grip,
+  .workspace-approved-name-position.MuiTypography-root {
+    overflow: hidden;
+    transition:
+      width var(--motion-duration-180) var(--motion-ease-out),
+      margin-right var(--motion-duration-180) var(--motion-ease-out),
+      opacity var(--motion-duration-120) var(--motion-ease-out);
+    transition-delay: 0s;
+  }
+
+  /* Keyed off the chip, not the row. Pressing the grip hovers the row too, and
+     collapsing the grip out from under a finger would end the drag it started.
+     Delayed to match the drawer's hover delay, so the two arrive together. */
+  .workspace-approved-name:has(.workspace-approved-name-chip-slot:hover) .workspace-approved-name-grip,
+  .workspace-approved-name:has(.workspace-approved-name-chip-slot:hover) .workspace-approved-name-position.MuiTypography-root {
+    width: 0;
+    margin-right: 0;
+    opacity: 0;
+    transition-delay: var(--motion-duration-300);
+  }
+
+  /* Undelayed, matching the drawer: focus is already deliberate. */
+  .workspace-approved-name:has(.workspace-approved-name-chip-slot:focus-within) .workspace-approved-name-grip,
+  .workspace-approved-name:has(.workspace-approved-name-chip-slot:focus-within) .workspace-approved-name-position.MuiTypography-root {
+    width: 0;
+    margin-right: 0;
+    opacity: 0;
+    transition-delay: 0s;
   }
 }

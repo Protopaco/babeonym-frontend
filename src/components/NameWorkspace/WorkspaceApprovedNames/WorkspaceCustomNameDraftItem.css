@@ -1,7 +1,8 @@
 .workspace-custom-name-draft-item {
   display: flex;
   align-items: center;
-  gap: 4px;
+  /* Spacing sits on the slots as margins, matching the name rows. */
+  gap: 0;
   box-sizing: border-box;
   min-width: 0;
 }
@@ -11,7 +12,7 @@
 .workspace-custom-name-draft-marker.MuiSvgIcon-root {
   flex-shrink: 0;
   width: var(--workspace-name-rank-width);
-  margin-right: 4px;
+  margin-right: 8px;
   color: var(--color-text-secondary);
   font-size: 1rem;
 }
@@ -22,6 +23,7 @@
   display: none;
   flex-shrink: 0;
   width: var(--workspace-name-grip-size);
+  margin-right: 4px;
 }
 
 @media (--touch) {
@@ -33,5 +35,14 @@
 @media (--mobile) {
   .workspace-custom-name-draft-item {
     text-align: left;
+  }
+
+  /* The draft's save and cancel are out for as long as it exists, and a phone
+     has no room for both beside the chip. So the marker and grip slot stay
+     folded away while drafting and the chip takes their space. After the touch
+     rule above, so it wins on source order. */
+  .workspace-custom-name-draft-marker.MuiSvgIcon-root,
+  .workspace-custom-name-draft-grip-slot {
+    display: none;
   }
 }

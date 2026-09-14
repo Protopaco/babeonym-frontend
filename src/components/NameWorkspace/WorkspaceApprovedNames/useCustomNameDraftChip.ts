@@ -36,13 +36,15 @@ export const useCustomNameDraftChip = ({ onClose }: Props) => {
     setSaving(true);
     try {
       await addCustomGivenName(trimmedCustomName);
+      // Saving is left on. The draft is still on screen while it animates out,
+      // and clearing it here would snap the chip back from its dimmed state
+      // mid-exit.
       onClose();
     } catch (error) {
       // The draft stays open with its text so the name can be edited and retried.
+      setSaving(false);
       setErrorMessage(getCustomNameErrorMessage(error));
       inputRef.current?.focus();
-    } finally {
-      setSaving(false);
     }
   };
 

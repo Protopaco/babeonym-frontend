@@ -1,6 +1,7 @@
 import type { GivenNameState, GivenNameAction } from '@/state/givenName/givenName.types';
 import type { GivenName } from '@/api/generated/models/GivenName';
 import { initialGivenNameState } from '@/state/givenName/givenName.initialState';
+import reuseUnchangedGivenNames from '@/utils/reuseUnchangedGivenNames';
 
 export const givenNameReducer = (state: GivenNameState, action: GivenNameAction): GivenNameState => {
   switch (action.type) {
@@ -55,8 +56,10 @@ export const givenNameReducer = (state: GivenNameState, action: GivenNameAction)
       return { ...state, givenNameCandidates: [action.payload, ...state.givenNameCandidates] };
     }
 
+    // Names that come back unchanged keep the objects already held, so their
+    // rows can skip re-rendering.
     case 'ADD_APPROVED': {
-      return { ...state, approvedGivenNames: action.payload };
+      return { ...state, approvedGivenNames: reuseUnchangedGivenNames(state.approvedGivenNames, action.payload) };
     }
 
     // Array order is the display order for the approved list, so a reorder is

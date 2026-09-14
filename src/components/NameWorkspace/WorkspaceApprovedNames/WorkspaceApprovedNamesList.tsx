@@ -1,4 +1,4 @@
-import { LayoutGroup, Reorder } from 'motion/react';
+import { AnimatePresence, LayoutGroup, Reorder } from 'motion/react';
 import { useState } from 'react';
 import type { GivenName } from '@/api/generated';
 import WorkspaceAddNameItem from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceAddNameItem';
@@ -37,8 +37,13 @@ const WorkspaceApprovedNamesList = ({ approvedGivenNames }: Props) => {
             grid flow as the names without being draggable. Reorder only tracks
             what registers with it, so these are invisible to its geometry and
             cannot become a drop position. */}
-        {draftVisible ? <WorkspaceCustomNameDraftItem onClose={() => setDraftVisible(false)} /> : null}
-        {!draftVisible && !atApprovedNameLimit ? <WorkspaceAddNameItem onClick={() => setDraftVisible(true)} /> : null}
+        {/* popLayout lifts a leaving draft out of the flow as it starts to
+            collapse, so its replacement — the add button on cancel, the saved
+            name on save — takes the slot at once instead of after the animation. */}
+        <AnimatePresence mode="popLayout" initial={false}>
+          {draftVisible ? <WorkspaceCustomNameDraftItem key="draft" onClose={() => setDraftVisible(false)} /> : null}
+          {!draftVisible && !atApprovedNameLimit ? <WorkspaceAddNameItem key="add" onClick={() => setDraftVisible(true)} /> : null}
+        </AnimatePresence>
       </Reorder.Group>
     </LayoutGroup>
   );

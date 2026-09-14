@@ -12,6 +12,9 @@
   /* Two digits, which is all a rank can reach under the approved name limit. */
   --workspace-name-rank-width: 18px;
 
+  /* The frame a collapsing draft chip is held in place against, once
+     AnimatePresence lifts it out of the flow. */
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;

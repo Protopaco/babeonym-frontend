@@ -1,6 +1,7 @@
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import Typography from '@mui/material/Typography';
 import { Reorder, useDragControls } from 'motion/react';
+import { memo } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import type { GivenName } from '@/api/generated';
 import ListNameChip from '@/components/Shared/ListNameChip/ListNameChip';
@@ -77,9 +78,14 @@ const WorkspaceApprovedNameItem = ({ approvedGivenName, position }: Props) => {
     >
       {isFirstItem ? <TutorialTooltip title={GRIP_HINT}>{grip}</TutorialTooltip> : grip}
       <Typography className="workspace-approved-name-position">{position}</Typography>
-      <ListNameChip approvedGivenName={approvedGivenName} size="large" showTutorialHint={isFirstItem} />
+      <div className="workspace-approved-name-chip-slot">
+        <ListNameChip approvedGivenName={approvedGivenName} size="large" showTutorialHint={isFirstItem} />
+      </div>
     </Reorder.Item>
   );
 };
 
-export default WorkspaceApprovedNameItem;
+// Memoized so a row whose name and rank are unchanged skips rendering when the
+// list is replaced. The reducer keeps unchanged names as the same objects, which
+// is what lets this comparison hold.
+export default memo(WorkspaceApprovedNameItem);
