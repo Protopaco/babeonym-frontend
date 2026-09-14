@@ -4,7 +4,11 @@ import NameLimitMessage from '@/components/NameGenerator/NameEvaluator/NameLimit
 import CandidateErrorMessage from '@/components/NameGenerator/NameEvaluator/CandidateErrorMessage';
 import GeneratedNameSkeleton from '@/components/NameGenerator/GeneratedNameSkeleton/GeneratedNameSkeleton';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
+import NameEtymologyModal from '@/components/Shared/NameEtymologyModal/NameEtymologyModal';
 import { Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import motionTokens from '@/themes/motion.theme';
 import './EvaluatedNameDisplay.css';
@@ -17,6 +21,8 @@ type Props = {
 };
 
 export default ({ currentCandidate, isAwaitingCandidates, atApprovedNameLimit, candidateErrorMessage }: Props) => {
+  const [etymologyOpen, setEtymologyOpen] = useState(false);
+
   return (
     <div className="evaluated-name-display">
       <div className="evaluated-name-display-slot">
@@ -45,17 +51,42 @@ export default ({ currentCandidate, isAwaitingCandidates, atApprovedNameLimit, c
               exit={{ opacity: 0, y: 42 }}
               transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out }}
             >
-              <TutorialTooltip title="Do you like this name?" placement="top">
-                <Typography variant="h2" className="evaluated-name-display-name">
-                  {currentCandidate.givenName}
-                </Typography>
-              </TutorialTooltip>
+              {/* Hugs the name so the info button can hang off its right edge
+                  without moving the name off centre. Inside the motion block so
+                  the button arrives and leaves with its name. */}
+              <span className="evaluated-name-display-name-row">
+                <TutorialTooltip title="Do you like this name?" placement="top">
+                  <Typography variant="h2" className="evaluated-name-display-name">
+                    {currentCandidate.givenName}
+                  </Typography>
+                </TutorialTooltip>
+                {currentCandidate.etymology ? (
+                  <IconButton
+                    className="evaluated-name-display-info"
+                    aria-label={`About ${currentCandidate.givenName}`}
+                    onClick={() => setEtymologyOpen(true)}
+                  >
+                    <InfoOutlinedIcon className="evaluated-name-display-info-icon" />
+                  </IconButton>
+                ) : null}
+              </span>
             </motion.div>
           </AnimatePresence>
         ) : (
           <ExhaustedNameMessage />
         )}
       </div>
+      {/* Outside the motion block, so the modal is not unmounted by the name's
+          exit animation. The rating buttons are behind it while it is open, so
+          the candidate cannot change underneath it. */}
+      {currentCandidate?.etymology ? (
+        <NameEtymologyModal
+          open={etymologyOpen}
+          onClose={() => setEtymologyOpen(false)}
+          givenName={currentCandidate.givenName}
+          etymology={currentCandidate.etymology}
+        />
+      ) : null}
     </div>
   );
 };

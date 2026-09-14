@@ -44,6 +44,27 @@
   font-weight: 400;
 }
 
+/* Only as wide as the name, so the button below can be placed off its right
+   edge while the name itself stays centred in the slot. */
+.evaluated-name-display-name-row {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hangs outside the name's measured width rather than taking part of it, so the
+   name's size calculation above is unchanged. The cost is that on the narrowest
+   screens the longest names can push the button past the slot's edge. */
+.evaluated-name-display-info.MuiIconButton-root {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  color: var(--color-primary);
+}
+
+.evaluated-name-display-info-icon.MuiSvgIcon-root {
+  font-size: 32px;
+}
+
 /* No min-height here. It used to be 150px with the slot bottom-aligned inside
    it, and the slot's own minimum is 120px — so 30px above the name was reserved
    and never filled. The slot sets the height; this box hugs it. */
@@ -59,7 +80,16 @@
      600 that 400 reads as the lighter of the two. Same compound selector as the
      base rule — a media query adds no specificity, so this wins on source order
      alone. */
+  /* Taller line box on mobile so the info button reads as top right. At this
+     size the button is as tall as a line-height-1 name, so pinned to the top it
+     sat level with the name instead. A multiple rather than a pixel value, so it
+     keeps pace with the name's size. */
   .evaluated-name-display-name.MuiTypography-root {
     font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .evaluated-name-display-info-icon.MuiSvgIcon-root {
+    font-size: 24px;
   }
 }
