@@ -49,6 +49,10 @@ const ListNameChip = ({ approvedGivenName, size = 'default', showTutorialHint = 
     >
       <BaseNameChip size={size}>
         <NameTypography name={givenName} />
+        {/* A quiet marker only, so a name with etymology can be spotted at a
+            glance. Opening it stays with the drawer's info action, which also
+            carries the accessible label. */}
+        {etymology ? <InfoOutlinedIcon className="list-name-chip-etymology-indicator" aria-hidden /> : null}
       </BaseNameChip>
       <div className="list-name-chip-drawer">
         {/* Only offered for a name with something to show, so a name without
@@ -73,8 +77,13 @@ const ListNameChip = ({ approvedGivenName, size = 'default', showTutorialHint = 
           deleteAction
         )}
       </div>
+      {/* The modal renders in a portal, but React still bubbles its events
+          through this tree — so a press inside it would reach the list row and
+          start a drag. Stopped here, at the wrapper around the modal. */}
       {etymology ? (
-        <NameEtymologyModal open={etymologyOpen} onClose={() => setEtymologyOpen(false)} givenName={givenName} etymology={etymology} />
+        <div className="list-name-chip-etymology-modal" onPointerDown={(event) => event.stopPropagation()}>
+          <NameEtymologyModal open={etymologyOpen} onClose={() => setEtymologyOpen(false)} givenName={givenName} etymology={etymology} />
+        </div>
       ) : null}
     </motion.div>
   );

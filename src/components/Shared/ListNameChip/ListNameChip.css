@@ -53,6 +53,21 @@
   z-index: 2;
 }
 
+/* Muted and fixed-size so it marks the name without competing with it. It does
+   not shrink, so the name gives up the width instead. */
+.list-name-chip-etymology-indicator.MuiSvgIcon-root {
+  flex-shrink: 0;
+  margin-left: 8px;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+/* Exists only to stop events; the modal itself is portalled elsewhere, so the
+   wrapper is kept out of the chip's layout. */
+.list-name-chip-etymology-modal {
+  display: contents;
+}
+
 .list-name-chip[data-size='large'] {
   width: 225px;
   height: 60px;
