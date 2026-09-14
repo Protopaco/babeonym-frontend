@@ -21,6 +21,11 @@
 @media (--mobile) {
   .name-workspace {
     padding: 0 0 var(--height-filter-drawer-closed);
+    /* Matches the chip row's reveal in MobileNameFilters, so the clearance
+       grows and shrinks with the tray instead of jumping ahead of it. A
+       transition is the only way to animate this, since it changes through
+       :has() below, which motion cannot drive. */
+    transition: padding-bottom var(--motion-duration-300) var(--motion-ease-in-out);
   }
 
   .name-workspace:has(.mobile-name-filters--has-chips) {
