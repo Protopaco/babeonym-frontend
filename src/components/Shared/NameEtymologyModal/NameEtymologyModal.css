@@ -1,0 +1,37 @@
+.name-etymology-modal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name-etymology-modal-heading.MuiTypography-root {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.name-etymology-modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The language sits under its meaning as a quieter line, so the meaning reads
+   first and the source second. */
+.name-etymology-modal-meaning {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name-etymology-modal-text.MuiTypography-root {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.name-etymology-modal-meaning-language.MuiTypography-root {
+  margin: 0;
+  color: var(--color-text-secondary);
+}

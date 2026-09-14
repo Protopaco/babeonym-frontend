@@ -44,6 +44,15 @@
   opacity: 1;
 }
 
+/* Info paints above delete because each action tucks its own flat left end
+   under whatever precedes it — see the negative margin in NameChipAction. Info
+   comes first, so it has to cover delete's flat end rather than be covered by
+   it. Same arrangement as the custom name draft's save and cancel. */
+.list-name-chip-info {
+  position: relative;
+  z-index: 2;
+}
+
 .list-name-chip[data-size='large'] {
   width: 225px;
   height: 60px;

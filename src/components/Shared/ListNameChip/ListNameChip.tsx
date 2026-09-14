@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import type { GivenName } from '@/api/generated';
 import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import DeleteIcon from '@mui/icons-material/Delete';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import NameEtymologyModal from '@/components/Shared/NameEtymologyModal/NameEtymologyModal';
 import BaseNameChip from '@/components/Shared/BaseNameChip/BaseNameChip';
 import NameChipAction from '@/components/Shared/NameChipAction/NameChipAction';
 import NameTypography from '@/components/Shared/NameTypography/NameTypography';
@@ -21,8 +24,9 @@ type Props = {
 };
 
 const ListNameChip = ({ approvedGivenName, size = 'default', showTutorialHint = false }: Props) => {
-  const { givenName, givenCustomNameBridgeId } = approvedGivenName;
+  const { givenName, givenCustomNameBridgeId, etymology } = approvedGivenName;
   const { rejectCandidate } = useGivenNamesActions();
+  const [etymologyOpen, setEtymologyOpen] = useState(false);
 
   const rejectClick = async () => {
     await rejectCandidate(givenCustomNameBridgeId);
@@ -47,6 +51,20 @@ const ListNameChip = ({ approvedGivenName, size = 'default', showTutorialHint = 
         <NameTypography name={givenName} />
       </BaseNameChip>
       <div className="list-name-chip-drawer">
+        {/* Only offered for a name with something to show, so a name without
+            etymology keeps the delete-only drawer. Placed before delete so the
+            destructive action stays at the far end. */}
+        {etymology ? (
+          <div className="list-name-chip-info">
+            <NameChipAction
+              icon={<InfoOutlinedIcon />}
+              label={`About ${givenName}`}
+              onClick={() => setEtymologyOpen(true)}
+              size={size}
+              fill="secondary"
+            />
+          </div>
+        ) : null}
         {showTutorialHint ? (
           <TutorialTooltip title={DELETE_HINT} placement="right">
             {deleteAction}
@@ -55,6 +73,9 @@ const ListNameChip = ({ approvedGivenName, size = 'default', showTutorialHint = 
           deleteAction
         )}
       </div>
+      {etymology ? (
+        <NameEtymologyModal open={etymologyOpen} onClose={() => setEtymologyOpen(false)} givenName={givenName} etymology={etymology} />
+      ) : null}
     </motion.div>
   );
 };
