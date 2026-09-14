@@ -1,8 +1,9 @@
 import type { Theme } from '@mui/material/styles';
+import { FONT_FAMILY } from '@/constants/fontFamily';
 
 const typography = (theme: Theme) => ({
   typography: {
-    fontFamily: '"League Spartan", system-ui, sans-serif',
+    fontFamily: FONT_FAMILY,
 
     h1: {
       fontWeight: 700,
