@@ -3,9 +3,9 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
-import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import '@/components/Shared/BaseModal/BaseModal.css';
 
 type Props = {
@@ -40,17 +40,19 @@ export default ({
       aria-label={title}
       slotProps={{ paper: { className: `base-modal-paper base-modal-paper--${size}` } }}
     >
-      <DialogContent className="base-modal-content">
-        <SectionHeader
-          title={title}
-          action={
-            <IconButton className="base-modal-close" aria-label="Close" onClick={onClose}>
-              <CloseIcon />
-            </IconButton>
-          }
-        />
-        {children}
-      </DialogContent>
+      {/* Its own header rather than SectionHeader: the band's colours are this
+          component's to set, and restyling SectionHeader from here would reach
+          into another component's internals. Outside DialogContent so it stays
+          put while a long body scrolls. */}
+      <div className="base-modal-header">
+        <Typography variant="h5" className="base-modal-title">
+          {title}
+        </Typography>
+        <IconButton className="base-modal-close" aria-label="Close" onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      </div>
+      <DialogContent className="base-modal-content">{children}</DialogContent>
       <DialogActions className="base-modal-actions">
         <PrimaryTextButton text={closeLabel} size={buttonSize} onClick={onClose} />
         {onConfirm && confirmLabel ? (

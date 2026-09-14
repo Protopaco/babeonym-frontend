@@ -11,6 +11,24 @@
   width: min(600px, calc(100vw - 32px));
 }
 
+/* A solid band of primary, echoing the filter bar: one strong block framing an
+   otherwise light modal. It runs edge to edge, and the paper's rounded corners
+   clip its top to match. */
+.base-modal-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  background: var(--color-primary);
+}
+
+.base-modal-title.MuiTypography-root {
+  margin: 0;
+  color: var(--color-primary-contrast);
+}
+
 .base-modal-content.MuiDialogContent-root {
   display: flex;
   flex-direction: column;
@@ -21,7 +39,7 @@
 .base-modal-close.MuiIconButton-root {
   flex: 0 0 auto;
   padding: 4px;
-  color: var(--color-primary);
+  color: var(--color-primary-contrast);
 }
 
 .base-modal-actions.MuiDialogActions-root {

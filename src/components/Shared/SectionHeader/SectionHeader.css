@@ -34,3 +34,10 @@
     padding-bottom: 6px;
   }
 }
+
+/* After the mobile rule so its padding wins at every width. No margin: a compact
+   header sits inside a section that already spaces its own children. */
+.section-header--compact {
+  margin: 0;
+  padding-bottom: 4px;
+}

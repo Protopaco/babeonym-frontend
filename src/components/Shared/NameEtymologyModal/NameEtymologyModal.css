@@ -4,11 +4,6 @@
   gap: 8px;
 }
 
-.name-etymology-modal-heading.MuiTypography-root {
-  margin: 0;
-  color: var(--color-text-primary);
-}
-
 .name-etymology-modal-list {
   display: flex;
   flex-direction: column;
@@ -18,12 +13,52 @@
   list-style: none;
 }
 
-/* The language sits under its meaning as a quieter line, so the meaning reads
-   first and the source second. */
-.name-etymology-modal-meaning {
+/* Columns rather than one per line: a name can carry a dozen or more languages,
+   and a single column pushed the modal into scrolling. A free wrap fit but read
+   as scattered, so the items take equal widths. Flex rather than grid, per the
+   project's layout rule. */
+.name-etymology-modal-language-list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 8px;
+}
+
+/* A third of the row less its share of the two gaps. The flag and label are
+   separate items, so a long label wraps under itself and never strands the flag
+   on a line of its own. */
+.name-etymology-modal-language {
+  display: flex;
+  flex: 0 0 calc((100% - 32px) / 3);
+  gap: 8px;
+  min-width: 0;
+}
+
+/* Two on a phone, where the modal is the screen's width and a third is too
+   narrow for most labels. */
+@media (--mobile) {
+  .name-etymology-modal-language {
+    flex-basis: calc((100% - 16px) / 2);
+  }
+}
+
+.name-etymology-modal-language-flag.MuiTypography-root {
+  flex-shrink: 0;
+}
+
+/* Wider than the gap between meanings in a group, so the groups read apart. */
+.name-etymology-modal-meaning-groups {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 16px;
+}
+
+/* The language leads its group as a quieter line, close to the meanings it
+   labels. */
+.name-etymology-modal-meaning-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .name-etymology-modal-text.MuiTypography-root {
