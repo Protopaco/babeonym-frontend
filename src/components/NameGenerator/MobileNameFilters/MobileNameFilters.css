@@ -41,6 +41,14 @@
     overflow-y: hidden;
   }
 
+  /* Holds each chip's width while it fades. The chip is width: 100% capped at
+     180px, which used to resolve against the row; inside this wrapper it would
+     shrink to its label instead, so the wrapper carries the same 180px. */
+  .mobile-name-filters-chip {
+    flex-shrink: 0;
+    width: 180px;
+  }
+
   .mobile-name-filters-triggers {
     display: flex;
     justify-content: space-between;

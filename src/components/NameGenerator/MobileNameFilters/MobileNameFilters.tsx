@@ -56,11 +56,31 @@ export default ({ isLoading }: Props) => {
             exit={{ height: 0 }}
             transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.inOut }}
           >
-            <Box className="mobile-name-filters-chips themed-scrollbar" aria-label="Applied filters">
-              {appliedFilterChips.map((chip) => (
-                <WorkspaceAppliedFilterChip key={chip.id} label={chip.label} onDelete={chip.onDelete} />
-              ))}
-            </Box>
+            {/* layoutScroll because the row scrolls sideways: without it motion
+                measures chips as if unscrolled, and one removed while the row is
+                scrolled slides the rest from the wrong place. */}
+            <motion.div className="mobile-name-filters-chips themed-scrollbar" aria-label="Applied filters" layoutScroll>
+              {/* Default mode rather than popLayout. A leaving chip holds its
+                  space while it fades and the rest close up after; popLayout
+                  would position it against an ancestor that knows nothing of
+                  the row's scroll. No initial fade, since the first chip already
+                  arrives with the row. */}
+              <AnimatePresence initial={false}>
+                {appliedFilterChips.map((chip) => (
+                  <motion.div
+                    key={chip.id}
+                    className="mobile-name-filters-chip"
+                    layout
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: motionTokens.durationSeconds[180], ease: motionTokens.ease.out }}
+                  >
+                    <WorkspaceAppliedFilterChip label={chip.label} onDelete={chip.onDelete} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
