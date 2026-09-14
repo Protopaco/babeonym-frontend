@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
+import { FONT_FAMILY } from '@/constants/fontFamily';
 import palette from '@/themes/palette.theme';
 import breakpoints from '@/themes/breakpoints.theme';
 import typography from '@/themes/typography.theme';
