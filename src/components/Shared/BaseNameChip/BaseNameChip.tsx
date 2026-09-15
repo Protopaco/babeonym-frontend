@@ -7,7 +7,7 @@ type Props = {
   size?: 'default' | 'large' | 'compare';
   shape?: 'name' | 'action';
   interactive?: boolean;
-  state?: 'default' | 'invalid' | 'saving';
+  state?: 'default' | 'invalid' | 'saving' | 'chosen';
 };
 
 // The pill a name sits in. It owns the box only — border, radius, background and

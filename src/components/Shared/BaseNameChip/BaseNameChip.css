@@ -38,6 +38,13 @@
   opacity: 0.5;
 }
 
+/* The same fill as hover, held for as long as the chip is on screen. Stated as
+   a state rather than left to :hover, which a touchscreen cannot be trusted
+   with, so a tap is acknowledged on every device. */
+.base-name-chip[data-state='chosen'] {
+  background: var(--color-secondary);
+}
+
 .base-name-chip[data-size='large'] {
   --name-chip-font-size: 1.25rem;
 
