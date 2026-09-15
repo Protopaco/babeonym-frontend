@@ -19,9 +19,15 @@
 }
 
 /* Owned here rather than by the wrapping control, so a chip's fill stays this
-   component's business. */
-.base-name-chip[data-interactive='true']:hover {
-  background: var(--color-secondary);
+   component's business.
+
+   A touchscreen fires :hover on tap and keeps it until something else is
+   tapped, so after a vote the fill would stay on the chip and pass to the next
+   pair mounted in its place. Guarded to pointers that can genuinely hover. */
+@media (hover: hover) {
+  .base-name-chip[data-interactive='true']:hover {
+    background: var(--color-secondary);
+  }
 }
 
 .base-name-chip[data-state='invalid'] {
