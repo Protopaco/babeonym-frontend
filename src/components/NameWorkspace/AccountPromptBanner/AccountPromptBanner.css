@@ -1,3 +1,9 @@
+/* Clips the banner while its height animates. No padding or margin of its own,
+   so at height 0 nothing of it shows. */
+.account-prompt-banner-reveal {
+  overflow: hidden;
+}
+
 .account-prompt-banner {
   box-sizing: border-box;
   display: flex;

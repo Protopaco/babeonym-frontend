@@ -37,6 +37,21 @@
   overflow: hidden;
 }
 
+/* Holds each chip's width while it fades. The chip is width: 100% capped at
+   180px, which used to resolve against the row; inside this wrapper it would
+   shrink to its label instead, so the wrapper carries the same 180px. Matches
+   the mobile tray. */
+.workspace-filter-layout-applied-chip {
+  flex-shrink: 0;
+  width: 180px;
+}
+
+/* Wraps Clear All so it can fade out. Flex so the button still stretches to the
+   bar's height, as it did when it sat in the grid cell directly. */
+.workspace-filter-layout-clear {
+  display: flex;
+}
+
 /* Clips the selector row while its height is animating, so the row's own
    padding collapses with it instead of leaving a band behind when closed.
 

@@ -3,10 +3,12 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
+import { AnimatePresence, motion } from 'motion/react';
 import AuthModal from '@/components/Header/AuthModal/AuthModal';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
 import { useUser } from '@/state/user/user.context';
+import motionTokens from '@/themes/motion.theme';
 import '@/components/NameWorkspace/AccountPromptBanner/AccountPromptBanner.css';
 
 const AccountPromptBanner = () => {
@@ -17,10 +19,7 @@ const AccountPromptBanner = () => {
   } = useUser();
 
   const isAnonymousUser = !user || user.authProvider === 'anonymous';
-
-  if (!userProviderLoaded || !isAnonymousUser || !promptAccountCreation) {
-    return null;
-  }
+  const isVisible = userProviderLoaded && isAnonymousUser && promptAccountCreation;
 
   const openAuthModal = () => {
     setAuthModalOpen(true);
@@ -33,16 +32,36 @@ const AccountPromptBanner = () => {
   };
 
   return (
-    <Container maxWidth="lg" component="aside" className="account-prompt-banner" aria-label="Save your progress">
-      <Typography className="account-prompt-banner-copy">Want to save your progress?</Typography>
-      <div className="account-prompt-banner-actions">
-        <PrimaryTextButton text="Create an account" onClick={openAuthModal} size="compact-wide" />
-        <IconButton className="account-prompt-banner-dismiss" aria-label="Dismiss" onClick={dismiss}>
-          <CloseIcon fontSize="small" />
-        </IconButton>
-      </div>
+    <>
+      {/* Grows in once the user has loaded and collapses on dismiss, so the page
+          below moves with it rather than jumping. Eased at both ends like the
+          other height reveals. */}
+      <AnimatePresence initial={false}>
+        {isVisible ? (
+          <motion.div
+            key="account-prompt-banner"
+            className="account-prompt-banner-reveal"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.inOut }}
+          >
+            <Container maxWidth="lg" component="aside" className="account-prompt-banner" aria-label="Save your progress">
+              <Typography className="account-prompt-banner-copy">Want to save your progress?</Typography>
+              <div className="account-prompt-banner-actions">
+                <PrimaryTextButton text="Create an account" onClick={openAuthModal} size="compact-wide" />
+                <IconButton className="account-prompt-banner-dismiss" aria-label="Dismiss" onClick={dismiss}>
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </div>
+            </Container>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+      {/* Outside the reveal, so the modal is never unmounted along with the
+          banner. */}
       <AuthModal open={authModalOpen} onClose={closeAuthModal} onGoogleSignIn={startGoogleSignIn} />
-    </Container>
+    </>
   );
 };
 

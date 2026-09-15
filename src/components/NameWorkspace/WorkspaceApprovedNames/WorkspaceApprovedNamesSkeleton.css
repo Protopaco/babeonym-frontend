@@ -1,21 +1,5 @@
-.workspace-approved-names-skeleton {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 28px 36px;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.workspace-approved-names-skeleton-chip {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 271px;
-  height: 60px;
-}
-
+/* Layout comes from the list's and the row's own classes; see the component.
+   Sized to match the large ListNameChip. */
 .workspace-approved-names-skeleton-label {
   position: relative;
   overflow: hidden;
@@ -42,12 +26,5 @@
 
   100% {
     transform: translateX(100%);
-  }
-}
-
-@media (--mobile) {
-  .workspace-approved-names-skeleton {
-    justify-content: center;
-    gap: 22px 18px;
   }
 }

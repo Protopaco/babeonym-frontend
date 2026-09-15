@@ -20,6 +20,11 @@
   padding-bottom: 3vh;
 }
 
+/* Clips the surname while its height animates. */
+.name-evaluator-surname-reveal {
+  overflow: hidden;
+}
+
 /* Sized and coloured deliberately rather than left on h3's defaults: it sits
    under a 120px given name and has to read as the second half of one name,
    not as a heading that happens to be nearby. Still well short of the given

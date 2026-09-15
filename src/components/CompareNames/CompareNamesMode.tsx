@@ -39,6 +39,7 @@ const CompareNamesMode = () => {
   const { voteForName } = useCompareNameVoting(currentPair, advancePair);
 
   const slotTransition = { duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out } as const;
+  const contentFadeTransition = { duration: motionTokens.durationSeconds[180], ease: motionTokens.ease.out } as const;
 
   // Both slots are keyed on the pair, not on one name, so a name that happens to
   // carry over into the next pair still animates with its partner.
@@ -70,9 +71,20 @@ const CompareNamesMode = () => {
           screen says the chips are the answer to a question, and a mode that
           needs a prompt to be legible needs it whether or not help is on. */}
       <Typography className="compare-names-mode-prompt">Which do you prefer?</Typography>
-      <Box className="compare-names-mode-content">
+      {/* A plain fade between the skeleton and the first pair, one leaving
+          before the other arrives. Keyed on whether there is a pair rather than
+          on the pair itself, so later pairs stay inside 'pair' and keep their
+          own drop and part below. */}
+      <AnimatePresence mode="wait" initial={false}>
         {currentPair && currentPair.left && currentPair.right ? (
-          <>
+          <motion.div
+            key="pair"
+            className="compare-names-mode-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={contentFadeTransition}
+          >
             <div className="compare-names-mode-slot">
               <div className="compare-names-mode-chip-area">
                 <AnimatePresence initial={false}>
@@ -110,9 +122,16 @@ const CompareNamesMode = () => {
               </div>
               {surname}
             </div>
-          </>
+          </motion.div>
         ) : (
-          <>
+          <motion.div
+            key="skeleton"
+            className="compare-names-mode-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={contentFadeTransition}
+          >
             <div className="compare-names-mode-slot">
               <div className="compare-names-mode-chip-area">
                 <NameChipSkeleton size="compare" />
@@ -126,9 +145,9 @@ const CompareNamesMode = () => {
               </div>
               {surname}
             </div>
-          </>
+          </motion.div>
         )}
-      </Box>
+      </AnimatePresence>
     </Box>
   );
 };

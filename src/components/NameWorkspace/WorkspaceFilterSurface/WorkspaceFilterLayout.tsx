@@ -51,15 +51,43 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
     <div className="workspace-filter-layout">
       <div className="workspace-filter-layout-summary-row">
         <WorkspaceFilterToggle isOpen={isOpen} onToggle={handleToggleFilters} />
-        <div className="workspace-filter-layout-applied-chips" aria-label="Applied filters">
-          {appliedFilterChips.map((chip) => (
-            <WorkspaceAppliedFilterChip key={chip.id} label={chip.label} onDelete={chip.onDelete} />
-          ))}
-        </div>
+        {/* Chips fade in and out and the rest close up, the same as the mobile
+            tray. layoutScroll because the row scrolls sideways below desktop:
+            without it motion measures chips as if unscrolled. */}
+        <motion.div className="workspace-filter-layout-applied-chips" aria-label="Applied filters" layoutScroll>
+          <AnimatePresence initial={false}>
+            {appliedFilterChips.map((chip) => (
+              <motion.div
+                key={chip.id}
+                className="workspace-filter-layout-applied-chip"
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: motionTokens.durationSeconds[180], ease: motionTokens.ease.out }}
+              >
+                <WorkspaceAppliedFilterChip label={chip.label} onDelete={chip.onDelete} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
         {/* Absent rather than disabled when nothing is applied: with no chips
             there is no row to bound, and a control that spends most of its life
-            greyed out is noise. */}
-        {hasAppliedFilters ? <WorkspaceClearFiltersButton onClearFilters={clearAppliedFilters} /> : null}
+            greyed out is noise. Fades rather than popping. */}
+        <AnimatePresence initial={false}>
+          {hasAppliedFilters ? (
+            <motion.div
+              key="clear-filters"
+              className="workspace-filter-layout-clear"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: motionTokens.durationSeconds[180], ease: motionTokens.ease.out }}
+            >
+              <WorkspaceClearFiltersButton onClearFilters={clearAppliedFilters} />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
       {/* The row unmounts when the drawer closes, so it needs AnimatePresence to
           stay mounted long enough to animate out. The height animation lives on

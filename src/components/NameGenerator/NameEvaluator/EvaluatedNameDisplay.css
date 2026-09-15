@@ -14,6 +14,19 @@
   overflow: hidden;
 }
 
+/* One per slot state, faded as a unit. Stretched to the slot's height and
+   centring its contents, so each state sits where it did as a direct child of
+   the slot: a message or the skeleton is centred by this box, and the
+   absolutely positioned name takes its static position from it. Full width so
+   the skeleton's percentage width still resolves against the slot's width. */
+.evaluated-name-display-state {
+  align-self: stretch;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .evaluated-name-display-motion {
   position: absolute;
   width: 100%;

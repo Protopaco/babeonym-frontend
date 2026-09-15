@@ -7,6 +7,8 @@ import EvaluatedNameDisplay from '@/components/NameGenerator/NameEvaluator/Evalu
 import NameEvaluationActions from '@/components/NameGenerator/NameEvaluator/NameEvaluationActions';
 import { useNameEvaluationActions } from '@/components/NameGenerator/NameEvaluator/useNameEvaluationActions';
 import approvedGivenNameLimit from '@/utils/approvedGivenNameLimit';
+import { AnimatePresence, motion } from 'motion/react';
+import motionTokens from '@/themes/motion.theme';
 
 export default () => {
   const givenNameContext = useGivenNames();
@@ -46,11 +48,24 @@ export default () => {
           currentCandidate={currentCandidate}
           isAwaitingCandidates={isAwaitingCandidates}
         />
-        {user?.surName && !isMessageShowing ? (
-          <Typography variant="h3" id="user-surname">
-            {user.surName}
-          </Typography>
-        ) : null}
+        {/* Grows and collapses rather than appearing, so the buttons below move
+            with it when a message takes the slot instead of jumping. */}
+        <AnimatePresence initial={false}>
+          {user?.surName && !isMessageShowing ? (
+            <motion.div
+              key="user-surname"
+              className="name-evaluator-surname-reveal"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.inOut }}
+            >
+              <Typography variant="h3" id="user-surname">
+                {user.surName}
+              </Typography>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </Box>
       <Box className="name-evaluator-actions-row">
         <NameEvaluationActions approveClick={approveClick} disabled={actionDisabled} rejectClick={rejectClick} snoozeClick={snoozeClick} />
