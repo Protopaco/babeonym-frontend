@@ -49,8 +49,10 @@ const CompareNamesMode = () => {
   // a whole name — which is most of what the comparison is for. Deliberately
   // outside the animating element: the surname is the same on both sides and
   // does not change between pairs, so travelling with the chip on every vote
-  // would be motion with nothing behind it.
-  const surname = user?.surName ? <Typography className="compare-names-mode-surname">{user.surName}</Typography> : null;
+  // would be motion with nothing behind it. Always rendered, empty until the
+  // user loads or for a user without one, so its fixed height is there from the
+  // first frame and the pair does not jump up when the surname arrives.
+  const surname = <Typography className="compare-names-mode-surname">{user?.surName}</Typography>;
 
   // The OR is built like a slot so the row can stay centred as a group and
   // still line the three items up on their names. It carries a hidden copy of

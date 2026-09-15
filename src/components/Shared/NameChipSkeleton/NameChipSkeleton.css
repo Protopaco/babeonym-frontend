@@ -1,3 +1,25 @@
-.name-chip-skeleton-text.MuiSkeleton-text {
-  font-size: var(--name-chip-font-size, 1rem);
+/* Takes no part in layout: it exists only to set the fill BaseNameChip offers
+   for recolouring, which custom properties carry through to the chip. */
+.name-chip-skeleton {
+  display: contents;
+  --name-chip-fill: var(--color-primary-highlight);
+}
+
+/* A light band crossing the chip. The chip is relative and clips its overflow,
+   so the band can start and end outside it. */
+.name-chip-skeleton-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--color-primary-edge), transparent);
+  animation: name-chip-skeleton-sweep var(--motion-duration-1400) var(--motion-ease-in-out) infinite;
+}
+
+@keyframes name-chip-skeleton-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }

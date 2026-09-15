@@ -31,12 +31,40 @@ background. The OR was chosen.
 
 - On desktop, the OR is a filled primary pill with primary-contrast text.
 - It stays centred between the two names.
+- "Which do you prefer?" sits close above the pair on desktop, as it does on
+  mobile, and is larger (1.5rem, the surname's size).
 
 ## Open Questions
 
 - **Size on desktop.** The mobile pill is small because it sits in a tight
   stack. The desktop row has room, so the pill can be larger — judge it on
   screen.
+
+## Findings
+
+- **OR is a filled pill at both widths.** One base rule for
+  `.compare-names-content-or` sets the primary background, primary-contrast
+  text and rounding; the mobile block only overrides size, padding and radius.
+  Desktop is 1.5rem with `4px 20px` padding, and the fixed `height: 88px` is gone.
+- **Centring.** The separator is a flex column with the slot's
+  `--compare-surname-gap`. Without that gap its box was shorter than a slot and
+  the pill sat about 4.5px below the chips' centre.
+- **Prompt.** "Which do you prefer?" is 1.5rem on desktop. The pair's content
+  is `flex: none` with no `min-height`, so the prompt and pair centre together
+  instead of the prompt stranding far above.
+- **Row gap.** The desktop content has a 24px gap. The separator used to take
+  its width from the hidden surname, so with no surname the chips closed up
+  against the OR.
+- **One skeleton.** `NameChipSkeleton` is now `BaseNameChip` with a `size`
+  prop, a highlight fill and a sweep, used by both Compare Names (`compare`) and
+  Your Names (`large`), so every loading chip looks the same.
+- **No jump on load.** The surname row always renders, empty until the user
+  loads or for a user without one, so its fixed height is there from the first
+  frame. The separator's hidden surname has `width: 0`, so the surname's length
+  no longer shifts the names sideways.
+- **Open question resolved.** The desktop pill size was judged on screen.
+- **Mobile unchanged** apart from sharing the pill's base rule. The compare chips
+  were not resized.
 
 ## Implementation Notes
 
@@ -58,4 +86,3 @@ background. The OR was chosen.
 ## Out Of Scope
 
 - Resizing the compare chips.
-- The "Which do you prefer?" prompt.

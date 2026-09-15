@@ -10,13 +10,13 @@
   gap: 24px;
 }
 
-/* Permanent, not part of the tutorial: see the note in the component. Sized
-   between the surname and the names themselves — it asks the question, it is
-   not one of the answers. */
+/* Permanent, not part of the tutorial: see the note in the component. The
+   surname's size, and regular weight against the names' bold, so it asks the
+   question without reading as one of the answers. */
 .compare-names-mode-prompt.MuiTypography-root {
   margin: 0;
   color: var(--color-primary);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1.25;
 }
 
@@ -37,21 +37,19 @@
   --compare-text-inset: 36px;
 
   display: flex;
-  flex: 1;
+  /* Its own height and no more, so the prompt and the pair are centred together
+     in the frame with only the column's gap between them. Growing to fill the
+     frame, or reserving a minimum height, centred the pair in empty space and
+     left the prompt stranded far above it. */
+  flex: none;
   /* Centred as a group. The OR lines up with the chips because it reserves the
      same height as a slot, not because the row is aligned differently. */
   align-items: center;
   justify-content: center;
-  /* Nothing to space: the separator between the two slots is as wide as a
-     surname, because it holds a hidden copy of one to match a slot's height.
-     That box is the gap. */
-  gap: 0;
-  /* Room for a full name on each side rather than a given name alone. Reduced
-     from 400 to make room for the prompt: the frame this sits in is 400 tall
-     and clips, and the pair's own content is only about 130px, so the 400 was
-     reserved space rather than needed space. The pair now sits a little higher
-     and the prompt occupies what it gave up. */
-  min-height: 340px;
+  /* A real gap rather than leaning on the separator's width. That width comes
+     from the hidden surname, so with no surname — while the user loads, or for
+     a user without one — the chips closed up against the OR. */
+  gap: 24px;
   padding: 0 24px;
 }
 
@@ -106,25 +104,44 @@
    real slot without anything having to know how tall a surname is. Hidden
    rather than removed: it is there for its height alone, and it was rendering
    as a third surname under the OR. aria-hidden already keeps it out of the
-   accessibility tree; this keeps it out of the picture. */
+   accessibility tree; this keeps it out of the picture. No width either: only
+   its height is wanted, and its width shifted the names sideways when the
+   surname loaded. The content's gap spaces the OR instead. */
 .compare-names-mode-separator-spacer {
+  width: 0;
+  overflow: hidden;
   visibility: hidden;
+}
+
+/* A column so the OR can be centred across the separator's width. The hidden
+   surname makes that box wider than the pill, which would otherwise stretch to
+   fill it. The slot's gap is repeated too: without it the box is shorter than
+   a slot by that gap, and the pill sits half of it below the chips' centre. */
+.compare-names-mode-separator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--compare-surname-gap);
 }
 
 /* Compound so it beats MUI's Typography class, which is two classes deep and
    would otherwise win on specificity and hold this at its own 20px.
 
-   Centred on the pair rather than lifted to sit level with the two names. It
-   used to reserve a surname's height below itself for that, which read as the
-   OR floating above the row now that the prompt sits over the whole block. */
+   A filled pill at both widths: it is the word the whole component turns on,
+   and being the one filled thing in the pair makes it read as the separator by
+   its own weight. Only the size differs on mobile. Sized to its content, so it
+   sits at the top of the separator, level with the chips, with the hidden
+   surname below it. */
 .compare-names-content-or.MuiTypography-root {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 88px;
   margin: 0;
-  color: var(--color-primary);
-  font-size: 2rem;
+  border-radius: 20px;
+  background: var(--color-primary);
+  padding: 4px 20px;
+  color: var(--color-primary-contrast);
+  font-size: 1.5rem;
 }
 
 @media (--mobile) {
@@ -147,6 +164,9 @@
     --compare-surname-height: clamp(1.25rem, 4vh, 1.875rem);
     --compare-surname-gap: clamp(6px, 1.2vh, 9px);
 
+    /* Restated because desktop sizes the pair to its content. Here the stack
+       fills the frame, which is what sets the prompt's distance on mobile. */
+    flex: 1;
     flex-direction: column;
     /* Restated because the column reverses what align-items controls: on
        desktop it aligns the row vertically, here it would push the slots to
@@ -164,26 +184,19 @@
     text-align: center;
   }
 
-  /* Stacked, so there is no pair to line up with and the reserved height would
-     only add empty space between the two names.
-
-     Drawn as a filled chip rather than left as a plain word. Stacked, a name is
-     a chip and the surname 9px under it, so spacing alone put less room between
-     the two names than inside each one, and the word read as belonging to the
-     surname above it. Being the one filled thing on the screen makes it read as
-     a separator by its own weight rather than by the space around it — which is
-     also why it can be small, since it no longer competes with the names. */
+  /* Smaller than desktop's pill because it sits in a tight stack. Stacked, a
+     name is a chip and the surname 9px under it, so spacing alone put less room
+     between the two names than inside each one; the fill is what separates
+     them, which is also why it can be small, since it no longer competes with
+     the names. */
   .compare-names-content-or.MuiTypography-root {
-    height: auto;
     /* Centred, now that the surname below it is right-aligned: the name reads
        from the left of its chip, the surname ends at the right, and this sits
        between them. It was pinned right when the surname was still centred and
        the column needed a counterweight. */
     margin: clamp(8px, 1.6vh, 12px) 0;
     border-radius: 14px;
-    background: var(--color-primary);
     padding: 4px 14px;
-    color: var(--color-primary-contrast);
     font-size: clamp(0.75rem, 2.2vh, 1rem);
   }
 

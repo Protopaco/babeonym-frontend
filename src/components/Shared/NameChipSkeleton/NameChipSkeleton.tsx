@@ -1,4 +1,3 @@
-import Skeleton from '@mui/material/Skeleton';
 import BaseNameChip from '@/components/Shared/BaseNameChip/BaseNameChip';
 import '@/components/Shared/NameChipSkeleton/NameChipSkeleton.css';
 
@@ -7,13 +6,15 @@ type Props = {
 };
 
 // Built on the chip rather than beside it, so the placeholder cannot drift from
-// the real thing's size or shape. Only the name is unknown, so only the name
-// shimmers.
+// the real thing's size or shape. The one placeholder for a name chip anywhere
+// in the app, so every loading chip looks the same.
 const NameChipSkeleton = ({ size = 'default' }: Props) => {
   return (
-    <BaseNameChip size={size}>
-      <Skeleton className="name-chip-skeleton-text" variant="text" width="100%" />
-    </BaseNameChip>
+    <div className="name-chip-skeleton">
+      <BaseNameChip size={size}>
+        <span className="name-chip-skeleton-sweep" />
+      </BaseNameChip>
+    </div>
   );
 };
 
