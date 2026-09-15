@@ -8,7 +8,7 @@ import { writeFilterIds } from '@/components/NameWorkspace/WorkspaceFilterSurfac
 
 // With no room for a chip per category button, the chip row is the only place
 // the applied set is visible, and the only way to drop one filter without
-// opening its drawer.
+// opening its drawer. Clearing them all lives here too, beside removing one.
 export const useMobileAppliedFilterChips = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const {
@@ -25,7 +25,15 @@ export const useMobileAppliedFilterChips = () => {
     setSearchParams(nextParams, { replace: true });
   };
 
-  return useMemo<WorkspaceAppliedFilterChip[]>(
+  // One URL update for every category, so the chips leave together rather than
+  // one render per category.
+  const clearAppliedFilters = () => {
+    const nextParams = new URLSearchParams(searchParams);
+    mobileFilterCategories.forEach((category) => writeFilterIds(nextParams, category.paramKey, []));
+    setSearchParams(nextParams, { replace: true });
+  };
+
+  const appliedFilterChips = useMemo<WorkspaceAppliedFilterChip[]>(
     () =>
       mobileFilterCategories.flatMap((category) => {
         const options = nameFilters[category.optionsKey];
@@ -41,4 +49,6 @@ export const useMobileAppliedFilterChips = () => {
       }),
     [nameFilters, searchParams]
   );
+
+  return { appliedFilterChips, clearAppliedFilters };
 };

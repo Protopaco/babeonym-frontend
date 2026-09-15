@@ -1,1 +1,25 @@
+/* On a primary background the contained fill matches what it sits on, so it
+   inverts: a white pill with primary text, shaped like the applied filter chips
+   it shares the mobile tray with. */
+.secondary-button--primary-surface.MuiButton-root {
+  color: var(--color-primary);
+  background: var(--color-background);
+  border-radius: 16px;
+}
 
+/* The tint is translucent, so it is layered over the white fill rather than
+   replacing it, or the primary background would show through. A touchscreen
+   keeps :hover after a tap, so it is limited to pointers that can hover. */
+@media (hover: hover) {
+  .secondary-button--primary-surface.MuiButton-root:hover {
+    background: linear-gradient(var(--color-primary-highlight), var(--color-primary-highlight)), var(--color-background);
+  }
+}
+
+/* MUI's disabled grey would sit on the primary background as a muddy block, so
+   the pill keeps its colours and fades instead. */
+.secondary-button--primary-surface.MuiButton-root.Mui-disabled {
+  color: var(--color-primary);
+  background: var(--color-background);
+  opacity: 0.5;
+}

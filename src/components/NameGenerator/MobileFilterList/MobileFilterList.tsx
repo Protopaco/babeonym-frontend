@@ -11,10 +11,9 @@ type Props = {
   searchable?: boolean;
   selectedOptionIds: number[];
   onToggle: (optionId: number) => void;
-  onUnselectAll: () => void;
 };
 
-const MobileFilterList = ({ options, searchId, searchable = true, selectedOptionIds, onToggle, onUnselectAll }: Props) => {
+const MobileFilterList = ({ options, searchId, searchable = true, selectedOptionIds, onToggle }: Props) => {
   const [searchValue, setSearchValue] = useState('');
 
   // Matching on searchText rather than the label is what replaces the region
@@ -31,9 +30,6 @@ const MobileFilterList = ({ options, searchId, searchable = true, selectedOption
     <div className="mobile-filter-list">
       {searchable && <FilterSearchField id={searchId} onChange={(event) => setSearchValue(event.target.value)} />}
       <List className="mobile-filter-list-options themed-scrollbar">
-        {selectedOptionIds.length > 0 && (
-          <FilterListItem key="unselect-all" index={-1} label="Unselect all" action={onUnselectAll} selected={true} variant="utility" />
-        )}
         {displayOptions.map(({ id, label }, index) => (
           <FilterListItem key={id} index={index} label={label} action={() => onToggle(id)} selected={selectedOptionIds.includes(id)} />
         ))}

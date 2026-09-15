@@ -83,9 +83,14 @@ const MobileFilterDrawer = ({ category, onClose }: Props) => {
                 currentDraft.includes(optionId) ? currentDraft.filter((draftId) => draftId !== optionId) : [...currentDraft, optionId]
               )
             }
-            onUnselectAll={() => setDraftOptionIds([])}
           />
+          {/* Clear All empties this category's draft and leaves what is applied
+              alone, like desktop's Clear All beside Set Filters. Disabled rather
+              than hidden when nothing is picked, so the row never shifts. Set
+              Filters stays enabled: committing an empty draft is how a category
+              is cleared. */}
           <Box className="mobile-filter-drawer-actions">
+            <SecondaryButton text="Clear All" onClick={() => setDraftOptionIds([])} disabled={draftOptionIds.length === 0} />
             <SecondaryButton text="Set Filters" onClick={commitFilters} />
           </Box>
         </Box>

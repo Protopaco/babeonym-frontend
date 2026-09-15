@@ -14,7 +14,7 @@
     z-index: 1100;
     width: 100%;
     min-height: var(--height-filter-drawer-closed);
-    background: var(--color-secondary);
+    background: var(--color-primary);
     padding: 16px;
   }
 
@@ -30,9 +30,19 @@
     overflow: hidden;
   }
 
+  /* The chips and Clear All. Clear All sits outside the scrolling chips so it is
+     always reachable, and stretches to the row's height. */
+  .mobile-name-filters-chips-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+  }
+
   /* One row that scrolls sideways, so the bar grows by a fixed amount however
-     many filters are applied. */
+     many filters are applied. Takes what Clear All leaves. */
   .mobile-name-filters-chips {
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-wrap: nowrap;
     gap: 8px;

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import motionTokens from '@/themes/motion.theme';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceAppliedFilterChip';
+import WorkspaceClearFiltersButton from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceClearFiltersButton';
 import MobileFilterDrawer from '@/components/NameGenerator/MobileNameFilters/MobileFilterDrawer';
 import { mobileFilterCategories } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
 import type { MobileFilterCategory } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
@@ -21,7 +22,7 @@ type Props = {
 export default ({ isLoading }: Props) => {
   const { setMobileFilterDrawerOpen } = useAppLayoutState();
   const [openCategory, setOpenCategory] = useState<MobileFilterCategory | null>(null);
-  const appliedFilterChips = useMobileAppliedFilterChips();
+  const { appliedFilterChips, clearAppliedFilters } = useMobileAppliedFilterChips();
 
   // The layout state drives sibling chrome, so it follows whichever category is
   // open rather than a drawer of its own.
@@ -56,31 +57,37 @@ export default ({ isLoading }: Props) => {
             exit={{ height: 0 }}
             transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.inOut }}
           >
-            {/* layoutScroll because the row scrolls sideways: without it motion
-                measures chips as if unscrolled, and one removed while the row is
-                scrolled slides the rest from the wrong place. */}
-            <motion.div className="mobile-name-filters-chips themed-scrollbar" aria-label="Applied filters" layoutScroll>
-              {/* Default mode rather than popLayout. A leaving chip holds its
-                  space while it fades and the rest close up after; popLayout
-                  would position it against an ancestor that knows nothing of
-                  the row's scroll. No initial fade, since the first chip already
-                  arrives with the row. */}
-              <AnimatePresence initial={false}>
-                {appliedFilterChips.map((chip) => (
-                  <motion.div
-                    key={chip.id}
-                    className="mobile-name-filters-chip"
-                    layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: motionTokens.durationSeconds[180], ease: motionTokens.ease.out }}
-                  >
-                    <WorkspaceAppliedFilterChip label={chip.label} onDelete={chip.onDelete} />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
+            {/* Clear All arrives and leaves with the row, so it needs no fade of
+                its own. The tray is primary like desktop's strip, so desktop's
+                button is reused, icon only for the narrow row. */}
+            <div className="mobile-name-filters-chips-row">
+              {/* layoutScroll because the row scrolls sideways: without it motion
+                  measures chips as if unscrolled, and one removed while the row is
+                  scrolled slides the rest from the wrong place. */}
+              <motion.div className="mobile-name-filters-chips themed-scrollbar" aria-label="Applied filters" layoutScroll>
+                {/* Default mode rather than popLayout. A leaving chip holds its
+                    space while it fades and the rest close up after; popLayout
+                    would position it against an ancestor that knows nothing of
+                    the row's scroll. No initial fade, since the first chip already
+                    arrives with the row. */}
+                <AnimatePresence initial={false}>
+                  {appliedFilterChips.map((chip) => (
+                    <motion.div
+                      key={chip.id}
+                      className="mobile-name-filters-chip"
+                      layout
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: motionTokens.durationSeconds[180], ease: motionTokens.ease.out }}
+                    >
+                      <WorkspaceAppliedFilterChip label={chip.label} onDelete={chip.onDelete} />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+              <WorkspaceClearFiltersButton onClearFilters={clearAppliedFilters} labelVisibility="hidden" />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -101,7 +108,13 @@ export default ({ isLoading }: Props) => {
       <TutorialTooltip title={FILTERS_HINT} placement="top">
         <Box className="mobile-name-filters-triggers">
           {mobileFilterCategories.map((category) => (
-            <SecondaryButton key={category.id} text={category.buttonLabel} disabled={isLoading} onClick={() => setOpenCategory(category)} />
+            <SecondaryButton
+              key={category.id}
+              text={category.buttonLabel}
+              disabled={isLoading}
+              surface="primary"
+              onClick={() => setOpenCategory(category)}
+            />
           ))}
         </Box>
       </TutorialTooltip>

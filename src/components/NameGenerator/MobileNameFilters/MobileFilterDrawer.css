@@ -27,5 +27,6 @@
 .mobile-filter-drawer-actions {
   display: flex;
   justify-content: center;
+  gap: 12px;
   padding-top: 16px;
 }
