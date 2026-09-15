@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -37,13 +37,16 @@ const MobileFilterDrawer = ({ category, onClose }: Props) => {
   }
 
   // Taps are a draft until Set Filters, so opening seeds from what is applied.
-  // Closing without committing leaves the applied set untouched. Keyed on
-  // `category` rather than what is displayed, so it seeds on open and does not
-  // reseed during the closing slide.
-  useEffect(() => {
-    if (!category) return;
-    setDraftOptionIds(parseFilterIds(searchParams, category.paramKey));
-  }, [category]);
+  // Closing without committing leaves the applied set untouched. Seeded during
+  // render when `category` changes, like `displayedCategory`, rather than in an
+  // effect. Tracked separately because it follows the null between opens, so
+  // reopening the same category reseeds, and a URL change while open does not
+  // wipe the user's picks.
+  const [seededCategory, setSeededCategory] = useState<MobileFilterCategory | null>(null);
+  if (category !== seededCategory) {
+    setSeededCategory(category);
+    if (category) setDraftOptionIds(parseFilterIds(searchParams, category.paramKey));
+  }
 
   const commitFilters = () => {
     if (!displayedCategory) return;
