@@ -1,6 +1,6 @@
 import type { KeyboardEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
+import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
 import getCustomNameErrorMessage from '@/utils/getCustomNameErrorMessage';
 import normalizeNameInput from '@/utils/normalizeNameInput';
 
@@ -13,6 +13,7 @@ export const useCustomNameDraftChip = ({ onClose }: Props) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [saving, setSaving] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { state } = useGivenNames();
   const { addCustomGivenName } = useGivenNamesActions();
   const trimmedCustomName = customName.trim();
   // Blocking while saving keeps a second Enter from queueing a duplicate.
@@ -30,6 +31,17 @@ export const useCustomNameDraftChip = ({ onClose }: Props) => {
   const saveCustomName = async () => {
     if (!trimmedCustomName) {
       onClose();
+      return;
+    }
+
+    // Refused here rather than sent, because the server accepts a duplicate
+    // silently and the draft would close as if a name had been added. Matched
+    // case-insensitively, as the server matches canonical names.
+    const lowercaseCustomName = trimmedCustomName.toLowerCase();
+    const isAlreadyApproved = state.approvedGivenNames.some((approvedGivenName) => approvedGivenName.givenName.toLowerCase() === lowercaseCustomName);
+    if (isAlreadyApproved) {
+      setErrorMessage('That name is already on your list.');
+      inputRef.current?.focus();
       return;
     }
 
