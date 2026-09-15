@@ -56,7 +56,39 @@ case, never an entrance either.
 
 ## Findings
 
-_To be filled in during the work — see requirement 6._
+Abrupt transitions found in the audit. Decision: fixed under this ticket, with
+plain fades for state changes and height reveals where content is pushed
+around. Movement is kept for things that actually move.
+
+- **Generator message slot** (`EvaluatedNameDisplay.tsx`): only the name fades.
+  Swaps between the skeleton, name, and the limit, error and out-of-names
+  messages pop.
+- **Surname line** (`NameEvaluator.tsx`): hides while a message shows and pops
+  back, shifting the buttons below it.
+- **Compare first load** (`CompareNamesMode.tsx`): the skeleton pops to the
+  first pair. Pair-to-pair swaps already animate.
+- **Your Names first load** (`WorkspaceApprovedNames.tsx`): the skeleton pops to
+  the list or to "No saved names yet."
+- **Custom name error** (`CustomNameChip.tsx`): the error message pops in and
+  out. It sits out of flow, so nothing shifts.
+- **Desktop filters** (`WorkspaceFilterLayout.tsx`): Clear All pops. Applied
+  chips are added and removed with no fade, and the rest jump into place.
+- **Account prompt banner** (`AccountPromptBanner.tsx`): appears after the user
+  loads and disappears on dismiss, and the page jumps both times.
+- **Settings load** (`Settings.tsx`): blank until the user loads, then the page
+  pops in.
+- **Page changes** (`router.tsx`): no transition between the workspace, Settings
+  and the error page. Considered and skipped: an instant change reads as
+  responsive, and a fade on every navigation would feel slow.
+- **Modals** (`BaseModal.tsx`): checked, no pops. All fade through MUI's
+  `Dialog`, and none are unmounted mid-close. Their timings are MUI's defaults
+  (225ms in, 195ms out) rather than the motion tokens; a consistency question
+  only.
+- **Minor, left alone:** the `CopyEmailButton` check icon and the
+  `AuthProviderButton` spinner swap instantly.
+
+Unselect All in the filter drawer is left out. [105] will move it into the
+button row next to Set Filters.
 
 ## Implementation Notes
 
@@ -110,7 +142,8 @@ _To be filled in during the work — see requirement 6._
 
 ## Out Of Scope
 
-- Fixing transitions found during the audit — they are recorded, and each gets a
-  decision.
-- Desktop filter transitions, which already animate.
+- The page transition and the minor icon swaps under Findings, which were
+  considered and left alone.
+- The desktop filter drawer's reveal, which already animates. The desktop applied
+  chips and Clear All are in scope; see Findings.
 - Changing the tray's height — that is [094].
