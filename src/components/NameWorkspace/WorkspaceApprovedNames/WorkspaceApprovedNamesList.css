@@ -13,12 +13,25 @@
      the rank's 1.4rem bold that is about 25px; narrower, and mobile's clipping
      cuts the second digit off. */
   --workspace-name-rank-width: 28px;
+  /* A name row with its drawer open, which is the widest a row gets: the rank
+     and its 8px margin, the 225px chip, and two 70px drawer actions that each
+     tuck 30px under what they slid out from. Columns are never narrower than
+     this, so an open drawer stays clear of the next column by at least the gap.
+
+     The chip and action widths belong to ListNameChip and NameChipAction. If
+     either changes, this has to follow. Every row reserves room for both
+     actions, including names with no etymology and so no info action. */
+  --workspace-name-row-min-width: calc(var(--workspace-name-rank-width) + 8px + 225px + 2 * (70px - 30px));
 
   /* The frame a collapsing draft chip is held in place against, once
      AnimatePresence lifts it out of the flow. */
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* As many columns as fit an open row, rather than a count per breakpoint. A
+     fixed count let an open drawer run into the next column wherever the tier
+     started narrower than the rows need. At the workspace's widest this is
+     three. */
+  grid-template-columns: repeat(auto-fill, minmax(var(--workspace-name-row-min-width), 1fr));
   gap: 10px;
   box-sizing: border-box;
   margin: 0;
@@ -26,12 +39,11 @@
   list-style: none;
 }
 
-/* Two columns rather than three. A row needs about 280px once the grip is
-   there (24 grip, 26 rank and gaps, 225 chip), which three of them cannot have below 900px — the chips are a fixed
-   width, so they overflow their columns rather than shrinking. */
-@media (--tablet) {
+/* The grip only shows on touch, so only touch rows need room for it and its 4px
+   margin. */
+@media (--touch) {
   .workspace-approved-names-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    --workspace-name-row-min-width: calc(var(--workspace-name-grip-size) + 4px + var(--workspace-name-rank-width) + 8px + 225px + 2 * (70px - 30px));
   }
 }
 

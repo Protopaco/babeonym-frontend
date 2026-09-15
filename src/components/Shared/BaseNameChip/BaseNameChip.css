@@ -28,6 +28,17 @@
   .base-name-chip[data-interactive='true']:hover {
     background: var(--color-secondary);
   }
+
+  /* Fainter on the Your Names chips, the only large ones. There hover only
+     acknowledges the pointer, and the full fill ran into the drawer's info
+     action, which is painted the same colour.
+
+     The tint is translucent, so it is layered over the chip's own fill rather
+     than replacing it. On its own it let the drawer's actions show through
+     where their flat ends tuck under the chip. */
+  .base-name-chip[data-size='large'][data-interactive='true']:hover {
+    background: linear-gradient(var(--color-primary-highlight), var(--color-primary-highlight)), var(--name-chip-fill, var(--color-background));
+  }
 }
 
 .base-name-chip[data-state='invalid'] {

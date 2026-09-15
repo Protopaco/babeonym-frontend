@@ -47,7 +47,7 @@ const ListNameChip = ({ approvedGivenName, size = 'default', showTutorialHint = 
       className="list-name-chip"
       data-size={size}
     >
-      <BaseNameChip size={size}>
+      <BaseNameChip size={size} interactive>
         <NameTypography name={givenName} />
         {/* A quiet marker only, so a name with etymology can be spotted at a
             glance. Opening it stays with the drawer's info action, which also
