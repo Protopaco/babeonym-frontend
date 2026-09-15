@@ -4,16 +4,27 @@
   overflow: hidden;
 }
 
+/* The gap here only separates the prompt from the dismiss; the prompt's own gap
+   separates the copy from its button. */
 .account-prompt-banner {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 8px;
   padding-top: 16px;
   padding-bottom: 16px;
   background: var(--color-secondary);
   border-radius: 8px;
+}
+
+/* The copy at the start and its button at the end, filling the row up to the
+   dismiss. */
+.account-prompt-banner-prompt {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
 }
 
 .account-prompt-banner-copy {
@@ -22,25 +33,48 @@
   font-size: 1rem;
 }
 
-.account-prompt-banner-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .account-prompt-banner-dismiss.MuiIconButton-root {
   color: var(--color-secondary-contrast);
 }
 
 @media (--mobile) {
+  /* The copy, its button and the dismiss do not fit one row on a phone. The copy
+     and the dismiss share the top row and the button takes the full width
+     below, so neither row is lopsided. A wrapping row rather than a column, so
+     the button can be sent to a row of its own. The gutter matches the page's. */
   .account-prompt-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px 32px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
   }
 
-  .account-prompt-banner-actions {
-    align-self: stretch;
-    justify-content: space-between;
+  /* Out of the way on a phone, so the copy and the button become the banner's
+     own items and can sit on different rows. */
+  .account-prompt-banner-prompt {
+    display: contents;
+  }
+
+  .account-prompt-banner-copy {
+    flex: 1;
+  }
+
+  /* Pulled in by the icon button's own padding, so the row takes the copy's
+     height rather than the button's, which left more space above the copy than
+     below the button. On the right it lines the glyph up with the button's
+     edge. The tap target keeps its size; only the space it claims shrinks. */
+  .account-prompt-banner-dismiss.MuiIconButton-root {
+    margin: -8px -8px -8px 0;
+  }
+
+  /* After the dismiss, on a row of its own. Stretched by its place in this row
+     rather than a size of its own: an approved exception to styling a shared
+     child from here, since it is where it sits and how wide, not how it looks.
+     The markup order is unchanged, so a screen reader still hears the prompt,
+     then the button, then the dismiss. */
+  .account-prompt-banner-prompt > .primary-button.MuiButton-root {
+    order: 1;
+    flex-basis: 100%;
   }
 }

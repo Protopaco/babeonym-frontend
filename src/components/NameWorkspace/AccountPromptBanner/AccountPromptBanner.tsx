@@ -46,14 +46,16 @@ const AccountPromptBanner = () => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.inOut }}
           >
+            {/* The copy and its button are grouped so they stay one row on a phone
+                while the dismiss moves onto a row of its own above them. */}
             <Container maxWidth="lg" component="aside" className="account-prompt-banner" aria-label="Save your progress">
-              <Typography className="account-prompt-banner-copy">Want to save your progress?</Typography>
-              <div className="account-prompt-banner-actions">
-                <PrimaryTextButton text="Create an account" onClick={openAuthModal} size="compact-wide" />
-                <IconButton className="account-prompt-banner-dismiss" aria-label="Dismiss" onClick={dismiss}>
-                  <CloseIcon fontSize="small" />
-                </IconButton>
+              <div className="account-prompt-banner-prompt">
+                <Typography className="account-prompt-banner-copy">Want to save your progress?</Typography>
+                <PrimaryTextButton text="Sign Up" onClick={openAuthModal} size="compact" />
               </div>
+              <IconButton className="account-prompt-banner-dismiss" aria-label="Dismiss" onClick={dismiss}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
             </Container>
           </motion.div>
         ) : null}
