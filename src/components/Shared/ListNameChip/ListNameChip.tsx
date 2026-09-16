@@ -8,7 +8,7 @@ import BaseNameChip from '@/components/Shared/BaseNameChip/BaseNameChip';
 import NameChipAction from '@/components/Shared/NameChipAction/NameChipAction';
 import NameTypography from '@/components/Shared/NameTypography/NameTypography';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
-import '@/components/Shared/ListNameChip/ListNameChip.css';
+import './ListNameChip.css';
 import { motion } from 'motion/react';
 import motionTokens from '@/themes/motion.theme';
 

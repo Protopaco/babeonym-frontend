@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
 import { LONG_NAME_LENGTH } from '@/constants/longNameLength';
-import '@/components/Shared/NameTypography/NameTypography.css';
+import './NameTypography.css';
 
 type Props = {
   name: string;

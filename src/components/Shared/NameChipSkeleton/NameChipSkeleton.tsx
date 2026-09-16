@@ -1,5 +1,5 @@
 import BaseNameChip from '@/components/Shared/BaseNameChip/BaseNameChip';
-import '@/components/Shared/NameChipSkeleton/NameChipSkeleton.css';
+import './NameChipSkeleton.css';
 
 type Props = {
   size?: 'default' | 'large' | 'compare';

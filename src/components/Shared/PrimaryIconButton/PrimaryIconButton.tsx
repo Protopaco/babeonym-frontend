@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
-import '@/components/Shared/PrimaryIconButton/PrimaryIconButton.css';
+import './PrimaryIconButton.css';
 
 type Props = {
   icon: ReactNode;

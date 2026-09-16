@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
-import AboutModal from '@/components/Settings/AboutButton/AboutModal';
-import '@/components/Settings/AboutButton/AboutButton.css';
+import AboutModal from '@/components/Settings/AboutButton/AboutModal/AboutModal';
+import './AboutButton.css';
 
 // Just the button and its dialog. Settings owns the row the button sits in,
 // because Settings is the only page that will ever hold it.

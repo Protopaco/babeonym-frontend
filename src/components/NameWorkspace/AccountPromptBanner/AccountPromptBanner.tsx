@@ -9,7 +9,7 @@ import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryText
 import startGoogleSignIn from '@/api/startGoogleSignIn';
 import { useUser } from '@/state/user/user.context';
 import motionTokens from '@/themes/motion.theme';
-import '@/components/NameWorkspace/AccountPromptBanner/AccountPromptBanner.css';
+import './AccountPromptBanner.css';
 
 const AccountPromptBanner = () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);

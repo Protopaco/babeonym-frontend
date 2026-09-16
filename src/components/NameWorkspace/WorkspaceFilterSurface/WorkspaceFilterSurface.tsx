@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import WorkspaceFilterLayout from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceFilterLayout';
+import WorkspaceFilterLayout from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceFilterLayout/WorkspaceFilterLayout';
 import motionTokens from '@/themes/motion.theme';
 import './WorkspaceFilterSurface.css';
 

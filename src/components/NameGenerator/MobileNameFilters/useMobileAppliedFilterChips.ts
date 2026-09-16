@@ -4,7 +4,7 @@ import { mobileFilterCategories } from '@/components/NameGenerator/MobileNameFil
 import { useFilters } from '@/state/filter/filter.context';
 import type { WorkspaceAppliedFilterChip } from '@/models/WorkspaceAppliedFilterChip';
 import { parseFilterIds } from '@/utils/parseFilterIds';
-import { writeFilterIds } from '@/components/NameWorkspace/WorkspaceFilterSurface/writeFilterIds';
+import { writeFilterIds } from '@/utils/writeFilterIds';
 
 // With no room for a chip per category button, the chip row is the only place
 // the applied set is visible, and the only way to drop one filter without

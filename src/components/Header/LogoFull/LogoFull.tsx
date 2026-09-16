@@ -1,7 +1,7 @@
 import LogoFull from '@/assets/icons/icon-full.svg?react';
 import type { MouseEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import '@/components/Header/LogoFull/LogoFull.css';
+import './LogoFull.css';
 
 export default () => {
   const location = useLocation();

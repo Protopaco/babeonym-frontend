@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
 import BaseModal from '@/components/Shared/BaseModal/BaseModal';
-import '@/components/Shared/BaseTextModal/BaseTextModal.css';
+import './BaseTextModal.css';
 
 type Props = {
   open: boolean;

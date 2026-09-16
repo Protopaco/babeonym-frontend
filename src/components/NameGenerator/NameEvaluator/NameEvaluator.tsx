@@ -1,10 +1,10 @@
 import { useGivenNames } from '@/state/givenName/givenName.provider';
 import Box from '@mui/material/Box';
-import '@/components/NameGenerator/NameEvaluator/NameEvaluator.css';
+import './NameEvaluator.css';
 import { Typography } from '@mui/material';
 import { useUser } from '@/state/user/user.context';
-import EvaluatedNameDisplay from '@/components/NameGenerator/NameEvaluator/EvaluatedNameDisplay';
-import NameEvaluationActions from '@/components/NameGenerator/NameEvaluator/NameEvaluationActions';
+import EvaluatedNameDisplay from '@/components/NameGenerator/NameEvaluator/EvaluatedNameDisplay/EvaluatedNameDisplay';
+import NameEvaluationActions from '@/components/NameGenerator/NameEvaluator/NameEvaluationActions/NameEvaluationActions';
 import { useNameEvaluationActions } from '@/components/NameGenerator/NameEvaluator/useNameEvaluationActions';
 import approvedGivenNameLimit from '@/utils/approvedGivenNameLimit';
 import { AnimatePresence, motion } from 'motion/react';

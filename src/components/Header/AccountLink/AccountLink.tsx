@@ -1,10 +1,10 @@
 import Typography from '@mui/material/Typography';
-import '@/components/Header/AccountLink/AccountLink.css';
+import './AccountLink.css';
 import { useUser } from '@/state/user/user.context';
 import { useState } from 'react';
 import AuthModal from '@/components/Header/AuthModal/AuthModal';
-import LogoutConfirmDialog from '@/components/Header/LogoutButton/LogoutConfirmDialog';
-import { useLogout } from '@/components/Header/LogoutButton/useLogout';
+import LogoutConfirmDialog from '@/components/Header/LogoutConfirmDialog/LogoutConfirmDialog';
+import { useLogout } from '@/components/Header/useLogout';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
 
 /* One control in two states, matching the icon in the mobile bar: signed out it

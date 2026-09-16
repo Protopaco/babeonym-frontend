@@ -1,5 +1,5 @@
-import DesktopTopBar from '@/components/Header/TopBar/DesktopTopBar';
-import MobileTopBar from '@/components/Header/TopBar/MobileTopBar';
+import DesktopTopBar from '@/components/Header/TopBar/DesktopTopBar/DesktopTopBar';
+import MobileTopBar from '@/components/Header/TopBar/MobileTopBar/MobileTopBar';
 import './TopBar.css';
 
 export default () => {

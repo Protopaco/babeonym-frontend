@@ -1,5 +1,5 @@
 import Link from '@mui/material/Link';
-import '@/components/Settings/SurNameSuggestion/SurNameSuggestion.css';
+import './SurNameSuggestion.css';
 
 type Props = {
   savedSurName: string;

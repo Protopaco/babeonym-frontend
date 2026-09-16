@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
-import '@/components/Shared/BaseModal/BaseModal.css';
+import './BaseModal.css';
 
 type Props = {
   open: boolean;

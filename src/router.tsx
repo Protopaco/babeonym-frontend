@@ -1,10 +1,10 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import AppLayout from '@/AppLayout';
 
-import NameWorkspace from '@/pages/NameWorkspace';
-import Settings from '@/pages/Settings';
-import ThemeTest from '@/pages/ThemeTest';
-import ErrorPage from '@/pages/ErrorPage';
+import NameWorkspace from '@/pages/NameWorkspace/NameWorkspace';
+import Settings from '@/pages/Settings/Settings';
+import ThemeTest from '@/pages/ThemeTest/ThemeTest';
+import ErrorPage from '@/pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {

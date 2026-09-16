@@ -2,7 +2,7 @@ import TopBar from '@/components/Header/TopBar/TopBar';
 import WorkspaceFilterSurface from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceFilterSurface';
 import { useLocation } from 'react-router-dom';
 import { useWorkspaceMode } from '@/state/givenName/useWorkspaceMode';
-import '@/components/Header/Header.css';
+import './Header.css';
 
 const Header = () => {
   const location = useLocation();

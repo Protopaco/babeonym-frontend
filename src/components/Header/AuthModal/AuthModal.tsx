@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import GoogleIcon from '@mui/icons-material/Google';
-import AuthProviderButton from '@/components/Header/AuthModal/AuthProviderButton';
+import AuthProviderButton from '@/components/Header/AuthModal/AuthProviderButton/AuthProviderButton';
 import BaseModal from '@/components/Shared/BaseModal/BaseModal';
-import '@/components/Header/AuthModal/AuthModal.css';
+import './AuthModal.css';
 
 type AuthModalProps = {
   open: boolean;

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import ButtonBase from '@mui/material/ButtonBase';
 import BaseNameChip from '@/components/Shared/BaseNameChip/BaseNameChip';
-import '@/components/Shared/NameChipAction/NameChipAction.css';
+import './NameChipAction.css';
 
 type Props = {
   icon: ReactNode;

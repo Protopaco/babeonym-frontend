@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
-import DeleteAccountDialog from '@/components/Settings/DeleteAccountButton/DeleteAccountDialog';
+import DeleteAccountDialog from '@/components/Settings/DeleteAccountButton/DeleteAccountDialog/DeleteAccountDialog';
 import { useDeleteAccount } from '@/components/Settings/DeleteAccountButton/useDeleteAccount';
 import { useUser } from '@/state/user/user.context';
-import '@/components/Settings/DeleteAccountButton/DeleteAccountButton.css';
+import './DeleteAccountButton.css';
 
 const DeleteAccountButton = () => {
   const [confirmOpen, setConfirmOpen] = useState(false);

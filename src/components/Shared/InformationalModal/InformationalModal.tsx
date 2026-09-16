@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
 import BaseModal from '@/components/Shared/BaseModal/BaseModal';
-import '@/components/Shared/InformationalModal/InformationalModal.css';
+import './InformationalModal.css';
 
 const ACKNOWLEDGE_LABEL = 'Got it';
 

@@ -1,5 +1,5 @@
 import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
-import '@/components/Shared/PrimaryTextButton/PrimaryTextButton.css';
+import './PrimaryTextButton.css';
 
 type Props = {
   text: string;

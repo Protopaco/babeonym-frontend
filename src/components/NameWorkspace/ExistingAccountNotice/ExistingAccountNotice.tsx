@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import InformationalModal from '@/components/Shared/InformationalModal/InformationalModal';
-import '@/components/NameWorkspace/ExistingAccountNotice/ExistingAccountNotice.css';
+import './ExistingAccountNotice.css';
 
 const EXISTING_ACCOUNT_PARAM = 'signedInToExistingAccount';
 

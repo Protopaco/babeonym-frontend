@@ -3,7 +3,7 @@ import type { Etymology } from '@/api/generated/models/Etymology';
 import BaseModal from '@/components/Shared/BaseModal/BaseModal';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import groupMeaningsByLanguage from '@/utils/groupMeaningsByLanguage';
-import '@/components/Shared/NameEtymologyModal/NameEtymologyModal.css';
+import './NameEtymologyModal.css';
 
 const ACKNOWLEDGE_LABEL = 'Got it';
 

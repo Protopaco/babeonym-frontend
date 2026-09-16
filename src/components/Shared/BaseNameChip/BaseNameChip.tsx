@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import Box from '@mui/material/Box';
-import '@/components/Shared/BaseNameChip/BaseNameChip.css';
+import './BaseNameChip.css';
 
 type Props = {
   children: ReactNode;
