@@ -8,7 +8,7 @@ import '@/components/CompareNames/CompareNameChip/CompareNameChip.css';
 
 type Props = {
   name: GivenName;
-  onVote: (name: GivenName) => void;
+  onVote: (name: GivenName) => boolean;
 };
 
 // Both chips carry the hint rather than one, because the pair is the choice —
@@ -20,9 +20,13 @@ const CompareNameChip = ({ name, onVote }: Props) => {
   // Each new pair is a fresh instance, so it arrives unchosen.
   const [isChosen, setIsChosen] = useState(false);
 
+  // Marked chosen only if the vote was taken. A tap that arrives too soon after
+  // the last one is dropped, and a chip that styled itself first would be left
+  // looking picked with nothing behind it.
   const choose = () => {
-    setIsChosen(true);
-    onVote(name);
+    if (onVote(name)) {
+      setIsChosen(true);
+    }
   };
 
   return (

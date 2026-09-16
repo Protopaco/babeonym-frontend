@@ -12,7 +12,7 @@ import { useCompareNameVoting } from '@/components/CompareNames/useCompareNameVo
 
 // Travel stays component-owned: it scales with the size of the thing moving,
 // which the token module deliberately does not try to standardize.
-const SLOT_TRAVEL_PX = 88;
+const SLOT_TRAVEL_PX = 42;
 
 // A pair drops in from above, matching the generator, and leaves outwards — the
 // left name to the left, the right name to the right — so the two separate

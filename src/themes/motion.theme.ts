@@ -19,7 +19,7 @@
 //
 // Travel distance is deliberately not tokenized. It scales with the size of the
 // thing moving, so 4px is right for a chip settling into a list for the same
-// reason 88px is right for a name being swapped out.
+// reason 42px is right for a name being swapped out.
 //
 // Springs are not tokenized either. A spring has no duration — it is defined by
 // stiffness and damping and runs until it settles — so it cannot consume any of
