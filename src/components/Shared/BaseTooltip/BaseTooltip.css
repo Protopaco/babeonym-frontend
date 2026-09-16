@@ -13,3 +13,12 @@
 .base-tooltip-arrow.MuiTooltip-arrow {
   color: var(--color-primary);
 }
+
+/* MUI draws the arrow as a square rotated 45 degrees, filled from the colour
+   above, so a plain border carries the bubble's outline onto the two faces that
+   read as the point — and does so at any placement, which matters because top,
+   bottom and right are all in use. */
+.base-tooltip-arrow.MuiTooltip-arrow::before {
+  border: 1.5px solid var(--color-primary-contrast);
+  box-sizing: border-box;
+}

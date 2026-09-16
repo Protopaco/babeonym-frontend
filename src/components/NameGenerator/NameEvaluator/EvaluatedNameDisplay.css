@@ -66,16 +66,39 @@
 
 /* Hangs outside the name's measured width rather than taking part of it, so the
    name's size calculation above is unchanged. The cost is that on the narrowest
-   screens the longest names can push the button past the slot's edge. */
-.evaluated-name-display-info.MuiIconButton-root {
+   screens the longest names can push the button past the slot's edge.
+
+   Positioned here rather than on the button itself, because the tooltip wraps
+   its child in a span and anchors to that span's box. An absolutely positioned
+   button contributes nothing to it, leaving a zero-width strut back in the
+   name's text flow for the bubble to point at. Moving the offset out one level
+   keeps the button in flow inside the span, so the two boxes coincide. */
+.evaluated-name-display-info-anchor {
   position: absolute;
   top: 0;
   left: 100%;
+}
+
+.evaluated-name-display-info.MuiIconButton-root {
   color: var(--color-primary);
+}
+
+/* Replaces MUI's own grey hover, which is compounded here to beat it.
+   Guarded to pointers that can genuinely hover for the usual reason, which
+   bites harder on this button than most: a touchscreen holds :hover after a
+   tap, and the name under this button is replaced on every action, so the wash
+   would follow onto the next name. */
+@media (hover: hover) {
+  .evaluated-name-display-info.MuiIconButton-root:hover {
+    background: var(--color-secondary);
+  }
 }
 
 .evaluated-name-display-info-icon.MuiSvgIcon-root {
   font-size: 32px;
+}
+
+.evaluated-name-display-info-icon.MuiSvgIcon-root:hover {
 }
 
 /* No min-height here. It used to be 150px with the slot bottom-aligned inside

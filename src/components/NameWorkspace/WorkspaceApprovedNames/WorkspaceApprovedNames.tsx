@@ -24,12 +24,12 @@ const WorkspaceApprovedNames = ({ approvedGivenNames, isLoading }: Props) => {
     <section className="workspace-approved-names" aria-label="Your Names">
       {/* On the header rather than on the list, so the hint is about the
           section rather than about any one name in it. */}
-      <TutorialTooltip title={SECTION_HINT} placement="top">
+      <TutorialTooltip title={SECTION_HINT} placement="top-start">
         <div className="workspace-approved-names-desktop-header">
           <SectionHeader title="Your Names" />
         </div>
       </TutorialTooltip>
-      <TutorialTooltip title={SECTION_HINT} placement="top">
+      <TutorialTooltip title={SECTION_HINT} placement="top-start">
         <div className="workspace-approved-names-mobile-header">
           <MobileSectionHeader title="Your Names" />
         </div>

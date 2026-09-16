@@ -83,13 +83,17 @@ export default ({ currentCandidate, isAwaitingCandidates, atApprovedNameLimit, c
                       </Typography>
                     </TutorialTooltip>
                     {currentCandidate.etymology ? (
-                      <IconButton
-                        className="evaluated-name-display-info"
-                        aria-label={`About ${currentCandidate.givenName}`}
-                        onClick={() => setEtymologyOpen(true)}
-                      >
-                        <InfoOutlinedIcon className="evaluated-name-display-info-icon" />
-                      </IconButton>
+                      <span className="evaluated-name-display-info-anchor">
+                        <TutorialTooltip title="Learn about this name's origin" placement="right">
+                          <IconButton
+                            className="evaluated-name-display-info"
+                            aria-label={`About ${currentCandidate.givenName}`}
+                            onClick={() => setEtymologyOpen(true)}
+                          >
+                            <InfoOutlinedIcon className="evaluated-name-display-info-icon" />
+                          </IconButton>
+                        </TutorialTooltip>
+                      </span>
                     ) : null}
                   </span>
                 </motion.div>

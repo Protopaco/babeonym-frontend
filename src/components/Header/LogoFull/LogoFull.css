@@ -5,7 +5,7 @@
 
 #logo-full {
   width: 148px;
-  height: 26px;
+  height: 40px;
   width: auto;
   color: var(--color-primary);
 }
@@ -15,7 +15,7 @@
    the right overlapped at 360. */
 @media (--mobile) {
   #logo-full {
-    height: 24px;
+    height: 34px;
     color: var(--color-primary-contrast);
   }
 }
