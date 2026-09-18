@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
 import CheckIcon from '@mui/icons-material/Check';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import './CopyEmailButton.css';
 
 // Long enough to be seen without the button sitting in a state that no longer
@@ -40,9 +40,14 @@ const CopyEmailButton = ({ email }: Props) => {
   };
 
   return (
-    <IconButton className="copy-email-button" aria-label={copied ? COPIED_LABEL : COPY_LABEL} onClick={handleCopy}>
-      {copied ? <CheckIcon /> : <ContentCopyIcon />}
-    </IconButton>
+    <span className="copy-email-button">
+      <BareIconButton
+        icon={copied ? <CheckIcon /> : <ContentCopyIcon />}
+        label={copied ? COPIED_LABEL : COPY_LABEL}
+        onClick={handleCopy}
+        size="small"
+      />
+    </span>
   );
 };
 

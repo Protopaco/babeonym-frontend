@@ -33,8 +33,8 @@
   font-size: 1rem;
 }
 
-.account-prompt-banner-dismiss.MuiIconButton-root {
-  color: var(--color-secondary-contrast);
+.account-prompt-banner-dismiss {
+  display: flex;
 }
 
 @media (--mobile) {
@@ -60,12 +60,13 @@
     flex: 1;
   }
 
-  /* Pulled in by the icon button's own padding, so the row takes the copy's
-     height rather than the button's, which left more space above the copy than
-     below the button. On the right it lines the glyph up with the button's
-     edge. The tap target keeps its size; only the space it claims shrinks. */
-  .account-prompt-banner-dismiss.MuiIconButton-root {
-    margin: -8px -8px -8px 0;
+  /* Pulled in by the space around the button's glyph (a 24px glyph in a 44px
+     box leaves 10px each side), so the row takes the copy's height rather than
+     the button's, which left more space above the copy than below the button.
+     On the right it lines the glyph up with the button's edge. The tap target
+     keeps its size; only the space it claims shrinks. */
+  .account-prompt-banner-dismiss {
+    margin: -10px -10px -10px 0;
   }
 
   /* After the dismiss, on a row of its own. Stretched by its place in this row

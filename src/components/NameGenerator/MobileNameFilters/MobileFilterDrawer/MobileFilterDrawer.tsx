@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useSearchParams } from 'react-router-dom';
 import MobileFilterList from '@/components/NameGenerator/MobileFilterList/MobileFilterList';
+import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 import type { MobileFilterCategory } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
@@ -74,9 +74,7 @@ const MobileFilterDrawer = ({ category, onClose }: Props) => {
             <div className="mobile-filter-drawer-title">
               <SectionHeader title={displayedCategory.drawerTitle} size="compact" />
             </div>
-            <IconButton className="mobile-filter-drawer-close" aria-label={`Close ${displayedCategory.drawerTitle} filter`} onClick={onClose}>
-              <KeyboardArrowDownIcon />
-            </IconButton>
+            <BareIconButton icon={<KeyboardArrowDownIcon />} label={`Close ${displayedCategory.drawerTitle} filter`} onClick={onClose} />
           </Box>
           <MobileFilterList
             options={nameFilters[displayedCategory.optionsKey]}

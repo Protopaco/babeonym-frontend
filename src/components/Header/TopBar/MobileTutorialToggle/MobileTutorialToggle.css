@@ -1,6 +1,6 @@
 /* Mobile only. Desktop keeps the floating icon, which has room to sit over the
    page without covering anything. */
-#mobile-tutorial-toggle {
+.mobile-tutorial-toggle {
   display: none;
 }
 
@@ -11,30 +11,11 @@
      Stretched to the bar's full height rather than hugging the button, because
      the label below measures from this box's centre — which has to be the
      bar's. Relative so that label has something to be positioned against. */
-  #mobile-tutorial-toggle {
+  .mobile-tutorial-toggle {
     position: relative;
     align-self: stretch;
     display: flex;
     align-items: center;
-  }
-
-  /* 24px glyph, 44px box — see SettingsLink.css for why those two numbers. A
-     rounded square rather than MUI's default circle, so the active state does
-     not repeat the account icon's own round shape. */
-  #mobile-tutorial-button {
-    border-radius: 8px;
-    padding: 8px;
-    color: var(--color-action);
-  }
-
-  #mobile-tutorial-button svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  #mobile-tutorial-button[data-tutorial-enabled='true'] {
-    background: var(--color-action);
-    color: var(--color-background);
   }
 
   /* Hangs off the button and points up, where it used to hang above a button at
@@ -80,7 +61,7 @@
      the nearest whole-pixel match to the bubble's own 2px border.
 
      22px is the button's own centre, measured from the right because that is
-     the edge the bubble hangs from: a 24px glyph in 10px of padding. */
+     the edge the bubble hangs from: half of its 44px box. */
   .mobile-tutorial-toggle-label::before,
   .mobile-tutorial-toggle-label::after {
     position: absolute;

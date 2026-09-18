@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import { AnimatePresence, motion } from 'motion/react';
 import AuthModal from '@/components/Header/AuthModal/AuthModal';
+import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
 import { useUser } from '@/state/user/user.context';
@@ -53,9 +53,9 @@ const AccountPromptBanner = () => {
                 <Typography className="account-prompt-banner-copy">Want to save your progress?</Typography>
                 <PrimaryTextButton text="Sign Up" onClick={openAuthModal} size="compact" />
               </div>
-              <IconButton className="account-prompt-banner-dismiss" aria-label="Dismiss" onClick={dismiss}>
-                <CloseIcon fontSize="small" />
-              </IconButton>
+              <div className="account-prompt-banner-dismiss">
+                <BareIconButton icon={<CloseIcon />} label="Dismiss" onClick={dismiss} />
+              </div>
             </Container>
           </motion.div>
         ) : null}

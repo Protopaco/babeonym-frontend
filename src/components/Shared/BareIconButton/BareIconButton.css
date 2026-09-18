@@ -1,0 +1,68 @@
+/* The tone is one custom property so the glyph and the pressed fill always
+   agree. The default size is a 24px glyph in a 44px box: 24 is the standard
+   icon size and 44 the smallest target a fingertip lands on reliably. */
+.bare-icon-button.MuiIconButton-root {
+  --bare-icon-button-tone: var(--color-primary);
+  --bare-icon-button-glyph-size: 24px;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--bare-icon-button-tone);
+}
+
+.bare-icon-button.MuiIconButton-root svg {
+  width: var(--bare-icon-button-glyph-size);
+  height: var(--bare-icon-button-glyph-size);
+}
+
+.bare-icon-button.MuiIconButton-root[data-size='small'] {
+  --bare-icon-button-glyph-size: 18px;
+
+  width: 28px;
+  height: 28px;
+}
+
+.bare-icon-button.MuiIconButton-root[data-size='large'] {
+  --bare-icon-button-glyph-size: 32px;
+
+  width: 48px;
+  height: 48px;
+}
+
+/* Large is for a glyph that has to hold its own beside display-size type. A
+   phone shrinks that type, so large steps down to the default rather than
+   outweighing it. */
+@media (--mobile) {
+  .bare-icon-button.MuiIconButton-root[data-size='large'] {
+    --bare-icon-button-glyph-size: 24px;
+
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.bare-icon-button.MuiIconButton-root[data-tone='action'] {
+  --bare-icon-button-tone: var(--color-action);
+}
+
+/* Replaces MUI's own grey hover. Guarded to pointers that can genuinely hover:
+   a touchscreen holds :hover after a tap, which would read as a selected
+   state. */
+@media (hover: hover) {
+  .bare-icon-button.MuiIconButton-root:hover {
+    background: var(--color-secondary);
+  }
+}
+
+.bare-icon-button.MuiIconButton-root:focus-visible {
+  background: var(--color-secondary);
+}
+
+/* Pressed fills with the tone and knocks the glyph out of it, and holds that
+   through hover so the state never flickers under the pointer. */
+.bare-icon-button.MuiIconButton-root[aria-pressed='true'],
+.bare-icon-button.MuiIconButton-root[aria-pressed='true']:hover {
+  background: var(--bare-icon-button-tone);
+  color: var(--color-background);
+}

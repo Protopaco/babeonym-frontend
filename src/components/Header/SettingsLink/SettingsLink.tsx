@@ -1,13 +1,10 @@
-import IconButton from '@mui/material/IconButton';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Link } from 'react-router-dom';
+import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import './SettingsLink.css';
 
 export default () => (
   <TutorialTooltip title="Your surname and the app's colours" placement="bottom">
-    <IconButton className="settings-link" aria-label="Settings" component={Link} to="/settings">
-      <SettingsIcon />
-    </IconButton>
+    <BareIconButton icon={<SettingsIcon />} label="Settings" to="/settings" tone="action" />
   </TutorialTooltip>
 );

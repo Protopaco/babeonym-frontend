@@ -24,10 +24,9 @@
   }
 }
 
-.workspace-filter-actions-close.MuiIconButton-root {
+.workspace-filter-actions-close {
   position: absolute;
   top: 0;
   right: 0;
-  color: var(--color-primary);
-  padding: 2px;
+  display: flex;
 }

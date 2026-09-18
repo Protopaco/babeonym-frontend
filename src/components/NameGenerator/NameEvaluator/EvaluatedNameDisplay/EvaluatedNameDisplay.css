@@ -79,28 +79,6 @@
   left: 100%;
 }
 
-.evaluated-name-display-info.MuiIconButton-root {
-  color: var(--color-action);
-}
-
-/* Replaces MUI's own grey hover, which is compounded here to beat it.
-   Guarded to pointers that can genuinely hover for the usual reason, which
-   bites harder on this button than most: a touchscreen holds :hover after a
-   tap, and the name under this button is replaced on every action, so the wash
-   would follow onto the next name. */
-@media (hover: hover) {
-  .evaluated-name-display-info.MuiIconButton-root:hover {
-    background: var(--color-secondary);
-  }
-}
-
-.evaluated-name-display-info-icon.MuiSvgIcon-root {
-  font-size: 32px;
-}
-
-.evaluated-name-display-info-icon.MuiSvgIcon-root:hover {
-}
-
 /* No min-height here. It used to be 150px with the slot bottom-aligned inside
    it, and the slot's own minimum is 120px — so 30px above the name was reserved
    and never filled. The slot sets the height; this box hugs it. */
@@ -123,9 +101,5 @@
   .evaluated-name-display-name.MuiTypography-root {
     font-weight: 600;
     line-height: 1.5;
-  }
-
-  .evaluated-name-display-info-icon.MuiSvgIcon-root {
-    font-size: 24px;
   }
 }

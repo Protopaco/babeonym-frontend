@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import IconButton from '@mui/material/IconButton';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import { useTutorial } from '@/state/tutorial/tutorial.context';
 import './MobileTutorialToggle.css';
 
@@ -28,19 +28,17 @@ export default () => {
   }, [tutorialLabelVisible, dismissTutorialLabel]);
 
   return (
-    <div id="mobile-tutorial-toggle">
-      <IconButton
-        id="mobile-tutorial-button"
-        aria-label={tutorialEnabled ? 'Turn off tutorial help' : 'Turn on tutorial help'}
-        aria-pressed={tutorialEnabled}
-        data-tutorial-enabled={tutorialEnabled}
+    <div className="mobile-tutorial-toggle">
+      {/* A question mark rather than the baby the desktop icon uses: the
+          wordmark beside it already carries that face as its O, and two of
+          them in one bar read as a mistake. */}
+      <BareIconButton
+        icon={<QuestionMarkIcon aria-hidden="true" focusable="false" />}
+        label={tutorialEnabled ? 'Turn off tutorial help' : 'Turn on tutorial help'}
         onClick={toggleTutorialEnabled}
-      >
-        {/* A question mark rather than the baby the desktop icon uses: the
-            wordmark beside it already carries that face as its O, and two of
-            them in one bar read as a mistake. */}
-        <QuestionMarkIcon aria-hidden="true" focusable="false" />
-      </IconButton>
+        tone="action"
+        pressed={tutorialEnabled}
+      />
       {/* Fades rather than vanishing, so a label leaving on a timer reads as
           finishing rather than as something breaking. It starts at full
           opacity: it is on screen from the first paint, so there is nothing to

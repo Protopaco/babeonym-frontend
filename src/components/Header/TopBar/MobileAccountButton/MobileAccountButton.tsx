@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AuthModal from '@/components/Header/AuthModal/AuthModal';
+import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import LogoutConfirmDialog from '@/components/Header/LogoutConfirmDialog/LogoutConfirmDialog';
 import { useLogout } from '@/components/Header/useLogout';
 import { useUser } from '@/state/user/user.context';
@@ -38,13 +38,14 @@ export default () => {
 
   return (
     <>
-      <IconButton
-        className="mobile-account-button"
-        aria-label={isAnonymousUser ? 'Sign in or sign up' : 'Log out'}
-        onClick={() => (isAnonymousUser ? setAuthModalOpen(true) : setLogoutConfirmOpen(true))}
-      >
-        {isAnonymousUser ? <AccountCircleOutlinedIcon /> : <AccountCircleIcon />}
-      </IconButton>
+      <div className="mobile-account-button">
+        <BareIconButton
+          icon={isAnonymousUser ? <AccountCircleOutlinedIcon /> : <AccountCircleIcon />}
+          label={isAnonymousUser ? 'Sign in or sign up' : 'Log out'}
+          onClick={() => (isAnonymousUser ? setAuthModalOpen(true) : setLogoutConfirmOpen(true))}
+          tone="action"
+        />
+      </div>
       <AuthModal open={authModalOpen} onClose={() => setAuthModalOpen(false)} onGoogleSignIn={startGoogleSignIn} />
       <LogoutConfirmDialog open={logoutConfirmOpen} onClose={() => setLogoutConfirmOpen(false)} onConfirm={confirmLogOut} />
     </>

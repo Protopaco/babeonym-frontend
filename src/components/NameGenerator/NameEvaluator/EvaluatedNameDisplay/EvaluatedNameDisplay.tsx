@@ -3,10 +3,10 @@ import ExhaustedNameMessage from '@/components/NameGenerator/NameEvaluator/Exhau
 import NameLimitMessage from '@/components/NameGenerator/NameEvaluator/NameLimitMessage/NameLimitMessage';
 import CandidateErrorMessage from '@/components/NameGenerator/NameEvaluator/CandidateErrorMessage/CandidateErrorMessage';
 import GeneratedNameSkeleton from '@/components/NameGenerator/GeneratedNameSkeleton/GeneratedNameSkeleton';
+import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import NameEtymologyModal from '@/components/Shared/NameEtymologyModal/NameEtymologyModal';
 import { Typography } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
@@ -85,13 +85,13 @@ export default ({ currentCandidate, isAwaitingCandidates, atApprovedNameLimit, c
                     {currentCandidate.etymology ? (
                       <span className="evaluated-name-display-info-anchor">
                         <TutorialTooltip title="Learn about this name's origin" placement="right">
-                          <IconButton
-                            className="evaluated-name-display-info"
-                            aria-label={`About ${currentCandidate.givenName}`}
+                          <BareIconButton
+                            icon={<InfoOutlinedIcon />}
+                            label={`About ${currentCandidate.givenName}`}
                             onClick={() => setEtymologyOpen(true)}
-                          >
-                            <InfoOutlinedIcon className="evaluated-name-display-info-icon" />
-                          </IconButton>
+                            size="large"
+                            tone="action"
+                          />
                         </TutorialTooltip>
                       </span>
                     ) : null}

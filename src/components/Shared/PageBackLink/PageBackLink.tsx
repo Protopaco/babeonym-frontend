@@ -1,6 +1,5 @@
-import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Link } from 'react-router-dom';
+import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import './PageBackLink.css';
 
@@ -9,13 +8,9 @@ import './PageBackLink.css';
 // name are the same string so the two never drift.
 const BACK_LABEL = 'Back to your names';
 
-// A Link rather than a click handler, so middle-click and open-in-new-tab work
-// the way they do everywhere else in the app.
 const PageBackLink = () => (
   <TutorialTooltip title={BACK_LABEL} placement="bottom">
-    <IconButton className="page-back-link" aria-label={BACK_LABEL} component={Link} to="/">
-      <ArrowBackIcon />
-    </IconButton>
+    <BareIconButton icon={<ArrowBackIcon />} label={BACK_LABEL} to="/" />
   </TutorialTooltip>
 );
 

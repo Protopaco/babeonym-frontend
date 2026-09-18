@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
+import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import './WorkspaceFilterActions.css';
 
@@ -21,9 +21,9 @@ const WorkspaceFilterActions = ({ disabled = false, isOpen, onClearAll, onClose,
   <div className="workspace-filter-actions" aria-label="Filter actions">
     {isOpen && (
       <>
-        <IconButton className="workspace-filter-actions-close" aria-label="Close filters" onClick={onClose} size="small">
-          <CloseIcon fontSize="small" />
-        </IconButton>
+        <div className="workspace-filter-actions-close">
+          <BareIconButton icon={<CloseIcon />} label="Close filters" onClick={onClose} size="small" />
+        </div>
         <PrimaryTextButton text="Clear All" onClick={onClearAll} size="compact" disabled={disabled} />
         <PrimaryTextButton text="Set Filters" onClick={onSetFilters} size="compact" disabled={disabled} />
       </>
