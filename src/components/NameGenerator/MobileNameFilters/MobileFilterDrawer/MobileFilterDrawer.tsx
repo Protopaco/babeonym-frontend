@@ -7,7 +7,7 @@ import MobileFilterList from '@/components/NameGenerator/MobileFilterList/Mobile
 import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
-import type { MobileFilterCategory } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
+import type { MobileFilterCategory } from '@/models/MobileFilterCategory';
 import { useFilters } from '@/state/filter/useFilters';
 import { parseFilterIds } from '@/utils/parseFilterIds';
 import { writeFilterIds } from '@/utils/writeFilterIds';

@@ -1,14 +1,4 @@
-import type { NameFilters } from '@/api/generated/models/NameFilters';
-
-export type MobileFilterCategory = {
-  id: string;
-  buttonLabel: string;
-  chipLabel: string;
-  drawerTitle: string;
-  optionsKey: keyof NameFilters;
-  paramKey: string;
-  searchable: boolean;
-};
+import type { MobileFilterCategory } from '@/models/MobileFilterCategory';
 
 // The four categories differ only in their labels, their param, and which list
 // they read, so they are data rather than four near-identical components.

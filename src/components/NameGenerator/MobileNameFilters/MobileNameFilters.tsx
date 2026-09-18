@@ -7,7 +7,7 @@ import WorkspaceAppliedFilterChip from '@/components/NameWorkspace/WorkspaceFilt
 import WorkspaceClearFiltersButton from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceClearFiltersButton/WorkspaceClearFiltersButton';
 import MobileFilterDrawer from '@/components/NameGenerator/MobileNameFilters/MobileFilterDrawer/MobileFilterDrawer';
 import { mobileFilterCategories } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
-import type { MobileFilterCategory } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
+import type { MobileFilterCategory } from '@/models/MobileFilterCategory';
 import { useMobileAppliedFilterChips } from '@/components/NameGenerator/MobileNameFilters/useMobileAppliedFilterChips';
 import { useAppLayoutState } from '@/state/appLayoutState/useAppLayoutState';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
