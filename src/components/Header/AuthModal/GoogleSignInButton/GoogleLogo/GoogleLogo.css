@@ -1,0 +1,6 @@
+/* 18px is Google's size for the mark on a sign-in button. */
+.google-logo {
+  display: block;
+  width: 18px;
+  height: 18px;
+}

@@ -36,6 +36,14 @@
   border-radius: 12px;
 }
 
+.primary-button.MuiButton-root[data-size='compact-wider'] {
+  --button-font-size: 0.875rem;
+
+  width: 240px;
+  height: 36px;
+  border-radius: 12px;
+}
+
 /* Hugs its content, so a label that collapses takes the box down with it. The
    floor is the collapsed size — an icon on its own. */
 .primary-button.MuiButton-root[data-size='compact-narrow'] {

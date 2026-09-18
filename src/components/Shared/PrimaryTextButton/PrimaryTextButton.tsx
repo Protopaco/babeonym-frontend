@@ -7,7 +7,7 @@ type Props = {
   text: string;
   onClick: () => void;
   disabled?: boolean;
-  size?: 'default' | 'wide' | 'compact' | 'compact-wide' | 'compact-narrow';
+  size?: 'default' | 'wide' | 'compact' | 'compact-wide' | 'compact-wider' | 'compact-narrow';
   tone?: 'default' | 'danger' | 'action';
   emphasis?: 'outline' | 'fill';
   startIcon?: React.ReactNode;

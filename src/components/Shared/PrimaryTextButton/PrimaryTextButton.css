@@ -1,15 +1,17 @@
 /* Reads its size from the button rather than restating it, so the size variants
-   stay defined in one place. */
+   stay defined in one place. A label never wraps: one that overflows is too long
+   for its button, and the fix is the label. */
 .primary-text-button-label {
   font-size: var(--button-font-size, 1rem);
   line-height: 1;
   align-content: center;
+  white-space: nowrap;
 }
 
 /* The icon spans are inline by default, which sits them on the text baseline
    rather than on the label's centre. Centring them here keeps the icon level
-   with the script, and the margin is what separates the two — the button's own
-   flex container is not this component's to set a gap on. */
+   with the script. The space between icon and label is padding on the label —
+   see below. */
 .primary-text-button-icon-start,
 .primary-text-button-icon-end {
   display: flex;
@@ -24,9 +26,20 @@
 .primary-text-button {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   width: 100%;
 }
+
+/* Padding on the label rather than a flex gap, so a button with no label
+   showing is just its icon, centred, with no gap left beside it. */
+.primary-text-button-icon-start + .primary-text-button-label {
+  padding-inline-start: 8px;
+}
+
+.primary-text-button-label:has(+ .primary-text-button-icon-end) {
+  padding-inline-end: 8px;
+}
+
 /* Clips the label while its width animates. The gap from the icon is padding
    inside the clip, so it grows and collapses with the label. */
 .primary-text-button-label-clip {
@@ -36,5 +49,5 @@
 }
 
 .primary-text-button-label-clip .primary-text-button-label {
-  padding-inline-start: 6px;
+  padding-inline-start: 8px;
 }
