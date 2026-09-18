@@ -1,4 +1,4 @@
-.account-link {
+.account-link.MuiTypography-root {
   display: block;
   max-width: 240px;
   border: 0;
@@ -10,10 +10,10 @@
   white-space: nowrap;
 }
 
-#account-link-anonymous {
+.account-link.MuiTypography-root[data-state='anonymous'] {
   color: var(--color-action);
 }
 
-#account-link-signed-in {
+.account-link.MuiTypography-root[data-state='signed-in'] {
   color: var(--color-primary);
 }

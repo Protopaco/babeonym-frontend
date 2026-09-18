@@ -14,8 +14,9 @@ import './MobileAccountButton.css';
    say active — the tutorial toggle beside it does the same — so the two read as
    one convention.
 
-   Not a variant of AccountLink, which goes to Settings when signed in. Here the
-   gear covers Settings, so this side is only ever about signing in or out. */
+   The mobile counterpart of AccountLink: the same two states and actions, drawn
+   as an icon because the bar has no room for an email address. The gear beside
+   it covers Settings, so this is only ever about signing in or out. */
 export default () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [logoutConfirmOpen, setLogoutConfirmOpen] = useState(false);

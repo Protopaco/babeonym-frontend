@@ -35,9 +35,8 @@ export default () => {
     <>
       <Typography
         variant="button"
-        color="primary"
-        id={isAnonymousUser ? 'account-link-anonymous' : 'account-link-signed-in'}
         className="account-link"
+        data-state={isAnonymousUser ? 'anonymous' : 'signed-in'}
         component="button"
         type="button"
         onClick={() => (isAnonymousUser ? setAuthModalOpen(true) : setLogoutConfirmOpen(true))}
