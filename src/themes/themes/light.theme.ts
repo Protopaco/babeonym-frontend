@@ -7,7 +7,7 @@ import typography from '@/themes/typography.theme';
 import zIndex from '@/themes/zIndex.theme';
 
 const semanticPalette: SemanticPaletteColors = {
-  primary: '#2B1939',
+  primary: '#2d0f51',
   primaryTint: '#6f6c72',
   primaryContrast: '#FBFBFA',
   secondary: '#FBFBFA',
@@ -18,8 +18,8 @@ const semanticPalette: SemanticPaletteColors = {
   danger: '#B5444D',
   dangerTint: '#F1D6D8',
   dangerContrast: '#FBFBFA',
-  textPrimary: '#2B1939',
-  textSecondary: '#2B1939',
+  textPrimary: '#2d0f51',
+  textSecondary: '#2d0f51',
   background: '#FBFBFA',
 };
 
