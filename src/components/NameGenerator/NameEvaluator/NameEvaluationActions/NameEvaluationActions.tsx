@@ -21,13 +21,13 @@ export default ({ approveClick, disabled, rejectClick, snoozeClick }: Props) => 
           words "later" and "Don't" rather than a tone. The moon in particular
           says nothing on its own about the name coming back. */}
       <TutorialTooltip title="Save this name" placement="top">
-        <PrimaryIconButton icon={<ThumbUpIcon />} label="Approve name" onClick={approveClick} disabled={disabled} />
+        <PrimaryIconButton icon={<ThumbUpIcon />} label="Approve name" onClick={approveClick} disabled={disabled} tone="action" />
       </TutorialTooltip>
       <TutorialTooltip title="Show it again later" placement="top">
-        <PrimaryIconButton icon={<BedtimeIcon />} label="Snooze name" onClick={snoozeClick} disabled={disabled} />
+        <PrimaryIconButton icon={<BedtimeIcon />} label="Snooze name" onClick={snoozeClick} disabled={disabled} tone="action" />
       </TutorialTooltip>
       <TutorialTooltip title="Don't show it again" placement="top">
-        <PrimaryIconButton icon={<ThumbDownIcon />} label="Reject name" onClick={rejectClick} disabled={disabled} />
+        <PrimaryIconButton icon={<ThumbDownIcon />} label="Reject name" onClick={rejectClick} disabled={disabled} tone="action" />
       </TutorialTooltip>
     </Box>
   );

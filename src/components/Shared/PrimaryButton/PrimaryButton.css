@@ -165,7 +165,7 @@
     border-color: var(--color-action);
     background: var(--color-background);
     color: var(--color-action);
-    transform: translateY(2px);
+    transform: translateY(1px);
     box-shadow: var(--box-shadow-action-button-pressed);
   }
 }
@@ -214,6 +214,12 @@
     background: var(--color-error);
     color: var(--color-error-contrast);
   }
+
+  .primary-button.MuiButton-root[data-emphasis='fill'][data-tone='action']:hover {
+    border-color: var(--color-action);
+    background: var(--color-action);
+    color: var(--color-action-contrast);
+  }
 }
 
 .primary-button.MuiButton-root[data-emphasis='fill']:focus-visible {
@@ -227,4 +233,10 @@
   border-color: var(--color-error);
   background: var(--color-error);
   color: var(--color-error-contrast);
+}
+
+.primary-button.MuiButton-root[data-emphasis='fill'][data-tone='action']:focus-visible {
+  border-color: var(--color-action);
+  background: var(--color-action);
+  color: var(--color-action-contrast);
 }

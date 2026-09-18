@@ -8,15 +8,16 @@ type Props = {
   onClick: () => void;
   disabled?: boolean;
   size?: 'default' | 'compact';
+  tone?: 'default' | 'action';
   emphasis?: 'outline' | 'fill';
   pressed?: boolean;
 };
 
 // An icon-only button. The label is required rather than optional because an
 // icon leaves the control with no accessible name of its own.
-const PrimaryIconButton = ({ icon, label, onClick, disabled = false, size = 'default', emphasis = 'outline', pressed }: Props) => {
+const PrimaryIconButton = ({ icon, label, onClick, disabled = false, size = 'default', tone = 'default', emphasis = 'outline', pressed }: Props) => {
   return (
-    <PrimaryButton onClick={onClick} disabled={disabled} shape="icon" size={size} emphasis={emphasis} label={label} pressed={pressed}>
+    <PrimaryButton onClick={onClick} disabled={disabled} shape="icon" size={size} tone={tone} emphasis={emphasis} label={label} pressed={pressed}>
       <span className="primary-icon-button-icon">{icon}</span>
     </PrimaryButton>
   );

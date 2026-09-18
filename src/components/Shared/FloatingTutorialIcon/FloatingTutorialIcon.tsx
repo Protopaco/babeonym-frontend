@@ -16,6 +16,7 @@ export default () => {
             label={tutorialEnabled ? 'Turn off tutorial help' : 'Turn on tutorial help'}
             onClick={toggleTutorialEnabled}
             size="compact"
+            tone="action"
             emphasis={tutorialEnabled ? 'fill' : 'outline'}
             pressed={tutorialEnabled}
           />
