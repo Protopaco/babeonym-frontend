@@ -1,6 +1,7 @@
 import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
 import { BRAND_LOGO_COLOR } from '@/constants/brandLogoColor';
 import motion from '@/themes/motion.theme';
+import radius from '@/themes/radius.theme';
 
 export default ({
   primary,
@@ -85,6 +86,7 @@ export default ({
             '--height-control': '56px',
 
             ...motion.cssVariables,
+            ...radius.cssVariables,
           },
         },
       },
