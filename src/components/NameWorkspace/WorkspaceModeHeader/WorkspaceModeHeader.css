@@ -31,7 +31,7 @@
      pill, and the hover rule below sets its own. */
   background: transparent;
   color: var(--color-text-primary);
-  font-family: var(--font-family-primary);
+  font-family: inherit;
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1;

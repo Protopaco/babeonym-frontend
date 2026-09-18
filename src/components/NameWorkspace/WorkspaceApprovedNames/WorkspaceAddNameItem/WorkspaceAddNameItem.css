@@ -30,16 +30,3 @@
     display: block;
   }
 }
-
-.workspace-add-name-button.MuiIconButton-root {
-  width: 60px;
-  height: 60px;
-  border: 3px solid var(--color-action);
-  background: var(--color-background);
-  color: var(--color-action);
-}
-
-.workspace-add-name-button.MuiIconButton-root:hover,
-.workspace-add-name-button.MuiIconButton-root:focus-visible {
-  background: var(--color-secondary);
-}

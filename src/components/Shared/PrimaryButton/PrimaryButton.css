@@ -87,6 +87,17 @@
   border-width: 4px;
 }
 
+/* An action that sits in a list rather than above it — the add button at the
+   end of the names. Already as small as a thumb target should go, so it holds
+   this size at every width. Icon shape only; a text button has no small. */
+.primary-button.MuiButton-root[data-shape='icon'][data-size='small'] {
+  --button-icon-size: 24px;
+
+  width: 60px;
+  height: 60px;
+  border-width: 3px;
+}
+
 /* The default icon size no longer steps here — the clamp above covers every
    width. Compact still does: it is the floating tutorial icon, which sits over
    the page rather than in a row, so its size is a judgement about how much of

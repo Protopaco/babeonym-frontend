@@ -7,7 +7,7 @@ type Props = {
   label: string;
   onClick: () => void;
   disabled?: boolean;
-  size?: 'default' | 'compact';
+  size?: 'default' | 'compact' | 'small';
   tone?: 'default' | 'action';
   emphasis?: 'outline' | 'fill';
   pressed?: boolean;

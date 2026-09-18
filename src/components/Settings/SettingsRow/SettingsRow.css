@@ -18,10 +18,12 @@
 }
 
 /* Indented to the field's text rather than the field's edge, so it reads as
-   belonging to the value above it. FormHelperText brings its own size, spacing
-   and error colour. */
+   belonging to the value above it. Stepped up from MUI's caption size, which
+   read as fine print under a field this large; FormHelperText still brings its
+   spacing and error colour. */
 .settings-row-message.MuiFormHelperText-root {
   margin-left: 14px;
+  font-size: 1rem;
 }
 
 .settings-row-field {

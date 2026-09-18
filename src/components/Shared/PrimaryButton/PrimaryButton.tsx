@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
   onClick: Function;
   disabled?: boolean;
-  size?: 'default' | 'wide' | 'compact' | 'compact-wide' | 'compact-wider' | 'compact-narrow';
+  size?: 'default' | 'wide' | 'compact' | 'compact-wide' | 'compact-wider' | 'compact-narrow' | 'small';
   shape?: 'text' | 'icon';
   tone?: 'default' | 'danger' | 'action';
   emphasis?: 'outline' | 'fill';

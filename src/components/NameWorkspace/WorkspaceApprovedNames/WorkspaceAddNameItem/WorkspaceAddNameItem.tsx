@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
-import IconButton from '@mui/material/IconButton';
 import { motion } from 'motion/react';
+import PrimaryIconButton from '@/components/Shared/PrimaryIconButton/PrimaryIconButton';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import motionTokens from '@/themes/motion.theme';
 import './WorkspaceAddNameItem.css';
@@ -30,9 +30,7 @@ const WorkspaceAddNameItem = ({ onClick }: Props) => {
           than wait for one. The aria-label carries the button's name for anyone
           the tooltip does not reach. */}
       <TutorialTooltip title="Add your own name" placement="top">
-        <IconButton className="workspace-add-name-button" onClick={onClick} aria-label="Add custom name">
-          <AddIcon />
-        </IconButton>
+        <PrimaryIconButton icon={<AddIcon />} label="Add custom name" onClick={onClick} size="small" tone="action" />
       </TutorialTooltip>
     </motion.li>
   );
