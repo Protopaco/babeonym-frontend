@@ -42,7 +42,7 @@ const WorkspaceClearFiltersButton = ({ onClearFilters }: Props) => {
         onClick={handleClick}
         size="compact-narrow"
         tone="action"
-        startIcon={<FilterListOffIcon fontSize="small" color="action" />}
+        startIcon={<FilterListOffIcon fontSize="small" />}
       />
     </div>
   );

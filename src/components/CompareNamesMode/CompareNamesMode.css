@@ -185,7 +185,7 @@
        between them. It was pinned right when the surname was still centred and
        the column needed a counterweight. */
     margin: clamp(8px, 1.6vh, 12px) 0;
-    font-size: clamp(2rem, 2.2vh, 1rem);
+    font-size: 2rem;
     font-weight: 600;
     color: var(--color-primary);
   }

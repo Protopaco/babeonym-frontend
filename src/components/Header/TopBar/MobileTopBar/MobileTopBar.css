@@ -1,4 +1,4 @@
-#mobile-top-bar {
+.mobile-top-bar.MuiAppBar-root {
   display: none;
 }
 
@@ -6,7 +6,7 @@
   /* In flow. #header is sticky and does the pinning, so taking this out of
      flow would leave the header measuring nothing and the bar covering the top
      of the page. */
-  #mobile-top-bar {
+  .mobile-top-bar.MuiAppBar-root {
     height: var(--height-header-mobile);
     background: var(--color-background);
     display: flex;
@@ -26,7 +26,7 @@
      wordmark ends at 156. The gap is small because the targets are not — 4px
      between boxes puts 24px between the glyphs themselves, which is the size of
      a glyph and reads as even. */
-  #mobile-top-bar-controls {
+  .mobile-top-bar-controls {
     display: flex;
     align-self: stretch;
     align-items: center;

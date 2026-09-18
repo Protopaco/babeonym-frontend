@@ -6,6 +6,13 @@
   width: 100%;
 }
 
+/* Matches ThemePicker's label, so every setting on the page is named the same
+   way. */
+.settings-row-label.MuiTypography-root {
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+}
+
 /* The field and the save button, and nothing that changes height. Centred
    because the two are not the same height: the input takes its size from
    body1, which the type scale grows at 600px, while the button is a fixed
@@ -30,6 +37,17 @@
   flex: 1 1 auto;
   min-width: 0;
   background: var(--color-background);
+}
+
+/* Stated rather than left to MUI, whose outline is black at 23% whatever the
+   theme — invisible on the dark background. Focus and error keep MUI's own
+   colours, so hover is kept off both. */
+.settings-row-field .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-primary-edge);
+}
+
+.settings-row-field .MuiOutlinedInput-root:not(.Mui-focused):not(.Mui-error):hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-primary-tint);
 }
 
 .settings-row-clear.MuiIconButton-root {

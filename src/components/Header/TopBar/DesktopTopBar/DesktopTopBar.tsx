@@ -7,9 +7,9 @@ import './DesktopTopBar.css';
 
 export default () => {
   return (
-    <AppBar id="desktop-top-bar" position="static">
+    <AppBar className="desktop-top-bar" position="static">
       <LogoFull />
-      <Box id="desktop-top-bar-account">
+      <Box className="desktop-top-bar-account">
         <AccountLink />
         <SettingsLink />
       </Box>
