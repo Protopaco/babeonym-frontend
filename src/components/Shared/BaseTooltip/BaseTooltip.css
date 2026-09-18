@@ -2,7 +2,7 @@
   background: var(--color-primary);
   color: var(--color-primary-contrast);
   border: 2px solid var(--color-primary-contrast);
-  border-radius: 16px;
+  border-radius: var(--radius-16);
   box-shadow: var(--box-shadow-primary);
   font-size: 14px;
   font-weight: 600;

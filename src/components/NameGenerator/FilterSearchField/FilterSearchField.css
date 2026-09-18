@@ -6,7 +6,7 @@
 
 .filter-search-field .MuiOutlinedInput-root {
   height: 38px;
-  border-radius: 2px;
+  border-radius: var(--radius-2);
   background: var(--color-background);
 }
 

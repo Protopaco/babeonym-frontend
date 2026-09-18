@@ -6,14 +6,14 @@
 .name-chip-action.MuiButtonBase-root {
   flex-shrink: 0;
   margin-left: -22px;
-  border-radius: 0 22px 22px 0;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
   padding: 0;
 }
 
 /* Matches the pill's radius so the ripple and focus ring follow its outline. */
 .name-chip-action.MuiButtonBase-root[data-size='large'] {
   margin-left: -30px;
-  border-radius: 0 30px 30px 0;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
 }
 
 /* The fill reaches the pill as a custom property rather than a prop, and the

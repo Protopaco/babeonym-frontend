@@ -19,7 +19,7 @@
    frame's 6px of padding wants roughly 14, so the two nest rather than sitting
    at odds. */
 .filter-picker-search .MuiOutlinedInput-root {
-  border-radius: 12px;
+  border-radius: var(--radius-12);
   background: var(--color-background);
 }
 
@@ -41,7 +41,7 @@
   box-sizing: border-box;
   min-height: 0;
   display: flex;
-  border-radius: 12px;
+  border-radius: var(--radius-12);
   background: var(--color-background);
   padding: 6px;
 }

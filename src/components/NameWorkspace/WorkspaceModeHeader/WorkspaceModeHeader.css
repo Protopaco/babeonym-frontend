@@ -21,7 +21,7 @@
   position: relative;
   padding: 8px 20px;
   border: 0;
-  border-radius: 24px;
+  border-radius: var(--radius-pill);
   /* Transparent, not the page colour. The pill travels between the two buttons
      and passes over whichever one it is not inside — an opaque fill there paints
      over it, and the button's own 28px corner is what bit a curve out of the
@@ -48,7 +48,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  border-radius: 24px;
+  border-radius: var(--radius-pill);
   background: var(--color-action-tint);
 }
 

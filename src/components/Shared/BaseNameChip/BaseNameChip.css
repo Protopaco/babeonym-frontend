@@ -10,7 +10,7 @@
   /* Defaulted alongside the fill, so an extension can restate the outline to
      match whatever colour it painted the pill. */
   border: 2px solid var(--name-chip-border, var(--color-primary));
-  border-radius: 22px;
+  border-radius: var(--radius-pill);
   /* Defaulted rather than fixed, so an extension can recolour the pill without
      this component growing a prop for every fill it might need. */
   background: var(--name-chip-fill, var(--color-background));
@@ -38,7 +38,7 @@
 
   height: 60px;
   border-width: 3px;
-  border-radius: 30px;
+  border-radius: var(--radius-pill);
   padding: 0 15px;
 }
 
@@ -55,7 +55,7 @@
   border-color: var(--color-action);
   height: 70px;
   border-width: 4px;
-  border-radius: 44px;
+  border-radius: var(--radius-pill);
   padding: 0 32px;
 }
 
@@ -72,13 +72,13 @@
   width: 48px;
   justify-content: center;
   border-left: 0;
-  border-radius: 0 22px 22px 0;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
   padding: 0 0 0 22px;
 }
 
 .base-name-chip[data-size='large'][data-shape='action'] {
   width: 70px;
-  border-radius: 0 30px 30px 0;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
   padding-left: 30px;
 }
 

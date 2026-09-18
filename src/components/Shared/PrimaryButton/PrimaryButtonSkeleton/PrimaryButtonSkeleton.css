@@ -1,7 +1,7 @@
 .primary-button-skeleton.MuiSkeleton-root {
   width: 220px;
   height: 76px;
-  border-radius: 20px;
+  border-radius: var(--radius-20);
   background: var(--color-primary-highlight);
 }
 
@@ -12,11 +12,11 @@
 .primary-button-skeleton.MuiSkeleton-root[data-size='compact'] {
   width: 128px;
   height: 36px;
-  border-radius: 12px;
+  border-radius: var(--radius-12);
 }
 
 .primary-button-skeleton.MuiSkeleton-root[data-size='compact-wide'] {
   width: 180px;
   height: 36px;
-  border-radius: 12px;
+  border-radius: var(--radius-12);
 }

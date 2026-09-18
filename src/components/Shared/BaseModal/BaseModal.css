@@ -1,7 +1,7 @@
 .base-modal-paper.MuiDialog-paper {
   width: min(360px, calc(100vw - 32px));
   border: 2px solid var(--color-primary-edge);
-  border-radius: 20px;
+  border-radius: var(--radius-20);
   background: var(--color-background);
   color: var(--color-text-primary);
   box-shadow: var(--box-shadow-primary);

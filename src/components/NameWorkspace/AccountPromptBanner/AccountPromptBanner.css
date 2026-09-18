@@ -14,7 +14,7 @@
   padding-top: 16px;
   padding-bottom: 16px;
   background: var(--color-action-tint);
-  border-radius: 8px;
+  border-radius: var(--radius-8);
 }
 
 /* The copy at the start and its button at the end, filling the row up to the

@@ -3,7 +3,7 @@
    it. The shift lives here rather than on BaseNameChip because this is the
    element that is actually clickable. */
 .compare-name-chip.MuiButtonBase-root {
-  border-radius: 44px;
+  border-radius: var(--radius-pill);
   padding: 0;
   transition: transform var(--motion-duration-120) var(--motion-ease-out);
 }

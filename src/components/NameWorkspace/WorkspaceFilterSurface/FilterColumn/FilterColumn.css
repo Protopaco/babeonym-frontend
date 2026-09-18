@@ -24,7 +24,7 @@
      own height. */
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
+  border-radius: var(--radius-20);
   background: var(--color-action-tint);
   padding: 6px;
 }
