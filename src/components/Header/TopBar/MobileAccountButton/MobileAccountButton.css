@@ -9,7 +9,7 @@
   .mobile-account-button.MuiIconButton-root {
     display: flex;
     padding: 10px;
-    color: var(--color-primary-contrast);
+    color: var(--color-action);
   }
 
   .mobile-account-button.MuiIconButton-root svg {

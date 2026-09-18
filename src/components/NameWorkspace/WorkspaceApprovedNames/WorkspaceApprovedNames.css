@@ -5,7 +5,32 @@
 }
 
 .workspace-approved-names-desktop-header {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
+}
+
+/* This is a content heading, not another mode control. The rule continues from
+   the label instead of sitting beneath it, so it marks the section without
+   repeating the tab-header treatment above. */
+.workspace-approved-names-desktop-header .section-header {
+  justify-content: flex-start;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  border-bottom: 0;
+}
+
+.workspace-approved-names-desktop-header .section-header::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: var(--color-action-tint);
+}
+
+.workspace-approved-names-desktop-header .section-header-title.MuiTypography-root {
+  flex: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .workspace-approved-names-mobile-header {
@@ -33,5 +58,29 @@
 
   .workspace-approved-names-mobile-header {
     display: block;
+  }
+
+
+  .workspace-approved-names-mobile-header .mobile-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .workspace-approved-names-mobile-header .mobile-section-header::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--color-action-tint);
+  }
+
+  .workspace-approved-names-mobile-header .mobile-section-header-title.MuiTypography-root {
+    flex: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
   }
 }

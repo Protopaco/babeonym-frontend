@@ -34,9 +34,9 @@
 .workspace-add-name-button.MuiIconButton-root {
   width: 60px;
   height: 60px;
-  border: 3px solid var(--color-primary);
+  border: 3px solid var(--color-action);
   background: var(--color-background);
-  color: var(--color-primary);
+  color: var(--color-action);
 }
 
 .workspace-add-name-button.MuiIconButton-root:hover,

@@ -97,9 +97,9 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
         {isOpen && (
           <motion.div
             className="workspace-filter-layout-selector-reveal"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ height: 0 }}
+            animate={{ height: 'auto' }}
+            exit={{ height: 0 }}
             transition={{ duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out }}
           >
             <div className="workspace-filter-layout-selector-row">

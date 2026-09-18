@@ -40,7 +40,7 @@
   height: var(--height-control);
   border-radius: 4px;
   color: var(--color-primary-contrast);
-  background-color: var(--color-primary);
+  background-color: var(--color-action);
 }
 
 .settings-row-save .MuiSvgIcon-root {

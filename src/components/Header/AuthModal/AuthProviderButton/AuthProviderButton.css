@@ -1,41 +1,64 @@
-.auth-provider-button.MuiButton-root {
-  justify-content: flex-start;
-  gap: 8px;
-  width: 100%;
-  height: var(--height-control);
-  padding: 0 16px;
-  border: 2px solid var(--color-border);
-  border-radius: 12px;
-  background: var(--color-background);
-  box-shadow: var(--box-shadow-primary);
-  color: var(--color-text-secondary);
-  font-size: 1rem;
-  font-weight: 400;
+.auth-modal-providers .primary-button.MuiButton-root[data-size='compact-wide'] {
+  width: 280px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid #747775;
+  border-radius: 4px;
+  background: #fff;
+  color: #1f1f1f;
+  font-family: 'Google Sans', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
   text-transform: none;
 }
 
-.auth-provider-button.MuiButton-root:hover,
-.auth-provider-button.MuiButton-root:focus-visible {
-  border-color: var(--color-primary);
-  background: var(--color-secondary);
-  color: var(--color-text-secondary);
+.auth-modal-providers .primary-button.MuiButton-root[data-size='compact-wide']:hover,
+.auth-modal-providers .primary-button.MuiButton-root[data-size='compact-wide']:focus-visible {
+  border-color: #747775;
+  background: #f8fafd;
+  color: #1f1f1f;
 }
 
-.auth-provider-button.MuiButton-root.Mui-disabled {
-  border-color: var(--color-border);
-  background: var(--color-background);
-  color: var(--color-text-secondary);
+.auth-modal-providers .primary-button.MuiButton-root[data-size='compact-wide']:active {
+  background: #f1f3f4;
+}
+
+.auth-modal-providers .primary-button.MuiButton-root[data-size='compact-wide'].Mui-disabled {
+  border-color: #dadce0;
+  background: #fff;
+  color: #1f1f1f;
+}
+
+.gsi-material-button-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.gsi-material-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-inline-end: 12px;
+}
+
+.auth-provider-button-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.gsi-material-button-contents {
+  line-height: 20px;
+  white-space: nowrap;
 }
 
 .auth-provider-button-spinner.MuiCircularProgress-root {
-  color: var(--color-primary);
-}
-
-.auth-provider-button .MuiButton-startIcon {
-  margin: 0;
-  color: var(--color-primary);
-}
-
-.auth-provider-button .MuiButton-startIcon .MuiSvgIcon-root {
-  font-size: 24px;
+  color: #1f1f1f;
 }

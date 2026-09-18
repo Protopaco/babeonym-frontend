@@ -8,10 +8,7 @@
   justify-content: flex-start;
   gap: 4px;
   white-space: nowrap;
-}
-
-.workspace-filter-toggle-filter-icon {
-  color: var(--color-primary-contrast);
+  padding: 0 0 4px 0;
 }
 
 .workspace-filter-toggle-label,

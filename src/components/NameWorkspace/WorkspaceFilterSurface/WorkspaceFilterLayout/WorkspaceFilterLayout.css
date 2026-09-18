@@ -24,8 +24,7 @@
 
 .workspace-filter-layout-selector-row {
   grid-template-columns: minmax(0, 1fr) minmax(112px, 12vw);
-  background: var(--color-secondary);
-  border-top: 1px solid var(--color-primary-edge);
+  background: var(--color-background);
   padding: 12px 36px;
 }
 
@@ -70,6 +69,10 @@
   right: 0;
   left: 0;
   overflow: hidden;
+  /* The line lives on the clip, not the row inside it, so it rides the bottom
+     edge as the height animates. Closed, it lies exactly over the surface's own
+     line, so opening reads as that line sliding down. */
+  border-bottom: 5px solid var(--color-action-tint);
 }
 
 .workspace-filter-layout-columns {

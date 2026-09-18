@@ -127,21 +127,15 @@
 /* Compound so it beats MUI's Typography class, which is two classes deep and
    would otherwise win on specificity and hold this at its own 20px.
 
-   A filled pill at both widths: it is the word the whole component turns on,
-   and being the one filled thing in the pair makes it read as the separator by
-   its own weight. Only the size differs on mobile. Sized to its content, so it
-   sits at the top of the separator, level with the chips, with the hidden
-   surname below it. */
+   Plain text keeps the separator distinct from the selectable name controls. */
 .compare-names-content-or.MuiTypography-root {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  border-radius: 20px;
-  background: var(--color-primary);
-  padding: 4px 20px;
-  color: var(--color-primary-contrast);
-  font-size: 1.5rem;
+  color: var(--color-primary-tint);
+  font-size: 2.5rem;
+  font-weight: 500;
 }
 
 @media (--mobile) {
@@ -184,20 +178,16 @@
     text-align: center;
   }
 
-  /* Smaller than desktop's pill because it sits in a tight stack. Stacked, a
-     name is a chip and the surname 9px under it, so spacing alone put less room
-     between the two names than inside each one; the fill is what separates
-     them, which is also why it can be small, since it no longer competes with
-     the names. */
+  /* Smaller than desktop because it sits in a tight stack. */
   .compare-names-content-or.MuiTypography-root {
     /* Centred, now that the surname below it is right-aligned: the name reads
        from the left of its chip, the surname ends at the right, and this sits
        between them. It was pinned right when the surname was still centred and
        the column needed a counterweight. */
     margin: clamp(8px, 1.6vh, 12px) 0;
-    border-radius: 14px;
-    padding: 4px 14px;
-    font-size: clamp(0.75rem, 2.2vh, 1rem);
+    font-size: clamp(2rem, 2.2vh, 1rem);
+    font-weight: 600;
+    color: var(--color-primary);
   }
 
   /* Right-aligned where the desktop row indents it to match its own name.

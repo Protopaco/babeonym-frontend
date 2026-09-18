@@ -86,7 +86,7 @@ export default ({ isLoading }: Props) => {
                   ))}
                 </AnimatePresence>
               </motion.div>
-              <WorkspaceClearFiltersButton onClearFilters={clearAppliedFilters} labelVisibility="hidden" />
+              <WorkspaceClearFiltersButton onClearFilters={clearAppliedFilters} />
             </div>
           </motion.div>
         )}
@@ -113,6 +113,7 @@ export default ({ isLoading }: Props) => {
               text={category.buttonLabel}
               disabled={isLoading}
               surface="primary"
+              tone="action"
               onClick={() => setOpenCategory(category)}
             />
           ))}

@@ -1,20 +1,29 @@
-import { createTheme } from '@mui/material/styles';
 import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
 import motion from '@/themes/motion.theme';
 
-const defaultTheme = createTheme();
-const defaultError = defaultTheme.palette.error;
-
 export default ({
   primary,
+  primaryTint,
   primaryContrast,
   secondary,
   secondaryContrast,
   selected,
+  action,
+  actionContrast,
+  actionTint,
+  accent,
+  accentContrast,
+  danger,
+  dangerTint,
+  dangerContrast,
   textPrimary,
   textSecondary,
   background,
 }: SemanticPaletteColors) => {
+  const resolvedAccent = accent ?? primary;
+  const resolvedAccentContrast = accentContrast ?? primaryContrast;
+  const resolvedActionTint = actionTint ?? secondary;
+
   return {
     palette: {
       primary: {
@@ -27,6 +36,10 @@ export default ({
       },
       selected: {
         main: selected,
+      },
+      error: {
+        main: danger,
+        contrastText: dangerContrast,
       },
       background: {
         default: background,
@@ -42,7 +55,9 @@ export default ({
       MuiCssBaseline: {
         styleOverrides: {
           ':root': {
+            '--color-brand-logo': '#78449A',
             '--color-primary': primary,
+            '--color-primary-tint': primaryTint,
             '--color-primary-contrast': primaryContrast,
             '--color-primary-highlight': `${primary}1A`,
             '--color-primary-edge': `${primary}33`,
@@ -52,15 +67,25 @@ export default ({
 
             '--color-selected': selected,
 
+            '--color-action': action,
+            '--color-action-contrast': actionContrast,
+            '--color-action-tint': resolvedActionTint,
+
+            '--color-accent': resolvedAccent,
+            '--color-accent-contrast': resolvedAccentContrast,
+
             '--color-text-primary': textPrimary,
             '--color-text-secondary': textSecondary,
             '--color-scroll-edge': `${textPrimary}14`,
 
             '--color-background': background,
             '--color-border': `${textPrimary}1F`,
-            '--color-error': defaultError.main,
-            '--color-error-contrast': defaultError.contrastText,
-            '--box-shadow-primary': `0 4px 4px ${secondaryContrast}80`,
+            '--color-error': danger,
+            '--color-error-tint': `${dangerTint}`,
+            '--color-error-contrast': dangerContrast,
+            '--box-shadow-primary': `0 2px 4px ${actionTint}`,
+
+            '--box-shadow-action-button-pressed': `0 1px 2px ${action}33`,
 
             '--width-workspace-column': '1200px',
             '--width-filter-drawer-open': '450px',

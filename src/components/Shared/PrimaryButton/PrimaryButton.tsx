@@ -6,9 +6,9 @@ type Props = {
   children: ReactNode;
   onClick: Function;
   disabled?: boolean;
-  size?: 'default' | 'wide' | 'compact' | 'compact-wide';
+  size?: 'default' | 'wide' | 'compact' | 'compact-wide' | 'compact-narrow';
   shape?: 'text' | 'icon';
-  tone?: 'default' | 'danger';
+  tone?: 'default' | 'danger' | 'action';
   emphasis?: 'outline' | 'fill';
   label?: string;
   // Set only by toggles, so a screen reader announces the on/off state rather

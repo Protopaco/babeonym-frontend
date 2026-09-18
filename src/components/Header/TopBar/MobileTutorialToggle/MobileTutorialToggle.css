@@ -27,8 +27,8 @@
      not repeat the account icon's own round shape. */
   #mobile-tutorial-button {
     border-radius: 8px;
-    padding: 10px;
-    color: var(--color-primary-contrast);
+    padding: 8px;
+    color: var(--color-action);
   }
 
   #mobile-tutorial-button svg {
@@ -37,8 +37,8 @@
   }
 
   #mobile-tutorial-button[data-tutorial-enabled='true'] {
-    background: var(--color-primary-contrast);
-    color: var(--color-primary);
+    background: var(--color-action);
+    color: var(--color-background);
   }
 
   /* Hangs off the button and points up, where it used to hang above a button at

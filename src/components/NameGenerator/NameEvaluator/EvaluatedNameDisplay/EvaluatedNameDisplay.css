@@ -80,7 +80,7 @@
 }
 
 .evaluated-name-display-info.MuiIconButton-root {
-  color: var(--color-primary);
+  color: var(--color-action);
 }
 
 /* Replaces MUI's own grey hover, which is compounded here to beat it.

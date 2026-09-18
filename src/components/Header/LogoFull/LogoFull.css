@@ -7,7 +7,7 @@
   width: 148px;
   height: 40px;
   width: auto;
-  color: var(--color-primary);
+  color: var(--color-brand-logo);
 }
 
 /* Two pixels shorter here than on desktop, which is 10px of width: the bar
@@ -16,6 +16,6 @@
 @media (--mobile) {
   #logo-full {
     height: 34px;
-    color: var(--color-primary-contrast);
+    color: var(--color-brand-logo);
   }
 }

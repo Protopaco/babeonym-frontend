@@ -9,21 +9,13 @@ type Props = {
   body?: string[];
   confirmLabel?: string;
   onConfirm?: () => void;
-  tone?: 'default' | 'danger';
+  tone?: 'default' | 'danger' | 'action';
   size?: 'default' | 'wide';
 };
 
 export default ({ open, onClose, title, body = [], confirmLabel, onConfirm, tone = 'default', size = 'default' }: Props) => {
   return (
-    <BaseModal
-      open={open}
-      onClose={onClose}
-      title={title}
-      size={size}
-      confirmLabel={confirmLabel}
-      onConfirm={onConfirm}
-      tone={tone}
-    >
+    <BaseModal open={open} onClose={onClose} title={title} size={size} confirmLabel={confirmLabel} onConfirm={onConfirm} tone={tone}>
       {body.map((paragraph) => (
         <Typography key={paragraph} variant="body1" className="base-text-modal-copy">
           {paragraph}

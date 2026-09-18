@@ -17,29 +17,14 @@ type Props = {
   closeLabel?: string;
   confirmLabel?: string;
   onConfirm?: () => void;
-  tone?: 'default' | 'danger';
+  tone?: 'default' | 'danger' | 'action';
 };
 
-export default ({
-  open,
-  onClose,
-  title,
-  children,
-  size = 'default',
-  closeLabel = 'Cancel',
-  confirmLabel,
-  onConfirm,
-  tone = 'default',
-}: Props) => {
+export default ({ open, onClose, title, children, size = 'default', closeLabel = 'Cancel', confirmLabel, onConfirm, tone = 'default' }: Props) => {
   const buttonSize = size === 'wide' ? 'compact-wide' : 'compact';
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      aria-label={title}
-      slotProps={{ paper: { className: `base-modal-paper base-modal-paper--${size}` } }}
-    >
+    <Dialog open={open} onClose={onClose} aria-label={title} slotProps={{ paper: { className: `base-modal-paper base-modal-paper--${size}` } }}>
       {/* Its own header rather than SectionHeader: the band's colours are this
           component's to set, and restyling SectionHeader from here would reach
           into another component's internals. Outside DialogContent so it stays

@@ -10,7 +10,28 @@
    keeps its relationship to what follows. */
 .workspace-mode-header {
   width: 100%;
-  margin: 24px 0 14px;
+  margin: 24px 0 20px;
+}
+
+/* These are mode controls rather than a section title and action. Keep the
+   shared SectionHeader layout, but collapse it into one centred tab group and
+   remove the document-style rule it normally owns. */
+.workspace-mode-header .section-header {
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border-bottom: 0;
+}
+
+.workspace-mode-header .section-header-title,
+.workspace-mode-header .section-header-action {
+  display: flex;
+  align-items: center;
+}
+
+.workspace-mode-header .section-header-action {
+  min-width: 0;
 }
 
 /* Font size is stated rather than inherited because the two buttons sit in
@@ -18,9 +39,9 @@
    would otherwise render at two different sizes. Matches h4. */
 .workspace-mode-header-button {
   position: relative;
-  padding: 10px 28px;
+  padding: 8px 20px;
   border: 0;
-  border-radius: 28px;
+  border-radius: 24px;
   /* Transparent, not the page colour. The pill travels between the two buttons
      and passes over whichever one it is not inside — an opaque fill there paints
      over it, and the button's own 28px corner is what bit a curve out of the
@@ -29,13 +50,18 @@
      that paints later. Nothing depends on the fill — the active state is the
      pill, and the hover rule below sets its own. */
   background: transparent;
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   font-family: var(--font-family-primary);
-  font-size: 2.125rem;
+  font-size: 1.5rem;
+  font-weight: 500;
   line-height: 1;
   cursor: pointer;
 }
 
+/* Compare is the secondary workflow, so its active treatment uses the
+   light-theme accent rather than repeating the primary purple. The selector
+   is scoped to the tooltip target because only the Compare button owns that
+   wrapper. */
 /* The fill alone says which mode you are on; both labels stay legible so the
    pair reads as two options rather than a heading and an afterthought.
 
@@ -46,8 +72,8 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  border-radius: 28px;
-  background: var(--color-secondary);
+  border-radius: 24px;
+  background: var(--color-action-tint);
 }
 
 /* Above the pill, which would otherwise paint over it. */
@@ -56,15 +82,9 @@
   z-index: 1;
 }
 
-.workspace-mode-header-button:disabled {
-  color: var(--color-secondary);
-  -webkit-text-fill-color: var(--color-secondary);
-  cursor: not-allowed;
-}
-
 @media (hover: hover) {
-  .workspace-mode-header-button:not(:disabled):not([data-active='true']):hover {
-    background: var(--color-primary-highlight);
+  .workspace-mode-header-button:not([data-active='true']):hover {
+    background: var(--color-action-tint);
   }
 }
 
@@ -85,6 +105,7 @@
   }
 
   .workspace-mode-header-button {
-    font-size: 5.3vw;
+    padding: 7px 14px;
+    font-size: clamp(1rem, 4.4vw, 1.25rem);
   }
 }

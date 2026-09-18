@@ -23,3 +23,9 @@
   background: var(--color-background);
   opacity: 0.5;
 }
+
+.secondary-button--action-tone.MuiButton-root {
+  color: var(--color-action);
+  background: var(--color-action-tint);
+  font-weight: 600;
+}

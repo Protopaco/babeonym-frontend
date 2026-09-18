@@ -8,15 +8,7 @@ type LogoutConfirmDialogProps = {
 };
 
 const LogoutConfirmDialog = ({ open, onClose, onConfirm }: LogoutConfirmDialogProps) => {
-  return (
-    <BaseTextModal
-      open={open}
-      onClose={onClose}
-      title="Log out?"
-      confirmLabel="Log Out"
-      onConfirm={onConfirm}
-    />
-  );
+  return <BaseTextModal open={open} onClose={onClose} title="Log out?" confirmLabel="Log Out" onConfirm={onConfirm} tone="action" />;
 };
 
 export default LogoutConfirmDialog;

@@ -1,4 +1,3 @@
-import BaseTooltip from '@/components/Shared/BaseTooltip/BaseTooltip';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import { motion } from 'motion/react';
@@ -9,20 +8,13 @@ type WorkspaceMode = 'add' | 'compare';
 
 type Props = {
   activeMode: WorkspaceMode;
-  canCompareNames: boolean;
   onAddModeClick: () => void;
   onCompareModeClick: () => void;
 };
 
 // The rule and the type scale come from SectionHeader, so this owns only the
 // two buttons. Which mode is active is carried by their colour alone.
-const WorkspaceModeHeader = ({ activeMode, canCompareNames, onAddModeClick, onCompareModeClick }: Props) => {
-  // The tab you are already on is never disabled, whatever the name count says.
-  // A compare link opened directly is granted while the names load, so without
-  // this the tab would be active and disabled at once — and the disabled rule
-  // paints the label the same colour as the active fill, hiding it.
-  const compareTabDisabled = !canCompareNames && activeMode !== 'compare';
-
+const WorkspaceModeHeader = ({ activeMode, onAddModeClick, onCompareModeClick }: Props) => {
   // One pill shared by both tabs. Because the two render it under the same
   // layoutId, motion sees it leave one button and arrive in the other and
   // tweens the box between them, including the width change between the two
@@ -36,17 +28,9 @@ const WorkspaceModeHeader = ({ activeMode, canCompareNames, onAddModeClick, onCo
     />
   );
 
-  // The span is what a tooltip listens on: a disabled button fires no pointer
-  // events of its own.
   const compareTab = (
     <span className="workspace-mode-header-tooltip-target">
-      <button
-        className="workspace-mode-header-button"
-        data-active={activeMode === 'compare'}
-        disabled={compareTabDisabled}
-        onClick={onCompareModeClick}
-        type="button"
-      >
+      <button className="workspace-mode-header-button" data-active={activeMode === 'compare'} onClick={onCompareModeClick} type="button">
         {activeMode === 'compare' ? activePill : null}
         <span className="workspace-mode-header-label">Compare Names</span>
       </button>
@@ -65,18 +49,9 @@ const WorkspaceModeHeader = ({ activeMode, canCompareNames, onAddModeClick, onCo
           </TutorialTooltip>
         }
         action={
-          // One tooltip or the other, never both. Disabled, the tab owes an
-          // explanation whether or not the tutorial is on; enabled, there is
-          // nothing to explain and the tutorial's own hint takes the slot.
-          compareTabDisabled ? (
-            <BaseTooltip title="Add at least 2 names to compare." placement="top">
-              {compareTab}
-            </BaseTooltip>
-          ) : (
-            <TutorialTooltip title="Rank the ones you saved" placement="bottom">
-              {compareTab}
-            </TutorialTooltip>
-          )
+          <TutorialTooltip title="Rank the ones you saved" placement="bottom">
+            {compareTab}
+          </TutorialTooltip>
         }
       />
     </div>

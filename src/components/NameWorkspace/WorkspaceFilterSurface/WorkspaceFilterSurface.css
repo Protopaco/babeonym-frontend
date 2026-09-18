@@ -8,9 +8,9 @@
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  min-height: 21px;
-  background: var(--color-primary);
-  border-bottom: 2px solid var(--color-primary-edge);
+  min-height: 5px;
+  background: var(--color-background);
+  border-bottom: 5px solid var(--color-action-tint);
 }
 
 /* Clips the filter rows while their height animates, so they are hidden by the

@@ -4,6 +4,7 @@
   align-items: center;
   width: 225px;
   height: 60px;
+  --name-chip-border: var(--color-action);
 }
 
 /* Sits outside the flow so a rejected name does not shift the chip list. */
@@ -24,7 +25,7 @@
   background: none;
   /* Matches the saved chips the draft sits among, rather than the body text
      colour it inherited by default. */
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   font: inherit;
   font-size: var(--name-chip-font-size, 1rem);
 }

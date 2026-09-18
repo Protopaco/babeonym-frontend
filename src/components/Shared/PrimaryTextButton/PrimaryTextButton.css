@@ -3,4 +3,42 @@
 .primary-text-button-label {
   font-size: var(--button-font-size, 1rem);
   line-height: 1;
+  align-content: center;
+}
+
+/* The icon spans are inline by default, which sits them on the text baseline
+   rather than on the label's centre. Centring them here keeps the icon level
+   with the script, and the margin is what separates the two — the button's own
+   flex container is not this component's to set a gap on. */
+.primary-text-button-icon-start,
+.primary-text-button-icon-end {
+  display: flex;
+  align-items: center;
+}
+
+.primary-text-button-icon-start > .MuiSvgIcon-root,
+.primary-text-button-icon-end > .MuiSvgIcon-root {
+  color: currentColor;
+}
+
+.primary-text-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+/* Clips the label while its width animates. The gap from the icon is padding
+   inside the clip, so it grows and collapses with the label. */
+.primary-text-button-label-clip {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.primary-text-button-label-clip .primary-text-button-label {
+  padding-inline-start: 6px;
+}
+
+.auth-provider-button-icon.MuiSvgIcon-root {
+  font-size: 1.5rem;
 }

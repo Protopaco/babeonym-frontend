@@ -19,10 +19,10 @@
 .workspace-approved-name-position.MuiTypography-root {
   flex-shrink: 0;
   width: var(--workspace-name-rank-width);
-  margin: 0 8px 0 0;
+  margin-right: 3px;
   color: var(--color-text-secondary);
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* Absent for a mouse, which can pick the row up anywhere, so nothing is spent on

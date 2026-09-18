@@ -1,4 +1,20 @@
+/* The chip answers a pointer by moving rather than recolouring: the pair is a
+   choice between two names, and tinting one on hover would read as a verdict on
+   it. The shift lives here rather than on BaseNameChip because this is the
+   element that is actually clickable. */
 .compare-name-chip.MuiButtonBase-root {
   border-radius: 44px;
   padding: 0;
+  border-color: var(--color-action) !important;
+  transition: transform var(--motion-duration-120) var(--motion-ease-out);
+}
+
+@media (hover: hover) {
+  .compare-name-chip.MuiButtonBase-root:hover {
+    transform: translateY(2px);
+  }
+}
+
+.compare-name-chip.MuiButtonBase-root:focus-visible {
+  background-color: var(--color-action-tint);
 }

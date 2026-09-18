@@ -14,8 +14,9 @@
     z-index: 1100;
     width: 100%;
     min-height: var(--height-filter-drawer-closed);
-    background: var(--color-primary);
+    background: var(--color-background);
     padding: 16px;
+    border-top: 3px solid var(--color-action-tint);
   }
 
   /* Clips the chip row while its height animates. The space between the row and

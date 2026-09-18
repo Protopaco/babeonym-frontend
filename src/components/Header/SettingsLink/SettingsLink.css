@@ -1,6 +1,6 @@
 .settings-link.MuiIconButton-root {
   padding: 4px;
-  color: var(--color-primary);
+  color: var(--color-action);
 }
 
 /* Sits in the purple bar at this width rather than on the page, so it paints in
@@ -12,7 +12,7 @@
 @media (--mobile) {
   .settings-link.MuiIconButton-root {
     padding: 10px;
-    color: var(--color-primary-contrast);
+    color: var(--color-action);
   }
 
   .settings-link.MuiIconButton-root svg {

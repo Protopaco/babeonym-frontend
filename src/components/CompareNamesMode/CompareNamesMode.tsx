@@ -36,6 +36,9 @@ const CompareNamesMode = () => {
   const { user } = userState;
   const { approvedGivenNames, givenNameProviderLoaded } = state;
   const { currentPair, advancePair } = useCompareNamePair(approvedGivenNames, givenNameProviderLoaded);
+  // The tab is never gated, so this mode can be opened with nothing to compare.
+  // Only once the names have loaded, so a slow load still shows skeletons.
+  const hasTooFewNames = givenNameProviderLoaded && approvedGivenNames.length < 2;
   const { voteForName } = useCompareNameVoting(currentPair, advancePair);
 
   const slotTransition = { duration: motionTokens.durationSeconds[300], ease: motionTokens.ease.out } as const;
@@ -60,7 +63,7 @@ const CompareNamesMode = () => {
   // anything having to know how tall a surname is.
   const separator = (
     <div className="compare-names-mode-separator">
-      <Typography className="compare-names-content-or">OR</Typography>
+      <Typography className="compare-names-content-or">or</Typography>
       <div className="compare-names-mode-separator-spacer" aria-hidden="true">
         {surname}
       </div>
@@ -72,7 +75,9 @@ const CompareNamesMode = () => {
       {/* Permanent rather than part of the tutorial. Nothing else on this
           screen says the chips are the answer to a question, and a mode that
           needs a prompt to be legible needs it whether or not help is on. */}
-      <Typography className="compare-names-mode-prompt">Which do you prefer?</Typography>
+      <Typography className="compare-names-mode-prompt">
+        {hasTooFewNames ? 'Save at least two names to start comparing' : 'Which do you prefer?'}
+      </Typography>
       {/* A plain fade between the skeleton and the first pair, one leaving
           before the other arrives. Keyed on whether there is a pair rather than
           on the pair itself, so later pairs stay inside 'pair' and keep their
@@ -125,7 +130,7 @@ const CompareNamesMode = () => {
               {surname}
             </div>
           </motion.div>
-        ) : (
+        ) : hasTooFewNames ? null : (
           <motion.div
             key="skeleton"
             className="compare-names-mode-content"

@@ -77,7 +77,7 @@ const WorkspaceApprovedNameItem = ({ approvedGivenName, position }: Props) => {
       transition={{ type: 'spring', stiffness: 180, damping: 24 }}
     >
       {isFirstItem ? <TutorialTooltip title={GRIP_HINT}>{grip}</TutorialTooltip> : grip}
-      <Typography className="workspace-approved-name-position">{position}</Typography>
+      <Typography className="workspace-approved-name-position">{position}.</Typography>
       <div className="workspace-approved-name-chip-slot">
         <ListNameChip approvedGivenName={approvedGivenName} size="large" showTutorialHint={isFirstItem} />
       </div>

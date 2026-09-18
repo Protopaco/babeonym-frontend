@@ -8,12 +8,13 @@ type Props = {
   // What the button sits on. The default contained fill is the primary colour,
   // which vanishes on a primary background.
   surface?: 'default' | 'primary';
+  tone?: 'default' | 'danger' | 'action';
 };
 
-export default ({ text, onClick, disabled = false, surface = 'default' }: Props) => {
+export default ({ text, onClick, disabled = false, surface = 'default', tone = 'default' }: Props) => {
   return (
     <Button
-      className={`secondary-button secondary-button--${surface}-surface`}
+      className={`secondary-button secondary-button--${surface}-surface secondary-button--${tone}-tone`}
       variant="contained"
       size="small"
       disabled={disabled}

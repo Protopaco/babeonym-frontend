@@ -21,26 +21,7 @@
 /* Owned here rather than by the wrapping control, so a chip's fill stays this
    component's business.
 
-   A touchscreen fires :hover on tap and keeps it until something else is
-   tapped, so after a vote the fill would stay on the chip and pass to the next
-   pair mounted in its place. Guarded to pointers that can genuinely hover. */
-@media (hover: hover) {
-  .base-name-chip[data-interactive='true']:hover {
-    background: var(--color-secondary);
-  }
-
-  /* Fainter on the Your Names chips, the only large ones. There hover only
-     acknowledges the pointer, and the full fill ran into the drawer's info
-     action, which is painted the same colour.
-
-     The tint is translucent, so it is layered over the chip's own fill rather
-     than replacing it. On its own it let the drawer's actions show through
-     where their flat ends tuck under the chip. */
-  .base-name-chip[data-size='large'][data-interactive='true']:hover {
-    background: linear-gradient(var(--color-primary-highlight), var(--color-primary-highlight)), var(--name-chip-fill, var(--color-background));
-  }
-}
-
+*/
 .base-name-chip[data-state='invalid'] {
   border-color: var(--color-error);
 }
@@ -53,7 +34,7 @@
    a state rather than left to :hover, which a touchscreen cannot be trusted
    with, so a tap is acknowledged on every device. */
 .base-name-chip[data-state='chosen'] {
-  background: var(--color-secondary);
+  background: var(--color-action-tint);
 }
 
 .base-name-chip[data-size='large'] {
@@ -75,8 +56,8 @@
    slot's height. If one changes the other has to follow. */
 .base-name-chip[data-size='compare'] {
   --name-chip-font-size: 2rem;
-
-  height: 8vh;
+  border-color: var(--color-action);
+  height: 70px;
   border-width: 4px;
   border-radius: 44px;
   padding: 0 32px;

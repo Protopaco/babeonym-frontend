@@ -7,10 +7,13 @@
   border: 2px solid var(--color-text-secondary);
   border-radius: 20px;
   background: var(--color-background);
-  box-shadow: var(--box-shadow-primary);
   color: var(--color-text-secondary);
   font-weight: 400;
   text-transform: none;
+}
+
+.primary-button.MuiButton-root:hover {
+  transform: translateY(2px);
 }
 
 .primary-button.MuiButton-root[data-size='wide'] {
@@ -33,6 +36,18 @@
   border-radius: 12px;
 }
 
+/* Hugs its content, so a label that collapses takes the box down with it. The
+   floor is the collapsed size — an icon on its own. */
+.primary-button.MuiButton-root[data-size='compact-narrow'] {
+  --button-font-size: 0.875rem;
+
+  width: auto;
+  min-width: 40px;
+  padding-inline: 10px;
+  height: 36px;
+  border-radius: 12px;
+}
+
 /* An icon button is the same colour language in a different box, so only the
    dimensions change here. Size is ignored: an icon has nothing to be wide for.
 
@@ -45,10 +60,10 @@
 .primary-button.MuiButton-root[data-shape='icon'] {
   --button-icon-size: clamp(2.2rem, 12vw, 60px);
 
-  width: clamp(4rem, 22vw, 135px);
-  height: clamp(4rem, 22vw, 135px);
+  width: clamp(4rem, 22vw, 130px);
+  height: clamp(4rem, 22vw, 130px);
   min-width: 0;
-  border-width: clamp(4px, 1.4vw, 7px);
+  border-width: clamp(4px, 1.4vw, 6px);
   border-radius: 50%;
   box-shadow: none;
   padding: 0;
@@ -100,6 +115,7 @@
 }
 
 .primary-button.MuiButton-root[data-tone='danger'] {
+  background: var(--color-error-tint);
   border-color: var(--color-error);
   color: var(--color-error);
 }
@@ -118,6 +134,45 @@
   color: var(--color-error-contrast);
 }
 
+/* The action tone keeps the default box and recolours only what is drawn on it,
+   so the border, the label and any icon inheriting currentColor all land on the
+   same colour. */
+/* Feedback by movement rather than colour: the button drops onto the page and
+   its shadow shrinks with it, so an action reads as pressable without the tone
+   changing. */
+.primary-button.MuiButton-root[data-tone='action'] {
+  border-color: var(--color-action);
+  box-shadow: var(--box-shadow-action-button);
+  color: var(--color-action);
+  transition:
+    transform var(--motion-duration-120) var(--motion-ease-out),
+    box-shadow var(--motion-duration-120) var(--motion-ease-out);
+}
+
+@media (hover: hover) {
+  /* The background is restated rather than left out: MUI paints its own hover
+     tint, and this tone answers hover with movement instead. */
+  .primary-button.MuiButton-root[data-tone='action']:hover {
+    border-color: var(--color-action);
+    background: var(--color-background);
+    color: var(--color-action);
+    transform: translateY(2px);
+    box-shadow: var(--box-shadow-action-button-pressed);
+  }
+}
+
+/* Outside the hover guard, so a tap on a touchscreen gets the press too. */
+.primary-button.MuiButton-root[data-tone='action']:active {
+  transform: translateY(3px);
+  box-shadow: var(--box-shadow-action-button-pressed);
+}
+
+.primary-button.MuiButton-root[data-tone='action']:focus-visible {
+  border-color: var(--color-action);
+  background: var(--color-action-tint);
+  color: var(--color-action);
+}
+
 .primary-button.MuiButton-root[data-emphasis='fill'] {
   border-color: var(--color-primary);
   background: var(--color-primary);
@@ -128,6 +183,12 @@
   border-color: var(--color-error);
   background: var(--color-error);
   color: var(--color-error-contrast);
+}
+
+.primary-button.MuiButton-root[data-emphasis='fill'][data-tone='action'] {
+  border-color: var(--color-action);
+  background: var(--color-action);
+  color: var(--color-action-contrast);
 }
 
 /* No darker shade tokens exist, so filled buttons dim on hover instead. */

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
-import Button from '@mui/material/Button';
+import PrimaryButton from '@/components/Shared/PrimaryButton/PrimaryButton';
 import CircularProgress from '@mui/material/CircularProgress';
 import './AuthProviderButton.css';
 
@@ -21,13 +21,20 @@ export default ({ label, icon, onClick }: Props) => {
   };
 
   return (
-    <Button
-      className="auth-provider-button"
-      startIcon={pending ? <CircularProgress className="auth-provider-button-spinner" size={20} /> : icon}
-      disabled={pending}
+    <PrimaryButton
       onClick={startSignIn}
+      disabled={pending}
+      size="compact-wide"
+      tone="default"
+      emphasis="outline"
+      label={label}
     >
-      {label}
-    </Button>
+      <span className="gsi-material-button-content-wrapper">
+        <span className="gsi-material-button-icon">
+          {pending ? <CircularProgress className="auth-provider-button-spinner" size={20} /> : icon}
+        </span>
+        <span className="gsi-material-button-contents">{label}</span>
+      </span>
+    </PrimaryButton>
   );
 };

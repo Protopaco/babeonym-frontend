@@ -10,7 +10,7 @@
   gap: 16px;
   margin: 0 0 14px;
   padding-bottom: 8px;
-  border-bottom: 2px solid var(--color-primary-edge);
+  border-bottom: 2px solid var(--color-action-tint);
 }
 
 .section-header--medium {

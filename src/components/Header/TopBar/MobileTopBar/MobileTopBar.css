@@ -8,7 +8,7 @@
      of the page. */
   #mobile-top-bar {
     height: var(--height-header-mobile);
-    background: var(--color-primary);
+    background: var(--color-background);
     display: flex;
     /* Stated because MUI's AppBar is a column by default. It went unnoticed
        while the only child in flow was the wordmark. */
@@ -16,6 +16,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 24px;
+    border-bottom: 3px solid var(--color-action-tint);
   }
 
   /* Both ends are in flow now, so nothing here is positioned: the wordmark
@@ -30,5 +31,6 @@
     align-self: stretch;
     align-items: center;
     gap: 4px;
+    color: var(--color-action);
   }
 }

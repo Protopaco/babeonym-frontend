@@ -9,7 +9,7 @@ import './MobileTopBar.css';
 // One destination does not need a drawer to reach it.
 export default () => {
   return (
-    <AppBar id="mobile-top-bar" position="static">
+    <AppBar id="mobile-top-bar" elevation={0} position="static">
       <LogoFull />
       {/* Grouped rather than split across the bar: three controls at two
           different edges read as three unrelated things. */}

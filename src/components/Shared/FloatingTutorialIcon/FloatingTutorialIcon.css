@@ -12,6 +12,41 @@
   display: flex;
 }
 
+.floating-tutorial-icon-button .primary-button.MuiButton-root {
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+.floating-tutorial-icon-button .primary-button.MuiButton-root[data-emphasis='fill'] {
+  border-color: var(--color-action);
+  background: var(--color-action);
+  color: var(--color-action-contrast);
+}
+
+@media (hover: hover) {
+  .floating-tutorial-icon-button .primary-button.MuiButton-root:hover {
+    border-color: var(--color-action);
+    color: var(--color-action);
+  }
+
+  .floating-tutorial-icon-button .primary-button.MuiButton-root[data-emphasis='fill']:hover {
+    border-color: var(--color-action);
+    background: var(--color-action);
+    color: var(--color-action-contrast);
+  }
+}
+
+.floating-tutorial-icon-button .primary-button.MuiButton-root:focus-visible {
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+.floating-tutorial-icon-button .primary-button.MuiButton-root[data-emphasis='fill']:focus-visible {
+  border-color: var(--color-action);
+  background: var(--color-action);
+  color: var(--color-action-contrast);
+}
+
 /* Desktop only. Floating over the page works where there is room to spare; on a
    phone it parked permanently over the name list, and moving it down only
    changed which row it covered, since the list scrolls underneath. The mobile

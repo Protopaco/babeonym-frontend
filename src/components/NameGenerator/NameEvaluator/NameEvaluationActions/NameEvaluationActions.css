@@ -7,6 +7,28 @@
   gap: 80px;
 }
 
+.name-evaluation-actions .primary-button.MuiButton-root {
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+@media (hover: hover) {
+  .name-evaluation-actions .primary-button.MuiButton-root:hover {
+    border-color: var(--color-action);
+    color: var(--color-action);
+  }
+}
+
+.name-evaluation-actions .primary-button.MuiButton-root:focus-visible {
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+.name-evaluation-actions .primary-button.MuiButton-root[data-shape='icon']:active {
+  background: var(--color-action);
+  color: var(--color-action-contrast);
+}
+
 /* The gaps absorb the leftover rather than being a fixed number, because a
    fixed one only ever fits a single viewport. Three 80px buttons need 240px,
    and everything above that is split between them: 28px each at 360, more on a
