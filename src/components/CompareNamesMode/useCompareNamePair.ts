@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { GivenName } from '@/api/generated';
-import type { ComparePair } from '@/components/CompareNamesMode/compareNames.types';
+import type { ComparePair } from '@/components/CompareNamesMode/ComparePair';
 
 const getPairSignature = (pair: ComparePair) => {
   return [pair.left.givenCustomNameBridgeId, pair.right.givenCustomNameBridgeId].sort((left, right) => left - right).join(':');

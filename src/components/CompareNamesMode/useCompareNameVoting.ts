@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import type { GivenName } from '@/api/generated';
-import type { ComparePair } from '@/components/CompareNamesMode/compareNames.types';
+import type { ComparePair } from '@/components/CompareNamesMode/ComparePair';
 import { useGivenNamesActions } from '@/state/givenName/useGivenNamesActions';
 
 // A vote swaps the next pair in on the following frame, so there is no load to
