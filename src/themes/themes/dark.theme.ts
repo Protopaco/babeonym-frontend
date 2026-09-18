@@ -7,18 +7,25 @@ import typography from '@/themes/typography.theme';
 import zIndex from '@/themes/zIndex.theme';
 
 const semanticPalette: SemanticPaletteColors = {
-  primary: '#9400D8',
-  primaryContrast: '#F5F5F5',
-  secondary: '#E7C5FF',
-  secondaryContrast: '#7B00B4',
-  action: '#9400D8',
-  actionContrast: '#F5F5F5',
-  danger: '#B5444D',
-  dangerTint: '#F1D6D8',
-  dangerContrast: '#FFFFFF',
-  textPrimary: '#000000',
-  textSecondary: '#F5F5F5',
-  background: '#292929',
+  primary: '#F1ECF4',
+  primaryTint: '#B7ACBC',
+  primaryContrast: '#120D16',
+
+  secondary: '#19121E',
+  secondaryContrast: '#F1ECF4',
+
+  action: '#985EB5',
+  actionTint: '#2B1B35',
+  actionContrast: '#120D16',
+
+  danger: '#D85C68',
+  dangerTint: '#3A171E',
+  dangerContrast: '#FFF8F9',
+
+  textPrimary: '#F1ECF4',
+  textSecondary: '#C8BDCD',
+
+  background: '#0D0911',
 };
 
 let theme = createTheme({
