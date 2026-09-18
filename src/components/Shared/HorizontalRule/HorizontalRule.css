@@ -1,0 +1,10 @@
+/* Drawn as a fill rather than a border so the height is the line's thickness
+   exactly, with none of hr's default inset or margin. */
+.horizontal-rule {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2px;
+  margin: 0;
+  border: 0;
+  background: var(--color-action-tint);
+}

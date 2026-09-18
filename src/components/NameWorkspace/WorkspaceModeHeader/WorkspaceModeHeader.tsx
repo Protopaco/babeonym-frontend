@@ -1,4 +1,3 @@
-import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import { motion } from 'motion/react';
 import motionTokens from '@/themes/motion.theme';
@@ -12,14 +11,12 @@ type Props = {
   onCompareModeClick: () => void;
 };
 
-// The rule and the type scale come from SectionHeader, so this owns only the
-// two buttons. Which mode is active is carried by their colour alone.
+// Two tabs, centred. Which mode is active is carried by the pill alone.
 const WorkspaceModeHeader = ({ activeMode, onAddModeClick, onCompareModeClick }: Props) => {
   // One pill shared by both tabs. Because the two render it under the same
   // layoutId, motion sees it leave one button and arrive in the other and
   // tweens the box between them, including the width change between the two
-  // labels. The buttons sit in different SectionHeader slots, which layoutId
-  // does not care about.
+  // labels.
   const activePill = (
     <motion.span
       layoutId="workspace-mode-header-pill"
@@ -39,21 +36,15 @@ const WorkspaceModeHeader = ({ activeMode, onAddModeClick, onCompareModeClick }:
 
   return (
     <div className="workspace-mode-header">
-      <SectionHeader
-        title={
-          <TutorialTooltip title="Find new names" placement="bottom">
-            <button className="workspace-mode-header-button" data-active={activeMode === 'add'} onClick={onAddModeClick} type="button">
-              {activeMode === 'add' ? activePill : null}
-              <span className="workspace-mode-header-label">Name Generator</span>
-            </button>
-          </TutorialTooltip>
-        }
-        action={
-          <TutorialTooltip title="Rank the ones you saved" placement="bottom">
-            {compareTab}
-          </TutorialTooltip>
-        }
-      />
+      <TutorialTooltip title="Find new names" placement="bottom">
+        <button className="workspace-mode-header-button" data-active={activeMode === 'add'} onClick={onAddModeClick} type="button">
+          {activeMode === 'add' ? activePill : null}
+          <span className="workspace-mode-header-label">Name Generator</span>
+        </button>
+      </TutorialTooltip>
+      <TutorialTooltip title="Rank the ones you saved" placement="bottom">
+        {compareTab}
+      </TutorialTooltip>
     </div>
   );
 };

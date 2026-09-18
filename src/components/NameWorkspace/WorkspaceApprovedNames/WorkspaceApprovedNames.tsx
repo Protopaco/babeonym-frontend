@@ -1,16 +1,12 @@
 import Typography from '@mui/material/Typography';
 import { AnimatePresence, motion } from 'motion/react';
 import type { GivenName } from '@/api/generated';
-import MobileSectionHeader from '@/components/Shared/MobileSectionHeader/MobileSectionHeader';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import WorkspaceApprovedNamesList from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceApprovedNamesList/WorkspaceApprovedNamesList';
 import WorkspaceApprovedNamesSkeleton from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceApprovedNamesSkeleton/WorkspaceApprovedNamesSkeleton';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import motionTokens from '@/themes/motion.theme';
 import './WorkspaceApprovedNames.css';
-
-// One string for the two headers, which are the same section at two widths.
-const SECTION_HINT = 'Your favourites, best first';
 
 type Props = {
   approvedGivenNames: GivenName[];
@@ -24,14 +20,9 @@ const WorkspaceApprovedNames = ({ approvedGivenNames, isLoading }: Props) => {
     <section className="workspace-approved-names" aria-label="Your Names">
       {/* On the header rather than on the list, so the hint is about the
           section rather than about any one name in it. */}
-      <TutorialTooltip title={SECTION_HINT} placement="top-start">
-        <div className="workspace-approved-names-desktop-header">
+      <TutorialTooltip title="Your favourites, best first" placement="top-start">
+        <div className="workspace-approved-names-header">
           <SectionHeader title="Your Names" />
-        </div>
-      </TutorialTooltip>
-      <TutorialTooltip title={SECTION_HINT} placement="top-start">
-        <div className="workspace-approved-names-mobile-header">
-          <MobileSectionHeader title="Your Names" />
         </div>
       </TutorialTooltip>
       {/* A plain fade from the skeleton to what loaded, one leaving before the

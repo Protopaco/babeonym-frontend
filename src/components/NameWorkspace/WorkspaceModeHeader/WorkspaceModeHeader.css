@@ -5,38 +5,18 @@
    the filter bar.
 
    Literal values rather than tokens because this is the only component that
-   ever asked for a spacing scale, and nobody has designed one. 14px at the
-   bottom matches SectionHeader's own bottom margin, so the rule under the tabs
-   keeps its relationship to what follows. */
+   ever asked for a spacing scale, and nobody has designed one. */
 .workspace-mode-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   width: 100%;
   margin: 24px 0 20px;
 }
 
-/* These are mode controls rather than a section title and action. Keep the
-   shared SectionHeader layout, but collapse it into one centred tab group and
-   remove the document-style rule it normally owns. */
-.workspace-mode-header .section-header {
-  justify-content: center;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  border-bottom: 0;
-}
-
-.workspace-mode-header .section-header-title,
-.workspace-mode-header .section-header-action {
-  display: flex;
-  align-items: center;
-}
-
-.workspace-mode-header .section-header-action {
-  min-width: 0;
-}
-
-/* Font size is stated rather than inherited because the two buttons sit in
-   different slots — one inside SectionHeader's Typography, one beside it — and
-   would otherwise render at two different sizes. Matches h4. */
+/* Font size is stated so the tabs keep their own scale rather than taking
+   whatever they are placed in. */
 .workspace-mode-header-button {
   position: relative;
   padding: 8px 20px;

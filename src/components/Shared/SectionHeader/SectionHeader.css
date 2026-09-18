@@ -1,43 +1,41 @@
-/* Centred rather than baseline-aligned. Baseline only lines two items up when
-   both expose a comparable one, and the title sits inside a Typography while
-   the action is a plain flex box — so once either wrapped to two lines, as the
-   workspace mode tabs do on mobile, the two sat at visibly different heights.
-   An icon action has no text baseline to offer at all. */
+/* The rule continues from the title rather than sitting beneath it, so it marks
+   the section without boxing it in. */
 .section-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
   margin: 0 0 14px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--color-action-tint);
 }
 
-.section-header--medium {
-  max-width: 350px;
+/* Takes whatever the title leaves. */
+.section-header-rule {
+  flex: 1;
 }
 
-.section-header-title {
+.section-header-title.MuiTypography-root {
+  flex: none;
   margin: 0;
   color: var(--color-text-secondary);
 }
 
-.section-header-action {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  min-width: 96px;
+.section-header--default .section-header-title.MuiTypography-root {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* No margin: a compact header sits inside a section that already spaces its own
+   children. */
+.section-header--compact {
+  margin: 0;
 }
 
 @media (--mobile) {
   .section-header {
-    padding-bottom: 6px;
+    gap: 12px;
   }
-}
 
-/* After the mobile rule so its padding wins at every width. No margin: a compact
-   header sits inside a section that already spaces its own children. */
-.section-header--compact {
-  margin: 0;
-  padding-bottom: 4px;
+  .section-header--default .section-header-title.MuiTypography-root {
+    font-size: 1.25rem;
+  }
 }

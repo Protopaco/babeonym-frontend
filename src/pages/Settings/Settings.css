@@ -16,14 +16,19 @@
   flex-direction: row;
 }
 
-/* Aligned to the content column's left edge rather than the viewport's. The
-   page is centred — the header shrink-wraps to its title and the rows cap at
-   the column width — so a lone arrow in the far corner of a wide window would
-   read as a stray rather than as this page's control. */
-.settings-back {
+/* One column holds the width for everything on the page, so the back arrow, the
+   title, the rows and the footer share a left edge. A lone arrow in the far
+   corner of a wide window would read as a stray rather than as this page's
+   control. */
+.settings-column {
   display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: var(--settings-column-width);
+}
+
+.settings-back {
+  display: flex;
   margin-bottom: 8px;
 }
 
@@ -31,8 +36,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
-  max-width: var(--settings-column-width);
   padding: 12px;
   min-height: 40vh;
   justify-content: space-around;
@@ -50,9 +53,6 @@
   justify-content: space-between;
   gap: 12px;
   box-sizing: border-box;
-  width: 100%;
-  max-width: var(--settings-column-width);
-  border-top: 1px solid var(--color-border);
   padding: 12px;
 }
 
