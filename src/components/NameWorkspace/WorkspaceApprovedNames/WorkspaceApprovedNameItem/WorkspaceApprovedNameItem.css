@@ -19,7 +19,7 @@
 .workspace-approved-name-position.MuiTypography-root {
   flex-shrink: 0;
   width: var(--workspace-name-rank-width);
-  margin-right: 3px;
+  margin-right: 8px;
   color: var(--color-text-secondary);
   font-size: 1.4rem;
   font-weight: 600;
