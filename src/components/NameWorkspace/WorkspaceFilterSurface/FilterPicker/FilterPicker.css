@@ -1,13 +1,12 @@
+/* The search field at its own height, the selected chips at a fixed 80px, and
+   the option list taking whatever is left. Without search, the list simply
+   takes its space too. */
 .filter-picker {
   box-sizing: border-box;
   height: 300px;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) 80px;
+  display: flex;
+  flex-direction: column;
   gap: 4px;
-}
-
-.filter-picker[data-searchable='false'] {
-  grid-template-rows: minmax(0, 1fr) 80px;
 }
 
 /* The three boxes below — the search field, the option list and the selected
@@ -45,6 +44,16 @@
   border-radius: 12px;
   background: var(--color-background);
   padding: 6px;
+}
+
+/* Sizing apart from the shared box rule above: the list takes the leftover
+   height, and min-height 0 there lets it scroll rather than grow the picker. */
+.filter-picker-options {
+  flex: 1 1 0;
+}
+
+.filter-picker-selected {
+  flex: 0 0 80px;
 }
 
 /* The scroller. Fills the box, and its scrollbar lands 6px in from the rounded

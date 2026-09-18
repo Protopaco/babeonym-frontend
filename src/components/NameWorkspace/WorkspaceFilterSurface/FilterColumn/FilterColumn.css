@@ -1,7 +1,7 @@
 .filter-column {
   min-width: 0;
-  display: grid;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
   gap: 6px;
 }
 
@@ -20,7 +20,10 @@
   box-sizing: border-box;
   min-width: 0;
   min-height: 72px;
-  display: grid;
+  /* A column so the picker stretches across the frame's width and keeps its
+     own height. */
+  display: flex;
+  flex-direction: column;
   border-radius: 20px;
   background: var(--color-action-tint);
   padding: 6px;

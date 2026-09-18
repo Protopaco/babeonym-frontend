@@ -1,4 +1,7 @@
-/* Row-major: 1, 2, 3 across the first row, then down. It used to fill column
+/* Grid by approved exception: equal columns that come and go with the width,
+   which flex can only approximate.
+
+   Row-major: 1, 2, 3 across the first row, then down. It used to fill column
    first, but motion's grid reordering works out a drop position by finding the
    visual row a name was dropped into and reading it left to right. In a
    column-first list the name beside number 1 is number 5, so every drop would
