@@ -85,16 +85,24 @@
 /* Matches the generator's surname exactly, so the same name reads the same way
    in both modes.
 
-   Indented to start where the given name above it starts: the compare chip has
-   a 4px border and 32px of padding, so its text begins 36px in from the slot's
+   Right-aligned, ending where the chip's text area ends: the name reads from
+   the left of its chip and this finishes at the right, so the pair balances
+   rather than stacking everything on one side. The compare chip has a 4px
+   border and 32px of padding, so its text area stops 36px in from the slot's
    edge. Hardcoded rather than read from the chip, which publishes no inset.
+
+   Stretched because the slot is align-items: flex-start, which shrinks its
+   children to their content — text-align has nothing to align inside a box
+   that is exactly as wide as its text.
 
    Height is held even when there is nothing to show, so the pair sits in the
    same place for a user with no surname as for one with. */
 .compare-names-mode-surname.MuiTypography-root {
+  align-self: stretch;
   height: var(--compare-surname-height);
   margin: 0;
-  padding-left: var(--compare-text-inset);
+  padding-right: var(--compare-text-inset);
+  text-align: right;
   color: var(--color-primary);
   font-size: 1.5rem;
   line-height: 1.25;
@@ -190,19 +198,8 @@
     color: var(--color-primary);
   }
 
-  /* Right-aligned where the desktop row indents it to match its own name.
-     Stacked, the three items are a name reading from the left of its chip, a
-     centred OR, and this — so ending it at the right edge balances the column
-     instead of stacking everything on one side. The inset swaps sides with the
-     text: the last letter now lands where the chip's text area ends. */
+  /* Scaled with the rest of the stack. */
   .compare-names-mode-surname.MuiTypography-root {
-    /* Stretched because the slot is align-items: flex-start, which shrinks its
-       children to their content — text-align has nothing to align inside a box
-       that is exactly as wide as its text. */
-    align-self: stretch;
-    padding-right: var(--compare-text-inset);
-    padding-left: 0;
-    text-align: right;
     font-size: clamp(1rem, 3.2vh, 1.5rem);
   }
 
