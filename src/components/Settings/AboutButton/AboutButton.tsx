@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import AboutModal from '@/components/Settings/AboutButton/AboutModal/AboutModal';
+import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import './AboutButton.css';
 
 // Just the button and its dialog. Settings owns the row the button sits in,
@@ -18,7 +19,9 @@ const AboutButton = () => {
 
   return (
     <>
-      <PrimaryTextButton text="About" size="compact-wide" onClick={openAbout} />
+      <TutorialTooltip title="Who made Babeonym and how to get in touch" placement="top">
+        <PrimaryTextButton text="About" size="compact-wide" onClick={openAbout} />
+      </TutorialTooltip>
       <AboutModal open={aboutOpen} onClose={closeAbout} />
     </>
   );

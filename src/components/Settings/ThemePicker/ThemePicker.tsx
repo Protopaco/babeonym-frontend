@@ -16,7 +16,7 @@ export default () => {
       {/* On the label rather than the chips. There are four of them and a
           tooltip stays open on a coarse pointer, so hinting each would put four
           bubbles over one row. */}
-      <TutorialTooltip title="Changes the color scheme" placement="right">
+      <TutorialTooltip title="Changes the color scheme" placement="top">
         <Typography id={labelId} variant="body1" className="theme-picker-label">
           Theme
         </Typography>

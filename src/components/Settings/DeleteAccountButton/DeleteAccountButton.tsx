@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
+import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import DeleteAccountDialog from '@/components/Settings/DeleteAccountButton/DeleteAccountDialog/DeleteAccountDialog';
 import { useDeleteAccount } from '@/components/Settings/DeleteAccountButton/useDeleteAccount';
 import { useUser } from '@/state/user/useUser';
@@ -34,7 +35,9 @@ const DeleteAccountButton = () => {
   // Just the button and its dialog. Settings owns the row it sits in.
   return (
     <>
-      <PrimaryTextButton text="Delete Account" size="compact-wide" tone="danger" onClick={openConfirm} />
+      <TutorialTooltip title="Deletes your account and all your saved names" placement="top">
+        <PrimaryTextButton text="Delete Account" size="compact-wide" tone="danger" onClick={openConfirm} />
+      </TutorialTooltip>
       <DeleteAccountDialog open={confirmOpen} onClose={closeConfirm} onConfirm={confirmDelete} />
     </>
   );
