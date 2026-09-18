@@ -1,6 +1,6 @@
 /* Matches WorkspaceFilterToggle at the other end of the bar — same stretch, same
-   contrast colour on the primary strip — so the two ends read as a pair holding
-   the chip row between them. */
+   action tone — so the two ends read as a pair holding the chip row between
+   them. */
 .workspace-clear-filters-button {
   box-sizing: border-box;
   display: flex;

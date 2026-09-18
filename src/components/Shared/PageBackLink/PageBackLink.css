@@ -1,6 +1,5 @@
-/* Sits on the page rather than in the header bar, so it paints in the page's
-   primary rather than the bar's contrast colour. That is the one place this
-   differs from SettingsLink, which is otherwise the same control. */
+/* The same control as SettingsLink apart from its colour: primary here, action
+   there. */
 .page-back-link.MuiIconButton-root {
   padding: 4px;
   color: var(--color-primary);

@@ -4,11 +4,10 @@ import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryText
 import './WorkspaceFilterToggle.css';
 
 type Props = {
-  isOpen: boolean;
   onToggle: () => void;
 };
 
-const WorkspaceFilterToggle = ({ isOpen, onToggle }: Props) => (
+const WorkspaceFilterToggle = ({ onToggle }: Props) => (
   <div className="workspace-filter-toggle">
     <TutorialTooltip title="Narrows the names you're shown" placement="bottom">
       <PrimaryTextButton

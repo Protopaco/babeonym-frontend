@@ -105,7 +105,7 @@
      row tall however many are applied.
 
      The scrollbar is hidden rather than styled: a horizontal bar across the
-     purple strip reads as a mistake, this width is a touch device where swiping
+     filter strip reads as a mistake, this width is a touch device where swiping
      is the expected gesture, and a chip cut off at the edge is the affordance.
 
      Only tablet in practice — the whole layout is display: none on mobile. */

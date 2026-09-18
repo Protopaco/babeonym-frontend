@@ -6,7 +6,7 @@ export type SemanticPaletteColors = {
   secondaryContrast: string;
   action: string;
   actionContrast: string;
-  actionTint?: string;
+  actionTint: string;
   danger: string;
   dangerTint: string;
   dangerContrast: string;

@@ -1,4 +1,5 @@
 import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
+import { BRAND_LOGO_COLOR } from '@/constants/brandLogoColor';
 import motion from '@/themes/motion.theme';
 
 export default ({
@@ -17,8 +18,6 @@ export default ({
   textSecondary,
   background,
 }: SemanticPaletteColors) => {
-  const resolvedActionTint = actionTint ?? secondary;
-
   return {
     palette: {
       primary: {
@@ -47,7 +46,7 @@ export default ({
       MuiCssBaseline: {
         styleOverrides: {
           ':root': {
-            '--color-brand-logo': '#78449A',
+            '--color-brand-logo': BRAND_LOGO_COLOR,
             '--color-primary': primary,
             '--color-primary-tint': primaryTint,
             '--color-primary-contrast': primaryContrast,
@@ -59,7 +58,7 @@ export default ({
 
             '--color-action': action,
             '--color-action-contrast': actionContrast,
-            '--color-action-tint': resolvedActionTint,
+            '--color-action-tint': actionTint,
 
             '--color-text-primary': textPrimary,
             '--color-text-secondary': textSecondary,
@@ -68,7 +67,7 @@ export default ({
             '--color-background': background,
             '--color-border': `${textPrimary}1F`,
             '--color-error': danger,
-            '--color-error-tint': `${dangerTint}`,
+            '--color-error-tint': dangerTint,
             '--color-error-contrast': dangerContrast,
             '--box-shadow-primary': `0 2px 4px ${actionTint}`,
 

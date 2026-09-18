@@ -50,7 +50,7 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
   return (
     <div className="workspace-filter-layout">
       <div className="workspace-filter-layout-summary-row">
-        <WorkspaceFilterToggle isOpen={isOpen} onToggle={handleToggleFilters} />
+        <WorkspaceFilterToggle onToggle={handleToggleFilters} />
         {/* Chips fade in and out and the rest close up, the same as the mobile
             tray. layoutScroll because the row scrolls sideways below desktop:
             without it motion measures chips as if unscrolled. */}
