@@ -3,6 +3,13 @@
   max-width: 240px;
   border: 0;
   padding: 0;
+  /* Trimmed to the capitals so the bar's centring lines up the middle of the
+     letters with the middle of the gear, rather than the middle of a line box
+     the capitals sit high in. The padding is even so the centre holds, and is
+     there because overflow is hidden for the ellipsis: without it, the tail of
+     an @ below the baseline would be clipped. */
+  text-box: trim-both cap alphabetic;
+  padding-block: 0.25em;
   background: transparent;
   cursor: pointer;
   overflow: hidden;
