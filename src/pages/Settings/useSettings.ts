@@ -3,8 +3,7 @@ import { userApi } from '@/api/client';
 import { useUser } from '@/state/user/useUser';
 import normalizeNameInput from '@/utils/normalizeNameInput';
 import capitalizeNameSegments from '@/utils/capitalizeNameSegments';
-
-const SAVE_ERROR_MESSAGE = 'We could not save your changes. Please try again.';
+import getSurNameErrorMessage from '@/utils/getSurNameErrorMessage';
 
 // Offered only when the whole surname is lower case. A capital anywhere means
 // the user was thinking about case, so van der Berg and McKenna are left alone —
@@ -47,9 +46,13 @@ export const useSettings = () => {
   //
   // The effect above stays raw on purpose: it carries the server's value, and
   // normalizing there would silently edit what the user already saved.
+  //
+  // Typing also clears any error: it was about the value that failed to save,
+  // and that value is being changed.
   const changeSurNameDraft = (value: string) => {
     setSurNameDraft(normalizeNameInput(value));
     setSurNameSuggestion(null);
+    setErrorMessage(null);
   };
 
   const refreshUser = async () => {
@@ -77,7 +80,7 @@ export const useSettings = () => {
       setSurNameSuggestion(getSurNameSuggestion(trimmedSurName));
     } catch (err) {
       console.error('Unable to save the surname.', err);
-      setErrorMessage(SAVE_ERROR_MESSAGE);
+      setErrorMessage(getSurNameErrorMessage(err));
     } finally {
       setPending(false);
     }
