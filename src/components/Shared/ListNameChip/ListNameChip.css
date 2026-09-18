@@ -60,6 +60,20 @@
   margin-left: 8px;
   color: var(--color-action);
   font-size: 1.25rem;
+  /* Steps aside while the drawer is open, whose info action says the same
+     thing. Same fade and the same delays as the drawer, so the two trade
+     places. */
+  transition: opacity var(--motion-duration-120) var(--motion-ease-out);
+  transition-delay: 0s;
+}
+
+.list-name-chip:hover .list-name-chip-etymology-indicator.MuiSvgIcon-root {
+  opacity: 0;
+  transition-delay: var(--motion-duration-300);
+}
+
+.list-name-chip:focus-within .list-name-chip-etymology-indicator.MuiSvgIcon-root {
+  opacity: 0;
 }
 
 /* Exists only to stop events; the modal itself is portalled elsewhere, so the

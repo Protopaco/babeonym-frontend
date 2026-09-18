@@ -42,11 +42,15 @@ const FilterPicker = ({ ariaLabel, options, searchLabel, searchable = true, sele
       {searchable && (
         <TextField
           className="filter-picker-search"
-          label={searchLabel}
+          // A placeholder rather than a floating label: the label shrank up into
+          // the outline on focus and cut a gap in it. The placeholder cannot
+          // name the field once text is typed, so the input carries the name.
+          placeholder={searchLabel}
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
           size="small"
           slotProps={{
+            htmlInput: { 'aria-label': searchLabel },
             input: {
               endAdornment: searchValue ? (
                 <InputAdornment position="end">

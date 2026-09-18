@@ -12,6 +12,9 @@
   font-weight: 600;
 }
 
-.workspace-applied-filter-chip .MuiChip-deleteIcon {
-  color: var(--color-primary);
+/* Compound so it beats MUI's own grey, and restated on hover, where MUI greys
+   it again with a rule of its own. */
+.workspace-applied-filter-chip.MuiChip-root .MuiChip-deleteIcon,
+.workspace-applied-filter-chip.MuiChip-root .MuiChip-deleteIcon:hover {
+  color: var(--color-action);
 }

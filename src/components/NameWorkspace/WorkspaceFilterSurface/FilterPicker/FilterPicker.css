@@ -23,7 +23,6 @@
   background: var(--color-background);
 }
 
-.filter-picker-search .MuiInputLabel-root,
 .filter-picker-search .MuiInputBase-input {
   color: var(--color-primary);
   font-size: 1rem;
@@ -31,6 +30,22 @@
 
 .filter-picker-search .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   border-color: var(--color-primary-edge);
+}
+
+/* Stated so hover and focus stay on the theme's colours rather than MUI's.
+   Hover is kept off focus and error, which keep their own. */
+.filter-picker-search .MuiOutlinedInput-root:not(.Mui-focused):not(.Mui-error):hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-primary-tint);
+}
+
+/* Quiet at rest, the action colour once in use — the same colour as the
+   drawer's Set Filters, without competing with it before the field is touched. */
+.filter-picker-search .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-action);
+}
+
+.filter-picker-search-clear.MuiIconButton-root {
+  color: var(--color-action);
 }
 
 /* The box. It holds the border, the radius and the fill, and its padding is
@@ -102,6 +117,9 @@
   font-size: 1rem;
 }
 
-.filter-picker-selected-chip .MuiChip-deleteIcon {
-  color: var(--color-primary);
+/* Compound so it beats MUI's own grey, and restated on hover, where MUI greys
+   it again with a rule of its own. */
+.filter-picker-selected-chip.MuiChip-root .MuiChip-deleteIcon,
+.filter-picker-selected-chip.MuiChip-root .MuiChip-deleteIcon:hover {
+  color: var(--color-action);
 }
