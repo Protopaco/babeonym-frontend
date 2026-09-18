@@ -22,6 +22,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+}
+
+/* Takes the width the close button leaves, so the header's rule runs up to it. */
+.mobile-filter-drawer-title {
+  flex: 1;
+  min-width: 0;
 }
 
 .mobile-filter-drawer-actions {
