@@ -36,6 +36,10 @@
   font-weight: 500;
   line-height: 1;
   cursor: pointer;
+  /* Plain buttons, so mobile browsers flash their own blue box on tap. MUI
+     turns this off on its buttons; stated here to match. The pill already
+     answers the tap. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* The fill alone says which mode you are on; both labels stay legible so the

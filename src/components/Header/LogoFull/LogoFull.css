@@ -1,6 +1,9 @@
 #logo-home-link {
   display: flex;
   text-decoration: none;
+  /* A plain link, so mobile browsers flash their own blue box on tap. MUI
+     turns this off on its buttons; stated here to match. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 #logo-full {

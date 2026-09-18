@@ -15,6 +15,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /* A plain button, so touch browsers flash their own blue box on tap. MUI
+     turns this off on its buttons; stated here to match. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .account-link.MuiTypography-root[data-state='anonymous'] {
