@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -28,6 +29,7 @@ export default ({ value, onChange, isReadOnly = false, label, isDirty = false, o
   // The error and the suggestion share one slot, so an error wins when both
   // exist — though a failed save leaves nothing to suggest anyway.
   const message = errorMessage ?? suggestion;
+  const inputId = useId();
 
   // The message is rendered here rather than through the field's helperText
   // prop, which is the same FormHelperText placed inside the field's own box.
@@ -35,11 +37,16 @@ export default ({ value, onChange, isReadOnly = false, label, isDirty = false, o
   // button drifts out of line the moment there is anything to say.
   return (
     <Box className="settings-row">
+      {/* Above the field rather than floating inside it, so it is the same kind
+          of label as the rest of the page's settings. */}
+      <Typography component="label" htmlFor={inputId} variant="body1" className="settings-row-label">
+        {label}
+      </Typography>
       <Box className="settings-row-controls">
         <TextField
+          id={inputId}
           className="settings-row-field"
           value={value}
-          label={label}
           error={errorMessage !== null}
           onChange={(event) => {
             onChange(event.target.value);

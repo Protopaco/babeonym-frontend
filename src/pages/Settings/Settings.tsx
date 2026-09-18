@@ -50,7 +50,7 @@ const Settings = () => {
                   generic field and has no business knowing what its value means. */}
               <TutorialTooltip title="Shown under every name so you can hear them together" placement="right">
                 <SettingsRow
-                  label="Sur Name"
+                  label="Surname"
                   value={surNameDraft}
                   onChange={changeSurNameDraft}
                   maxLength={NAME_MAX_LENGTH}

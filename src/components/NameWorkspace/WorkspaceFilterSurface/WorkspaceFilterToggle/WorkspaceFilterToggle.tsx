@@ -10,13 +10,7 @@ type Props = {
 const WorkspaceFilterToggle = ({ onToggle }: Props) => (
   <div className="workspace-filter-toggle">
     <TutorialTooltip title="Narrows the names you're shown" placement="bottom">
-      <PrimaryTextButton
-        text="Filters"
-        onClick={onToggle}
-        size="compact"
-        tone="action"
-        startIcon={<FilterListIcon fontSize="small" color="action" />}
-      />
+      <PrimaryTextButton text="Filters" onClick={onToggle} size="compact" tone="action" startIcon={<FilterListIcon fontSize="small" />} />
     </TutorialTooltip>
   </div>
 );
