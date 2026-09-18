@@ -36,20 +36,6 @@
   transition: opacity var(--motion-duration-120) var(--motion-ease-out);
 }
 
-.workspace-custom-name-draft-save .name-chip-action.MuiButtonBase-root[data-fill='primary'] {
-  --name-chip-border: var(--color-action);
-  --name-chip-fill: var(--color-action-tint);
-
-  color: var(--color-action);
-}
-
-.workspace-custom-name-draft-cancel .name-chip-action.MuiButtonBase-root[data-fill='secondary'] {
-  --name-chip-border: var(--color-error);
-  --name-chip-fill: var(--color-error-tint);
-
-  color: var(--color-error);
-}
-
 .workspace-custom-name-draft-drawer[data-can-save='true'] .workspace-custom-name-draft-cancel {
   transform: translateX(0);
 }

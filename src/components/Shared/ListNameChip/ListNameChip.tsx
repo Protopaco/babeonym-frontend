@@ -65,7 +65,7 @@ const ListNameChip = ({ approvedGivenName, size = 'default', showTutorialHint = 
               label={`About ${givenName}`}
               onClick={() => setEtymologyOpen(true)}
               size={size}
-              fill="secondary"
+              fill="action"
             />
           </div>
         ) : null}

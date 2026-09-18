@@ -8,28 +8,21 @@
   margin-left: -22px;
   border-radius: 0 22px 22px 0;
   padding: 0;
-  border-color: var(--color-action);
 }
 
 /* Matches the pill's radius so the ripple and focus ring follow its outline. */
 .name-chip-action.MuiButtonBase-root[data-size='large'] {
   margin-left: -30px;
   border-radius: 0 30px 30px 0;
-  border-color: var(--color-action);
 }
 
 /* The fill reaches the pill as a custom property rather than a prop, and the
    icon inherits `color` because MUI icons paint with currentColor. */
-.name-chip-action.MuiButtonBase-root[data-fill='primary'] {
-  --name-chip-fill: var(--color-primary);
+.name-chip-action.MuiButtonBase-root[data-fill='action'] {
+  --name-chip-fill: var(--color-action-tint);
+  --name-chip-border: var(--color-action);
 
   color: var(--color-action);
-}
-
-.name-chip-action.MuiButtonBase-root[data-fill='secondary'] {
-  --name-chip-fill: var(--color-secondary);
-
-  color: var(--color-secondary-contrast);
 }
 
 .name-chip-action.MuiButtonBase-root[data-fill='error'] {

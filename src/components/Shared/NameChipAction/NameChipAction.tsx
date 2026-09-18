@@ -8,14 +8,14 @@ type Props = {
   label: string;
   onClick: () => void;
   size?: 'default' | 'large';
-  fill?: 'primary' | 'secondary' | 'error';
+  fill?: 'action' | 'error';
   disabled?: boolean;
 };
 
 // A second chip that slides out beside a name chip. It is the same pill in
 // shorter form, so it takes its border, radius and height from BaseNameChip and
 // changes only the fill and what sits inside.
-const NameChipAction = ({ icon, label, onClick, size = 'default', fill = 'primary', disabled = false }: Props) => {
+const NameChipAction = ({ icon, label, onClick, size = 'default', fill = 'action', disabled = false }: Props) => {
   return (
     <ButtonBase
       className="name-chip-action"

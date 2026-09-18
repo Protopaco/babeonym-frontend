@@ -53,13 +53,6 @@
   z-index: 2;
 }
 
-.list-name-chip-info .name-chip-action.MuiButtonBase-root[data-fill='secondary'] {
-  --name-chip-border: var(--color-action);
-  --name-chip-fill: var(--color-action-tint);
-
-  color: var(--color-action);
-}
-
 /* Muted and fixed-size so it marks the name without competing with it. It does
    not shrink, so the name gives up the width instead. */
 .list-name-chip-etymology-indicator.MuiSvgIcon-root {
