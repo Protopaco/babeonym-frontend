@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import MobileFilterList from '@/components/NameGenerator/MobileFilterList/MobileFilterList';
 import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
-import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
+import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import type { MobileFilterCategory } from '@/models/MobileFilterCategory';
 import { useFilters } from '@/state/filter/useFilters';
 import { parseFilterIds } from '@/utils/parseFilterIds';
@@ -93,8 +93,8 @@ const MobileFilterDrawer = ({ category, onClose }: Props) => {
               Filters stays enabled: committing an empty draft is how a category
               is cleared. */}
           <Box className="mobile-filter-drawer-actions">
-            <SecondaryButton text="Clear All" onClick={() => setDraftOptionIds([])} disabled={draftOptionIds.length === 0} />
-            <SecondaryButton text="Set Filters" onClick={commitFilters} />
+            <PrimaryTextButton text="Clear All" onClick={() => setDraftOptionIds([])} size="compact" disabled={draftOptionIds.length === 0} />
+            <PrimaryTextButton text="Set Filters" onClick={commitFilters} size="compact" tone="action" />
           </Box>
         </Box>
       ) : null}

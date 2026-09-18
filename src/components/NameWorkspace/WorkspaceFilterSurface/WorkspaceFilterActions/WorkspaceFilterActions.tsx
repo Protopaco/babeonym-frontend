@@ -25,7 +25,7 @@ const WorkspaceFilterActions = ({ disabled = false, isOpen, onClearAll, onClose,
           <BareIconButton icon={<CloseIcon />} label="Close filters" onClick={onClose} size="small" />
         </div>
         <PrimaryTextButton text="Clear All" onClick={onClearAll} size="compact" disabled={disabled} />
-        <PrimaryTextButton text="Set Filters" onClick={onSetFilters} size="compact" disabled={disabled} />
+        <PrimaryTextButton text="Set Filters" onClick={onSetFilters} size="compact" tone="action" disabled={disabled} />
       </>
     )}
   </div>
