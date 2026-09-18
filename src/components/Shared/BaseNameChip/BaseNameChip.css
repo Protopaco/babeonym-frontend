@@ -18,10 +18,6 @@
   padding: 0 16px;
 }
 
-/* Owned here rather than by the wrapping control, so a chip's fill stays this
-   component's business.
-
-*/
 .base-name-chip[data-state='invalid'] {
   border-color: var(--color-error);
 }

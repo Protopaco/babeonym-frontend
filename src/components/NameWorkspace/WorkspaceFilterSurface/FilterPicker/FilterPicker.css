@@ -42,7 +42,6 @@
   box-sizing: border-box;
   min-height: 0;
   display: flex;
-  border: 0px solid var(--color-action);
   border-radius: 12px;
   background: var(--color-background);
   padding: 6px;

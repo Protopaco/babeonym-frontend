@@ -18,10 +18,6 @@
     align-items: center;
   }
 
-  /* The glyph is currentColor, so the pressed state is a straight inversion:
-     white on the bar when off, primary inside a white circle when on. The bar
-     is already primary, so the usual filled-primary treatment would disappear
-     into it. */
   /* 24px glyph, 44px box — see SettingsLink.css for why those two numbers. A
      rounded square rather than MUI's default circle, so the active state does
      not repeat the account icon's own round shape. */

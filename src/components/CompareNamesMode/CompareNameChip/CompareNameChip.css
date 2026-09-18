@@ -5,7 +5,6 @@
 .compare-name-chip.MuiButtonBase-root {
   border-radius: 44px;
   padding: 0;
-  border-color: var(--color-action) !important;
   transition: transform var(--motion-duration-120) var(--motion-ease-out);
 }
 

@@ -136,8 +136,9 @@
 
 /* The action tone keeps the default box and recolours only what is drawn on it,
    so the border, the label and any icon inheriting currentColor all land on the
-   same colour. */
-/* Feedback by movement rather than colour: the button drops onto the page and
+   same colour.
+
+   Feedback by movement rather than colour: the button drops onto the page and
    its shadow shrinks with it, so an action reads as pressable without the tone
    changing. */
 .primary-button.MuiButton-root[data-tone='action'] {

@@ -1,6 +1,4 @@
 import FilterListIcon from '@mui/icons-material/FilterList';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import './WorkspaceFilterToggle.css';
@@ -18,7 +16,7 @@ const WorkspaceFilterToggle = ({ isOpen, onToggle }: Props) => (
         onClick={onToggle}
         size="compact"
         tone="action"
-        startIcon={<FilterListIcon className="workspace-filter-toggle-filter-icon" fontSize="small" color="action" />}
+        startIcon={<FilterListIcon fontSize="small" color="action" />}
       />
     </TutorialTooltip>
   </div>

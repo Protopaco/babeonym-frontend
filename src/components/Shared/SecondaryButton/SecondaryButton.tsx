@@ -8,7 +8,7 @@ type Props = {
   // What the button sits on. The default contained fill is the primary colour,
   // which vanishes on a primary background.
   surface?: 'default' | 'primary';
-  tone?: 'default' | 'danger' | 'action';
+  tone?: 'default' | 'action';
 };
 
 export default ({ text, onClick, disabled = false, surface = 'default', tone = 'default' }: Props) => {

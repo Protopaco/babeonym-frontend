@@ -11,7 +11,6 @@ const semanticPalette: SemanticPaletteColors = {
   primaryContrast: '#F5F5F5',
   secondary: '#E7C5FF',
   secondaryContrast: '#7B00B4',
-  selected: '#E8B6FF',
   action: '#9400D8',
   actionContrast: '#F5F5F5',
   danger: '#B5444D',

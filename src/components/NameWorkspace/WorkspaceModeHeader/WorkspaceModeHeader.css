@@ -58,10 +58,6 @@
   cursor: pointer;
 }
 
-/* Compare is the secondary workflow, so its active treatment uses the
-   light-theme accent rather than repeating the primary purple. The selector
-   is scoped to the tooltip target because only the Compare button owns that
-   wrapper. */
 /* The fill alone says which mode you are on; both labels stay legible so the
    pair reads as two options rather than a heading and an afterthought.
 

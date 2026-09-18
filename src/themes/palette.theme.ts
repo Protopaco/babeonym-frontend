@@ -7,12 +7,9 @@ export default ({
   primaryContrast,
   secondary,
   secondaryContrast,
-  selected,
   action,
   actionContrast,
   actionTint,
-  accent,
-  accentContrast,
   danger,
   dangerTint,
   dangerContrast,
@@ -20,8 +17,6 @@ export default ({
   textSecondary,
   background,
 }: SemanticPaletteColors) => {
-  const resolvedAccent = accent ?? primary;
-  const resolvedAccentContrast = accentContrast ?? primaryContrast;
   const resolvedActionTint = actionTint ?? secondary;
 
   return {
@@ -33,9 +28,6 @@ export default ({
       secondary: {
         main: secondary,
         contrastText: secondaryContrast,
-      },
-      selected: {
-        main: selected,
       },
       error: {
         main: danger,
@@ -65,14 +57,9 @@ export default ({
             '--color-secondary': secondary,
             '--color-secondary-contrast': secondaryContrast,
 
-            '--color-selected': selected,
-
             '--color-action': action,
             '--color-action-contrast': actionContrast,
             '--color-action-tint': resolvedActionTint,
-
-            '--color-accent': resolvedAccent,
-            '--color-accent-contrast': resolvedAccentContrast,
 
             '--color-text-primary': textPrimary,
             '--color-text-secondary': textSecondary,
@@ -88,12 +75,9 @@ export default ({
             '--box-shadow-action-button-pressed': `0 1px 2px ${action}33`,
 
             '--width-workspace-column': '1200px',
-            '--width-filter-drawer-open': '450px',
-            '--width-filter-drawer-closed': '72px',
             '--height-filter-drawer-open': '50dvh',
             '--height-filter-drawer-closed': '67px',
             '--height-filter-chip-row': '40px',
-            '--bottom-floating-tutorial-icon-mobile': 'calc(var(--height-filter-drawer-closed) + 15px)',
 
             // No --height-header. The header sits in flow and the page clears
             // it on its own — see Header.css. This one is the mobile bar's own

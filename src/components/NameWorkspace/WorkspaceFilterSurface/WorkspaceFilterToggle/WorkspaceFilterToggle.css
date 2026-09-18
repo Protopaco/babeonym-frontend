@@ -10,10 +10,3 @@
   white-space: nowrap;
   padding: 0 0 4px 0;
 }
-
-.workspace-filter-toggle-label,
-.workspace-filter-toggle-label.MuiTypography-root {
-  color: var(--color-primary-contrast);
-  font-weight: 400;
-  font-size: 0.875rem;
-}
