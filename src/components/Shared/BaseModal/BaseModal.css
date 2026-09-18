@@ -4,7 +4,9 @@
   border-radius: var(--radius-20);
   background: var(--color-background);
   color: var(--color-text-primary);
-  box-shadow: var(--box-shadow-primary);
+  /* Flat: a raised edge is kept for things you can press. Stated rather than
+     left out, or MUI's own dialog shadow comes back. */
+  box-shadow: none;
 }
 
 .base-modal-paper--wide.MuiDialog-paper {

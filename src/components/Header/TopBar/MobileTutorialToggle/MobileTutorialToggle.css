@@ -46,7 +46,6 @@
     border-radius: var(--radius-16);
     background: var(--color-primary);
     color: var(--color-primary-contrast);
-    box-shadow: var(--box-shadow-primary);
     font-size: 14px;
     font-weight: 600;
     line-height: 1.25;

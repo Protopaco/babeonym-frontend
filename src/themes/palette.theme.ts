@@ -70,7 +70,6 @@ export default ({
             '--color-error': danger,
             '--color-error-tint': dangerTint,
             '--color-error-contrast': dangerContrast,
-            '--box-shadow-primary': `0 2px 4px ${actionTint}`,
 
             '--width-workspace-column': '1200px',
             '--height-filter-drawer-open': '50dvh',
