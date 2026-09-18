@@ -104,34 +104,44 @@ const WorkspaceFilterLayout = ({ isOpen, onToggle }: Props) => {
           >
             <div className="workspace-filter-layout-selector-row">
               <div className="workspace-filter-layout-columns" aria-label="Available filter categories">
-                <GenderFilterColumn
-                  options={availableFilterOptions.genders}
-                  selectedOptionIds={draftFilters.genders}
-                  onChange={setDraftFilters.genders}
-                />
-                <DecadeFilterColumn
-                  options={availableFilterOptions.decades}
-                  selectedOptionIds={draftFilters.decades}
-                  onChange={setDraftFilters.decades}
-                />
-                <CultureFilterColumn
-                  options={availableFilterOptions.cultures}
-                  selectedOptionIds={draftFilters.cultures}
-                  onChange={setDraftFilters.cultures}
-                />
-                <LanguageFilterColumn
-                  options={availableFilterOptions.languages}
-                  selectedOptionIds={draftFilters.languages}
-                  onChange={setDraftFilters.languages}
+                <div className="workspace-filter-layout-column">
+                  <GenderFilterColumn
+                    options={availableFilterOptions.genders}
+                    selectedOptionIds={draftFilters.genders}
+                    onChange={setDraftFilters.genders}
+                  />
+                </div>
+                <div className="workspace-filter-layout-column">
+                  <DecadeFilterColumn
+                    options={availableFilterOptions.decades}
+                    selectedOptionIds={draftFilters.decades}
+                    onChange={setDraftFilters.decades}
+                  />
+                </div>
+                <div className="workspace-filter-layout-column">
+                  <CultureFilterColumn
+                    options={availableFilterOptions.cultures}
+                    selectedOptionIds={draftFilters.cultures}
+                    onChange={setDraftFilters.cultures}
+                  />
+                </div>
+                <div className="workspace-filter-layout-column">
+                  <LanguageFilterColumn
+                    options={availableFilterOptions.languages}
+                    selectedOptionIds={draftFilters.languages}
+                    onChange={setDraftFilters.languages}
+                  />
+                </div>
+              </div>
+              <div className="workspace-filter-layout-actions">
+                <WorkspaceFilterActions
+                  isOpen={isOpen}
+                  onClearAll={clearDraftFilters}
+                  onClose={handleCloseFilters}
+                  onSetFilters={handleSetFilters}
+                  disabled={!hasDraftFilters}
                 />
               </div>
-              <WorkspaceFilterActions
-                isOpen={isOpen}
-                onClearAll={clearDraftFilters}
-                onClose={handleCloseFilters}
-                onSetFilters={handleSetFilters}
-                disabled={!hasDraftFilters}
-              />
             </div>
           </motion.div>
         )}

@@ -1,5 +1,6 @@
 .workspace-filter-actions {
   box-sizing: border-box;
+  width: 100%;
   min-height: 48px;
   position: relative;
   display: flex;

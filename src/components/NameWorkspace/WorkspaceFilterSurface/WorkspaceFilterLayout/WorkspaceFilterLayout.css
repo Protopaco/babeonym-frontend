@@ -7,28 +7,30 @@
 .workspace-filter-layout-selector-row {
   box-sizing: border-box;
   width: 100%;
-  display: grid;
   gap: 16px;
   align-items: stretch;
 }
 
 /* Toggle, chips, clear. The chips take what is left between the two ends, and
    scroll inside it — so the ends are what stop the row running off the edge.
-   The third column collapses to nothing when no filters are applied, since the
-   button is not rendered then. */
+   Clear is simply absent when no filters are applied, since the button is not
+   rendered then. */
 .workspace-filter-layout-summary-row {
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  display: flex;
   min-height: 42px;
   padding: 6px 36px;
 }
 
+/* The filters take the width, and the actions a column of 12vw with a 112px
+   floor. */
 .workspace-filter-layout-selector-row {
-  grid-template-columns: minmax(0, 1fr) minmax(112px, 12vw);
+  display: flex;
   background: var(--color-background);
   padding: 12px 36px;
 }
 
 .workspace-filter-layout-applied-chips {
+  flex: 1 1 0;
   min-width: 0;
   display: flex;
   align-items: center;
@@ -76,10 +78,27 @@
 }
 
 .workspace-filter-layout-columns {
+  flex: 1 1 0;
   min-width: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
+}
+
+/* Four equal columns on one line. A column, so the filter column stretches
+   across the wrapper's width. */
+.workspace-filter-layout-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Flex so the actions stretch to the row's height, as they did in the grid
+   cell. */
+.workspace-filter-layout-actions {
+  display: flex;
+  flex: 0 0 max(112px, 12vw);
 }
 
 /* Tablet halves the filter columns and stacks the selector row. Written as
@@ -96,8 +115,14 @@
   }
 
   .workspace-filter-layout-selector-row {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     padding: 12px 20px;
+  }
+
+  /* Stacked, a flex basis sets height, so both drop back to their content. */
+  .workspace-filter-layout-columns,
+  .workspace-filter-layout-actions {
+    flex: 0 0 auto;
   }
 
   /* Scrolls sideways rather than wrapping. Wrapped, every extra filter added a
@@ -119,8 +144,9 @@
     display: none;
   }
 
-  .workspace-filter-layout-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* Exactly half the width after the gap, so the four wrap into two by two. */
+  .workspace-filter-layout-column {
+    flex: 0 0 calc((100% - 12px) / 2);
   }
 }
 
