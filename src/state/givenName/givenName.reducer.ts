@@ -1,4 +1,5 @@
-import type { GivenNameState, GivenNameAction } from '@/state/givenName/givenName.types';
+import type { GivenNameState } from '@/models/GivenNameState';
+import type { GivenNameAction } from '@/models/GivenNameAction';
 import type { GivenName } from '@/api/generated/models/GivenName';
 import { initialGivenNameState } from '@/state/givenName/givenName.initialState';
 import reuseUnchangedGivenNames from '@/utils/reuseUnchangedGivenNames';

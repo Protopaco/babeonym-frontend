@@ -1,6 +1,6 @@
 import { useRef, useReducer, useEffect, useMemo } from 'react';
 import type { ReactNode } from 'react';
-import type { FilterState } from '@/state/filter/filter.types';
+import type { FilterState } from '@/models/FilterState';
 import { filterReducer } from '@/state/filter/filter.reducer';
 import { referenceApi } from '@/api/client';
 import { FilterContext } from '@/state/filter/filter.context';

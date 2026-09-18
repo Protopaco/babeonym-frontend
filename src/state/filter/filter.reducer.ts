@@ -1,4 +1,5 @@
-import type { FilterState, FilterAction } from '@/state/filter/filter.types';
+import type { FilterState } from '@/models/FilterState';
+import type { FilterAction } from '@/models/FilterAction';
 
 export const filterReducer = (state: FilterState, action: FilterAction): FilterState => {
   switch (action.type) {

@@ -1,5 +1,6 @@
 import { createContext } from 'react';
-import type { FilterState, FilterAction } from '@/state/filter/filter.types';
+import type { FilterState } from '@/models/FilterState';
+import type { FilterAction } from '@/models/FilterAction';
 
 export const FilterContext = createContext<
   | {

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { parseFilterIds } from '@/utils/parseFilterIds';
 import { useGivenNamesActions } from '@/state/givenName/useGivenNamesActions';
-import type { SelectedNameFilters } from '@/state/givenName/givenName.types';
+import type { SelectedNameFilters } from '@/models/SelectedNameFilters';
 
 // The single path from applied filters to a refetch, for both the desktop
 // surface and the mobile bar. Watching the params rather than either Set Filters

@@ -7,7 +7,8 @@ import { V1GivenNameActionRequestNewStateEnum } from '@/api/generated/models/V1G
 import type { V1GivenNameActionOperationRequest, V1GivenNameCandidatesRequest } from '@/api/generated/apis/GivenNameApi';
 import { GivenNameContext } from '@/state/givenName/givenName.context';
 import { GivenNameActionsContext } from '@/state/givenName/givenNameActions.context';
-import type { GivenNameState, SelectedNameFilters } from '@/state/givenName/givenName.types';
+import type { GivenNameState } from '@/models/GivenNameState';
+import type { SelectedNameFilters } from '@/models/SelectedNameFilters';
 import { givenNameReducer } from '@/state/givenName/givenName.reducer';
 import { initialGivenNameState } from '@/state/givenName/givenName.initialState';
 import enqueueRequest from '@/utils/enqueueRequest';
