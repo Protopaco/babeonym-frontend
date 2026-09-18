@@ -1,17 +1,24 @@
+/* Laid out like Settings: one centred column at the top of the page, with
+   everything inside it sharing a left edge. */
 .error-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
   flex: 1;
   width: 100%;
   padding: 24px;
-  text-align: center;
+  box-sizing: border-box;
+}
+
+.error-page-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
 }
 
 .error-page-message {
-  max-width: 480px;
   color: var(--color-text-secondary);
 }
 
@@ -19,6 +26,11 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
   gap: 12px;
+}
+
+@media (--mobile) {
+  .error-page {
+    padding: 16px;
+  }
 }

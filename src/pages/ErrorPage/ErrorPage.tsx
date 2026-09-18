@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SectionHeader from '@/components/Shared/SectionHeader/SectionHeader';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
-import SecondaryButton from '@/components/Shared/SecondaryButton/SecondaryButton';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
 import './ErrorPage.css';
 
@@ -86,14 +85,16 @@ const ErrorPage = () => {
 
   return (
     <Box className="error-page">
-      <SectionHeader title={title} />
-      <Typography variant="body1" className="error-page-message">
-        {message}
-      </Typography>
-      <Box className="error-page-actions">
-        {showRetrySignIn ? <PrimaryTextButton text="Try again" onClick={startGoogleSignIn} /> : null}
-        {showReload ? <PrimaryTextButton text="Try again" onClick={reloadPage} /> : null}
-        {showReturnHome ? <SecondaryButton text="Return home" onClick={returnHome} /> : null}
+      <Box className="error-page-column">
+        <SectionHeader title={title} />
+        <Typography variant="body1" className="error-page-message">
+          {message}
+        </Typography>
+        <Box className="error-page-actions">
+          {showRetrySignIn ? <PrimaryTextButton text="Try again" onClick={startGoogleSignIn} size="compact-wide" emphasis="fill" /> : null}
+          {showReload ? <PrimaryTextButton text="Try again" onClick={reloadPage} size="compact-wide" emphasis="fill" /> : null}
+          {showReturnHome ? <PrimaryTextButton text="Return home" onClick={returnHome} size="compact-wide" /> : null}
+        </Box>
       </Box>
     </Box>
   );
