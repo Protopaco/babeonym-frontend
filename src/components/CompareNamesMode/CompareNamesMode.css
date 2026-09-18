@@ -74,7 +74,7 @@
 .compare-names-mode-chip-area {
   position: relative;
   width: 100%;
-  height: 8vh;
+  height: 70px;
 }
 
 .compare-names-mode-motion {
@@ -196,6 +196,11 @@
     font-size: 2rem;
     font-weight: 600;
     color: var(--color-primary);
+  }
+
+  /* The chip's mobile height, which BaseNameChip.css sets to match. */
+  .compare-names-mode-chip-area {
+    height: 8vh;
   }
 
   /* Scaled with the rest of the stack. */

@@ -63,6 +63,15 @@
   background-color: var(--color-action);
 }
 
+/* Same hover as the app's filled buttons: no darker token exists, so it dims.
+   Guarded to real pointers, since a touchscreen holds :hover after a tap. */
+@media (hover: hover) {
+  .settings-row-save.MuiIconButton-root:not(.Mui-disabled):hover {
+    background-color: var(--color-action);
+    filter: brightness(0.92);
+  }
+}
+
 .settings-row-save .MuiSvgIcon-root {
   font-size: 30px;
 }
