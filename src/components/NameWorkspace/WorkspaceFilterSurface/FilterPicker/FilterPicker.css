@@ -28,6 +28,13 @@
   font-size: 1rem;
 }
 
+/* Matches the Selected box's placeholder. MUI fades the typed colour instead,
+   so its opacity is reset to let the token be the colour. */
+.filter-picker-search .MuiInputBase-input::placeholder {
+  color: var(--color-primary-tint);
+  opacity: 1;
+}
+
 .filter-picker-search .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   border-color: var(--color-primary-edge);
 }
@@ -89,12 +96,11 @@
   font-size: 1rem;
 }
 
-/* Dimmed rather than given a colour of its own, because there is no dim-primary
-   token and --color-primary-edge at 20% is too faint to read as text. */
-.filter-picker-selected-placeholder,
+/* The theme's quieter primary, so it reads as a hint rather than content. The
+   same colour as the search field's placeholder, which is the same kind of
+   hint. */
 .filter-picker-selected-placeholder.MuiTypography-root {
-  color: var(--color-primary);
-  opacity: 0.5;
+  color: var(--color-primary-tint);
   font-size: 1rem;
 }
 
