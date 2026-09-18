@@ -12,7 +12,7 @@ a shared component is caught before it reaches a screen Paul wasn't looking at.
 ## Why
 
 - The frontend's shared components are deeply chained — `PrimaryButton` →
-  `PrimaryTextButton` → `AuthProviderButton`, plus ten other call sites. A change
+  `PrimaryTextButton` → `GoogleSignInButton`, plus ten other call sites. A change
   to the base is only verified by whichever screen happens to be open.
 - `tsc` and the build catch broken imports and types. Neither catches a button
   that renders at the wrong width, a stylesheet that targets a class no longer
@@ -48,6 +48,12 @@ a shared component is caught before it reaches a screen Paul wasn't looking at.
 - Cover the core flow: generate, approve, reorder, delete.
 - Cover filters, including the clear-all confirmation.
 - Cover compare mode, including the too-few-names empty state.
+- Cover the error page's four paths, each showing its own title, message and
+  buttons: `/error?error=oauth` (Try again, Return home),
+  `/error?error=oauth&details=access_denied` (sign-in cancelled, same buttons),
+  `/error?error=session` (Try again only — Return home would bounce straight
+  back), and bare `/error` (Return home only). They are only reachable by a
+  failure, so nothing exercises them day to day.
 - Solve authenticated runs.
 - Add visual regression on the workspace at mobile and desktop widths.
 - Wire into CI.
