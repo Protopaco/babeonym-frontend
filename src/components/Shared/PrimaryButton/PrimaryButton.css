@@ -1,5 +1,9 @@
 .primary-button.MuiButton-root {
   --button-font-size: 28px;
+  /* How far the action tone's ledge drops below the button. Set per size so the
+     press travels the same proportion of every button — a fixed depth made the
+     small ones bounce and the large ones barely move. */
+  --button-ledge: 5px;
 
   width: 220px;
   height: 76px;
@@ -12,16 +16,13 @@
   text-transform: none;
 }
 
-.primary-button.MuiButton-root:hover {
-  transform: translateY(2px);
-}
-
 .primary-button.MuiButton-root[data-size='wide'] {
   width: 320px;
 }
 
 .primary-button.MuiButton-root[data-size='compact'] {
   --button-font-size: 0.875rem;
+  --button-ledge: 3px;
 
   width: 128px;
   height: 36px;
@@ -30,6 +31,7 @@
 
 .primary-button.MuiButton-root[data-size='compact-wide'] {
   --button-font-size: 0.875rem;
+  --button-ledge: 3px;
 
   width: 180px;
   height: 36px;
@@ -38,6 +40,7 @@
 
 .primary-button.MuiButton-root[data-size='compact-wider'] {
   --button-font-size: 0.875rem;
+  --button-ledge: 3px;
 
   width: 240px;
   height: 36px;
@@ -48,6 +51,7 @@
    floor is the collapsed size — an icon on its own. */
 .primary-button.MuiButton-root[data-size='compact-narrow'] {
   --button-font-size: 0.875rem;
+  --button-ledge: 3px;
 
   width: auto;
   min-width: 40px;
@@ -67,6 +71,11 @@
    135px ceiling is what this has always been on a wide screen. */
 .primary-button.MuiButton-root[data-shape='icon'] {
   --button-icon-size: clamp(2.2rem, 12vw, 60px);
+  /* Three quarters of the ring's width, so the ledge scales with the ring and
+     reads as part of it rather than a lopsided edge, while staying shallow
+     enough to feel lively rather than cartoonish. Each icon size below follows
+     its ring the same way. */
+  --button-ledge: clamp(3px, 1.05vw, 4.5px);
 
   width: clamp(4rem, 22vw, 130px);
   height: clamp(4rem, 22vw, 130px);
@@ -81,6 +90,7 @@
    the thing you came for, so the ring thins out with it. */
 .primary-button.MuiButton-root[data-shape='icon'][data-size='compact'] {
   --button-icon-size: 52px;
+  --button-ledge: 3px;
 
   width: 88px;
   height: 88px;
@@ -92,6 +102,7 @@
    this size at every width. Icon shape only; a text button has no small. */
 .primary-button.MuiButton-root[data-shape='icon'][data-size='small'] {
   --button-icon-size: 24px;
+  --button-ledge: 2px;
 
   width: 60px;
   height: 60px;
@@ -105,6 +116,7 @@
 @media (--mobile) {
   .primary-button.MuiButton-root[data-shape='icon'][data-size='compact'] {
     --button-icon-size: 38px;
+    --button-ledge: 2px;
 
     width: 64px;
     height: 64px;
@@ -162,7 +174,7 @@
    changing. */
 .primary-button.MuiButton-root[data-tone='action'] {
   border-color: var(--color-action);
-  box-shadow: var(--box-shadow-action-button);
+  box-shadow: 0 var(--button-ledge) 0 var(--color-action);
   color: var(--color-action);
   transition:
     transform var(--motion-duration-120) var(--motion-ease-out),
@@ -176,15 +188,15 @@
     border-color: var(--color-action);
     background: var(--color-background);
     color: var(--color-action);
-    transform: translateY(1px);
-    box-shadow: var(--box-shadow-action-button-pressed);
+    transform: translateY(calc(var(--button-ledge) / 2));
+    box-shadow: 0 calc(var(--button-ledge) / 2) 0 var(--color-action);
   }
 }
 
 /* Outside the hover guard, so a tap on a touchscreen gets the press too. */
 .primary-button.MuiButton-root[data-tone='action']:active {
-  transform: translateY(3px);
-  box-shadow: var(--box-shadow-action-button-pressed);
+  transform: translateY(var(--button-ledge));
+  box-shadow: 0 0 0 var(--color-action);
 }
 
 .primary-button.MuiButton-root[data-tone='action']:focus-visible {

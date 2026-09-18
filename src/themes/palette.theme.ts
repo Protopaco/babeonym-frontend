@@ -72,8 +72,6 @@ export default ({
             '--color-error-contrast': dangerContrast,
             '--box-shadow-primary': `0 2px 4px ${actionTint}`,
 
-            '--box-shadow-action-button-pressed': `0 1px 2px ${action}33`,
-
             '--width-workspace-column': '1200px',
             '--height-filter-drawer-open': '50dvh',
             '--height-filter-drawer-closed': '67px',
