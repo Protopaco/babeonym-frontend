@@ -1,5 +1,4 @@
 import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
-import { BRAND_LOGO_COLOR } from '@/constants/brandLogoColor';
 import motion from '@/themes/motion.theme';
 import radius from '@/themes/radius.theme';
 
@@ -47,7 +46,6 @@ export default ({
       MuiCssBaseline: {
         styleOverrides: {
           ':root': {
-            '--color-brand-logo': BRAND_LOGO_COLOR,
             '--color-primary': primary,
             '--color-primary-tint': primaryTint,
             '--color-primary-contrast': primaryContrast,
