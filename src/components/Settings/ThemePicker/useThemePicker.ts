@@ -1,5 +1,5 @@
 import { userApi } from '@/api/client';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 import type { ThemeId } from '@/models/ThemeId';
 
 const DEFAULT_THEME: ThemeId = 'light';

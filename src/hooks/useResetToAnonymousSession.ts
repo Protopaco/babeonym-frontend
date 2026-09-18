@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { authApi, userApi } from '@/api/client';
-import { useGivenNames } from '@/state/givenName/givenName.provider';
-import { useUser } from '@/state/user/user.context';
+import { useGivenNames } from '@/state/givenName/useGivenNames';
+import { useUser } from '@/state/user/useUser';
 
 export const useResetToAnonymousSession = () => {
   const { dispatch } = useUser();

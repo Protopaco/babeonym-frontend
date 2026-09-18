@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 import type { FilterState, FilterAction } from '@/state/filter/filter.types';
 
 export const FilterContext = createContext<
@@ -8,11 +8,3 @@ export const FilterContext = createContext<
     }
   | undefined
 >(undefined);
-
-export const useFilters = () => {
-  const context = useContext(FilterContext);
-  if (!context) {
-    throw new Error('useFilters must be used inside FilterProvider');
-  }
-  return context;
-};

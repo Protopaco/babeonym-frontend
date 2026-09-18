@@ -1,6 +1,7 @@
 import type { KeyboardEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { useGivenNames, useGivenNamesActions } from '@/state/givenName/givenName.provider';
+import { useGivenNames } from '@/state/givenName/useGivenNames';
+import { useGivenNamesActions } from '@/state/givenName/useGivenNamesActions';
 import getCustomNameErrorMessage from '@/utils/getCustomNameErrorMessage';
 import normalizeNameInput from '@/utils/normalizeNameInput';
 

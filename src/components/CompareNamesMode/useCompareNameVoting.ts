@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import type { GivenName } from '@/api/generated';
 import type { ComparePair } from '@/components/CompareNamesMode/compareNames.types';
-import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
+import { useGivenNamesActions } from '@/state/givenName/useGivenNamesActions';
 
 // A vote swaps the next pair in on the following frame, so there is no load to
 // wait through — but the new chips mount in the same place the old ones were,

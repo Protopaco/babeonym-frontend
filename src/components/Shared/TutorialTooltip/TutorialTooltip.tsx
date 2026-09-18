@@ -3,7 +3,7 @@ import type { MouseEvent } from 'react';
 import { useId } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import BaseTooltip from '@/components/Shared/BaseTooltip/BaseTooltip';
-import { useTutorial } from '@/state/tutorial/tutorial.context';
+import { useTutorial } from '@/state/tutorial/useTutorial';
 import { TOUCH_POINTER } from '@/constants/mediaQueries';
 import './TutorialTooltip.css';
 

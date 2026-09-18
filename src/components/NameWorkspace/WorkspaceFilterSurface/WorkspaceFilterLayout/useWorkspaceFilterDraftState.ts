@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { useFilters } from '@/state/filter/filter.context';
+import { useFilters } from '@/state/filter/useFilters';
 import { useWorkspaceFilterCategory } from '@/components/NameWorkspace/WorkspaceFilterSurface/WorkspaceFilterLayout/useWorkspaceFilterCategory';
 
 export const useWorkspaceFilterDraftState = () => {

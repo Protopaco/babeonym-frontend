@@ -9,7 +9,7 @@ import MobileFilterDrawer from '@/components/NameGenerator/MobileNameFilters/Mob
 import { mobileFilterCategories } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
 import type { MobileFilterCategory } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
 import { useMobileAppliedFilterChips } from '@/components/NameGenerator/MobileNameFilters/useMobileAppliedFilterChips';
-import { useAppLayoutState } from '@/state/appLayoutState/appLayoutState.context';
+import { useAppLayoutState } from '@/state/appLayoutState/useAppLayoutState';
 import TutorialTooltip from '@/components/Shared/TutorialTooltip/TutorialTooltip';
 import './MobileNameFilters.css';
 

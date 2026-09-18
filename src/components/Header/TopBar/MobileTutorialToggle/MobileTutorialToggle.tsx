@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
-import { useTutorial } from '@/state/tutorial/tutorial.context';
+import { useTutorial } from '@/state/tutorial/useTutorial';
 import './MobileTutorialToggle.css';
 
 /* Long enough to read four syllables and look at what they point to, short

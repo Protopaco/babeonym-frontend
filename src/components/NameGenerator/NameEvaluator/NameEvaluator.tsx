@@ -1,8 +1,8 @@
-import { useGivenNames } from '@/state/givenName/givenName.provider';
+import { useGivenNames } from '@/state/givenName/useGivenNames';
 import Box from '@mui/material/Box';
 import './NameEvaluator.css';
 import { Typography } from '@mui/material';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 import EvaluatedNameDisplay from '@/components/NameGenerator/NameEvaluator/EvaluatedNameDisplay/EvaluatedNameDisplay';
 import NameEvaluationActions from '@/components/NameGenerator/NameEvaluator/NameEvaluationActions/NameEvaluationActions';
 import { useNameEvaluationActions } from '@/components/NameGenerator/NameEvaluator/useNameEvaluationActions';

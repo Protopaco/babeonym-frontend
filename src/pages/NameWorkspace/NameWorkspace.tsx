@@ -6,7 +6,7 @@ import WorkspaceModeHeader from '@/components/NameWorkspace/WorkspaceModeHeader/
 import WorkspaceApprovedNames from '@/components/NameWorkspace/WorkspaceApprovedNames/WorkspaceApprovedNames';
 import AccountPromptBanner from '@/components/NameWorkspace/AccountPromptBanner/AccountPromptBanner';
 import ExistingAccountNotice from '@/components/NameWorkspace/ExistingAccountNotice/ExistingAccountNotice';
-import { useGivenNames } from '@/state/givenName/givenName.provider';
+import { useGivenNames } from '@/state/givenName/useGivenNames';
 import { useSyncWorkspaceFilterParams } from '@/state/givenName/useSyncWorkspaceFilterParams';
 import { useWorkspaceMode } from '@/state/givenName/useWorkspaceMode';
 import { AnimatePresence } from 'motion/react';

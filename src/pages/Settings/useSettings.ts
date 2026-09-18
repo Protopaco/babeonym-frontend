@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { userApi } from '@/api/client';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 import normalizeNameInput from '@/utils/normalizeNameInput';
 import capitalizeNameSegments from '@/utils/capitalizeNameSegments';
 

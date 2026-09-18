@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import type { GivenName } from '@/api/generated';
-import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
+import { useGivenNamesActions } from '@/state/givenName/useGivenNamesActions';
 
 // Long enough that a run of drags settles into one write, short enough that the
 // order is saved before attention moves on. Someone rearranging a list usually

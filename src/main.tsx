@@ -7,7 +7,7 @@ import App from './App';
 import '@/styles/index.css';
 
 import { UserProvider } from '@/state/user/user.provider';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 import { GivenNameProvider } from '@/state/givenName/givenName.provider';
 import { FilterProvider } from '@/state/filter/filter.provider';
 import { TutorialProvider } from '@/state/tutorial/tutorial.provider';

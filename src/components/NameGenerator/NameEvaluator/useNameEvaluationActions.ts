@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import type { GivenName } from '@/api/generated';
-import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
+import { useGivenNamesActions } from '@/state/givenName/useGivenNamesActions';
 
 // Each action drops the candidate from the queue before it awaits the request,
 // so the next name is on screen the following frame and the round trip happens

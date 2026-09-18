@@ -1,5 +1,5 @@
 import BabyIcon from '@/assets/icons/icon-baby.svg?react';
-import { useTutorial } from '@/state/tutorial/tutorial.context';
+import { useTutorial } from '@/state/tutorial/useTutorial';
 import BaseTooltip from '@/components/Shared/BaseTooltip/BaseTooltip';
 import PrimaryIconButton from '@/components/Shared/PrimaryIconButton/PrimaryIconButton';
 import './FloatingTutorialIcon.css';

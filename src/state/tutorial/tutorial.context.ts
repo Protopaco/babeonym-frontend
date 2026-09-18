@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 
 type TutorialContextValue = {
   tutorialEnabled: boolean;
@@ -13,11 +13,3 @@ type TutorialContextValue = {
 };
 
 export const TutorialContext = createContext<TutorialContextValue | undefined>(undefined);
-
-export const useTutorial = () => {
-  const context = useContext(TutorialContext);
-  if (!context) {
-    throw new Error('useTutorial must be used inside TutorialProvider');
-  }
-  return context;
-};

@@ -4,7 +4,7 @@ import type { FilterState } from '@/state/filter/filter.types';
 import { filterReducer } from '@/state/filter/filter.reducer';
 import { referenceApi } from '@/api/client';
 import { FilterContext } from '@/state/filter/filter.context';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 
 const initialState: FilterState = {
   nameFilters: {

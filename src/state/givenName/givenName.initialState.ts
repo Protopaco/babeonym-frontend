@@ -1,4 +1,4 @@
-import type { GivenNameState } from '@/state/givenName/givenName.types';
+import type { GivenNameState } from '@/models/GivenNameState';
 
 // Kept out of the provider so the reducer can reset to it without importing
 // back. Anything added here is cleared on a session reset by construction,

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { parseFilterIds } from '@/utils/parseFilterIds';
-import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
+import { useGivenNamesActions } from '@/state/givenName/useGivenNamesActions';
 import type { SelectedNameFilters } from '@/state/givenName/givenName.types';
 
 // The single path from applied filters to a refetch, for both the desktop

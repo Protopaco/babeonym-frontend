@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
 import './AccountLink.css';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 import { useState } from 'react';
 import AuthModal from '@/components/Header/AuthModal/AuthModal';
 import LogoutConfirmDialog from '@/components/Header/LogoutConfirmDialog/LogoutConfirmDialog';

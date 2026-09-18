@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { mobileFilterCategories } from '@/components/NameGenerator/MobileNameFilters/mobileFilterCategories';
-import { useFilters } from '@/state/filter/filter.context';
+import { useFilters } from '@/state/filter/useFilters';
 import type { WorkspaceAppliedFilterChip } from '@/models/WorkspaceAppliedFilterChip';
 import { parseFilterIds } from '@/utils/parseFilterIds';
 import { writeFilterIds } from '@/utils/writeFilterIds';

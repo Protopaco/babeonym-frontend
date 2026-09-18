@@ -1,6 +1,8 @@
 import { createContext } from 'react';
 import type { GivenName } from '@/api/generated';
-import type { GivenNameState, GivenNameAction, SelectedNameFilters } from '@/state/givenName/givenName.types';
+import type { GivenNameState } from '@/models/GivenNameState';
+import type { GivenNameAction } from '@/models/GivenNameAction';
+import type { SelectedNameFilters } from '@/models/SelectedNameFilters';
 
 export const GivenNameContext = createContext<
   | {

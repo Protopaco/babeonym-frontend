@@ -7,7 +7,7 @@ import AuthModal from '@/components/Header/AuthModal/AuthModal';
 import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import PrimaryTextButton from '@/components/Shared/PrimaryTextButton/PrimaryTextButton';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 import motionTokens from '@/themes/motion.theme';
 import './AccountPromptBanner.css';
 

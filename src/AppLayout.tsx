@@ -2,7 +2,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Header from '@/components/Header/Header';
 import FloatingTutorialIcon from '@/components/Shared/FloatingTutorialIcon/FloatingTutorialIcon';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 import '@/AppLayout.css';
 
 const ERROR_PATH = '/error';

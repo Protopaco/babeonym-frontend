@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { GivenName } from '@/api/generated';
-import { useGivenNamesActions } from '@/state/givenName/givenName.provider';
+import { useGivenNamesActions } from '@/state/givenName/useGivenNamesActions';
 import DeleteIcon from '@mui/icons-material/Delete';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import NameEtymologyModal from '@/components/Shared/NameEtymologyModal/NameEtymologyModal';

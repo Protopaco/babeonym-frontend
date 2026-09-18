@@ -5,7 +5,7 @@ import AuthModal from '@/components/Header/AuthModal/AuthModal';
 import BareIconButton from '@/components/Shared/BareIconButton/BareIconButton';
 import LogoutConfirmDialog from '@/components/Header/LogoutConfirmDialog/LogoutConfirmDialog';
 import { useLogout } from '@/components/Header/useLogout';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 import startGoogleSignIn from '@/api/startGoogleSignIn';
 import './MobileAccountButton.css';
 

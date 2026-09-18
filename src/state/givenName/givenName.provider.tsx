@@ -1,4 +1,4 @@
-import { startTransition, useContext, useReducer, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { startTransition, useReducer, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { givenNameApi } from '@/api/client';
 import type { ReactNode } from 'react';
 import type { GivenName } from '@/api/generated/models/GivenName';
@@ -16,7 +16,7 @@ import { serializeFilterIds } from '@/utils/serializeFilterIds';
 import retryRequest from '@/utils/retryRequest';
 import approvedGivenNameLimit from '@/utils/approvedGivenNameLimit';
 import getErrorMessage from '@/utils/getErrorMessage';
-import { useUser } from '@/state/user/user.context';
+import { useUser } from '@/state/user/useUser';
 
 // The queue is topped up before it can empty, so the floor is the threshold
 // minus whatever is consumed while a refill is in flight, not zero.
@@ -414,22 +414,4 @@ export const GivenNameProvider = ({ children }: { children: ReactNode }) => {
       <GivenNameActionsContext.Provider value={actions}>{children}</GivenNameActionsContext.Provider>
     </GivenNameContext.Provider>
   );
-};
-
-export const useGivenNames = () => {
-  const context = useContext(GivenNameContext);
-  if (!context) {
-    throw new Error('useGivenNames must be used inside GivenNamesProvider');
-  }
-  return context;
-};
-
-// Read from the actions-only context, so a component that only calls actions
-// does not re-render when name state changes.
-export const useGivenNamesActions = () => {
-  const actions = useContext(GivenNameActionsContext);
-  if (!actions) {
-    throw new Error('useGivenNamesActions must be used inside GivenNamesProvider');
-  }
-  return actions;
 };

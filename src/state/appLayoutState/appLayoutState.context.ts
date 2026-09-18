@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 
 type UIContextValue = {
   mobileFilterDrawerOpen: boolean;
@@ -6,11 +6,3 @@ type UIContextValue = {
 };
 
 export const AppLayoutStateContext = createContext<UIContextValue | undefined>(undefined);
-
-export const useAppLayoutState = () => {
-  const context = useContext(AppLayoutStateContext);
-  if (!context) {
-    throw new Error('useAppLayoutState must be used inside AppLayoutStateProvider');
-  }
-  return context;
-};
