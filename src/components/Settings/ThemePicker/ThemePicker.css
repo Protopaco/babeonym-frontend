@@ -6,41 +6,52 @@
   margin-top: 8px;
 }
 
-.theme-picker-label {
-  color: var(--color-text-secondary);
+.theme-picker-label.MuiTypography-root {
+  color: var(--color-text-primary);
 }
 
-.theme-picker-swatches {
+/* Stretched on its own rather than through the column, so the label keeps its
+   own width and the tooltip still points at the word. */
+.theme-picker-options {
   display: flex;
-  align-items: center;
+  align-self: stretch;
   gap: 12px;
 }
 
-.theme-picker-swatch.MuiIconButton-root {
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border: 1px solid var(--color-border);
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+/* An equal share of the row each, and twice that for the active theme. Width
+   is the whole signal: there is no tick, so the picked pill is simply the wide
+   one. */
+.theme-picker-option {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  transition: flex-grow var(--motion-duration-180) var(--motion-ease-out);
 }
 
-.theme-picker-swatch.MuiIconButton-root[data-active='true'] {
-  outline-color: var(--color-text-primary);
+.theme-picker-option[data-active='true'] {
+  flex-grow: 2;
 }
 
-.theme-picker-swatch.MuiIconButton-root[data-theme-id='light'] {
-  background-color: var(--color-swatch-light);
+/* Pointing at a pill previews picking it: it takes the width, and the picked
+   one gives it up until the pointer leaves. Asked of the options rather than of
+   the row, so a pointer resting in a gap does not shrink all four. Guarded to
+   pointers that can genuinely hover: a touchscreen holds :hover after a tap. */
+@media (hover: hover) {
+  .theme-picker-option:hover {
+    flex-grow: 2;
+  }
+
+  .theme-picker-options:has(.theme-picker-option:hover) .theme-picker-option[data-active='true']:not(:hover) {
+    flex-grow: 1;
+  }
 }
 
-.theme-picker-swatch.MuiIconButton-root[data-theme-id='dark'] {
-  background-color: var(--color-swatch-dark);
+/* The same preview for the keyboard. Focus-visible rather than focus-within, so
+   a clicked pill that keeps focus does not stay wide under a later hover. */
+.theme-picker-option:has(:focus-visible) {
+  flex-grow: 2;
 }
 
-.theme-picker-swatch.MuiIconButton-root[data-theme-id='blue'] {
-  background-color: var(--color-swatch-blue);
-}
-
-.theme-picker-swatch.MuiIconButton-root[data-theme-id='pink'] {
-  background-color: var(--color-swatch-pink);
+.theme-picker-options:has(:focus-visible) .theme-picker-option[data-active='true']:not(:has(:focus-visible)) {
+  flex-grow: 1;
 }

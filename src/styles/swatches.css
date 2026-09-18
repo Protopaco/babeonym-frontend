@@ -4,8 +4,14 @@
  * per theme. Update them by hand when a theme's colors change.
  */
 :root {
-  --color-swatch-light: #7b00b4;
+  --color-swatch-light: #ffffff;
   --color-swatch-dark: #292929;
   --color-swatch-blue: #065ac7;
   --color-swatch-pink: #d04883;
+
+  /* Each theme's own primary contrast, copied for the same reason. */
+  --color-swatch-light-contrast: #7b00b4;
+  --color-swatch-dark-contrast: #f5f5f5;
+  --color-swatch-blue-contrast: #ffffff;
+  --color-swatch-pink-contrast: #ffffff;
 }
