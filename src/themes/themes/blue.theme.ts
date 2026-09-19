@@ -30,7 +30,7 @@ const semanticPalette: SemanticPaletteColors = {
 
 let theme = createTheme({
   ...breakpoints,
-  ...palette(semanticPalette),
+  ...palette(semanticPalette, 'light'),
   ...zIndex,
   typography: { fontFamily: FONT_FAMILY },
 });

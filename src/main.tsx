@@ -24,7 +24,9 @@ const AppShell = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
+      {/* enableColorScheme tells the browser too, so its own scrollbars and
+          autofill follow the theme's mode. */}
+      <CssBaseline enableColorScheme />
       {/* Every motion component in the tree honours the OS reduced-motion
           setting from here, so no component handles it itself. Transform and
           layout animation is dropped and opacity is kept, so a reduced-motion

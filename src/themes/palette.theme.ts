@@ -2,24 +2,30 @@ import type { SemanticPaletteColors } from '@/models/SemanticPaletteColors';
 import motion from '@/themes/motion.theme';
 import radius from '@/themes/radius.theme';
 
-export default ({
-  primary,
-  primaryTint,
-  primaryContrast,
-  secondary,
-  secondaryContrast,
-  action,
-  actionContrast,
-  actionTint,
-  danger,
-  dangerTint,
-  dangerContrast,
-  textPrimary,
-  textSecondary,
-  background,
-}: SemanticPaletteColors) => {
+// Mode sits apart from the colours: it is not one, it tells MUI which way its
+// own leftover defaults (hover washes, disabled greys) should lean.
+export default (
+  {
+    primary,
+    primaryTint,
+    primaryContrast,
+    secondary,
+    secondaryContrast,
+    action,
+    actionContrast,
+    actionTint,
+    danger,
+    dangerTint,
+    dangerContrast,
+    textPrimary,
+    textSecondary,
+    background,
+  }: SemanticPaletteColors,
+  mode: 'light' | 'dark'
+) => {
   return {
     palette: {
+      mode,
       primary: {
         main: primary,
         contrastText: primaryContrast,
@@ -58,6 +64,9 @@ export default ({
             '--color-action': action,
             '--color-action-contrast': actionContrast,
             '--color-action-tint': actionTint,
+            // The action colour at about a third strength, so an action button's
+            // ledge reads as its shadow rather than more of the button.
+            '--color-action-ledge': `${action}59`,
 
             '--color-text-primary': textPrimary,
             '--color-text-secondary': textSecondary,

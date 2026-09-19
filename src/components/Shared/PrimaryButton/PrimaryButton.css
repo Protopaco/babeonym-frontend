@@ -171,10 +171,11 @@
 
    Feedback by movement rather than colour: the button drops onto the page and
    its shadow shrinks with it, so an action reads as pressable without the tone
-   changing. */
+   changing. The ledge is a lighter action colour, so it reads as the button's
+   shadow rather than one heavy shape with it. */
 .primary-button.MuiButton-root[data-tone='action'] {
   border-color: var(--color-action);
-  box-shadow: 0 var(--button-ledge) 0 var(--color-action);
+  box-shadow: 0 var(--button-ledge) 0 var(--color-action-ledge);
   color: var(--color-action);
   transition:
     transform var(--motion-duration-120) var(--motion-ease-out),
@@ -189,14 +190,14 @@
     background: var(--color-background);
     color: var(--color-action);
     transform: translateY(calc(var(--button-ledge) / 2));
-    box-shadow: 0 calc(var(--button-ledge) / 2) 0 var(--color-action);
+    box-shadow: 0 calc(var(--button-ledge) / 2) 0 var(--color-action-ledge);
   }
 }
 
 /* Outside the hover guard, so a tap on a touchscreen gets the press too. */
 .primary-button.MuiButton-root[data-tone='action']:active {
   transform: translateY(var(--button-ledge));
-  box-shadow: 0 0 0 var(--color-action);
+  box-shadow: 0 0 0 var(--color-action-ledge);
 }
 
 .primary-button.MuiButton-root[data-tone='action']:focus-visible {
