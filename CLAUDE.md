@@ -25,7 +25,7 @@ Use these rules when implementing, reviewing, or refactoring React frontend code
 ## Styling Ownership
 
 - Components own their visual styling.
-- Every `.tsx` component must have a sibling `.css` file, even if that CSS file is empty. If a component exists, its styling home must also exist.
+- Every `.tsx` component must have a sibling `.css` file, even if that CSS file is empty. If a component exists, its styling home must also exist. Exempt: `.tsx` files that render no UI of their own — entry points, routers, and context providers.
 - Parents own placement and layout only.
 - Use `display: flex` as the default layout primitive.
 - Do not use `display: grid` unless the user explicitly approves grid for that specific implementation.
@@ -41,6 +41,7 @@ Use these rules when implementing, reviewing, or refactoring React frontend code
 - Use semantic theme tokens only: CSS variables, theme palette values, or project-defined design tokens.
 - Do not use raw hex, RGB/RGBA, HSL/HSLA, named colors, or opacity-suffixed literals in component CSS.
 - If a needed color token does not exist, stop and propose adding a semantic token.
+- Exception: a third-party snippet (such as a provider's sign-in button) keeps its colors as supplied. Anything outside the snippet uses tokens.
 - Shadows, border colors, focus colors, and generated alpha colors should also come from theme tokens.
 - Typography, radius, spacing, sizing, and motion values that represent design-system decisions should come from tokens or component-owned variants when the project has token support.
 
