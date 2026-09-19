@@ -55,3 +55,10 @@ decision rather than a data one.
 - The indicator, the action and the modal mount agree in every case, because
   they read the same predicate.
 - A name with real etymology is unaffected.
+
+## Resolution
+
+Done in SQL rather than the frontend. `055_get_given_name_etymology.v2.sql`
+returns null unless a name has at least one meaning or at least three
+languages, so every existing gate agrees without a shared predicate. 055 is in
+production.
