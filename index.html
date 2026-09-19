@@ -5,6 +5,23 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Babeonym</title>
+    <!-- One head for every route: this is a single-page app. No canonical tag,
+         because it would name the home page from /privacy too; the bare domain
+         already redirects to www. og:image goes in once a 1200×630 preview
+         image exists in public/. -->
+    <meta
+      name="description"
+      content="Find a baby name you can agree on. Browse thousands of names by popularity, decade and language, see what they mean, and build your shortlist."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Babeonym" />
+    <meta property="og:title" content="Babeonym" />
+    <meta
+      property="og:description"
+      content="Find a baby name you can agree on. Browse thousands of names by popularity, decade and language, see what they mean, and build your shortlist."
+    />
+    <meta property="og:url" content="https://www.babeonym.com/" />
+    <meta name="twitter:card" content="summary" />
     <!-- Paints the page in the theme's own background before React loads,
          instead of leaving the browser's white showing until the app mounts.
          Synchronous and in the head so it runs before the first paint.

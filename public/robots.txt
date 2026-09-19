@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /settings
+Disallow: /error
+
+Sitemap: https://www.babeonym.com/sitemap.xml
