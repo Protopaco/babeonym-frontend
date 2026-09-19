@@ -30,3 +30,9 @@
      turns this off on its buttons; stated here to match. */
   -webkit-tap-highlight-color: transparent;
 }
+
+/* Placement only — the link owns how it looks. Its own row, left-aligned with
+   the signature above it. */
+.about-modal-privacy {
+  display: flex;
+}

@@ -1,0 +1,8 @@
+/* Quieter than the modal copy around it: it is a footnote to the modal, not
+   part of what it says. */
+.privacy-policy-link.MuiLink-root {
+  color: var(--color-text-secondary);
+  /* A plain link, so mobile browsers flash their own blue box on tap. Matches
+     the About modal's email link. */
+  -webkit-tap-highlight-color: transparent;
+}

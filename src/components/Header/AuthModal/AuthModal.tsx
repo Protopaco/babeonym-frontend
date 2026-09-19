@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import GoogleSignInButton from '@/components/Header/AuthModal/GoogleSignInButton/GoogleSignInButton';
 import BaseModal from '@/components/Shared/BaseModal/BaseModal';
+import PrivacyPolicyLink from '@/components/Shared/PrivacyPolicyLink/PrivacyPolicyLink';
 import './AuthModal.css';
 
 type AuthModalProps = {
@@ -18,6 +19,9 @@ const AuthModal = ({ open, onClose, onGoogleSignIn }: AuthModalProps) => {
       </Typography>
       <Box className="auth-modal-providers">
         <GoogleSignInButton onClick={onGoogleSignIn} />
+      </Box>
+      <Box className="auth-modal-privacy">
+        <PrivacyPolicyLink onClick={onClose} size="compact" />
       </Box>
     </BaseModal>
   );

@@ -12,3 +12,10 @@
   align-items: center;
   padding: 5px;
 }
+
+/* Placement only — the link owns how it looks. Centred under the sign-in
+   button it is a footnote to. */
+.auth-modal-privacy {
+  display: flex;
+  justify-content: center;
+}

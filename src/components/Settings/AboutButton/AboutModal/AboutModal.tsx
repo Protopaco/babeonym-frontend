@@ -3,14 +3,9 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import BaseModal from '@/components/Shared/BaseModal/BaseModal';
 import CopyEmailButton from '@/components/Settings/AboutButton/CopyEmailButton/CopyEmailButton';
+import PrivacyPolicyLink from '@/components/Shared/PrivacyPolicyLink/PrivacyPolicyLink';
+import { CONTACT_EMAIL } from '@/constants/contactEmail';
 import './AboutModal.css';
-
-// Forwards to Paul's own address, so if it ever attracts spam the forward
-// changes and nothing else does. Left as a plain mailto rather than assembled
-// at runtime: this is a client-rendered app, so the address is already in a JS
-// bundle rather than in served HTML, and the tricks that hide it cost either
-// the working link or the accessibility of it.
-const CONTACT_EMAIL = 'babeonym@gmail.com';
 
 const ACKNOWLEDGE_LABEL = 'Got it';
 
@@ -41,6 +36,9 @@ const AboutModal = ({ open, onClose }: Props) => {
           </Link>
           <CopyEmailButton email={CONTACT_EMAIL} />
         </Box>
+      </Box>
+      <Box className="about-modal-privacy">
+        <PrivacyPolicyLink onClick={onClose} />
       </Box>
     </BaseModal>
   );
