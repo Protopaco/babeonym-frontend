@@ -29,22 +29,40 @@ a shared component is caught before it reaches a screen Paul wasn't looking at.
    handful of surfaces where layout is the thing being tested.
 4. **Runs locally on demand before it runs anywhere automatically.**
 
+## Decisions
+
+- **Its own repo.** Not a folder in `babeonym-frontend`. It keeps the app free of
+  test bloat and keeps the suite to what a browser can touch. The e2e repo carries
+  its own integration test documentation.
+- **Runs on demand locally, and nightly against production.** One `baseURL`
+  setting; the same specs serve both.
+- **Authentication is a saved Google session.** Sign in once by hand, save
+  Playwright's `storageState`, reuse it, and re-capture it when it expires. No
+  test-only backend route: a test through a backdoor tests the backdoor, not the
+  app. Creating an account through Google stays a manual check.
+- **Selectors are `data-testid`**, named `location-form-descriptor`, with a
+  trailing identifier for repeated items (for example
+  `generator-button-approve`, `workspace-chip-name-rocco`). Locations come from a
+  closed list in `docs/testing/locationReference.md`.
+- **Unit tests are separate from this epic.** Their conventions, like the rest of
+  the testing conventions, live in the `ui-testing` skill.
+- **Conventions live in the `ui-testing` skill**, which applies to every UI
+  project. The Babeonym-specific location list is
+  `docs/testing/locationReference.md`.
+
 ## Open Questions
 
-- **Its own repo, or a folder in `babeonym-frontend`?** The title says app, which
-  suggests separate. Separate means it can point at deployed environments;
-  in-repo means it moves with the code it tests.
-- **What does it run against** — a local dev server, a local production build, or
-  the Vercel preview?
-- **Authentication.** Google sign-in can't be driven by a test. Does the backend
-  need a test-only session route, or do the tests stay anonymous?
-- **Test data.** Tests that approve names write to a real database. Which one.
-- **Does this settle the unit-test convention too**, or stay strictly end-to-end?
+- **Test data.** Tests that approve names write to a real database. Which one,
+  and how does the nightly test account stay out of the preserved-accounts list in
+  [123]?
+- **Where does the nightly run?** CI host not chosen.
 
 ## Candidate Child Tickets
 
-- Decide placement and target environment, and scaffold the project.
-- Establish the selector convention (`data-testid` vs role-based queries).
+- Scaffold the e2e repo (Playwright, `baseURL` environment setting, local and
+  production scripts).
+- Add `data-testid` attributes to the components the first flows touch, following
+  the location reference.
 - Cover the core flow: generate, approve, reorder, delete.
 - Cover filters, including the clear-all confirmation.
 - Cover compare mode, including the too-few-names empty state.

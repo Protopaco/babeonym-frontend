@@ -45,12 +45,13 @@ filters, pick options, apply them, and clear them.
 
 ## Open
 
-- **The trailing identifier for labels** follows the same slug rule as [133].
 - **Option labels shared across columns.** If two columns can contain an option with
   the same label, include the column in the id.
 
 ## Acceptance Criteria
 
 - Every listed element carries its id, in the `location-form-descriptor` format.
+- The trailing identifier for a label follows the segment rule in the `ui-testing`
+  skill (`test-ids.md`).
 - The clear-all confirmation and its buttons are identified and given ids.
 - No other markup, styling or behavior changes.

@@ -43,10 +43,6 @@ be tested.
 
 ## Open
 
-- **The trailing identifier.** Names can contain accents, apostrophes, hyphens and
-  spaces (`O'Brien`, `Mary Jane`). The convention needs one rule for turning a name
-  into the id segment. Proposed: lowercase, spaces to hyphens, apostrophes
-  dropped, accents kept. Decide before cutting, and add the rule to the skill.
 - **How reordering is done and how modes are switched.** Neither showed up in the
   buttons surveyed, so the elements they need are not listed yet. Find them while
   implementing and list them here.
@@ -54,6 +50,8 @@ be tested.
 ## Acceptance Criteria
 
 - Every listed element carries its id, in the `location-form-descriptor` format.
+- The trailing identifier for a name follows the segment rule in the `ui-testing`
+  skill (`test-ids.md`). A name that reduces to nothing uses its bridge id.
 - Chips for different names have different ids, and the same name always produces
   the same id.
 - The reorder and mode switch elements are identified and given ids.
