@@ -1,7 +1,7 @@
 number,status,priority,eligible_for_agent,type,depends_on
-124,Backlog,P1,yes,unit tests,none
-125,Backlog,P1,yes,unit tests,none
-126,Backlog,P1,yes,unit tests,none
+124,Done,P1,yes,unit tests,none
+125,Done,P1,yes,unit tests,none
+126,Done,P1,yes,unit tests,none
 127,Backlog,P2,yes,unit tests,none
 128,Backlog,P2,yes,unit tests,none
 129,Backlog,P2,yes,unit tests,none
