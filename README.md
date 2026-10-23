@@ -1,77 +1,45 @@
-# React + TypeScript + Vite
+# Babeonym frontend
 
-## BabeOnym Docs
+The React app for [Babeonym](https://www.babeonym.com), which helps parents choose a baby name by comparing names two at a time.
 
-- [Figma design reference](./docs/figma-design-reference.md)
+Babeonym is three repositories:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- **babeonym-frontend**: this app.
+- [babeonym-backend](https://github.com/Protopaco/babeonym-backend): the API.
+- [babeonym-setup](https://github.com/Protopaco/babeonym-setup): the PostgreSQL schema and the pipeline that builds the name data.
 
-Currently, two official plugins are available:
+## What it does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Deals out names to consider, filtered by what the parents care about.
+- Keeps the names they like and lets them add their own.
+- Ranks their list by asking them to choose between two names at a time.
+- Works as a guest from the first visit, and offers Google sign-in to keep progress.
+- Adapts to phones, tablets and desktops, with light and dark themes.
 
-## React Compiler
+## Built with
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React 19, TypeScript, Vite, MUI, React Router, and Motion for animation. The API client is generated from the backend's OpenAPI spec. Tested with Vitest and Testing Library. Hosted on Vercel.
 
-## Expanding the ESLint configuration
+## Running it
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Run [babeonym-backend](https://github.com/Protopaco/babeonym-backend).
+2. Create a `.env` file with `VITE_API_BASE_URL` set to the backend's address.
+3. `npm install`
+4. `npm run dev`
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+`npm run api:gen` regenerates the API client in `src/api/generated` from a backend running locally on port 2221.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tests
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+npm test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Layout
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `src/pages`: one folder per page.
+- `src/components`: the components, grouped by the part of the app they belong to.
+- `src/state`: one React context per area of state, with its reducer and hooks.
+- `src/api`: the API client, with the generated part in `src/api/generated`.
+- `src/themes` and `src/styles`: the MUI themes and the shared breakpoints.
+- `docs`: the frontend architecture rules and the design files.
