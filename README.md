@@ -23,7 +23,7 @@ React 19, TypeScript, Vite, MUI, React Router, and Motion for animation. The API
 ## Running it
 
 1. Run [babeonym-backend](https://github.com/Protopaco/babeonym-backend).
-2. Create a `.env` file with `VITE_API_BASE_URL` set to the backend's address.
+2. Copy `.env.example` to `.env` and set `VITE_API_BASE_URL` to the backend's address.
 3. `npm install`
 4. `npm run dev`
 
